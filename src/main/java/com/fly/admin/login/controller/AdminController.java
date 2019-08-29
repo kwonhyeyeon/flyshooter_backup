@@ -19,7 +19,6 @@ public class AdminController {
 	// 실행시 adminlogin.jsp로 연결시켜주는 맵핑 (test를 위하여 만듬)
 	@RequestMapping(value = "/admin/main.do", method = RequestMethod.GET)
 	public String adminlogin() {
-		logger.info("여기옴?");
 		return "admin/main";
 	}
 
@@ -27,21 +26,22 @@ public class AdminController {
 	@RequestMapping(value = "/admin/main.do", method = RequestMethod.POST)
 	public String adminlogin(HttpSession session, HttpServletRequest request ,@RequestParam(value = "adminId") String adminId,
 			@RequestParam(value = "adminPw") String adminPw) {
+		
 		boolean loginPass;
-
-		loginPass = logincheck(adminId, adminPw);
-
+		
+		loginPass = loginCheck(adminId, adminPw);
+		
 		if (loginPass) {
 			session.setAttribute("adminId", adminId);
 		}
 
 		return "admin/main";
 	}
-
-	private boolean logincheck(String adminId, String adminPw) {
+	
+	private boolean loginCheck(String adminId, String adminPw) {
 		// TODO Auto-generated method stub
 		boolean loginPass = false;
-		if ("admin".equals(adminId) || "admin1234".equals(adminPw)) {
+		if ("admin".equals(adminId) && "admin1234".equals(adminPw)) {
 			loginPass = true;
 		}
 		return loginPass;

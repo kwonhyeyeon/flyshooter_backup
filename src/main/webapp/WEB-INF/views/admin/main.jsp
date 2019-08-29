@@ -8,6 +8,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
+<script type="text/javascript">
+
+		window.history.forward();
+
+		function noBack() {
+			window.history.forward();
+		}
+</script>
 </head>
 <body>
 
@@ -17,7 +26,7 @@
 	<form action="/admin/main.do" method="POST">
 			<table>
 				<tr>
-					<td colspan="3"><h2>회원가입</h2></td> 
+					<td colspan="3"><h2>관리자 로그인</h2></td> 
 				</tr>
 				<tr>
 					<td>아이디</td>
@@ -33,7 +42,8 @@
 	</c:if>
 	
 	<c:if test="${not empty adminId}">
-			 <h2>${adminId }</h2>로그인
+			 <h2>관리자로그인</h2>
+			 
 	</c:if>
 </div>	
 </body>
