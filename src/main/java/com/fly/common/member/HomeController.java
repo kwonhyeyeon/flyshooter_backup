@@ -1,4 +1,4 @@
-package com.fly.member;
+package com.fly.common.member;
 
 import java.text.DateFormat;
 import java.util.Date;
