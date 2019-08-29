@@ -33,7 +33,7 @@
 	</c:if>
 	
 	<c:if test="${not empty adminId}">
-			 <h2>${adminid }</h2>로그인
+			 <h2>${adminId }</h2>로그인
 	</c:if>
 </div>	
 </body>
