@@ -40,7 +40,7 @@ public class MemberController {
 	 ******************************/
 	@ResponseBody
 	@RequestMapping(value = "/userIdConfirm.do", method = RequestMethod.POST)
-	public String userIdConfirm(@RequestParam("m_id") String m_id) {
+	public String userIdConfirm(String m_id) {
 		int result = memberService.userIdConfirm(m_id);
 		return result + "";
 	}

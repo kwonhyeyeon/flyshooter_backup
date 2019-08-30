@@ -21,10 +21,16 @@
 			<header id="main">
 				<nav id="lnb">
 					<ul>
+<<<<<<< HEAD
 						<li><a href="/">회원가입</a></li>
 						<li><a href="/">로그인</a></li>
 						
 						<li><a href="/">로그아웃</a></li>
+=======
+						<li><a href="/member/join.do">회원가입</a></li>
+						<li><a href="/member/login.do">로그인</a></li>
+						<li><a href="">로그아웃</a></li>
+>>>>>>> 1a1733158b8ebac04afe3a1882c2df0215360f76
 					</ul>
 				</nav>
 				
