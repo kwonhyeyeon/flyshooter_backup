@@ -37,6 +37,12 @@ public class AdminController {
 
 		return "admin/main";
 	}
+	@RequestMapping("/admin/logout.do")
+	public String logout(HttpSession session, HttpServletRequest request){
+		session.invalidate();
+		session = request.getSession(true);
+		return "admin/main";
+	}
 	
 	private boolean loginCheck(String adminId, String adminPw) {
 		// TODO Auto-generated method stub

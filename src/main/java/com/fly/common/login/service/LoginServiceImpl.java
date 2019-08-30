@@ -6,14 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fly.common.member.dao.MemberDAO;
+import com.fly.common.util.OpenCrypt;
 import com.fly.common.login.dao.LoginDAO;
 import com.fly.common.login.vo.LoginVO;
 
-//@Service
-//@Transactional
+@Service
+@Transactional
 public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private LoginDAO loginDao;
+	
+	@Autowired
+	private MemberDAO memberDao;
 	
 	@Override
 	public LoginVO userIdSelect(String m_id) {
@@ -22,9 +27,19 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public LoginVO loginSelect(String m_id, String m_pw) {
-		//TODO LoginVO vo = null;
+		LoginVO vo = new LoginVO();
+		String sec = memberDao.securitySelect(m_id);
+		// 암호화 HACK
+		if(sec!=null) {
+			m_pw = new String(OpenCrypt.getSHA256(vo.getM_pw(), sec));
+			LoginVO lvo = new LoginVO();	
+			lvo.setM_id(m_id);
+			lvo.setM_pw(m_pw);
+				
+			vo = loginDao.loginSelect(lvo);
+		}
 		
-		return null;
+		return vo;
 	}
 
 	@Override
