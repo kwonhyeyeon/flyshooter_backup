@@ -9,6 +9,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/js/adminLogin.js"></script>
 <script type="text/javascript">
 
 		window.history.forward();
@@ -26,16 +28,24 @@
 	<form action="/admin/main.do" method="POST">
 			<table>
 				<tr>
-					<td colspan="3"><h2>관리자 로그인</h2></td> 
+					<td colspan="2"><h2>로그인</h2></td> 
 				</tr>
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" name="adminId" /></td>
-					<td rowspan="2"><input type="submit" value="로그인"/></td>
+					<td><input type="text" name="adminId" id="adminId" /></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="password" name="adminPw" /></td>
+					<td><input type="password" name="adminPw" id="adminPw" /></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+					<p id="message"></p>
+					<p id="countdown"></p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="로그인"/></td>
 				</tr>
 			</table>
 		</form>
@@ -43,7 +53,7 @@
 	
 	<c:if test="${not empty adminId}">
 			 <h2>관리자로그인</h2>
-			 
+			 <a href="/admin/logout.do">로그아웃</a>
 	</c:if>
 </div>	
 </body>

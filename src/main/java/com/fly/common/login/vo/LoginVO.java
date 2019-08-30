@@ -2,9 +2,9 @@ package com.fly.common.login.vo;
 
 public class LoginVO extends LoginHistory  {
 	
-		private String m_id = "";
-		private String m_pw = "";
-		private String m_name = "";
+		private String m_id = ""; // 아이디
+		private String m_pw = ""; // 비밀번호
+		private String m_name = ""; //이름
 		
 	
 	public LoginVO() {}
