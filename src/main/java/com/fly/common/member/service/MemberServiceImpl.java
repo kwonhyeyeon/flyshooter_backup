@@ -1,6 +1,7 @@
 package com.fly.common.member.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,16 +15,16 @@ import com.fly.common.util.Util;
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
-	private MemberDAO memberDao;
+	private MemberDAO memberDAO;
 
 	@Override
 	public int memberJoin(MemberVO mvo) {
-		if (memberDao.memberSelect(mvo.getM_id()) != null) {
+		if (memberDAO.memberSelect(mvo.getM_id()) != null) {
 			return 1;
 		} else {
 			try {
 				mvo.setM_pw(new String(OpenCrypt.getSHA256(mvo.getM_pw(), Util.getRandomString())));
-				memberDao.memberJoin(mvo);
+				memberDAO.memberJoin(mvo);
 				return 3;
 			} catch (RuntimeException e) {
 				e.printStackTrace();
@@ -35,7 +36,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int userIdConfirm(String userId) {
 		int result;
-		if (memberDao.memberSelect(userId) != null) {
+		if (memberDAO.memberSelect(userId) != null) {
 			result = 1;
 		} else {
 			result = 2;
@@ -45,7 +46,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public MemberVO memberSelect(String m_Id) {
-		MemberVO vo = memberDao.memberSelect(m_Id);
+		MemberVO vo = memberDAO.memberSelect(m_Id);
 		return vo;
 	}
 
@@ -53,10 +54,10 @@ public class MemberServiceImpl implements MemberService {
 	public boolean memberUpdate(MemberVO mvo) {
 		try {
 			if (!mvo.getM_pw().isEmpty()) {
-				String sec = memberDao.securitySelect(mvo.getM_id());
+				String sec = memberDAO.securitySelect(mvo.getM_id());
 				mvo.setM_pw(new String(OpenCrypt.getSHA256(mvo.getM_pw(), sec)));
 			}
-			memberDao.memberUpdate(mvo);
+			memberDAO.memberUpdate(mvo);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -68,7 +69,7 @@ public class MemberServiceImpl implements MemberService {
 	public int memberDelete(String userId) {
 		int isSucessCode = 3;
 		try {
-			isSucessCode = memberDao.memberDelete(userId);
+			isSucessCode = memberDAO.memberDelete(userId);
 			isSucessCode = 2;
 		} catch (Exception e) {
 			e.printStackTrace();
