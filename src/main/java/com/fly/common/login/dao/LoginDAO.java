@@ -1,8 +1,8 @@
-package com.fly.common.member.dao;
+package com.fly.common.login.dao;
 
 import java.sql.SQLException;
 
-import com.fly.common.member.vo.LoginVO;
+import com.fly.common.login.vo.LoginVO;
 
 public interface LoginDAO {
 	public LoginVO userIdSelect(String m_id);
