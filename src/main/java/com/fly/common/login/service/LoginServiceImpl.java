@@ -11,8 +11,8 @@ import com.fly.common.util.OpenCrypt;
 import com.fly.common.login.dao.LoginDAO;
 import com.fly.common.login.vo.LoginVO;
 
-@Service
-@Transactional
+//@Service
+//@Transactional
 public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private LoginDAO loginDao;
