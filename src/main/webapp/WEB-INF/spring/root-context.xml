@@ -36,6 +36,6 @@
 	</bean>
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage"><value>com.fly.**.**.dao2</value></property>
+		<property name="basePackage"><value>com.fly.**.**.dao</value></property>
 	</bean>
 </beans>
