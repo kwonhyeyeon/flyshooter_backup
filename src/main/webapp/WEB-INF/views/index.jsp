@@ -17,9 +17,9 @@
 	<div id="wrapper">
 		<div id="main-v"></div>
 	
-		<div id="header-wrap">
-			<header id="header">
-				<nav id="gnb">
+		<div id="main-wrap">
+			<header id="main">
+				<nav id="lnb">
 					<ul>
 						<li><a href="/member/join.do">회원가입</a></li>
 						<li><a href="/member/login.do">로그인</a></li>
@@ -29,7 +29,7 @@
 				
 				<h1>FLY SHOOTER</h1>
 				
-				<nav id="nav">
+				<nav id="main-gnb">
 					<ul>
 						<li><a href="/">대관</a></li>
 						<li><a href="/">매치</a></li>
