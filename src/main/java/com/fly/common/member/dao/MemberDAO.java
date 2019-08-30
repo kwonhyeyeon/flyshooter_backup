@@ -13,6 +13,6 @@ public interface MemberDAO {
 
 	public String securitySelect(String m_id);
 
-	public void memberUpdate(MemberVO mvo);
+	public int memberUpdate(MemberVO mvo);
 
 }
