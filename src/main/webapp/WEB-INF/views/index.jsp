@@ -21,10 +21,10 @@
 			<header id="header">
 				<nav id="gnb">
 					<ul>
+
 						<li><a href="/member/join.do">회원가입</a></li>
-						<li><a href="/">로그인</a></li>
-						
-						<li><a href="/">로그아웃</a></li>
+						<li><a href="/member/login.do">로그인</a></li>
+						<li><a href="">로그아웃</a></li>
 					</ul>
 				</nav>
 				

@@ -18,7 +18,7 @@ public class LoginServiceImpl implements LoginService {
 	private LoginDAO loginDao;
 	
 	@Autowired
-	private MemberDAO memberDao;
+	private MemberDAO memberDAO;
 	
 	@Override
 	public LoginVO userIdSelect(String m_id) {
@@ -28,7 +28,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public LoginVO loginSelect(String m_id, String m_pw) {
 		LoginVO vo = new LoginVO();
-		String sec = memberDao.securitySelect(m_id);
+		String sec = memberDAO.securitySelect(m_id);
 		// 암호화 HACK
 		if(sec!=null) {
 			m_pw = new String(OpenCrypt.getSHA256(vo.getM_pw(), sec));

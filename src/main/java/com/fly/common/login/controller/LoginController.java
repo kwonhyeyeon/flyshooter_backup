@@ -21,8 +21,8 @@ import com.fly.common.login.vo.LoginVO;
 
 /*리턴값 변경하기!!*/
 
-//@Controller
-//@RequestMapping("/member")
+@Controller
+@RequestMapping("/member")
 public class LoginController {
 
 	private Logger log = LoggerFactory.getLogger(LoginController.class);
