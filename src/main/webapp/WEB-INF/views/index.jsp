@@ -9,10 +9,29 @@
 <title>FLY SHOOTER</title>
 
 <link rel="stylesheet" href="/resources/css/reset.css" />
+<link rel="stylesheet" href="/resources/css/style.css" />
 </head>
 <body>
 
-test
+	<div id="wrapper">
+		<div id="main-v"></div>
+	
+		<div id="header-wrap">
+			<header id="header">
+				<h1>FLY SHOOTER</h1>
+				
+				<nav id="nav">
+					<ul>
+						<li><a href="/">대관</a></li>
+						<li><a href="/">매치</a></li>
+						<li><a href="/">용병</a></li>
+						<li><a href="/">마이페이지</a></li>
+					</ul>
+				</nav>
+			</header>
+		</div>
+	
+	</div>
 
 </body>
 </html>
