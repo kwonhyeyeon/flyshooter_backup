@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.fly.common.login.vo.LoginVO;
 
-@Repository
+//@Repository
 public class LoginDAOImpl implements LoginDAO {
 	@Autowired
 	private SqlSession session;

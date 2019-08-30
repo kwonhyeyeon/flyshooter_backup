@@ -1,11 +1,11 @@
 package com.fly.common.login.vo;
 
 public class LoginHistory {
-	private String m_id;
-	private int retry;
-	private long lastFail;
-	private long lastPass;
-	private String clientIp;
+	private String m_id;//유저 아이디
+	private int retry;//재시도
+	private long lastFail;// 최근 실패 시간
+	private long lastPass; // 최근 성공 시간
+	private String clientIp;// IP
 	
 	
 	public LoginHistory() {}
