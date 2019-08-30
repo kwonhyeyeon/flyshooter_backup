@@ -23,7 +23,18 @@
 		values(#{m_id}, #{m_pw}, #{m_phone}, sysdate, 1,
 		#{m_type}, #{m_name}, 0)
 	</insert>
-
+	
+	<update id="GetKey" parameterType="Map">
+		UPDATE member set
+		email_confirm = #{param2}
+		where m_id = #{param1}
+	</update>
+	
+	<update id="alter_userKey" parameterType="Map">
+		UPDATE member set
+		email_confirm = 'Y'
+		where m_id = #{param1} and email_confirm = #{param2}
+	</update>
 
 	<update id="memberUpdate" parameterType="member">
 		UPDATE member set
