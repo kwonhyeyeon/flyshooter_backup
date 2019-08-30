@@ -42,7 +42,7 @@
  	</update>
  	
  	
- 	<select id="loginHistorySelect" parameterType="String" resultMap="login">
+ 	<select id="loginHistorySelect" parameterType="String" resultType="login">
  		select 
  			m_id,
  			retry,
