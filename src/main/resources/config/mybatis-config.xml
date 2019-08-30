@@ -9,8 +9,8 @@
 		<typeAlias type="com.fly.client.items.vo.ItemsVO" alias="items"/>
 		<typeAlias type="com.fly.client.place.vo.PlaceVO" alias="place"/>
 		<typeAlias type="com.fly.client.stadium.vo.StadiumVO" alias="stadium"/>
-		<typeAlias type="com.fly.client.stats.StatsVO" alias="stats"/>
-		<typeAlias type="com.fly.common.member.vo.LoginHistoryVO" alias="loginHistory" />
+		<typeAlias type="com.fly.client.stats.StatsVO" alias="stats"/> 
+		<typeAlias type="com.fly.common.member.vo.LoginHistory" alias="loginHistory" />
 		<typeAlias type="com.fly.common.member.vo.LoginVO" alias="login" />
 		<typeAlias type="com.fly.common.member.vo.MemberVO" alias="member" />
 	</typeAliases>
