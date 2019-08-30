@@ -2,8 +2,6 @@ package com.fly.common.member.controller;
 
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,30 +12,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fly.common.login.service.LoginService;
 import com.fly.common.login.vo.LoginVO;
 import com.fly.common.member.service.MemberService;
 import com.fly.common.member.vo.MemberVO;
 
 @Controller
 @RequestMapping(value = "/member")
-
 public class MemberController {
 
-	// 로그 설정 @log대신
-	private Logger log = LoggerFactory.getLogger(MemberController.class);
 	@Autowired
 	private MemberService memberService;
 
-	@Autowired
-	private LoginService loginService;
+	//@Autowired
+	//private LoginService loginService;
 
 	/******************************
 	 * 회원가입 폼
 	 ******************************/
 	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
 	public String joingForm(Model model) {
-		log.info("join.do get 방식에 의한 메서드 호출 성공");
+		System.out.println("join.do get 방식에 의한 메서드 호출 성공");
 		return "member/join";
 	}
 
@@ -46,8 +40,8 @@ public class MemberController {
 	 ******************************/
 	@ResponseBody
 	@RequestMapping(value = "/userIdConfirm.do", method = RequestMethod.POST)
-	public String userIdConfirm(@RequestParam("userId") String userId) {
-		int result = memberService.userIdConfirm(userId);
+	public String userIdConfirm(@RequestParam("m_id") String m_id) {
+		int result = memberService.userIdConfirm(m_id);
 		return result + "";
 	}
 
@@ -56,7 +50,7 @@ public class MemberController {
 	 ******************************/
 	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
 	public ModelAndView memberInsert(@ModelAttribute MemberVO mvo) {
-		log.info("join.do post 방식에 의한 메서드 호출 성공");
+		System.out.println("join.do post 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
 
 		int result = 0;
@@ -82,7 +76,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/modify.do", method = RequestMethod.GET)
 	public ModelAndView memberModify(HttpSession session) {
-		log.info("modify.do get방식에 의한 메서드 호출 성공");
+		System.out.println("modify.do get방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
 
 		LoginVO login = (LoginVO) session.getAttribute("login");
@@ -98,7 +92,7 @@ public class MemberController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/modify.do", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/modify.do", method = RequestMethod.POST)
 	public ModelAndView memberModifyProcess(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) {
 		log.info("modify.do post 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
@@ -106,7 +100,7 @@ public class MemberController {
 		LoginVO login = (LoginVO) session.getAttribute("login");
 
 		if (login == null) {
-			mav.setViewName("member/login");
+			mav.setViewName("common/member/login");
 			return mav;
 		}
 
@@ -127,11 +121,11 @@ public class MemberController {
 			mav.setViewName("member/modify");
 			return mav;
 		}
-	}
+	}*/
 
 	@RequestMapping("/delete.do")
 	public ModelAndView memberDelete(HttpSession session) {
-		log.info("delete.do get방식에의한 메서드 호출 성공");
+		System.out.println("delete.do get방식에의한 메서드 호출 성공");
 
 		ModelAndView mav = new ModelAndView();
 		LoginVO login = (LoginVO) session.getAttribute("login");
