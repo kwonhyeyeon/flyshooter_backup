@@ -20,8 +20,8 @@
 		<!-- member - memberInsert -->
 		insert into member(m_id, m_pw, m_phone, m_regdate, m_status, m_type,  
 		m_name, email_confirm)
-		values(#{m_id}, #{m_pw}, #{m_phone}, #{sysdate}, #{m_status},
-		#{m_type}, #{m_name}, #{'N'})
+		values(#{m_id}, #{m_pw}, #{m_phone}, sysdate, 1,
+		#{m_type}, #{m_name}, 0)
 	</insert>
 
 
