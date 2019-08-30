@@ -2,13 +2,7 @@
  * 
  */
 $(function(){
-	errCodeCheck()
-	$('#m_id', '#m_pw').bind("keyup", function(){
-		$(this).parents("div").find("error").html("");
-	});
-	
 
-	
 	/*로그인 버튼 클릭 시 처리 이벤트*/
 	$("#loginBtn").click(function(){
 		if(!formCheck($('#m_id'), $('.error:eq(0)'), "아이디를")) return;
