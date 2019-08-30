@@ -20,7 +20,7 @@
 			<header id="header">
 				<h1>FLY SHOOTER</h1>
 				
-				<nav>
+				<nav id="nav">
 					<ul>
 						<li><a href="/">대관</a></li>
 						<li><a href="/">매치</a></li>

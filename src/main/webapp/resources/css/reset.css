@@ -23,7 +23,6 @@ time, mark, audio, video {
 	font-size: 14px;
 	font: inherit;
 	vertical-align: baseline;
-	overflow-y:auto;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
