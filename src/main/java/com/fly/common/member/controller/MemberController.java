@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fly.common.login.service.LoginService;
+import com.fly.common.login.vo.LoginVO;
 import com.fly.common.member.service.MemberService;
+import com.fly.common.member.vo.MemberVO;
 
 @Controller
 @RequestMapping(value = "/member")
@@ -57,7 +60,7 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 
 		int result = 0;
-		result = memberService.memberInsert(mvo);
+		result = memberService.memberJoin(mvo);
 
 		switch (result) {
 		case 1:
@@ -89,7 +92,7 @@ public class MemberController {
 			return mav;
 		}
 
-		MemberVO vo = memberService.memberSelect(login.getUserId());
+		MemberVO vo = memberService.memberSelect(login.getM_id());
 		mav.addObject("member", vo);
 		mav.setViewName("member/modify");
 		return mav;
@@ -107,9 +110,9 @@ public class MemberController {
 			return mav;
 		}
 
-		mvo.setUserId(login.getUserId());
-		MemberVO vo = memberService.memberSelect(mvo.getUserId());
-		if (loginService.loginSelect(mvo.getUserId(), mvo.getOldUserPw()) == null) {
+		mvo.setM_id(login.getM_id());
+		MemberVO vo = memberService.memberSelect(mvo.getM_id());
+		if (loginService.loginSelect(mvo.getM_id(), mvo.getM_pw()) == null) {
 			mav.addObject("errCOde", 1);
 			mav.addObject("member", vo);
 			mav.setViewName("member/modify");
@@ -138,7 +141,7 @@ public class MemberController {
 			return mav;
 		}
 
-		int errCode = memberService.memberDelete(login.getUserId());
+		int errCode = memberService.memberDelete(login.getM_id());
 		switch (errCode) {
 		case 2:
 			mav.setViewName("redirect:/member/logout.do");

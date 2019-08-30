@@ -1,4 +1,4 @@
-package com.fly.common.member.controller;
+package com.fly.common.login.controller;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fly.common.member.service.LoginService;
-import com.fly.common.member.vo.LoginVO;
+import com.fly.common.login.service.LoginService;
+import com.fly.common.login.vo.LoginVO;
 
 /*리턴값 변경하기!!*/
 

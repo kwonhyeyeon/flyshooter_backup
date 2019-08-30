@@ -1,4 +1,4 @@
-package com.fly.common.member.vo;
+package com.fly.common.login.vo;
 
 public class LoginVO extends LoginHistory  {
 	
