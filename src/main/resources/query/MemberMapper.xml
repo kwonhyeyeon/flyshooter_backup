@@ -26,14 +26,14 @@
 	
 	<update id="GetKey" parameterType="Map">
 		UPDATE member set
-		email_confirm = #{param2}
-		where m_id = #{param1}
+		email_confirm = #{setEmail_comfirm}
+		where m_id = #{m_id}
 	</update>
 	
 	<update id="alter_userKey" parameterType="Map">
 		UPDATE member set
 		email_confirm = 'Y'
-		where m_id = #{param1} and email_confirm = #{param2}
+		where m_id = #{m_id}
 	</update>
 
 	<update id="memberUpdate" parameterType="member">

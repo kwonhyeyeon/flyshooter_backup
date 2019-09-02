@@ -13,8 +13,8 @@ public interface MemberDAO {
 
 	public int memberUpdate(MemberVO mvo);
 
-	public void GetKey(String user_id, String key);
+	public int GetKey(MemberVO mvo);
 
-	public int alter_userKey(String user_id, String key);
+	public int alter_userKey(MemberVO mvo);
 
 }

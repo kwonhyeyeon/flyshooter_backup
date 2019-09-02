@@ -71,7 +71,7 @@ public class MemberController {
 			mav.addObject("errCode", 3);
 			mav.setViewName("member/join_success");
 			// 인증 메일 보내기 메서드
-			mailsender.mailSendWithUserKey(mvo.getM_id(), mvo.getM_id(), request);
+			mailsender.mailSendWithUserKey(mvo , request);
 			// success to add new member; move to login page
 			break;
 		default:
@@ -83,9 +83,9 @@ public class MemberController {
 	}
 	// e-mail 인증 컨트롤러
 		@RequestMapping(value = "/user/key_alter", method = RequestMethod.GET)
-		public String key_alterConfirm(@RequestParam("user_id") String user_id, @RequestParam("user_key") String key) {
+		public String key_alterConfirm(MemberVO mvo) {
 
-			mailsender.alter_userKey_service(user_id, key); // mailsender의 경우 @Autowired
+			mailsender.alter_userKey_service(mvo); // mailsender의 경우 @Autowired
 
 			return "user/userRegSuccess";
 		}

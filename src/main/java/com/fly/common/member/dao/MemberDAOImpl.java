@@ -37,15 +37,15 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public void GetKey(String user_id, String key) {
+	public int GetKey(MemberVO mvo) {
 		// TODO Auto-generated method stub
-		
+		return session.update("GetKey", mvo);
 	}
 
 	@Override
-	public int alter_userKey(String user_id, String key) {
+	public int alter_userKey(MemberVO mvo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return session.update("alter_userKey", mvo);
 	}
 
 }
