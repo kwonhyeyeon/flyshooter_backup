@@ -36,7 +36,7 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
+
 		<!-- 정효성 이메일 관련 dependency 추가 -->
 		<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail -->
 		<dependency>
@@ -44,15 +44,14 @@
 			<artifactId>javax.mail</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		<!-- 이메일 인증 2018.11.20 KW -->
 		<!-- 정효성 이메일 관련 dependency 추가완료 -->
-		
+
 		<!-- jdbc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
