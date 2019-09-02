@@ -2,70 +2,70 @@
 
 /* index start */
 #wrapper {
-	position:relative;
-	width:100%;
+   position:relative;
+   width:100%;
 }
 #main-v {
-	position:fixed;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	background-image:url("/resources/img/main.jpg");
-	background-position:center;
-	background-size:cover;
-	background-repeat:no-repeat;
-	z-index:-10;
+   position:fixed;
+   top:0;
+   left:0;
+   right:0;
+   bottom:0;
+   background-image:url("/resources/img/main.jpg");
+   background-position:center;
+   background-size:cover;
+   background-repeat:no-repeat;
+   z-index:-10;
 }
 #main-wrap {
-	position:fixed;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	width:100%;
-	background-color:rgba(0,0,0,0.4);
+   position:fixed;
+   top:0;
+   left:0;
+   right:0;
+   bottom:0;
+   width:100%;
+   background-color:rgba(0,0,0,0.4);
 }
 #main {
-	position:fixed;
-	width:1200px;
-	top:15%;
-	left:50%;
-	margin-left:-600px;
+   position:fixed;
+   width:1200px;
+   top:15%;
+   left:50%;
+   margin-left:-600px;
 }
 #main-lnb {
-	width:1200px;
-	height:50px;
-	line-height:50px;
-	margin:0 auto;
-	display:flex;
-	flex-direction:row-reverse;
+   width:1200px;
+   height:50px;
+   line-height:50px;
+   margin:0 auto;
+   display:flex;
+   flex-direction:row-reverse;
 }
 #main-lnb ul li {
-	width:60px;
-	text-align:center;
-	float:left;
+   width:60px;
+   text-align:center;
+   float:left;
 }
 #main-lnb ul li a {
-	color:#fff;
+   color:#fff;
 }
 #main h1 {
-	font-size:40px;
-	font-weight:bold;
-	color:#fff;
-	text-align:center;
-	border-top:1px solid #fff;
-	border-bottom:1px solid #fff;
-	padding:50px 0;
+   font-size:40px;
+   font-weight:bold;
+   color:#fff;
+   text-align:center;
+   border-top:1px solid #fff;
+   border-bottom:1px solid #fff;
+   padding:50px 0;
 }
 .line {
-	width:1px;
-	height:200px;
-	margin:0 auto;
-	background:#fff;
+   width:1px;
+   height:200px;
+   margin:0 auto;
+   background:#fff;
 }
 #main-gnb:before {
-	content:'';
+   content:'';
     display:block;
     position:absolute;
     top:191px;
@@ -75,112 +75,143 @@
     background:#fff;
 }
 #main-gnb {
-	width:1000px;
-	height:100px;
-	margin:300px auto 0;
-	border:1px solid #fff;
-	border-radius:10px;
+   width:1000px;
+   height:100px;
+   margin:300px auto 0;
+   border:1px solid #fff;
+   border-radius:10px;
 }
 #main-gnb ul li {
-	width:249px;
-	height:100px;
-	line-height:100px;
-	float:left;
-	border-right:1px solid #fff;
-	text-align:center;
+   width:249px;
+   height:100px;
+   line-height:100px;
+   float:left;
+   border-right:1px solid #fff;
+   text-align:center;
 }
 #main-gnb ul li:last-child {
-	width:250px;
-	border-right:none;
+   width:250px;
+   border-right:none;
 }
 #main-gnb ul li a {
-	display:inline-block;
-	width:250px;
-	height:100px;
-	line-height:100px;
-	color:#fff;
-	font-size:20px;
-	font-weight:bold;
+   display:inline-block;
+   width:250px;
+   height:100px;
+   line-height:100px;
+   color:#fff;
+   font-size:20px;
+   font-weight:bold;
 }
 #main-gnb ul li a:hover {
-	background:rgba(255,255,255,0.2);
+   background:rgba(255,255,255,0.2);
 }
 
 /* index end */
 
 /* header start */
 #header-wrap {
-	width:100%;
-	height:85px;
-	background:rgba(0,0,0,0.6);
+   width:100%;
+   height:85px;
+   background:rgba(0,0,0,0.6);
 }
 #header {
-	width:1200px;
-	height:85px;
-	line-height:85px;
-	margin:0 auto;
-	position:relative;
+   width:1200px;
+   height:85px;
+   line-height:85px;
+   margin:0 auto;
+   position:relative;
 }
 #header h1 {
-	width:270px;
-	font-size:40px;
-	font-weight:bold;
-	float:left;
+   width:270px;
+   font-size:40px;
+   font-weight:bold;
+   float:left;
 }
 #header h1 a {
-	color:#fff;
+   color:#fff;
 }
 #gnb {
-	width:640px;
-	height:85px;
-	line-height:85px;
-	float:left;
-	margin-left:50px;
+   width:640px;
+   height:85px;
+   line-height:85px;
+   float:left;
+   margin-left:50px;
 }
 #gnb ul li {
-	float:left;
-	width:160px;
-	height:85px;
-	line-height:85px;
-	text-align:center;
+   float:left;
+   width:160px;
+   height:85px;
+   line-height:85px;
+   text-align:center;
 }
 #gnb ul li a {
-	display:inline-block;
-	width:160px;
-	height:85px;
-	line-height:85px;
-	color:#fff;
-	font-size:20px;
-	font-weight:bold;
+   display:inline-block;
+   width:160px;
+   height:85px;
+   line-height:85px;
+   color:#fff;
+   font-size:20px;
+   font-weight:bold;
 }
 #lnb {
-	width:120px;
-	height:85px;
-	line-height:85px;
-	float:left;
-	position:absolute;
-	top:0;
-	right:0;
+   width:120px;
+   height:85px;
+   line-height:85px;
+   float:left;
+   position:absolute;
+   top:0;
+   right:0;
 }
 #lnb ul li {
-	width:60px;
-	height:85px;
-	line-height:85px;
-	text-align:center;
-	float:left;
+   width:60px;
+   height:85px;
+   line-height:85px;
+   text-align:center;
+   float:left;
 }
 #lnb ul li a {
-	display:inline-block;
-	width:60px;
-	height:85px;
-	line-height:85px;
-	text-align:center;
-	color:#fff;
+   display:inline-block;
+   width:60px;
+   height:85px;
+   line-height:85px;
+   text-align:center;
+   color:#fff;
 }
 /* header end */
 
 /* menu start */
 .menu-wrap {
+<<<<<<< HEAD
+   width:100%;
+   background:rgba(0,0,0,0.6);
+   position:absolute;
+   z-index:10;
+   overflow:hidden;
+   display:none;
+}
+.menu {
+   width:880px;
+   margin:0 auto;
+   padding-left:320px;
+}
+.menu ul {
+   width:160px;
+   float:left;
+   height:100px;
+}
+.menu ul.member-menu {
+   height:250px;
+}
+.menu ul li {
+   width:160px;
+   height:50px;
+   text-align:center;
+   color:#fff;
+   font-size:15px;
+}
+.menu ul li a {
+   color:#fff;
+=======
 	width:100%;
 	background:rgba(0,0,0,0.6);
 	position:absolute;
@@ -210,25 +241,40 @@
 }
 .menu ul li a {
 	color:#fff;
+>>>>>>> 7a9ff29335bce3392c3e96aa1a4ade707bd55ab5
 }
 /* menu end */
 
 /* sub-visual start */
 .sub-v {
+<<<<<<< HEAD
+   width:100%;
+   height:320px;
+   position:absolute;
+   background:green;
+   top:0;
+   z-index:-1;
+=======
 	width:100%;
 	height:320px;
 	position:absolute;
 	background:green;
 	top:0;
 	z-index:-1;
+>>>>>>> 7a9ff29335bce3392c3e96aa1a4ade707bd55ab5
 }
 /* sub-visual end */
 
 /* location start */
 .location-wrap {
+<<<<<<< HEAD
+   clear:both;
+   width:1200px;
+   margin:235px auto 0;
+=======
 	clear:both;
 	width:1200px;
 	margin:235px auto 0;
+>>>>>>> 7a9ff29335bce3392c3e96aa1a4ade707bd55ab5
 }
 /* location end */
-
