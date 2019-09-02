@@ -19,11 +19,12 @@
 	
 		<div id="main-wrap">
 			<header id="main">
-				<nav id="lnb">
+				<nav id="main-lnb">
 					<ul>
-						<li><a href="/member/join.do">회원가입</a></li>
-						<li><a href="/member/login.do">로그인</a></li>
-						<li><a href="">로그아웃</a></li>
+						<li><a href="/">회원가입</a></li>
+						<li><a href="/">로그인</a></li>
+						
+						<li><a href="/">로그아웃</a></li>
 					</ul>
 				</nav>
 				
@@ -31,7 +32,7 @@
 				
 				<nav id="main-gnb">
 					<ul>
-						<li><a href="/">대관</a></li>
+						<li><a href="/rental/location.do">대관</a></li>
 						<li><a href="/">매치</a></li>
 						<li><a href="/">용병</a></li>
 						<li><a href="/">마이페이지</a></li>
