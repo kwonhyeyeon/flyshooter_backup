@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script>
+<<<<<<< HEAD
    $(function() {
       $("#gnb").hover(function() {
          $(".menu-wrap").slideDown(500);
@@ -21,6 +22,16 @@
          $(".menu-wrap").slideUp(500);
       });
    })
+=======
+	$(function() {
+		$("#gnb").hover(function() {
+			$(".menu-wrap").slideDown(500);
+		});
+		$(".menu-wrap").mouseleave(function() {
+			$(".menu-wrap").slideUp(500);
+		});
+	})
+>>>>>>> ca60b70dac0724ebc91d8c2d96c8c92266d1dfed
 </script>
 </head>
 <body>
