@@ -9,9 +9,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>FLY SHOOTER</title>
 <title>Insert title here</title>
-
-<link rel="stylesheet"  href="/resources/css/reset.css" />
-<link rel="stylesheet"  href="/resources/css/style.css" />
+<link rel="stylesheet" href="/resources/css/reset.css" />
+<link rel="stylesheet" href="/resources/css/style.css" />
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script>
+   $(function() {
+      $("#gnb").hover(function() {
+         $(".menu-wrap").slideDown(500);
+      });
+      $(".menu-wrap").mouseleave(function() {
+         $(".menu-wrap").slideUp(500);
+      });
+   })
+</script>
 </head>
 <body>
 
