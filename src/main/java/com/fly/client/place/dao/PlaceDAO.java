@@ -1,10 +1,12 @@
 package com.fly.client.place.dao;
 
-import com.fly.client.place.vo.PlaceVO;
+import java.util.List;
 
-public interface PlaceDAO {
+import com.fly.member.rental.vo.RentalVO;
 
-	// 지역 검색
-	public PlaceVO areaSearch(String area);
+public interface PlaceDao {
+
+	// 구장별 대관 예약 현황
+	public List<RentalVO> placeRentalList(String p_name);
 	
 }
