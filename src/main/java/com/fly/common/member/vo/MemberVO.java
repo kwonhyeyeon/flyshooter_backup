@@ -6,7 +6,7 @@ public class MemberVO {
 	private String m_pw;// 비밀번호
 	private String m_phone;// 휴대전화
 	private String m_name;// 회원명
-	private String m_type;// 회원 유형
+	private int m_type;// 회원 유형
 	private String email_comfirm;// 이메일 인증 상태
 
 	// Getter Setter
@@ -42,11 +42,11 @@ public class MemberVO {
 		this.m_name = m_name;
 	}
 
-	public String getM_type() {
+	public int getM_type() {
 		return m_type;
 	}
 
-	public void setM_type(String m_type) {
+	public void setM_type(int m_type) {
 		this.m_type = m_type;
 	}
 
