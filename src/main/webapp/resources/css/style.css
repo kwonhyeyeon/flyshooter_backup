@@ -181,37 +181,6 @@
 
 /* menu start */
 .menu-wrap {
-<<<<<<< HEAD
-   width:100%;
-   background:rgba(0,0,0,0.6);
-   position:absolute;
-   z-index:10;
-   overflow:hidden;
-   display:none;
-}
-.menu {
-   width:880px;
-   margin:0 auto;
-   padding-left:320px;
-}
-.menu ul {
-   width:160px;
-   float:left;
-   height:100px;
-}
-.menu ul.member-menu {
-   height:250px;
-}
-.menu ul li {
-   width:160px;
-   height:50px;
-   text-align:center;
-   color:#fff;
-   font-size:15px;
-}
-.menu ul li a {
-   color:#fff;
-=======
 	width:100%;
 	background:rgba(0,0,0,0.6);
 	position:absolute;
@@ -241,40 +210,25 @@
 }
 .menu ul li a {
 	color:#fff;
->>>>>>> ca60b70dac0724ebc91d8c2d96c8c92266d1dfed
 }
 /* menu end */
 
 /* sub-visual start */
 .sub-v {
-<<<<<<< HEAD
-   width:100%;
-   height:320px;
-   position:absolute;
-   background:green;
-   top:0;
-   z-index:-1;
-=======
 	width:100%;
 	height:320px;
 	position:absolute;
 	background:green;
 	top:0;
 	z-index:-1;
->>>>>>> ca60b70dac0724ebc91d8c2d96c8c92266d1dfed
 }
 /* sub-visual end */
 
 /* location start */
 .location-wrap {
-<<<<<<< HEAD
-   clear:both;
-   width:1200px;
-   margin:235px auto 0;
-=======
 	clear:both;
 	width:1200px;
 	margin:235px auto 0;
->>>>>>> ca60b70dac0724ebc91d8c2d96c8c92266d1dfed
 }
 /* location end */
+

@@ -14,36 +14,6 @@
 </head>
 <body>
 
-<<<<<<< HEAD
-   <div id="wrapper">
-      <div id="main-v"></div>
-   
-      <div id="main-wrap">
-         <header id="main">
-            <nav id="main-lnb">
-               <ul>
-                  <li><a href="/member/join.do">회원가입</a></li>
-                  <li><a href="/">로그인</a></li>
-                  
-                  <li><a href="/">로그아웃</a></li>
-               </ul>
-            </nav>
-            
-            <h1>FLY SHOOTER</h1>
-            
-            <nav id="main-gnb">
-               <ul>
-                  <li><a href="/rental/location.do">대관</a></li>
-                  <li><a href="/">매치</a></li>
-                  <li><a href="/">용병</a></li>
-                  <li><a href="/">마이페이지</a></li>
-               </ul>
-            </nav>
-         </header>
-      </div>
-   
-   </div>
-=======
 	<div id="wrapper">
 		<div id="main-v"></div>
 	
@@ -72,7 +42,6 @@
 		</div>
 	
 	</div>
->>>>>>> ca60b70dac0724ebc91d8c2d96c8c92266d1dfed
 
 </body>
 </html>
