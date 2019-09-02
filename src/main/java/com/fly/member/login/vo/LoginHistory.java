@@ -1,4 +1,4 @@
-package com.fly.common.login.vo;
+package com.fly.member.login.vo;
 
 public class LoginHistory {
 	private String m_id;//유저 아이디

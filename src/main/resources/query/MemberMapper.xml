@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.fly.common.member.dao.MemberDAO">
+<mapper namespace="com.fly.member.join.dao.MemberDAO">
 
 	<select id="securitySelect" parameterType="String"
 		resultType="member">
@@ -26,9 +26,10 @@
 	
 	<update id="GetKey" parameterType="Map">
 		UPDATE member set
-		email_confirm = #{setEmail_comfirm}
+		email_confirm = #{email_comfirm}
 		where m_id = #{m_id}
 	</update>
+	
 	
 	<update id="alter_userKey" parameterType="Map">
 		UPDATE member set

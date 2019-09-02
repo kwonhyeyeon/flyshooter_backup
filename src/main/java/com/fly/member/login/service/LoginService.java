@@ -1,8 +1,8 @@
-package com.fly.common.login.service;
+package com.fly.member.login.service;
 
 import java.sql.SQLException;
 
-import com.fly.common.login.vo.LoginVO;
+import com.fly.member.login.vo.LoginVO;
 
 public interface LoginService {
 	public LoginVO userIdSelect(String m_id);

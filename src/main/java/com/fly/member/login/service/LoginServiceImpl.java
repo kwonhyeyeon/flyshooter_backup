@@ -1,4 +1,4 @@
-package com.fly.common.login.service;
+package com.fly.member.login.service;
 
 import java.sql.SQLException;
 
@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fly.common.member.dao.MemberDAO;
 import com.fly.common.util.OpenCrypt;
-import com.fly.common.login.dao.LoginDAO;
-import com.fly.common.login.vo.LoginVO;
+import com.fly.member.join.dao.MemberDAO;
+import com.fly.member.login.dao.LoginDAO;
+import com.fly.member.login.vo.LoginVO;
 
 
 

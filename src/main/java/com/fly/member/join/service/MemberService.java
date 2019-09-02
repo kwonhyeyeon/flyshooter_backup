@@ -1,6 +1,6 @@
-package com.fly.common.member.service;
+package com.fly.member.join.service;
 
-import com.fly.common.member.vo.MemberVO;
+import com.fly.member.join.vo.MemberVO;
 
 public interface MemberService {
 	public int memberJoin(MemberVO mvo);

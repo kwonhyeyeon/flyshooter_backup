@@ -2,19 +2,15 @@ package com.fly.common.util;
 
 import java.util.Random;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMessage.RecipientType;
-import javax.servlet.http.HttpServletRequest;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.fly.common.member.dao.MemberDAO;
-import com.fly.common.member.vo.MemberVO;
+import com.fly.common.util.MailUtils;
+import com.fly.member.join.dao.MemberDAO;
+import com.fly.member.join.vo.MemberVO;
 
 @Service
 public class UserMailSendService {
@@ -23,6 +19,7 @@ public class UserMailSendService {
 	private JavaMailSender mailSender;
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
 	private MemberDAO memberDAO;
 
 	// 이메일 난수 만드는 메서드
@@ -56,25 +53,33 @@ public class UserMailSendService {
 		return init();
 	}
 
+	@Transactional
 	// 회원가입 발송 이메일(인증키 발송)
-	public void mailSendWithUserKey(MemberVO mvo, HttpServletRequest request) {
+	public void mailSendWithUserKey(MemberVO mvo) throws Exception {
 
 		mvo.setEmail_comfirm(getKey(false, 20));
 		memberDAO = sqlSession.getMapper(MemberDAO.class);
+		System.out.println("난수 값 넣기");
 		memberDAO.GetKey(mvo);
-		MimeMessage mail = mailSender.createMimeMessage();
-		String htmlStr = "<h2>안녕하세요 MS :p 민수르~ 입니다!</h2><br><br>" + "<h3>" + mvo.getM_id() + "님</h3>"
-				+ "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " + "<a href='http://localhost:8080" + request.getContextPath()
-				+ "/user/key_alter?user_id=" + mvo.getM_id() + "&user_key=" + mvo.getEmail_comfirm() + "'>인증하기</a></p>"
-				+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
-		try {
-			mail.setSubject("[본인인증] MS :p 민수르님의 인증메일입니다", "utf-8");
-			mail.setText(htmlStr, "utf-8", "html");
-			mail.addRecipient(RecipientType.TO, new InternetAddress(mvo.getM_id()));
-			mailSender.send(mail);
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
+		System.out.println("이메일 보내기");
+
+		// mail 작성 관련
+		MailUtils sendMail = new MailUtils(mailSender);
+		
+		System.out.println("이메일 보내기");
+		sendMail.setSubject("[Hoon's Board v2.0] 회원가입 이메일 인증");
+		sendMail.setText(new StringBuffer()
+				.append("<h1>[이메일 인증]</h1>")
+				.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
+				.append("<a href='http://localhost:8080/member/join_success.do?")
+				.append("&m_id=")
+				.append(mvo.getM_id())
+				.append("&email_comfirm=")
+				.append(mvo.getEmail_comfirm())
+				.append("' target='_blenk'>이메일 인증 확인</a>").toString());
+		sendMail.setFrom("FlyShooter ", "admin");
+		sendMail.setTo(mvo.getM_id());
+		sendMail.send();
 	}
 
 	// 인증 확인 메서드 (Y 값으로 바꿔주는 메서드)

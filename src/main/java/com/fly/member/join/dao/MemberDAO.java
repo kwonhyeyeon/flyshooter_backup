@@ -1,6 +1,6 @@
-package com.fly.common.member.dao;
+package com.fly.member.join.dao;
 
-import com.fly.common.member.vo.MemberVO;
+import com.fly.member.join.vo.MemberVO;
 
 public interface MemberDAO {
 	public int memberDelete(String userId);

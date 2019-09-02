@@ -40,4 +40,24 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage"><value>com.fly.**.**.dao</value></property>
 	</bean>
+	
+	<!-- 정효성 이메일 관련  dependency 추가-->
+	<!-- 회원가입 메일 인증 -->
+	<!-- Mail 인증 관련 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="flyshooteralfo@gmail.com" />
+		<property name="password" value="alfo!123 " />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 정효성 이메일 관련  dependency 추가완료-->
+	
 </beans>
