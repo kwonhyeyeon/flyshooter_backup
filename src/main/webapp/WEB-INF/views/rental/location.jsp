@@ -8,25 +8,11 @@
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>FLY SHOOTER</title>
-<<<<<<< HEAD
-<title>Insert title here</title>
-=======
 
->>>>>>> 7a9ff29335bce3392c3e96aa1a4ade707bd55ab5
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script>
-<<<<<<< HEAD
-   $(function() {
-      $("#gnb").hover(function() {
-         $(".menu-wrap").slideDown(500);
-      });
-      $(".menu-wrap").mouseleave(function() {
-         $(".menu-wrap").slideUp(500);
-      });
-   })
-=======
 	$(function() {
 		$("#gnb").hover(function() {
 			$(".menu-wrap").slideDown(500);
@@ -35,7 +21,6 @@
 			$(".menu-wrap").slideUp(500);
 		});
 	})
->>>>>>> 7a9ff29335bce3392c3e96aa1a4ade707bd55ab5
 </script>
 </head>
 <body>
