@@ -1,5 +1,6 @@
 package com.fly.common.member.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fly.common.login.vo.LoginVO;
 import com.fly.common.member.service.MemberService;
 import com.fly.common.member.vo.MemberVO;
+import com.fly.common.util.UserMailSendService;
 
 @Controller
 @RequestMapping(value = "/member")
@@ -23,6 +25,10 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 
+	@Autowired
+	private UserMailSendService mailsender;
+
+	HttpServletRequest request;
 	//@Autowired
 	//private LoginService loginService;
 
@@ -64,6 +70,8 @@ public class MemberController {
 		case 3:
 			mav.addObject("errCode", 3);
 			mav.setViewName("member/join_success");
+			// 인증 메일 보내기 메서드
+			mailsender.mailSendWithUserKey(mvo , request);
 			// success to add new member; move to login page
 			break;
 		default:
@@ -73,7 +81,14 @@ public class MemberController {
 		}
 		return mav;
 	}
+	// e-mail 인증 컨트롤러
+		@RequestMapping(value = "/user/key_alter", method = RequestMethod.GET)
+		public String key_alterConfirm(MemberVO mvo) {
 
+			mailsender.alter_userKey_service(mvo); // mailsender의 경우 @Autowired
+
+			return "user/userRegSuccess";
+		}
 	@RequestMapping(value = "/modify.do", method = RequestMethod.GET)
 	public ModelAndView memberModify(HttpSession session) {
 		System.out.println("modify.do get방식에 의한 메서드 호출 성공");

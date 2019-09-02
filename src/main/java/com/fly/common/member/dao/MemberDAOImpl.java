@@ -12,12 +12,6 @@ public class MemberDAOImpl implements MemberDAO {
 	private SqlSession session;
 
 	@Override
-	public int userIdConfirm(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int memberDelete(String userId) {
 		return session.delete("memberDelete", userId);
 	}
@@ -40,6 +34,18 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int memberUpdate(MemberVO mvo) {
 		return session.update("memberUpdate", mvo);
+	}
+
+	@Override
+	public int GetKey(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return session.update("GetKey", mvo);
+	}
+
+	@Override
+	public int alter_userKey(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return session.update("alter_userKey", mvo);
 	}
 
 }
