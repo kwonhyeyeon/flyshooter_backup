@@ -1,4 +1,4 @@
-package com.fly.common.login.dao;
+package com.fly.member.login.dao;
 
 import java.sql.SQLException;
 
@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.fly.common.login.vo.LoginVO;
+import com.fly.member.login.vo.LoginVO;
 
 //@Repository
 public class LoginDAOImpl implements LoginDAO {

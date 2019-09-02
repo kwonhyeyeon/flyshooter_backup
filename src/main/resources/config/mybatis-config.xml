@@ -10,8 +10,8 @@
 		<typeAlias type="com.fly.client.place.vo.PlaceVO" alias="place"/>
 		<typeAlias type="com.fly.client.stadium.vo.StadiumVO" alias="stadium"/>
 		<typeAlias type="com.fly.client.stats.vo.StatsVO" alias="stats"/> 
-		<typeAlias type="com.fly.common.login.vo.LoginHistory" alias="loginHistory" />
-		<typeAlias type="com.fly.common.login.vo.LoginVO" alias="login" />
-		<typeAlias type="com.fly.common.member.vo.MemberVO" alias="member" />
+		<typeAlias type="com.fly.member.login.vo.LoginHistory" alias="loginHistory" />
+		<typeAlias type="com.fly.member.login.vo.LoginVO" alias="login" />
+		<typeAlias type="com.fly.member.join.vo.MemberVO" alias="member" />
 	</typeAliases>
 </configuration>

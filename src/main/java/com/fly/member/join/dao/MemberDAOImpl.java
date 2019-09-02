@@ -1,10 +1,10 @@
-package com.fly.common.member.dao;
+package com.fly.member.join.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.fly.common.member.vo.MemberVO;
+import com.fly.member.join.vo.MemberVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {

@@ -8,83 +8,13 @@
 <title>Join Member!</title>
 </head>
 <script src="http://code.jquery.com/jquery.min.js"></script>
-<script>
-	$(document).ready(function() {
-		//아이디 중복 여부 여부 확인
-		$("#m_id").blur(function() {
-			var m_id = $("#m_id").val();
-
-			var idcheck = document.getElementById("idcheck");
-
-			if (m_id.length == 0) {
-				idcheck.innerHTML = "필수 입력사항입니다.";
-				idcheck.style.color = "red";
-				ok = false;
-
-			} else if (m_id.length > 0) {
-				idcheck.innerHTML = " ";
-
-				var query = {
-					m_id : $("#m_id").val()
-				};
-
-				$.ajax({
-					url : "/member/userIdConfirm.do",
-					type : "post",
-					data : query,
-					error : function() {
-						alert('사이트 접속에 문제로 정상 작동하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
-					},
-					success : function(resultData) {
-						console.log("resultData:" + resultData);
-						if (resultData == "1") {
-							var idcheck = document.getElementById("idcheck");
-							// 중복된 아이디가 있음
-							idcheck.innerHTML = "중복된 아이디가 있습니다";
-							idcheck.style.color = "red";
-							idok = false;
-
-						} else {
-							var idcheck = document.getElementById("idcheck");
-							// 중복된 아이디가 없음
-							idcheck.innerHTML = "사용가능한 아이디";
-							idcheck.style.color = "blue";
-							idok = true;
-						}
-
-					}
-				});
-			}
-
-		});
-		//비밀번호와 비밀번호 확인 일치 여부 확인
-		$("#m_pwCheck, #m_pw").blur(function() {
-			var m_pw = $("#m_pw").val();
-
-			var pwcheck = document.getElementById("pwcheck");
-
-			if ($("#m_pw").val() != $("#m_pwCheck").val()) {
-				pwcheck.innerHTML = "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
-				pwcheck.style.color = "red";
-				$("#m_pwCheck").val("");
-				return false;
-			} else {
-				pwcheck.innerHTML = " ";
-				return true;
-			}
-
-		});
-		$("#joinCancel").click(function() {
-			location.href = "/member/login.do";
-		});
-	});
-</script>
+<script type="text/javascript" src="/resources/js/join.js"></script>
 <body>
 	<div>
 		<form id="memberForm" action="/member/join.do" method="post">
 			<div>
-				<input type="radio" name="m_type" value="1" id="m_type"/>일반 
-				<input type="radio" name="m_type" value="0" id="m_type"/>사업자
+				<input type="radio" name="m_type" value="1" id="m_type" required/>일반 
+				<input type="radio" name="m_type" value="0" id="m_type" required/>사업자
 			</div>
 			<div>
 				<label for="id">ID</label>

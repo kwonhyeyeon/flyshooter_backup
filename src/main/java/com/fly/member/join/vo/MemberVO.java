@@ -1,4 +1,4 @@
-package com.fly.common.member.vo;
+package com.fly.member.join.vo;
 
 //memberVO
 public class MemberVO {
