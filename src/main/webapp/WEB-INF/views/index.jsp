@@ -11,50 +11,37 @@
 
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
-<script src="http://code.jquery.com/jquery.min.js"></script>
-<script>
-   $(function() {
-      $("#gnb").hover(function() {
-         $(".menu-wrap").slideDown(500);
-      });
-      $(".menu-wrap").mouseleave(function() {
-         $(".menu-wrap").slideUp(500);
-      });
-   })
-</script>
 </head>
 <body>
 
-	
-	<div id="wrapper">
-
-		<div id="header-wrap">
-			<header id="header">
-				<h1><a href="/">FLY SHOOTER</a></h1>
-				
-				<nav id="gnb">
-					<ul>
-						<li><a href="/">대관</a></li>
-						<li><a href="/">매치</a></li>
-						<li><a href="/">용병</a></li>
-						<li><a href="/">마이페이지</a></li>
-					</ul>
-				</nav>
-				
-				<nav id="lnb">
-					<ul>
-						<li><a href="/">회원가입</a></li>
-						<li><a href="/">로그인</a></li>
-						
-						<li><a href="/">로그아웃</a></li>
-					</ul>
-				</nav>
-			</header>
-		</div>
-		
-		<div class="sub-v"></div>
-	</div>
-		
+   <div id="wrapper">
+      <div id="main-v"></div>
+   
+      <div id="main-wrap">
+         <header id="main">
+            <nav id="main-lnb">
+               <ul>
+                  <li><a href="/member/join.do">회원가입</a></li>
+                  <li><a href="/">로그인</a></li>
+                  
+                  <li><a href="/">로그아웃</a></li>
+               </ul>
+            </nav>
+            
+            <h1>FLY SHOOTER</h1>
+            
+            <nav id="main-gnb">
+               <ul>
+                  <li><a href="/rental/location.do">대관</a></li>
+                  <li><a href="/">매치</a></li>
+                  <li><a href="/">용병</a></li>
+                  <li><a href="/">마이페이지</a></li>
+               </ul>
+            </nav>
+         </header>
+      </div>
+   
+   </div>
 
 </body>
 </html>
