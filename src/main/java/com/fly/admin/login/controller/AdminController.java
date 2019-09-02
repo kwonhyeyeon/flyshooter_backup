@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller(value = "/admin")
 public class AdminController {
 
-	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
+	private static final Logger log = LoggerFactory.getLogger(AdminController.class);
 
 	// 실행시 adminlogin.jsp로 연결시켜주는 맵핑 (test를 위하여 만듬)
 	@RequestMapping(value = "/admin/main.do", method = RequestMethod.GET)
