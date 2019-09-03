@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.fly.client.place.dao.PlaceDao">
+<mapper namespace="com.fly.client.place.dao.ClientPlaceDao">
 
 	<!-- 구장별 경기장 select -->
-	<select id="stadiumList">
+	<select id="stadiumList" resultType="stadium">
 		select s_name
 		from place p, stadium s
-		where p.p_num = s.p_num and p_name = #{p_name};
+		where p.p_num = s.p_num and p_name = #{p_name}
 	</select>
 
-	<select id="searchRentalList" parameterType="String" resultType="place">
+	<!-- <select id="searchRentalList" parameterType="String" resultType="place">
 		select m.m_name, m.m_phone, (r.r_reserve_date + r.r_start + r.r_end), ir.r_no
 		from member m, rental r, items_rental ir
 		where m.m_id = r.m_id and r.r_no = ir.r_no;
-	</select>
+	</select> -->
 
 </mapper>
