@@ -2,7 +2,8 @@ package com.fly.client.rental.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,8 +17,8 @@ import com.fly.member.stadium.vo.StadiumVO;
 @Controller
 @RequestMapping(value="/rental")
 public class ClientRentalController {
-	
-	@Autowired
+
+	@Resource(name = "clientPlaceService")
 	private ClientPlaceService clientPlaceService;
 	
 	@RequestMapping(value="/rentalList.do", method = RequestMethod.GET)

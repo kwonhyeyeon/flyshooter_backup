@@ -11,20 +11,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Controller(value = "/admin")
+@Controller
+@RequestMapping(value = "/admin")
 public class AdminController {
 
-	private static final Logger log = LoggerFactory.getLogger(AdminController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
 	// 실행시 adminlogin.jsp로 연결시켜주는 맵핑 (test를 위하여 만듬)
-	@RequestMapping(value = "/admin/main.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
 	public String adminlogin() {
 		return "admin/main";
 	}
 
 	// 로그인버튼 클릭시 ID검사및 세션값 저장을 담당
-	@RequestMapping(value = "/admin/main.do", method = RequestMethod.POST)
-	public String adminlogin(HttpSession session, HttpServletRequest request ,@RequestParam(value = "adminId") String adminId,
+	@RequestMapping(value = "/main.do", method = RequestMethod.POST)
+	public String adminlogin(HttpSession session, HttpServletRequest request, @RequestParam(value = "adminId") String adminId,
 			@RequestParam(value = "adminPw") String adminPw) {
 		
 		boolean loginPass;
@@ -37,7 +38,7 @@ public class AdminController {
 
 		return "admin/main";
 	}
-	@RequestMapping("/admin/logout.do")
+	@RequestMapping("/logout.do")
 	public String logout(HttpSession session, HttpServletRequest request){
 		session.invalidate();
 		session = request.getSession(true);

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.fly.member.stadium.vo.StadiumVO;
 
-@Repository
+@Repository("clientPlaceDao")
 public class ClientPlaceDaoImpl implements ClientPlaceDao {
 	
 	@Autowired
