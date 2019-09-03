@@ -32,7 +32,7 @@
 				
 				<nav id="main-gnb">
 					<ul>
-						<li><a href="/rental/location.do">대관</a></li>
+						<li><a href="/user/rental/location.do">대관</a></li>
 						<li><a href="/">매치</a></li>
 						<li><a href="/">용병</a></li>
 						<li><a href="/">마이페이지</a></li>
