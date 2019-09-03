@@ -43,10 +43,10 @@
 					<ul>
 						<c:if test="${empty m_id}">
 							<li><a href="/member/join.do">회원가입</a></li>
-							<li><a href="/">로그인</a></li>
+							<li><a href="/member/login.do">로그인</a></li>
 						</c:if>
 						<c:if test="${not empty m_id}">
-							<li><a href="/">로그아웃</a></li>
+							<li><a href="/member/logout.do">로그아웃</a></li>
 						</c:if>
 					</ul>
 				</nav>

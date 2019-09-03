@@ -73,10 +73,6 @@ $(document).ready(function() {
 		}
 
 	});
-	$("#joinCancel").click(function() {
-		location.href = "/member/login.do";
-	});
-
 });
 
 
