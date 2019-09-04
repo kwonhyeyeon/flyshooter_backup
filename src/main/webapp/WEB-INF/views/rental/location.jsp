@@ -24,14 +24,6 @@
 	})
 </script>
 </head>
-<%
-	String m_id = "";
-	String m_type = "";
-
-	m_id = (String) session.getAttribute("m_id"); // request에서 m_id 파라미터를 가져온다
-	m_type = (String) session.getAttribute("m_type"); // request에서 m_type 파라미터를 가져온다
-%>
-
 <body>
 	<div id="wrapper">
 
@@ -52,66 +44,57 @@
 
 				<nav id="lnb">
 					<ul>
-						<%
-							if (m_id == null) {
-						%>
-						<li><a href="/member/join.do">회원가입</a></li>
-						<li><a href="/member/login.do">로그인</a></li>
-						<%
-							} else {
-						%>
-						<li><a href="/member/logout.do">로그아웃</a></li>
-						<%
-							}
-						%>
+						<c:if test="${empty m_id}">
+							<li><a href="/member/join.do">회원가입</a></li>
+							<li><a href="/member/login.do">로그인</a></li>
+						</c:if>
+						<c:if test="${not empty m_id}">
+							<li><a href="/member/logout.do">로그아웃</a></li>
+						</c:if>
 					</ul>
 				</nav>
 			</header>
 
 			<div class="menu-wrap">
 				<div class="menu">
-					<%
-						if (Integer.parseInt(m_type) == 1) {
-					%>
-					<ul>
-						<li><a href="/user/rental/location.do">대관 예약</a></li>
-						<li><a href="/">대관 확인</a></li>
-					</ul>
-					<ul>
-						<li><a href="/">매치 신청</a></li>
-					</ul>
-					<ul>
-						<li><a href="/">용병 지원</a></li>
-						<li><a href="/">용병 모집</a></li>
-					</ul>
-					<ul>
-						<li><a href="/">회원 정보 수정</a></li>
-					</ul>
-					<%
-						} else {
-					%>
-					<ul class="member-menu">
-						<li><a href="/user/rental/rentalList.do">대관 예약 현황</a></li>
-						<li><a href="/">대관 환불 현황</a></li>
-						<li><a href="/">오프라인 대관 관리</a></li>
-					</ul>
-					<ul>
-						<li><a href="/">매치 신청</a></li>
-					</ul>
-					<ul>
-						<li><a href="/">용병 지원</a></li>
-						<li><a href="/">용병 모집</a></li>
-					</ul>
-					<ul>
-						<li><a href="/">회원 정보 수정</a></li>
-						<li><a href="/">구장</a></li>
-						<li><a href="/">경기장/용품</a></li>
-						<li><a href="/">정산 관리</a></li>
-						<li><a href="/">통계</a></li>
-					</ul>
-					<%
-						}
-					%>
+					<c:if test="${empty m_id && m_type=='1'}">
+						<ul>
+							<li><a href="/user/rental/location.do">대관 예약</a></li>
+							<li><a href="/">대관 확인</a></li>
+						</ul>
+						<ul>
+							<li><a href="/">매치 신청</a></li>
+						</ul>
+						<ul>
+							<li><a href="/">용병 지원</a></li>
+							<li><a href="/">용병 모집</a></li>
+						</ul>
+						<ul>
+							<li><a href="/">회원 정보 수정</a></li>
+						</ul>
+					</c:if>
+
+					<c:if test="${m_type=='0'}">
+						<ul class="member-menu">
+							<li><a href="/client/rental/rentalList.do">대관 예약 현황</a></li>
+							<li><a href="/">대관 환불 현황</a></li>
+							<li><a href="/">오프라인 대관 관리</a></li>
+						</ul>
+						<ul>
+							<li><a href="/">매치 신청</a></li>
+						</ul>
+						<ul>
+							<li><a href="/">용병 지원</a></li>
+							<li><a href="/">용병 모집</a></li>
+						</ul>
+						<ul>
+							<li><a href="/">회원 정보 수정</a></li>
+							<li><a href="/">구장</a></li>
+							<li><a href="/">경기장/용품</a></li>
+							<li><a href="/">정산 관리</a></li>
+							<li><a href="/">통계</a></li>
+						</ul>
+					</c:if>
 				</div>
 			</div>
 		</div>
