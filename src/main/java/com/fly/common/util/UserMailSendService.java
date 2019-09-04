@@ -57,7 +57,7 @@ public class UserMailSendService {
 	// 회원가입 발송 이메일(인증키 발송)
 	public void mailSendWithUserKey(MemberVO mvo) throws Exception {
 
-		mvo.setEmail_comfirm(getKey(false, 20));
+		mvo.setEmail_confirm(getKey(false, 20));
 		memberDAO = sqlSession.getMapper(MemberDAO.class);
 		System.out.println("난수 값 넣기");
 		memberDAO.GetKey(mvo);
@@ -67,15 +67,15 @@ public class UserMailSendService {
 		MailUtils sendMail = new MailUtils(mailSender);
 		
 		System.out.println("이메일 보내기");
-		sendMail.setSubject("[Hoon's Board v2.0] 회원가입 이메일 인증");
+		sendMail.setSubject("[Fly Shooter] 회원가입 이메일 인증");
 		sendMail.setText(new StringBuffer()
 				.append("<h1>[이메일 인증]</h1>")
 				.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
 				.append("<a href='http://localhost:8080/member/join_success.do?")
 				.append("&m_id=")
 				.append(mvo.getM_id())
-				.append("&email_comfirm=")
-				.append(mvo.getEmail_comfirm())
+				.append("&email_confirm=")
+				.append(mvo.getEmail_confirm())
 				.append("' target='_blenk'>이메일 인증 확인</a>").toString());
 		sendMail.setFrom("FlyShooter ", "admin");
 		sendMail.setTo(mvo.getM_id());

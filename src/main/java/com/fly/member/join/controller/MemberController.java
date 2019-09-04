@@ -90,7 +90,7 @@ public class MemberController {
 	@RequestMapping(value="join_success", method=RequestMethod.GET)
 	public String key_alterConfirm(@ModelAttribute("mvo") MemberVO mvo) throws Exception {
 		mvo.setM_id(request.getParameter("m_id"));
-		mvo.setEmail_comfirm(request.getParameter("email_comfirm"));
+		mvo.setEmail_confirm(request.getParameter("email_confirm"));
 		
 		mailsender.alter_userKey_service(mvo); // mailsender의 경우 @Autowired
 		
