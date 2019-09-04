@@ -57,7 +57,7 @@
 
 			<div class="menu-wrap">
 				<div class="menu">
-					<c:if test="${empty m_id && m_type=='1'}">
+					<c:if test="${empty m_id || m_type=='1'}">
 						<ul>
 							<li><a href="/user/rental/location.do">대관 예약</a></li>
 							<li><a href="/">대관 확인</a></li>
