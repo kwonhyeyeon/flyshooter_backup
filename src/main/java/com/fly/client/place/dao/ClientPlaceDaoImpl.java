@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.fly.member.place.vo.PlaceVO;
 import com.fly.member.stadium.vo.StadiumVO;
 
 @Repository("clientPlaceDao")
@@ -18,6 +19,11 @@ public class ClientPlaceDaoImpl implements ClientPlaceDao {
 	@Override
 	public List<StadiumVO> stadiumList(String p_name) {
 		return sqlSession.selectList("stadiumList", p_name);
+	}
+	//구장리스트 목록 출력
+	@Override
+	public List<PlaceVO> placeList() {
+		return sqlSession.selectList("placeList");
 	}
 
 }

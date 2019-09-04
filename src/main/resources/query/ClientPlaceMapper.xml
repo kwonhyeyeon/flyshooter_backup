@@ -9,7 +9,15 @@
 		from place p, stadium s
 		where p.p_num = s.p_num and p_name = #{p_name}
 	</select>
-
+	
+	<!-- 구장 리스트 출력 -->
+	<select id ="placeList" resultType="place">
+		SELECT
+		p_num, p_name, p_phone, p_ceo, p_address, p_phone, p_ok
+		FROM place
+	</select>
+	
+	
 	<!-- <select id="searchRentalList" parameterType="String" resultType="place">
 		select m.m_name, m.m_phone, (r.r_reserve_date + r.r_start + r.r_end), ir.r_no
 		from member m, rental r, items_rental ir
