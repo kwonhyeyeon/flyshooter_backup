@@ -5,7 +5,7 @@
 
 	<select id="securitySelect" parameterType="String"
 		resultType="member">
-		select m_id, m_pw from member
+		select m_pw from member
 		where m_id = #{m_id}
 	</select>
 
@@ -26,7 +26,7 @@
 	
 	<update id="GetKey" parameterType="Map">
 		UPDATE member set
-		email_confirm = #{email_comfirm}
+		email_confirm = #{email_confirm}
 		where m_id = #{m_id}
 	</update>
 	

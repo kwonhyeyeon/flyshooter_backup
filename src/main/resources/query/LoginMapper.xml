@@ -6,8 +6,8 @@
 	<select id="userIdSelect" parameterType="String" resultType="login">
 		select 
 			m_id,
-			m_pw,
-			m_name
+			m_type, 
+			email_confirm 
 		from member
 		where m_id = #{m_id}
 	</select>
@@ -17,9 +17,9 @@
 		select 
 			m_id,
 			m_pw,
-			m_name
+			m_type 
 		from member
-		where m_id = #{m_id} and m_pw = #{m_pw}
+		where m_id = #{m_id}
 	</select>
  	
  	<insert id="loginHistoryInsert" parameterType="login">
@@ -38,7 +38,7 @@
  		set retry = #{retry},
  			lastFail = #{lastFail},
  			lastPass = #{lastPass},
- 			clientIp = #{clientIp, jdbcType = VARCHAR}
+ 			clientIp = #{clientIp}
  			where m_id = #{m_id}
  	</update>
  	

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.fly.member.login.vo.LoginVO;
 
-//@Repository
+@Repository("loginDao")
 public class LoginDAOImpl implements LoginDAO {
 	@Autowired
 	private SqlSession session;
@@ -21,11 +21,11 @@ public class LoginDAOImpl implements LoginDAO {
 
 	@Override
 	public LoginVO loginSelect(LoginVO lvo) {
-		return (LoginVO)session.selectOne("loginSelect", lvo);
+		return (LoginVO) session.selectOne("loginSelect", lvo);
 	}
 
 	@Override
-	public int loginHistoryInsert(LoginVO lvo) throws SQLException {
+	public int loginHistoryInsert(LoginVO lvo) {
 		return session.insert("loginHistoryInsert", lvo);
 		
 	}
