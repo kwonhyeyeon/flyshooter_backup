@@ -3,6 +3,7 @@ package com.fly.user.rental.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,9 +31,18 @@ public class UserRentalController {
    private static final Logger log = LoggerFactory.getLogger(UserRentalController.class);   
    
    @RequestMapping(value = "/location.do")
-   public String searchLocation(Model model) {
-	   
-      return "rental/location";
+   public String searchLocation(Model model, HttpSession session) {
+	   String m_id = "";
+	  try {
+		  m_id = (String)session.getAttribute("m_id");
+		  m_id.length();
+	  }catch(Exception e) {
+		  System.out.println("?????");
+		  return "index";
+	  }
+	  	System.out.println("/??????///////////////////");
+	  	System.out.println(m_id + "=============================");
+	  	return "rental/location";
    }
    
    // 지역으로 검색한 구장리스트
