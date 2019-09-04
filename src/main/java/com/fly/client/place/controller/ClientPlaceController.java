@@ -14,7 +14,7 @@ import com.fly.client.place.service.ClientPlaceService;
 import com.fly.member.place.vo.PlaceVO;
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/mypage")
 public class ClientPlaceController {
 	private Logger log = LoggerFactory.getLogger(ClientPlaceController.class);
 	
@@ -29,13 +29,13 @@ public class ClientPlaceController {
 		List<PlaceVO> placeList	= clientPlaceService.placeList();
 		model.addAttribute("placeList", placeList);
 		model.addAttribute("data");
-		return "member/placeList";
+		return "mypage/placeList";
 	}
 	//구장 등록 폼 출력하기
 	@RequestMapping(value="/writeForm.do")
 	public String writeForm() {
 		log.info("writeForm 호출 성공");
-		return "member/writeForm";
+		return "mypage/writeForm";
 	}
 	
 	
