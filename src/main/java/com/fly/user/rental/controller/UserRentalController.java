@@ -31,9 +31,6 @@ public class UserRentalController {
    
    @RequestMapping(value = "/location.do")
    public String searchLocation(Model model) {
-      model.addAttribute("m_id", "aaa@naver.com");
-      model.addAttribute("m_type", 1);
-      
 	   
       return "rental/location";
    }
@@ -60,8 +57,6 @@ public class UserRentalController {
    // 대관 신청페이지
    @RequestMapping(value = "/rentalStadium.do", method = RequestMethod.POST)
    public String rentalInsert(@ModelAttribute PlaceVO pvo, Model model, @RequestParam(value = "p_num") String p_num) {
-	  model.addAttribute("m_id", "aaa@naver.com");
-      model.addAttribute("m_type", 1);
       pvo = placeService.selectPlace(p_num);
       
       System.out.println("=============" + pvo.toString());
