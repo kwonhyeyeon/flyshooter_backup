@@ -67,7 +67,7 @@ public class UserMailSendService {
 		MailUtils sendMail = new MailUtils(mailSender);
 		
 		System.out.println("이메일 보내기");
-		sendMail.setSubject("[Hoon's Board v2.0] 회원가입 이메일 인증");
+		sendMail.setSubject("[Fly Shooter] 회원가입 이메일 인증");
 		sendMail.setText(new StringBuffer()
 				.append("<h1>[이메일 인증]</h1>")
 				.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
