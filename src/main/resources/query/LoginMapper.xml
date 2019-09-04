@@ -6,7 +6,8 @@
 	<select id="userIdSelect" parameterType="String" resultType="login">
 		select 
 			m_id,
-			m_type 
+			m_type, 
+			email_confirm 
 		from member
 		where m_id = #{m_id}
 	</select>

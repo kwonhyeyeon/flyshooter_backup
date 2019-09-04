@@ -35,10 +35,13 @@
 						+ retry + "/5회) 시도");
 				return false;
 			case 3:
-				alert("회원탈퇴에 문제가 있어 정상 처리하지 못하였습니다.\n다시 시도해 주세요");
+				alert("회원 유형이 일치하지 않습니다.\n다시 시도해 주세요");
 				return false;
 			case 6:
 				alert("5번이상 로그인 시도로 30초동안 로그인 할 수 없습니다.\n잠시 후 다시  시도해 주세요");
+				return false;
+			case 9:
+				alert("이메일 인증이 이루어져 있지 않습니다. \n이메일 인증을 해주세요.");
 				return false;
 			}
 		}

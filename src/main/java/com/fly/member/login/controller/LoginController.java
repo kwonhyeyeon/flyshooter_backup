@@ -47,6 +47,7 @@ public class LoginController {
 		ModelAndView mav = new ModelAndView();
 		String m_id = lvo.getM_id();
 		String m_pw = lvo.getM_pw();
+		String m_type = lvo.getM_type();
 
 		int resultData = 0;
 		resultData = loginService.loginHistoryInsert(lvo);
@@ -79,7 +80,7 @@ public class LoginController {
 		// 로그인이 틀리면 , 로그인 시도횟수를 1증가 시키고,
 		// 로그인 실패 시간을 DB에 업데이트 한다.
 		if (!BCrypt.checkpw(shaPass, lvoResult.getM_pw())) {
-			System.out.println("로그인 실패");
+			System.out.println("비밀번호 불일치");
 			lvoHistory.setRetry(lvoHistory.getRetry() + 1);
 			lvoHistory.setLastFail(new Date().getTime());
 			loginService.loginHistoryUpdate(lvoHistory);
@@ -93,18 +94,32 @@ public class LoginController {
 		// 마지막으로 로그인 실패 시간 0으로 reset,
 		// 성공한 클라이언트 IP를 DB에 업데이트,로그인 성공시간 DB에 업데이트
 		else {
-			System.out.println("로그인 성공");
+			System.out.println("비밀번호 일치");
 			lvoHistory.setRetry(0);
 			// lvoHistory.setLastFail(0);
 			lvoHistory.setLastPass(new Date().getTime());
 			lvoHistory.setClientIp(request.getRemoteAddr());
 			loginService.loginHistoryUpdate(lvoHistory);
 			LoginVO lvoSesstion = loginService.userIdSelect(m_id);
-
-			session.setAttribute("m_id", lvoSesstion.getM_id());
-			session.setAttribute("m_type", lvoSesstion.getM_type());
-			mav.setViewName("/index");
-			return mav;
+			if (lvoSesstion.getM_type().equals(m_type)) {
+				if (lvoSesstion.getEmail_confirm().equals("Y")) {
+					System.out.println("로그인 성공");
+					session.setAttribute("m_id", lvoSesstion.getM_id());
+					session.setAttribute("m_type", lvoSesstion.getM_type());
+					mav.setViewName("/index");
+					return mav;
+				}else {
+					mav.addObject("errCode", 9);
+					mav.setViewName("member/login");
+					return mav;
+				}
+			}else {
+				mav.addObject("errCode", 3);
+				mav.setViewName("member/login");
+				return mav;
+			}
+			
+			
 		}
 	}
 

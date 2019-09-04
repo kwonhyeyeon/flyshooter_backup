@@ -73,6 +73,9 @@ $(document).ready(function() {
 		}
 
 	});
+	$("#joinCancel").click(function() {
+		location.href = "/";
+	});
 });
 
 
@@ -140,7 +143,3 @@ function idPwdCheck() {
 		return true;
 	}
 }
-
-$("#joinCancel").click(function() {
-	location.href = "/member/login.do";
-});

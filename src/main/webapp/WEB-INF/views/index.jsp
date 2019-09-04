@@ -26,25 +26,20 @@
 		<div id="main-wrap">
 			<header id="main">
 				<nav id="main-lnb">
-					<%
-						if (m_id == null) {
-					%>
 					<ul>
+						<%
+							if (m_id == null) {
+						%>
 						<li><a href="/member/join.do">회원가입</a></li>
 						<li><a href="/member/login.do">로그인</a></li>
-					</ul>
-
-
-					<%
-						} else {
-					%>
-					<ul>
+						<%
+							} else {
+						%>
 						<li><a href="/member/logout.do">로그아웃</a></li>
+						<%
+							}
+						%>
 					</ul>
-					<%
-						}
-					%>
-
 				</nav>
 
 				<h1>FLY SHOOTER</h1>

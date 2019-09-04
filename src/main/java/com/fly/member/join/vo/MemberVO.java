@@ -7,7 +7,7 @@ public class MemberVO {
 	private String m_phone;// 휴대전화
 	private String m_name;// 회원명
 	private int m_type;// 회원 유형
-	private String email_comfirm;// 이메일 인증 상태
+	private String email_confirm;// 이메일 인증 상태
 
 	// Getter Setter
 	public String getM_id() {
@@ -50,12 +50,12 @@ public class MemberVO {
 		this.m_type = m_type;
 	}
 
-	public String getEmail_comfirm() {
-		return email_comfirm;
+	public String getEmail_confirm() {
+		return email_confirm;
 	}
 
-	public void setEmail_comfirm(String email_comfirm) {
-		this.email_comfirm = email_comfirm;
+	public void setEmail_confirm(String email_confirm) {
+		this.email_confirm = email_confirm;
 	}
 
 }
