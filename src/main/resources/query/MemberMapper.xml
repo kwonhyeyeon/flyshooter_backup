@@ -5,7 +5,7 @@
 
 	<select id="securitySelect" parameterType="String"
 		resultType="member">
-		select m_id, m_pw from member
+		select m_pw from member
 		where m_id = #{m_id}
 	</select>
 

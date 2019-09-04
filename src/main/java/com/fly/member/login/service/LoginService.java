@@ -6,7 +6,7 @@ import com.fly.member.login.vo.LoginVO;
 
 public interface LoginService {
 	public LoginVO userIdSelect(String m_id);
-	public LoginVO loginSelect(String m_id, String m_pw);
+	public LoginVO loginSelect(String m_id);
 	
 	public int loginHistoryInsert(LoginVO lvo) throws SQLException;
 	public int loginHistoryUpdate(LoginVO lvo);

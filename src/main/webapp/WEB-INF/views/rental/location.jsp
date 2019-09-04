@@ -101,7 +101,7 @@
 		<div class="sub-v"></div>
 		
 		<div class="location-wrap">
-			<form action="/rental/placeList.do" method="get">
+			<form action="/user/rental/placeList.do" method="get">
 				<table border="1">
 					<tr>
 						<td>지역검색</td>
