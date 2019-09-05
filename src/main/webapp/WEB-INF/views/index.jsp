@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,13 +13,6 @@
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
 </head>
-<%
-	String m_id = "";
-
-	m_id = (String) session.getAttribute("m_id"); // request에서 id 파라미터를 가져온다
-%>
-
-
 <body>
 	<div id="wrapper">
 		<div id="main-v"></div>
@@ -27,31 +20,34 @@
 			<header id="main">
 				<nav id="main-lnb">
 					<ul>
-						<%
-							if (m_id == null) {
-						%>
-						<li><a href="/member/join.do">회원가입</a></li>
-						<li><a href="/member/login.do">로그인</a></li>
-						<%
-							} else {
-						%>
-						<li><a href="/member/logout.do">로그아웃</a></li>
-						<%
-							}
-						%>
+						<c:if test="${empty m_id}">
+							<li><a href="/member/join.do">회원가입</a></li>
+							<li><a href="/member/login.do">로그인</a></li>
+						</c:if>
+						<c:if test="${not empty m_id}">
+							<li><a href="/member/logout.do">로그아웃</a></li>
+						</c:if>
 					</ul>
 				</nav>
 
 				<h1>FLY SHOOTER</h1>
-
 				<nav id="main-gnb">
 					<ul>
-						<li><a href="/user/rental/location.do">대관</a></li>
-						<li><a href="/">매치</a></li>
-						<li><a href="/">용병</a></li>
-						<li><a href="/">마이페이지</a></li>
+						<c:if test="${empty m_id || m_type=='1'}">
+							<li><a href="/user/rental/location.do">대관</a></li>
+							<li><a href="/">매치</a></li>
+							<li><a href="/">용병</a></li>
+							<li><a href="/member/mypage/modifyLogin.do">마이페이지</a></li>
+						</c:if>
+						<c:if test="${m_type=='0'}">
+							<li><a href="/client/rental/rentalList.do">대관</a></li>
+							<li><a href="/">매치</a></li>
+							<li><a href="/">용병</a></li>
+							<li><a href="/member/mypage/modifyLogin.do">마이페이지</a></li>
+						</c:if>
 					</ul>
 				</nav>
+
 			</header>
 		</div>
 

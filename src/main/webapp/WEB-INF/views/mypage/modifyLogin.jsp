@@ -12,8 +12,26 @@
 
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
+</head>
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script>
+	$(document).ready(function() {
+		$("#home").click(function() {
+			location.href = "/";
+		});
+		errCodeCheck();
+	});
+	function errCodeCheck() {
+		var errCode = '<c:out value = "${errCode}"/>';
+		if (errCode != "") {
+			//명확한 자료형 명시를 위해 errCode의 타입을 정수형으로 변환.
+			switch (parseInt(errCode)) {
+			case 1:
+				alert("비밀번호 일치 하지않습니다. 다시 시도해 주세요.");
+				return false;
+			}
+		}
+	}
 	$(function() {
 		$("#gnb").hover(function() {
 			$(".menu-wrap").slideDown(500);
@@ -23,9 +41,9 @@
 		});
 	})
 </script>
-</head>
+
 <body>
-	<div id="wrapper">
+	<div>
 
 		<div id="header-wrap">
 			<header id="header">
@@ -38,7 +56,7 @@
 						<li><a href="/">대관</a></li>
 						<li><a href="/">매치</a></li>
 						<li><a href="/">용병</a></li>
-						<li><a href="/">마이페이지</a></li>
+						<li><a href="/member/mypage/modifyLogin.do">마이페이지</a></li>
 					</ul>
 				</nav>
 
@@ -70,7 +88,7 @@
 							<li><a href="/">용병 모집</a></li>
 						</ul>
 						<ul>
-							<li><a href="/">회원 정보 수정</a></li>
+							<li><a href="/member/mypage/modifyLogin.do">회원 정보 수정</a></li>
 						</ul>
 					</c:if>
 
@@ -88,7 +106,7 @@
 							<li><a href="/">용병 모집</a></li>
 						</ul>
 						<ul>
-							<li><a href="/">회원 정보 수정</a></li>
+							<li><a href="/member/mypage/modifyLogin.do">회원 정보 수정</a></li>
 							<li><a href="/">구장</a></li>
 							<li><a href="/">경기장/용품</a></li>
 							<li><a href="/">정산 관리</a></li>
@@ -101,31 +119,21 @@
 
 		<div class="sub-v"></div>
 
-		<div class="location-wrap">
-			<form action="/user/rental/placeList.do" method="get">
-				<table border="1">
-					<tr>
-						<td>지역검색</td>
-					</tr>
-
-					<tr>
-						<td><input type="text" name="area" /></td>
-					</tr>
-
-					<c:if test="${not empty message }">
-						<tr>
-							<td><span style="color: red">${message }</span></td>
-						</tr>
-					</c:if>
-
-					<tr>
-						<td><input type="submit" /></td>
-					</tr>
-				</table>
+		<div>
+			<form id="modifyForm" action="/member/mypage/modify.do" method="post">
+				<div>
+					<label for="pw">비밀 번호</label>
+					<div>
+						<input type="password" id="m_pw" name="m_pw" maxlength="15"
+							placeholder="Password">
+					</div>
+				</div>
+				<div>
+					<input type="submit" value="확인" id="modifyForm" /> <input
+						type="button" value="홈으로" id="home" />
+				</div>
 			</form>
 		</div>
-
 	</div>
-
 </body>
 </html>

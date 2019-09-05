@@ -34,6 +34,9 @@
 				alert("아이디 또는 비밀번호 일치 하지 않거나 존재하지 않는 \n회원입니다. 다시 로그인해 주세요. ("
 						+ retry + "/5회) 시도");
 				return false;
+			case 2:
+				alert("로그인 후 이용 바랍니다.");
+				return false;
 			case 3:
 				alert("회원 유형이 일치하지 않습니다.\n다시 시도해 주세요");
 				return false;

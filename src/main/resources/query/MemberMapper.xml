@@ -39,10 +39,9 @@
 
 	<update id="memberUpdate" parameterType="member">
 		UPDATE member set
-		<if test="userPw != null and userPw !=''">
 			m_pw = #{m_pw},
-		</if>
-		m_phone = #{phone}, m_name = #{m_name} 
+			m_phone = #{m_phone}, 
+			m_name = #{m_name} 
 		where m_id = #{m_id}
 	</update>
 
