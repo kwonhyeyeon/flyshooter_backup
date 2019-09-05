@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fly.common.util.BCrypt;
+import com.fly.common.util.SHA256;
 import com.fly.common.util.UserMailSendService;
 import com.fly.member.join.service.MemberService;
 import com.fly.member.join.vo.MemberVO;
@@ -29,8 +31,6 @@ public class MemberController {
 
 	@Autowired
 	HttpServletRequest request;
-	// @Autowired
-	// private LoginService loginService;
 
 	/******************************
 	 * 회원가입 폼
@@ -87,56 +87,97 @@ public class MemberController {
 	}
 
 	// e-mail 인증 컨트롤러
-	@RequestMapping(value="join_success", method=RequestMethod.GET)
+	@RequestMapping(value = "join_success", method = RequestMethod.GET)
 	public String key_alterConfirm(@ModelAttribute("mvo") MemberVO mvo) throws Exception {
 		mvo.setM_id(request.getParameter("m_id"));
 		mvo.setEmail_confirm(request.getParameter("email_confirm"));
-		
+
 		mailsender.alter_userKey_service(mvo); // mailsender의 경우 @Autowired
-		
+
 		return "member/join_success";
 	}
 
-		
-
-	@RequestMapping(value = "/modify.do", method = RequestMethod.GET)
-	public ModelAndView memberModify(HttpSession session) {
-		System.out.println("modify.do get방식에 의한 메서드 호출 성공");
+	@RequestMapping(value = "/mypage/modifyLogin.do", method = RequestMethod.GET)
+	public ModelAndView ModifyLogin(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) {
+		System.out.println("modifyLogin.do get 방식에 의한 메서드 호출 성공");
+		String m_id = "";
 		ModelAndView mav = new ModelAndView();
-
-		LoginVO login = (LoginVO) session.getAttribute("login");
-
-		if (login == null) {
+		try {
+			m_id = (String) session.getAttribute("m_id");
+			m_id.length();
+		} catch (Exception e) {
+			mav.addObject("errCode", 2);
 			mav.setViewName("member/login");
 			return mav;
 		}
-
-		MemberVO vo = memberService.memberSelect(login.getM_id());
-		mav.addObject("member", vo);
-		mav.setViewName("member/modify");
+		mav.setViewName("mypage/modifyLogin");
 		return mav;
 	}
 
-	/*
-	 * @RequestMapping(value = "/modify.do", method = RequestMethod.POST) public
-	 * ModelAndView memberModifyProcess(@ModelAttribute("MemberVO") MemberVO mvo,
-	 * HttpSession session) { log.info("modify.do post 방식에 의한 메서드 호출 성공");
-	 * ModelAndView mav = new ModelAndView();
-	 * 
-	 * LoginVO login = (LoginVO) session.getAttribute("login");
-	 * 
-	 * if (login == null) { mav.setViewName("common/member/login"); return mav; }
-	 * 
-	 * mvo.setM_id(login.getM_id()); MemberVO vo =
-	 * memberService.memberSelect(mvo.getM_id()); if
-	 * (loginService.loginSelect(mvo.getM_id(), mvo.getM_pw()) == null) {
-	 * mav.addObject("errCOde", 1); mav.addObject("member", vo);
-	 * mav.setViewName("member/modify"); return mav; } if
-	 * (memberService.memberUpdate(mvo)) {
-	 * mav.setViewName("redirect:/member/logout.do"); return mav; } else {
-	 * mav.addObject("errCode", 2); mav.addObject("member", vo);
-	 * mav.setViewName("member/modify"); return mav; } }
-	 */
+	@RequestMapping(value = "/mypage/modify.do", method = RequestMethod.POST)
+	public ModelAndView MemberModify(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) {
+		System.out.println("modify.do POST 방식에 의한 메서드 호출 성공");
+		String m_id = (String) session.getAttribute("m_id");
+		String m_pw = mvo.getM_pw();
+		String m_name = null;
+		String m_phone = null;
+		ModelAndView mav = new ModelAndView();
+
+		mvo.setM_id(m_id);
+		MemberVO mvoDB = memberService.memberSelect(mvo.getM_id());
+		m_name = mvoDB.getM_name();
+		m_phone = mvoDB.getM_phone();
+		// SHA-256를 사용하는 SHA256클래스의 객체를 얻어낸다
+		SHA256 sha = SHA256.getInsatnce();
+
+		// SHA256클래스의 getSHA256()메소드를 사용해
+		// 원래의 비밀번호를 SHA-256방식으로 암호화
+		String shaPass = null;
+		try {
+			shaPass = sha.getSha256(m_pw.getBytes());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// 로그인이 틀리면 , 로그인 시도횟수를 1증가 시키고,
+		// 로그인 실패 시간을 DB에 업데이트 한다.
+		if (!BCrypt.checkpw(shaPass, mvoDB.getM_pw())) {
+			System.out.println("비밀번호 불일치");
+
+			mav.addObject("errCode", 1);
+			mav.setViewName("mypage/modifyLogin");
+			return mav;
+		}
+		// 로그인이 성공하면 , 로그인 시도 횟수 0으로 초기화
+		// 마지막으로 로그인 실패 시간 0으로 reset,
+		// 성공한 클라이언트 IP를 DB에 업데이트,로그인 성공시간 DB에 업데이트
+		else {
+			System.out.println("비밀번호 일치");
+			
+			System.out.println("로그인 성공");
+			mav.addObject("m_name", m_name); 
+			mav.addObject("m_phone", m_phone); 
+			mav.setViewName("/mypage/modify");
+			return mav;
+		}
+	}
+
+	@RequestMapping(value = "/mypage/modify_success.do", method = RequestMethod.POST)
+	public ModelAndView memberModifyProcess(@ModelAttribute MemberVO mvo, HttpSession session) {
+		System.out.println("modify_success.do post방식에 의한 메서드 호출 성공");
+		ModelAndView mav = new ModelAndView();
+
+		int result = 0;
+		result = memberService.memberUpdate(mvo);
+
+		if (result != 3) {
+			mav.addObject("errCode", 1); // 수정 실패
+			mav.setViewName("mypage/modify");
+		} else {
+			mav.setViewName("mypage/modifyLogin");
+		}
+		return mav;
+	}
 
 	@RequestMapping("/delete.do")
 	public ModelAndView memberDelete(HttpSession session) {

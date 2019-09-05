@@ -7,7 +7,7 @@ public interface MemberService {
 
 	public MemberVO memberSelect(String userId);
 
-	public boolean memberUpdate(MemberVO mvo);
+	public int memberUpdate(MemberVO mvo);
 
 	public int memberDelete(String userId);
 	

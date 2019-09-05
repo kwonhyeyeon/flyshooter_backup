@@ -70,18 +70,32 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean memberUpdate(MemberVO mvo) {
+	public int memberUpdate(MemberVO mvo) {
+
+		// SHA-256를 사용하는 SHA256클래스의 객체를 얻어낸다
+		SHA256 sha = SHA256.getInsatnce();
+
+		String orgPass = mvo.getM_pw();
+
+		// SHA256클래스의 getSHA256()메소드를 사용해
+		// 원래의 비밀번호를 SHA-256방식으로 암호화
+		String shaPass = null;
 		try {
-			if (!mvo.getM_pw().isEmpty()) {
-				String sec = memberDAO.securitySelect(mvo.getM_id());
-				mvo.setM_pw(new String(OpenCrypt.getSHA256(mvo.getM_pw(), sec)));
-			}
+			shaPass = sha.getSha256(orgPass.getBytes());
+
+			// SHA-256방식으로 암호화된 값을 다시 BCrypt클래스의
+			// hashpw()메소드를 사용해서 ncrypt방식으로 암호화
+			// BCrypt.gnesalt()메소드는 salt값을 난수를 사용해 생성.
+			String bcPass = BCrypt.hashpw(shaPass, BCrypt.gensalt(10));
+
+			mvo.setM_pw(bcPass);
 			memberDAO.memberUpdate(mvo);
+			return 3;
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
+			return 2;
 		}
-		return true;
 	}
 
 	@Override

@@ -100,12 +100,12 @@ public class LoginController {
 			lvoHistory.setLastPass(new Date().getTime());
 			lvoHistory.setClientIp(request.getRemoteAddr());
 			loginService.loginHistoryUpdate(lvoHistory);
-			LoginVO lvoSesstion = loginService.userIdSelect(m_id);
-			if (lvoSesstion.getM_type().equals(m_type)) {
-				if (lvoSesstion.getEmail_confirm().equals("Y")) {
+			LoginVO lvoSession = loginService.userIdSelect(m_id);
+			if (lvoSession.getM_type().equals(m_type)) {
+				if (lvoSession.getEmail_confirm().equals("Y")) {
 					System.out.println("로그인 성공");
-					session.setAttribute("m_id", lvoSesstion.getM_id());
-					session.setAttribute("m_type", lvoSesstion.getM_type());
+					session.setAttribute("m_id", lvoSession.getM_id());
+					session.setAttribute("m_type", lvoSession.getM_type());
 					mav.setViewName("/index");
 					return mav;
 				}else {
