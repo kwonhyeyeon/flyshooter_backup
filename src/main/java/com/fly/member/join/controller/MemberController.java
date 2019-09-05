@@ -97,6 +97,72 @@ public class MemberController {
 		return "member/join_success";
 	}
 
+	@RequestMapping(value = "/serchMember.do", method = RequestMethod.GET)
+	public ModelAndView serchId(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) {
+		System.out.println("serchMember.do get 방식에 의한 메서드 호출 성공");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/serchMember");
+		return mav;
+	}
+
+	@RequestMapping(value = "/serchId.do", method = RequestMethod.POST)
+	public ModelAndView idSerch(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) {
+		System.out.println("serchId.do post 방식에 의한 메서드 호출 성공");
+		ModelAndView mav = new ModelAndView();
+		MemberVO result = new MemberVO();
+		
+		result = memberService.memberidserch(mvo);
+		if (result.getM_id().equals("")) {
+			mav.addObject("errCode", 1); 
+			mav.setViewName("member/serchMember");
+		}
+		mav.addObject("m_id", result.getM_id());
+		mav.setViewName("member/serchId");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/serchPw.do", method = RequestMethod.POST)
+	public ModelAndView pwSerch(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) throws Exception {
+		System.out.println("serchPw.do post 방식에 의한 메서드 호출 성공");
+		ModelAndView mav = new ModelAndView();
+		MemberVO result = new MemberVO();
+		
+		System.out.println("비밀번호 변경 메일 보내기 메서드");
+		System.out.println("currnent join member: " + mvo.toString());
+		mailsender.pwModify(mvo);
+		mav.addObject("errCode", 3); 
+		mav.setViewName("member/serchMember");
+		return mav;
+	}
+
+	@RequestMapping(value = "/pwmodify.do", method = RequestMethod.GET)
+	public ModelAndView pwmodifyForm(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) throws Exception {
+		System.out.println("pwmodify.do post 방식에 의한 메서드 호출 성공");
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("errCode", 3); 
+		mav.addObject("m_id", mvo.getM_id()); 
+		mav.setViewName("member/pwmodify");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/pwmodify.do", method = RequestMethod.POST)
+	public ModelAndView pwmodify_success(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) throws Exception {
+		System.out.println("pwmodify.do post 방식에 의한 메서드 호출 성공");
+		ModelAndView mav = new ModelAndView();
+		
+		int result = 0;
+		result = memberService.pwUpdate(mvo);
+
+		if (result != 3) {
+			mav.addObject("errCode", 1); // 수정 실패
+			mav.setViewName("mypage/pwmodify");
+		} else {
+			mav.setViewName("member/login");
+		}
+		return mav;
+	}
+	
 	@RequestMapping(value = "/mypage/modifyLogin.do", method = RequestMethod.GET)
 	public ModelAndView ModifyLogin(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) {
 		System.out.println("modifyLogin.do get 방식에 의한 메서드 호출 성공");
@@ -115,7 +181,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/mypage/modify.do", method = RequestMethod.POST)
-	public ModelAndView MemberModify(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) {
+	public ModelAndView MemberModify(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) throws Exception {
 		System.out.println("modify.do POST 방식에 의한 메서드 호출 성공");
 		String m_id = (String) session.getAttribute("m_id");
 		String m_pw = mvo.getM_pw();
@@ -132,13 +198,7 @@ public class MemberController {
 
 		// SHA256클래스의 getSHA256()메소드를 사용해
 		// 원래의 비밀번호를 SHA-256방식으로 암호화
-		String shaPass = null;
-		try {
-			shaPass = sha.getSha256(m_pw.getBytes());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		String shaPass = sha.getSha256(m_pw.getBytes());
 		// 로그인이 틀리면 , 로그인 시도횟수를 1증가 시키고,
 		// 로그인 실패 시간을 DB에 업데이트 한다.
 		if (!BCrypt.checkpw(shaPass, mvoDB.getM_pw())) {
@@ -153,10 +213,10 @@ public class MemberController {
 		// 성공한 클라이언트 IP를 DB에 업데이트,로그인 성공시간 DB에 업데이트
 		else {
 			System.out.println("비밀번호 일치");
-			
+
 			System.out.println("로그인 성공");
-			mav.addObject("m_name", m_name); 
-			mav.addObject("m_phone", m_phone); 
+			mav.addObject("m_name", m_name);
+			mav.addObject("m_phone", m_phone);
 			mav.setViewName("/mypage/modify");
 			return mav;
 		}
@@ -185,11 +245,6 @@ public class MemberController {
 
 		ModelAndView mav = new ModelAndView();
 		LoginVO login = (LoginVO) session.getAttribute("login");
-
-		if (login == null) {
-			mav.setViewName("member/login");
-			return mav;
-		}
 
 		int errCode = memberService.memberDelete(login.getM_id());
 		switch (errCode) {

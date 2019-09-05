@@ -13,4 +13,8 @@ public interface MemberService {
 	
 	public int userIdConfirm(String userId);
 
+	public MemberVO memberidserch(MemberVO mvo);
+	
+	public int pwUpdate(MemberVO mvo);
+
 }
