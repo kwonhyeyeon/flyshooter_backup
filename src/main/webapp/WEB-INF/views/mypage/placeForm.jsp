@@ -8,36 +8,34 @@
 <meta charset="UTF-8">
 <title>구장 등록</title>
 </head>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/js/placeForm.js"></script>
 <body>
 	<div class="contentContainer">
 		<div class="contentTit"><h3> 구장 등록</h3></div>
 		<div class="contentTB">
 			<form id="p_writeForm" name="p_writeForm">
 				<table id="boardWrite">
-					<colgroup>
-						<col width="10%"/>
-						<col width="10%"/>
-					</colgroup>
 					<tr>
 					 <td class="p_name">구장명</td> <td><input type="text" name="p_name"></td>
 					 </tr>
 					 <tr>
-					 <td class="p_ceo">대표자명</td> <td><input type="text" name="p_ceo"></td>
-					 <td class="p_num">사업자&nbsp;번호</td> <td><input type="text" name="p_num"></td>
+					 	<td class="p_ceo">대표자명</td> <td><input type="text" name="p_ceo"></td>
+					 	<td class="p_num">사업자번호</td> <td><input type="text" name="p_num"></td>
 					 </tr>
 					 <tr>
-					 <td class="p_phone">구장&nbsp;전화번호</td> <td><input type="number" name="p_phone"></td>
+					 	<td class="p_phone">구장전화번호</td><td><input type="number" name="p_phone"></td>
 					 </tr>
 					 <tr>
 					 	<td class="p_address">구장 주소</td>
-					 	<td><input type="text" name="p_address1" placeholder="우편번호"></td>
-					 	<td><input type="button" name="addressplace"></td>
+					 		<td><input type="text" name="p_address1" placeholder="우편번호"></td>
+					 		<td><input type="button" name="addressplace" value="주소 검색"></td>
 					 </tr>
 					 	<tr>
-					 		<td><input type="text" name="p_address2" placeholder="주소" ></td>
+					 		<td colspan="4"><input type="text" name="p_address2" placeholder="주소" ></td>
 					 	</tr>
 					 	<tr>
-					 		<td><input type="text" name="p_address3" placeholder="상세주소"></td>
+					 		<td colspan="4"><input type="text" name="p_address3" placeholder="상세주소"></td>
 					 	</tr>
 					 	<tr>
 					 		<td class="p_bank">은행명</td> 
@@ -48,10 +46,10 @@
 					 			<option value="농협">농협</option>
 					 		</select>
 						</td>
-							<td class="p_account">예금주명<input type="text" name="p_account"></td>
+							<td class="p_account">예금주명&nbsp;<input type="text" name="p_account"></td>
 					 	</tr>
 					 	<tr>
-					 		<td class="p_account_num">입금&nbsp;계좌번호</td><td><input type="text" name="p_account_num"></td>
+					 		<td class="p_account_num">입금계좌번호</td><td><input type="text" name="p_account_num"></td>
 					 	</tr>
 					 	<tr>
 					 		<td class="p_holiday">정기휴일</td>
@@ -68,8 +66,8 @@
 					 		</select>
 					 		</td>
 					 		<td class="p_open">오픈시간</td>
-					 		<td><select name="p_open">
-					 				<option value="00">0시</option>
+					 	<td><select name="p_open">
+					 		<option value="00">0시</option>
 					 				<option value="01">1시</option>
 					 				<option value="02">2시</option>
 					 				<option value="03">3시</option>
@@ -94,8 +92,8 @@
 					 				<option value="22">22시</option>
 					 				<option value="23">23시</option>
 					 				<option value="24">24시</option>
-					 			</select>
-					 			</td> 
+					 	</select>
+					 	</td>		
 					 	<td class="p_close">마감시간</td>
 					 	<td><select name="p_close">
 					 		<option value="00">0시</option>
@@ -136,14 +134,27 @@
 					 </tr>
 					 <tr>
 					 <td class="p_file">서류 제출 유형</td>
-					 	<td><input name="p_file" type="radio" value="1">파일첨부 &nbsp; 
-					 		<input name="p_file" type="radio" value="2">팩스 &nbsp;
-					 		<input name="p_file" type="radio" value="3">등기 &nbsp;
-					 		<input name="p_file" type="radio" value="4">메일 &nbsp;
+					 	<td><input name="p_file" type="radio" value="1" onclick="div_OnOff(this.value,'con');">파일첨부  
+					 		<input name="p_file" type="radio" value="2" onclick="div_OnOff(this.value,'con');">팩스
+					 		<input name="p_file" type="radio" value="3" onclick="div_OnOff(this.value,'con');">등기 
+					 		<input name="p_file" type="radio" value="4" onclick="div_OnOff(this.value,'con');">메일 
 					 	</td>
 					 </tr>
 					 <tr>
+						 <td>
+					 		<div id="con" style="display:none">
+						 		<input name="myFile" type="file">
+					 		</div>
 					 		
+					 	</td>
+					 </tr>
+					 <tr>
+					 	<td class="p_intro">소개글</td>
+					 	<td><textarea rows="1" cols="5"></textarea>
+					 		</td>				 	
+					 </tr>
+					  <tr>
+					 	<td><input type="button" value="다음"></td>
 					 </tr>
 				</table>
 			</form>

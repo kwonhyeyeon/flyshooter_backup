@@ -31,11 +31,20 @@ public class ClientPlaceController {
 		model.addAttribute("data");
 		return "mypage/placeList";
 	}
-	//구장 등록 폼 출력하기
-	@RequestMapping(value="/writeForm.do")
+	
+	//구장 약관 동의 페이지 출력하기
+	@RequestMapping(value="/placecheck.do")
+	public String checkForm() {
+		log.info("placeCheck 호출 성공");
+		return "mypage/placecheck";
+				
+	}
+	
+	//구장 등록 페이지 출력하기
+	@RequestMapping(value="/placeForm.do")
 	public String writeForm() {
-		log.info("writeForm 호출 성공");
-		return "mypage/writeForm";
+		log.info("placeForm 호출 성공");
+		return "mypage/placeForm";
 	}
 	
 	
