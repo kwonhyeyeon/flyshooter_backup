@@ -49,7 +49,7 @@
  			retry,
  			lastFail,
  			lastPass,
- 			clientIp
+ 			clientIp 
  		from login_history
  		where m_id = #{m_id}	
  	</select>

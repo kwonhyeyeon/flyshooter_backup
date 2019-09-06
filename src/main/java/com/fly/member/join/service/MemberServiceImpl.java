@@ -9,7 +9,7 @@ import com.fly.common.util.SHA256;
 import com.fly.member.join.dao.MemberDAO;
 import com.fly.member.join.vo.MemberVO;
 
-@Service
+@Service("memberService")
 @Transactional
 public class MemberServiceImpl implements MemberService {
 
@@ -100,14 +100,28 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int memberDelete(String userId) {
+	public int memberActive(String userId) {
 		int isSucessCode = 3;
 		try {
-			isSucessCode = memberDAO.memberDelete(userId);
+			isSucessCode = memberDAO.memberActive(userId);
 			isSucessCode = 2;
 		} catch (Exception e) {
 			e.printStackTrace();
 			isSucessCode = 3;
+		}
+		return isSucessCode;
+
+	}
+	
+	@Override
+	public int memberDelete(String userId) {
+		int isSucessCode = 2;
+		try {
+			isSucessCode = memberDAO.memberDelete(userId);
+			isSucessCode = 3;
+		} catch (Exception e) {
+			e.printStackTrace();
+			isSucessCode = 1;
 		}
 		return isSucessCode;
 

@@ -5,6 +5,24 @@ var pwConfirm;
 $(document).ready(function() {
 	$("#modifyForm").submit(function() {
 		return modifyCheck();
+		errCodeCheck();
+	});
+	function errCodeCheck() {
+		var errCode = '<c:out value = "${errCode}"/>';
+		if (errCode != "") {
+			//명확한 자료형 명시를 위해 errCode의 타입을 정수형으로 변환.
+			switch (parseInt(errCode)) {
+			case 1:
+				alert("페이지에 문제가 있어 회원 탈퇴에 실패하였습니다. 다시 로그인해 주세요. ");
+				return false;
+			case 3:
+				alert("페이지에 문제가 있어 회원 수정에 실패하였습니다. 다시 로그인해 주세요. ");
+				return false;
+			}
+		}
+	}
+	$("#delete").click(function(){
+		location.href = "/member/delete.do";
 	});
 	$("#m_pwCheck, #m_pw").blur(function() {
 		var m_pw = $("#m_pw").val();

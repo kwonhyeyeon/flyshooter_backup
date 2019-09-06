@@ -13,7 +13,11 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public int memberDelete(String userId) {
-		return session.delete("memberDelete", userId);
+		return session.update("memberDelete", userId);
+	}
+	@Override
+	public int memberActive(String userId) {
+		return session.update("memberActive", userId);
 	}
 
 	@Override

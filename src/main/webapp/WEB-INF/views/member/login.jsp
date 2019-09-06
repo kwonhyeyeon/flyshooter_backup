@@ -45,8 +45,23 @@
 			case 3:
 				alert("회원 유형이 일치하지 않습니다.\n다시 시도해 주세요");
 				return false;
+			case 4:
+				if (confirm("회원 탈퇴가 비활성화된 회원입니다. \n활성화 하시겠습니까?")) {
+					location.href = "/member/active.do";
+					return false;
+				}else{
+					location.href = "/member/logout.do";
+					return false;
+				}
+			case 5:
+				alert("탈퇴된 회원입니다. 회원가입 후 이용해 주십시오.")
+					location.href = "/member/logout.do";
+					return false;
 			case 6:
 				alert("5번이상 로그인 시도로 30초동안 로그인 할 수 없습니다.\n잠시 후 다시  시도해 주세요");
+				return false;
+			case 7:
+				alert("페이지에 문제가 생겨 회원 탈퇴에 실패하였습니다.\n잠시 후 다시  시도해 주세요");
 				return false;
 			case 9:
 				alert("이메일 인증이 이루어져 있지 않습니다. \n이메일 인증을 해주세요.");
@@ -54,6 +69,9 @@
 			}
 		}
 	}
+	window.history.forward();
+	function noBack(){window.history.forward();}
+
 </script>
 </head>
 <body>
