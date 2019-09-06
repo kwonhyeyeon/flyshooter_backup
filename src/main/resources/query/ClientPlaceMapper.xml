@@ -20,25 +20,31 @@
 	<!-- 구장 등록 -->
 	<insert id ="placeInsert" parameterType="place">
 		INSERT INTO place(
-			 p_name, p_ceo, p_num, p_phone, p_address, p_bank, p_account, p_account_num, p_holiday, p_open, p_close, p_status, p_file, p_register, p_account_copy, p_property, p_intro
+			 p_num, m_id, p_name, p_ceo, p_phone, p_address, p_bank, p_account, p_account_num, p_open, p_close,  p_file, p_register, p_account_copy, p_property, p_status, p_holiday_start, p_holiday_end, p_ok, p_ok_date, p_intro, p_regdate, p_holiday
 		)
 		VALUES(
-			#{p_name}
+			#{p_num}
+		   ,#{m_id}
+		   ,#{p_name}
 		   ,#{p_ceo}
-		   ,#{p_num}
 		   ,#{p_phone}
-		   ,#{p_address}
 		   ,#{p_bank}
 		   ,#{p_account}
 		   ,#{p_account_num}
 		   ,#{p_open}
 		   ,#{p_close}
-		   ,#{p_status}
 		   ,#{p_file}
 		   ,#{p_register}
 		   ,#{p_account_copy}
 		   ,#{p_property}
+		   ,#{p_status}
+		   ,#{p_holiday_start}
+		   ,#{p_holiday_end}
+		   ,#{p_ok}
+		   ,SYSDATE
 		   ,#{p_intro}
+		   ,SYSDATE
+		   ,#{p_holiday}
 		)
 	</insert>
 	

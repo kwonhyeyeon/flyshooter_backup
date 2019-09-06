@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>구장 등록</title>
 </head>
+<script type="text/javascript">
+</script>
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/placeForm.js"></script>
 <!-- 다음 우편 주소 api-->
@@ -16,7 +18,7 @@
 	<div class="contentContainer">
 		<div class="contentTit"><h3> 구장 등록</h3></div>
 		<div class="contentTB">
-			<form id="p_writeForm" name="p_writeForm">
+			<form id="p_placeForm" action="/mypage/placeInsert.do" method="post">
 				<table id="boardWrite">
 					<tr>
 					 <td class="p_name">구장명</td> <td><input type="text" name="p_name"></td>
@@ -163,11 +165,12 @@
 					 </tr>
 					 <tr>
 					 	<td class="p_intro">소개글</td>
-					 	<td><textarea rows="1" cols="5"></textarea>
+					 	<td><textarea rows="2" cols="5"></textarea>
 					 		</td>				 	
 					 </tr>  
 					  <tr>
-					 	<td><input type="button" value="다음"></td>
+					 	<td><input type="submit" id="placeInsertBtn" name="placeInsertBtn" value="다음"></td>
+					 	<td><input type="button" id="placeListBtn" value="목록"></td>
 					 </tr>
 				</table>
 			</form>
