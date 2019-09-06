@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.fly.member.place.vo.PlaceVO;
+import com.fly.client.place.vo.PlaceVO;
 import com.fly.user.place.dao.UserPlaceDao;
 
 

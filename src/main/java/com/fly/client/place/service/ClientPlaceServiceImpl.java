@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fly.client.place.dao.ClientPlaceDao;
-import com.fly.member.place.vo.PlaceVO;
+import com.fly.client.place.vo.PlaceVO;
 import com.fly.member.stadium.vo.StadiumVO;
 
 

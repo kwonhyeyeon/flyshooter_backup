@@ -46,7 +46,7 @@
  					<c:when test="${not empty placeList}">
  						<c:forEach var="place" items="${placeList}" varStatus="status">
  							<tr class="placeList" data-num="${place.p_num}">
- 							<td>${place.p_num}</td>
+ 							<td id="detailPage">${place.p_num}</td>
  							<td>${place.p_name}</td>
  							<td>${place.p_ceo}</td>
  							<td>${place.p_address}</td>

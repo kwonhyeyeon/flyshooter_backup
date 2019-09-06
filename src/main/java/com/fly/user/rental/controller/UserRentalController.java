@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fly.member.place.vo.PlaceVO;
+import com.fly.client.place.vo.PlaceVO;
 import com.fly.user.place.service.UserPlaceService;
 import com.fly.user.stadium.service.UserStadiumService;
 

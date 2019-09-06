@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fly.client.place.service.ClientPlaceService;
-import com.fly.member.place.vo.PlaceVO;
+import com.fly.client.place.vo.PlaceVO;
 
 @Controller
 @RequestMapping("/mypage")

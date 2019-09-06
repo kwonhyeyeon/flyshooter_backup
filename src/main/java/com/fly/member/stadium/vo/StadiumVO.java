@@ -1,6 +1,6 @@
 package com.fly.member.stadium.vo;
 
-import com.fly.member.place.vo.PlaceVO;
+import com.fly.client.place.vo.PlaceVO;
 
 public class StadiumVO extends PlaceVO {
 	private int s_no;

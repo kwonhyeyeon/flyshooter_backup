@@ -70,7 +70,7 @@
 							<li><a href="/">용병 모집</a></li>
 						</ul>
 						<ul>
-							<li><a href="/">회원 정보 수정</a></li>
+							<li><a href="/member/mypage/modifyLogin.do">회원 정보 수정</a></li>
 						</ul>
 					</c:if>
 
@@ -88,8 +88,8 @@
 							<li><a href="/">용병 모집</a></li>
 						</ul>
 						<ul>
-							<li><a href="/">회원 정보 수정</a></li>
-							<li><a href="/">구장</a></li>
+							<li><a href="/member/mypage/modifyLogin.do">회원 정보 수정</a></li>
+							<li><a href="/mypage/placeList.do">구장</a></li>
 							<li><a href="/">경기장/용품</a></li>
 							<li><a href="/">정산 관리</a></li>
 							<li><a href="/">통계</a></li>
