@@ -18,7 +18,8 @@
 			<form id="rentalInsertForm">
 			      <input type="hidden" name="p_num" id="p_num">
 			</form>
-
+			
+		
 		<div style="width: 1200px">
 			<h2>대관 가능한 구장</h2>
 			<hr />

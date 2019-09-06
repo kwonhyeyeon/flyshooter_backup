@@ -1,6 +1,13 @@
 /**
  * 구장 등록 js
  */
+//목록 버튼 클릭 시 처리 이벤트
+$(function(){
+	$("#placeListBtn").click(function(){
+	location.href="/mypage/placeList.do";	
+	});
+});
+
 //다음 우편주소 api 복사 붙여넣기
 function sample6_execDaumPostcode() {
 	 new daum.Postcode({
@@ -62,3 +69,4 @@ function checkBox(){
 		}
 	}
 }
+
