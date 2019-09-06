@@ -10,6 +10,8 @@
 </head>
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/placeForm.js"></script>
+<!-- 다음 우편 주소 api-->
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
 <body>
 	<div class="contentContainer">
 		<div class="contentTit"><h3> 구장 등록</h3></div>
@@ -28,15 +30,13 @@
 					 </tr>
 					 <tr>
 					 	<td class="p_address">구장 주소</td>
-					 		<td><input type="text" name="p_address1" placeholder="우편번호"></td>
-					 		<td><input type="button" name="addressplace" value="주소 검색"></td>
+					 		<td><input type="text" id="sample6_postcode" placeholder="우편번호">
+					 		<br><input type="text" id="sample6_address" placeholder="주소" >
+					 		<br><input type="text" id="sample6_detailAddress" placeholder="상세주소">
+					 		<br><input type="text" id="sample6_extraAddress" placeholder="참고항목">
+					 		</td>
+					 		<td><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
 					 </tr>
-					 	<tr>
-					 		<td colspan="4"><input type="text" name="p_address2" placeholder="주소" ></td>
-					 	</tr>
-					 	<tr>
-					 		<td colspan="4"><input type="text" name="p_address3" placeholder="상세주소"></td>
-					 	</tr>
 					 	<tr>
 					 		<td class="p_bank">은행명</td> 
 					 		<td>
@@ -55,14 +55,13 @@
 					 		<td class="p_holiday">정기휴일</td>
 					 		<td>
 					 		<select name="p_holiday">
-					 			<option value="0">연중무휴</option>
+					 			<option value="0">일요일</option>
 					 			<option value="1">월요일</option>
 					 			<option value="2">화요일</option>
 					 			<option value="3">수요일</option>
 					 			<option value="4">목요일</option>
 					 			<option value="5">금요일</option>
 					 			<option value="6">토요일</option>
-					 			<option value="7">일요일</option>
 					 		</select>
 					 		</td>
 					 		<td class="p_open">오픈시간</td>
@@ -134,25 +133,39 @@
 					 </tr>
 					 <tr>
 					 <td class="p_file">서류 제출 유형</td>
-					 	<td><input name="p_file" type="radio" value="1" onclick="div_OnOff(this.value,'con');">파일첨부  
-					 		<input name="p_file" type="radio" value="2" onclick="div_OnOff(this.value,'con');">팩스
-					 		<input name="p_file" type="radio" value="3" onclick="div_OnOff(this.value,'con');">등기 
-					 		<input name="p_file" type="radio" value="4" onclick="div_OnOff(this.value,'con');">메일 
+					 	<td>
+					 		<label for = "p_file1">첨부파일</label>
+							<input type="radio" name="p_file" id="p_file1" value="" onclick="checkBox()">	
+					 		<label for = "p_file2">팩스</label>
+					 		<input type="radio" name="p_file" id="p_file2" value="" onclick="checkBox()">
+					 		<label for = "p_file3">등기</label>
+					 		<input type="radio" name="p_file" id="p_file3" value="" onclick="checkBox()">
+					 		<label for = "p_file4">메일</label>
+					 		<input type="radio" name="p_file" id="p_file4" value="" onclick="checkBox()">
 					 	</td>
 					 </tr>
 					 <tr>
 						 <td>
-					 		<div id="con" style="display:none">
-						 		<input name="myFile" type="file">
-					 		</div>
-					 		
+						 <!-- 보여질 내용 -->
+						 <div id="1" style="display:none">	
+					사업자 등록증<input name="myFile" type="file"><br>통장사본<input name="myFile" type="file"><br>부동산종합공부<input name="myFile" type="file">
+					 	</div>
+					 	<div id="2" style="display:none">
+					 	팩스는 여기로 보내시면 됩니다!!
+					 	</div>
+					 	<div id="3" style="display:none">
+					 	등기는 여기로 보내시면 됩니다!!
+					 	</div>
+					 	<div id="4" style="display:none">
+					 	메일은 여기로 보내시면 됩니다!!
+					 	</div>
 					 	</td>
 					 </tr>
 					 <tr>
 					 	<td class="p_intro">소개글</td>
 					 	<td><textarea rows="1" cols="5"></textarea>
 					 		</td>				 	
-					 </tr>
+					 </tr>  
 					  <tr>
 					 	<td><input type="button" value="다음"></td>
 					 </tr>
