@@ -9,9 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fly.client.place.service.ClientPlaceService;
 import com.fly.client.place.vo.PlaceVO;
@@ -59,6 +61,7 @@ public class ClientPlaceController {
 		String url = "";
 		//session에서 가져오기
 		String	m_id = (String) session.getAttribute("m_id");
+		System.out.println(m_id);
 		pvo.setM_id(m_id);
 		result = clientPlaceService.placeInsert(pvo);
 		if(result == 1) {

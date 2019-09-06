@@ -1,6 +1,6 @@
 package com.fly.client.place.vo;
 
-import java.util.Date;
+
 
 public class PlaceVO {
 
@@ -24,9 +24,9 @@ public class PlaceVO {
 	private String p_holiday_start; // 구장 임시휴업시작일
 	private String p_holiday_end; // 구장 영업재개일
 	private int p_ok; // 구장 승인상태
-	private Date p_ok_date; // 구장 승인일
+	private String p_ok_date; // 구장 승인일
 	private String p_intro; // 소개글
-	private Date p_regdate; // 구장 등록일
+	private String p_regdate; // 구장 등록일
 
 
 	public String getP_num() {
@@ -229,12 +229,12 @@ public class PlaceVO {
 	}
 
 
-	public Date getP_ok_date() {
+	public String getP_ok_date() {
 		return p_ok_date;
 	}
 
 
-	public void setP_ok_date(Date p_ok_date) {
+	public void setP_ok_date(String p_ok_date) {
 		this.p_ok_date = p_ok_date;
 	}
 
@@ -249,12 +249,12 @@ public class PlaceVO {
 	}
 
 
-	public Date getP_regdate() {
+	public String getP_regdate() {
 		return p_regdate;
 	}
 
 
-	public void setP_regdate(Date p_regdate) {
+	public void setP_regdate(String p_regdate) {
 		this.p_regdate = p_regdate;
 	}
 
