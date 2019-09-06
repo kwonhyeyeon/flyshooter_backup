@@ -61,7 +61,7 @@ public class UserRentalController {
          for(PlaceVO list : searchPlaceList) {
         	 log.info(list.toString());
          }
-      return "rental/placeList";
+      return "rental/rentalPlaceList";
    }
    
    // 대관 신청페이지
