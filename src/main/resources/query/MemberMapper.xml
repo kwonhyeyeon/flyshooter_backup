@@ -11,9 +11,23 @@
 
 	<select id="memberSelect" parameterType="String"
 		resultType="member">
-		select m_id, m_pw, m_phone, m_regdate, m_status, m_type, m_name, email_confirm
+		select m_id, m_pw, m_phone, m_regdate, m_status, m_type, m_name, email_confirm 
 		from member
 		where m_id = #{m_id}
+	</select>
+	
+	<select id="memberidserchC" parameterType="String"
+		resultType="member">
+		select replace(m_id , substr(m_id,2,4) , '***') "m_id" 
+		from member
+		where m_name = #{m_name} and m_phone = #{m_phone} and m_type = 0  
+	</select>
+	
+	<select id="memberidserchU" parameterType="String"
+		resultType="member">
+		select replace(m_id , substr(m_id,2,4) , '***') "m_id" 
+		from member
+		where m_name = #{m_name} and m_phone = #{m_phone} and m_type = 1  
 	</select>
 
 	<insert id="memberJoin" parameterType="member">
@@ -39,17 +53,36 @@
 
 	<update id="memberUpdate" parameterType="member">
 		UPDATE member set
-		<if test="userPw != null and userPw !=''">
 			m_pw = #{m_pw},
-		</if>
-		m_phone = #{phone}, m_name = #{m_name} 
+			m_phone = #{m_phone}, 
+			m_name = #{m_name} 
+		where m_id = #{m_id}
+	</update>
+	
+	<update id="memberUpdatePN" parameterType="member">
+		UPDATE member set
+			m_phone = #{m_phone},
+			m_name = #{m_name} 
+		where m_id = #{m_id}
+	</update>
+	
+	<update id="pwUpdate" parameterType="member">
+		UPDATE member set
+			m_pw = #{m_pw}
 		where m_id = #{m_id}
 	</update>
 
 	<update id="memberDelete" parameterType="String">
 		update member set
-		m_status = #{m_status}
+		m_status = 0
 		where m_id = #{m_id}
 	</update>
+	
+	<update id="memberActive" parameterType="String">
+		update member set
+		m_status = 1
+		where m_id = #{m_id}
+	</update>
+	
 
 </mapper>

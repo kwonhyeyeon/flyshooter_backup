@@ -56,7 +56,7 @@
 				<div>
 					<input type="submit" value="확인" id="joinInsert" /> 
 					<input type="reset" value="재작성" id="joinReset" /> <input type="button"
-						value="홈으로" id="joinCancel" />
+						value="홈으로" id="home" />
 				</div>
 			</div>
 		</form>

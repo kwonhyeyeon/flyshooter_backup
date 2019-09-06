@@ -13,7 +13,11 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public int memberDelete(String userId) {
-		return session.delete("memberDelete", userId);
+		return session.update("memberDelete", userId);
+	}
+	@Override
+	public int memberActive(String userId) {
+		return session.update("memberActive", userId);
 	}
 
 	@Override
@@ -37,6 +41,12 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
+	public int memberUpdatePN(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return session.update("memberUpdatePN", mvo);
+	}
+
+	@Override
 	public int GetKey(MemberVO mvo) {
 		// TODO Auto-generated method stub
 		return session.update("GetKey", mvo);
@@ -46,6 +56,24 @@ public class MemberDAOImpl implements MemberDAO {
 	public int alter_userKey(MemberVO mvo) {
 		// TODO Auto-generated method stub
 		return session.update("alter_userKey", mvo);
+	}
+
+	@Override
+	public MemberVO memberidserchC(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return (MemberVO) session.selectList("memberidserchC", mvo);
+	}
+
+	@Override
+	public MemberVO memberidserchU(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return (MemberVO) session.selectList("memberidserchU", mvo);
+	}
+
+	@Override
+	public int pwUpdate(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return session.update("pwUpdate", mvo);
 	}
 
 }

@@ -17,6 +17,30 @@
 		FROM place
 	</select>
 	
+	<!-- 구장 등록 -->
+	<insert id ="placeInsert" parameterType="place">
+		INSERT INTO place(
+			 p_name, p_ceo, p_num, p_phone, p_address, p_bank, p_account, p_account_num, p_holiday, p_open, p_close, p_status, p_file, p_register, p_account_copy, p_property, p_intro
+		)
+		VALUES(
+			#{p_name}
+		   ,#{p_ceo}
+		   ,#{p_num}
+		   ,#{p_phone}
+		   ,#{p_address}
+		   ,#{p_bank}
+		   ,#{p_account}
+		   ,#{p_account_num}
+		   ,#{p_open}
+		   ,#{p_close}
+		   ,#{p_status}
+		   ,#{p_file}
+		   ,#{p_register}
+		   ,#{p_account_copy}
+		   ,#{p_property}
+		   ,#{p_intro}
+		)
+	</insert>
 	
 	<!-- <select id="searchRentalList" parameterType="String" resultType="place">
 		select m.m_name, m.m_phone, (r.r_reserve_date + r.r_start + r.r_end), ir.r_no

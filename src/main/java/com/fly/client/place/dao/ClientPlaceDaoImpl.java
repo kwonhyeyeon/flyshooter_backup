@@ -25,5 +25,10 @@ public class ClientPlaceDaoImpl implements ClientPlaceDao {
 	public List<PlaceVO> placeList() {
 		return sqlSession.selectList("placeList");
 	}
+	//구장 등록
+	@Override
+	public int placeInsert(PlaceVO pvo) {
+		return sqlSession.insert("placeInsert", pvo);
+	}
 
 }

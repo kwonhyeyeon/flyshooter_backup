@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>구장</title>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/js/placeList.js"></script>
 </head>
 <body>
 	<div class="contentContainer">
