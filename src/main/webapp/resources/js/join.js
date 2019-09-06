@@ -73,7 +73,7 @@ $(document).ready(function() {
 		}
 
 	});
-	$("#joinCancel").click(function() {
+	$("#home").click(function() {
 		location.href = "/";
 	});
 });
@@ -117,7 +117,7 @@ function joinCheck() {
 		memberForm.m_phone.focus();
 		return false;
 	}
-	idPwdCheck()
+	idPwdCheck();
 	alert("회원가입이 완료되었습니다.");
 	
 }

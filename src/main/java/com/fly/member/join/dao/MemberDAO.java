@@ -12,9 +12,17 @@ public interface MemberDAO {
 	public String securitySelect(String m_id);
 
 	public int memberUpdate(MemberVO mvo);
+	
+	public int memberUpdatePN(MemberVO mvo);
 
 	public int GetKey(MemberVO mvo);
 
 	public int alter_userKey(MemberVO mvo);
+
+	public MemberVO memberidserchC(MemberVO mvo);
+
+	public MemberVO memberidserchU(MemberVO mvo);
+
+	public int pwUpdate(MemberVO mvo);
 
 }

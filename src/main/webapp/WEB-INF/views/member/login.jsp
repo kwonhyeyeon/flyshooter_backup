@@ -14,13 +14,18 @@
 			var pw = $("#m_pw").val();
 			if (!(id)) {
 				alert("아이디를 입력하세요");
-				alert(id)
 				return false;
 			}
 			if (!(pw)) {
 				alert("비밀번호를 입력하세요");
 				return false;
 			}
+		});
+		$("#join").click(function() {
+			location.href = "/member/join.do";
+		});
+		$("#serchId").click(function() {
+			location.href = "/member/serchMember.do";
 		});
 		errCodeCheck();
 	});
@@ -71,6 +76,8 @@
 			<p class="form-control-static error"></p>
 		</div>
 		<input type="submit" value="login" id="loginbutton" name="loginbutton" />
+		<input type="button" value="아이디/비밀번호 찾기" id="serchId" name="serchId" />
+		<input type="button" value="회원가입" id="join" name="join" />
 	</form>
 </body>
 </html>
