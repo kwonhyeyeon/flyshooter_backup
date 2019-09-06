@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -47,6 +48,23 @@ public class ClientPlaceController {
 		return "mypage/placeForm";
 	}
 	
+	//글 쓰기 구현하기
+	
+	@RequestMapping(value="/placeInsert.do", method=RequestMethod.POST)
+	public String placeInsert(@ModelAttribute PlaceVO pvo, Model model) {
+		log.info("placeInsert 호출 성공");
+		int result = 0;
+		String url = "";
+		
+		result = clientPlaceService.placeInsert(pvo);
+		if(result == 1) {
+			url = "/mypage/placeList.do";
+		}else {
+			model.addAttribute("code", 1);
+			url = "/mypage/placeForm.do";
+		}
+		return "redirect:"+url;
+	}
 	
 	
 }

@@ -11,6 +11,9 @@ public interface ClientPlaceDao {
 	public List<StadiumVO> stadiumList(String p_name);
 	
 	//구장 리스트
-	public List<PlaceVO> placeList(); 
+	public List<PlaceVO> placeList();
+	
+	//구장 등록
+	public int placeInsert(PlaceVO pvo); 
 	
 }

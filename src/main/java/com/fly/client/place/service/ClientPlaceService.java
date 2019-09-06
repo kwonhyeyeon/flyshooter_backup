@@ -11,7 +11,8 @@ public interface ClientPlaceService {
 	public List<PlaceVO> placeList();
 	// 구장별 대관 예약 현황
 	public List<StadiumVO> stadiumList(String p_name);
-
+	// 구장 등록
+	public int placeInsert(PlaceVO pvo);
 	
 	
 	

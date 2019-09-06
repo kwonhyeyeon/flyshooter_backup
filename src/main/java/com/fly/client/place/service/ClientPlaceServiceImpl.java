@@ -32,5 +32,17 @@ public class ClientPlaceServiceImpl implements ClientPlaceService {
 		placeList = clientPlaceDao.placeList();
 		return placeList;
 	}
+	//구장 등록 구현
+	@Override
+	public int placeInsert(PlaceVO pvo) {
+		int result = 0;
+		try {
+				result = clientPlaceDao.placeInsert(pvo);			
+		}catch(Exception e) {
+			e.printStackTrace();
+			result = 0;
+		}
+		return result;
+	}
 
 }
