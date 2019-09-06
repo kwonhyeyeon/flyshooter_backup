@@ -2,6 +2,8 @@ package com.fly.client.place.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,11 +53,13 @@ public class ClientPlaceController {
 	//글 쓰기 구현하기
 	
 	@RequestMapping(value="/placeInsert.do", method=RequestMethod.POST)
-	public String placeInsert(@ModelAttribute PlaceVO pvo, Model model) {
+	public String placeInsert(@ModelAttribute PlaceVO pvo, Model model, HttpSession session ) {
 		log.info("placeInsert 호출 성공");
 		int result = 0;
 		String url = "";
-		
+		//session에서 가져오기
+		String	m_id = (String) session.getAttribute("m_id");
+		pvo.setM_id(m_id);
 		result = clientPlaceService.placeInsert(pvo);
 		if(result == 1) {
 			url = "/mypage/placeList.do";
