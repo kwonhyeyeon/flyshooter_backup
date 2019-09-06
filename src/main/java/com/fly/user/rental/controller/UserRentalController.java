@@ -28,6 +28,58 @@ public class UserRentalController {
 	private UserPlaceService placeService;
 	@Resource(name = "userStadiumService")
 	private UserStadiumService userStadiumService;
+<<<<<<< HEAD
+   
+   private static final Logger log = LoggerFactory.getLogger(UserRentalController.class);   
+   
+   @RequestMapping(value = "/location.do")
+   public String searchLocation(Model model, HttpSession session) {
+	   String m_id = "";
+	  try {
+		  m_id = (String)session.getAttribute("m_id");
+		  m_id.length();
+	  }catch(Exception e) {
+		  System.out.println("?????");
+		  return "index";
+	  }
+	  	System.out.println("/??????///////////////////");
+	  	System.out.println(m_id + "=============================");
+	  	return "rental/location";
+   }
+   
+   // 지역으로 검색한 구장리스트
+   @RequestMapping(value = "/placeList.do", method = RequestMethod.GET)
+   public String searchPlaceList(@ModelAttribute PlaceVO pvo, Model model, RedirectAttributes redirectAttr, @RequestParam(value = "area", required = true, defaultValue = "null") String area) {
+      
+	   log.info("============="+area);
+      
+      List<PlaceVO> searchPlaceList = placeService.searchPlaceList(area);
+      
+      if(searchPlaceList.isEmpty()) {
+         redirectAttr.addFlashAttribute("message", "[" + area + "]지역에는 등록된 구장이 없습니다.");
+         return "redirect:/user/rental/location.do";
+      }
+      model.addAttribute("searchPlaceList", searchPlaceList);
+         for(PlaceVO list : searchPlaceList) {
+        	 log.info(list.toString());
+         }
+      return "rental/rentalPlaceList";
+   }
+   
+   // 대관 신청페이지
+   @RequestMapping(value = "/rentalStadium.do", method = RequestMethod.POST)
+   public String rentalInsert(@ModelAttribute PlaceVO pvo, Model model, @RequestParam(value = "p_num") String p_num) {
+      pvo = placeService.selectPlace(p_num);
+      
+      System.out.println("=============" + pvo.toString());
+      model.addAttribute("pvo", pvo);
+      
+      return "rental/rentalStadium";
+   }
+   
+   }
+=======
+>>>>>>> 5a0969ec6539bc853904b62ca1be6340b05423f0
 
 	private static final Logger log = LoggerFactory.getLogger(UserRentalController.class);
 
