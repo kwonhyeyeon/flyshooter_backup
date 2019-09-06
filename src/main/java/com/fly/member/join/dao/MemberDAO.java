@@ -5,6 +5,8 @@ import com.fly.member.join.vo.MemberVO;
 public interface MemberDAO {
 	public int memberDelete(String userId);
 
+	public int memberActive(String userId);
+
 	public int memberJoin(MemberVO mvo);
 
 	public MemberVO memberSelect(String m_id);
@@ -12,7 +14,7 @@ public interface MemberDAO {
 	public String securitySelect(String m_id);
 
 	public int memberUpdate(MemberVO mvo);
-	
+
 	public int memberUpdatePN(MemberVO mvo);
 
 	public int GetKey(MemberVO mvo);

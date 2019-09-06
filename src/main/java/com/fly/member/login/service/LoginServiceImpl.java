@@ -54,6 +54,7 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public LoginVO loginHistorySelect(String m_id) {
+		System.out.println("33333333333");
 		return loginDao.loginHistorySelect(m_id);
 	}
 

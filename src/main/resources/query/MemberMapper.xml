@@ -11,7 +11,7 @@
 
 	<select id="memberSelect" parameterType="String"
 		resultType="member">
-		select m_id, m_pw, m_phone, m_regdate, m_status, m_type, m_name, email_confirm
+		select m_id, m_pw, m_phone, m_regdate, m_status, m_type, m_name, email_confirm 
 		from member
 		where m_id = #{m_id}
 	</select>
@@ -74,8 +74,15 @@
 
 	<update id="memberDelete" parameterType="String">
 		update member set
-		m_status = #{m_status}
+		m_status = 0
 		where m_id = #{m_id}
 	</update>
+	
+	<update id="memberActive" parameterType="String">
+		update member set
+		m_status = 1
+		where m_id = #{m_id}
+	</update>
+	
 
 </mapper>

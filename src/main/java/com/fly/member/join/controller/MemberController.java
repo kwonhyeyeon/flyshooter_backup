@@ -244,19 +244,19 @@ public class MemberController {
 		System.out.println("delete.do get방식에의한 메서드 호출 성공");
 
 		ModelAndView mav = new ModelAndView();
-		LoginVO login = (LoginVO) session.getAttribute("login");
+		
+		String m_id = (String) session.getAttribute("m_id");
 
-		int errCode = memberService.memberDelete(login.getM_id());
-		switch (errCode) {
-		case 2:
-			mav.setViewName("redirect:/member/logout.do");
-			break;
-
-		case 3:
-			mav.addObject("errCOde", 3);
-			mav.setViewName("member/login");
-			break;
-		}
-		return mav;
+		int errCode = memberService.memberDelete(m_id);
+		if (errCode == 3) {
+			session.invalidate();
+			mav.setViewName("/member/login");
+			return mav;
+		} else {
+			mav.addObject("errCode", 3);
+			mav.setViewName("/mypage/modifyLogin");
+			return mav;
+		} 
+		
 	}
 }
