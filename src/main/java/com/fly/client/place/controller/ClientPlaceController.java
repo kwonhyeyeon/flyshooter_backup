@@ -56,7 +56,7 @@ public class ClientPlaceController {
 	
 	@RequestMapping(value="/placeInsert.do", method=RequestMethod.POST)
 	public String placeInsert(@ModelAttribute PlaceVO pvo, Model model, HttpSession session ) {
-		log.info("placeInsert 호출 성공");
+		System.out.println("placeInsert 호출 성공");
 		int result = 0;
 		String url = "";
 		//session에서 가져오기

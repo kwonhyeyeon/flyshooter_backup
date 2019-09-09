@@ -45,7 +45,7 @@
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
   <!-- end 한글처리 -->
-
+	
 	<welcome-file-list>
 		<welcome-file>/WEB-INF/views/index.jsp</welcome-file>
 	</welcome-file-list>

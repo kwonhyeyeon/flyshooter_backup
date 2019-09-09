@@ -2,11 +2,6 @@
  * 구장 등록 js
  */
 //등록 버튼 클릭 시 처리 이벤트
-$(function(){
-	$("#placeInsertBtn").click(function(){
-	location.href="/mypage/placeList.do";	
-	});
-});
 
 //목록 버튼 클릭 시 처리 이벤트
 $(function(){
@@ -82,8 +77,8 @@ function checking(){
 	var ad2 = $("#sample6_address").val();
 	var ad3 = $("#sample6_detailAddress").val();
 	var ad4 = $("#sample6_extraAddress").val();
-	var aa = ad1+ad2+ad3+ad4;
-	alert(aa);
-	$("#p_address").val(ad1+ad2+ad3+ad4);
+	var address = ad1+"*"+ad2+"*"+ad3+"*"+ad4;
+	alert(address);
+	$("#p_address").val(address);
 	return true;
 }

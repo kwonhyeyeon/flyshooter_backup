@@ -8,8 +8,6 @@
 <meta charset="UTF-8">
 <title>구장 등록</title>
 </head>
-<script type="text/javascript">
-</script>
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/placeForm.js"></script>
 <!-- 다음 우편 주소 api-->
@@ -19,44 +17,30 @@
 		<div class="contentTit"><h3> 구장 등록</h3></div>
 		<div class="contentTB">
 			<form id="p_placeForm" action="/mypage/placeInsert.do" method="post" onsubmit="checking();">
-				<table id="boardWrite">
-					<tr>
-					 <td class="p_name">구장명</td> <td><input type="text" name="p_name"></td>
-					 </tr>
-					 <tr>
-					 	<td class="p_ceo">대표자명</td> <td><input type="text" name="p_ceo"></td>
-					 	<td class="p_num">사업자번호</td> <td><input type="text" name="p_num"></td>
-					 </tr>
-					 <tr>
-					 	<td class="p_phone">구장전화번호</td><td><input type="text" name="p_phone"></td>
-					 </tr>
-					 <tr>
-					 	<td class="p_address">구장 주소</td>
-					 		<td><input type="text" id="sample6_postcode" placeholder="우편번호">
+					 <div class="p_name">구장명</div> <div><input type="text" name="p_name"></div>
+					 	<div class="p_ceo">대표자명</div> <div><input type="text" name="p_ceo"></div>
+					 	<div class="p_num">사업자번호</div> <div><input type="text" name="p_num"></div>
+					 	<div class="p_phone">구장전화번호</div><div><input type="text" name="p_phone"></div>
+					 	<div class="p_address">구장 주소</div>
+					 		<div><input type="text" id="sample6_postcode" placeholder="우편번호">
 					 		<br><input type="text"  id="sample6_address" placeholder="주소" >
 					 		<br><input type="text" id="sample6_detailAddress" placeholder="상세주소">
 					 		<br><input type="text"  id="sample6_extraAddress" placeholder="참고항목">
 					 			<input type="text" id="p_address" name="p_address">
-					 		</td>
-					 		<td><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
-					 </tr>
-					 	<tr>
-					 		<td class="p_bank">은행명</td> 
-					 		<td>
+					 		</div>
+					 		<div><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></div>
+					 		<div class="p_bank">은행명</div> 
+					 		<div>
 					 		<select name="p_bank">
 					 			<option value="신한">신한</option>
 					 			<option value="우리">우리</option>
 					 			<option value="농협">농협</option>
 					 		</select>
-						</td>
-							<td class="p_account">예금주명&nbsp;<input type="text" name="p_account"></td>
-					 	</tr>
-					 	<tr>
-					 		<td class="p_account_num">입금계좌번호</td><td><input type="text" name="p_account_num"></td>
-					 	</tr>
-					 	<tr>
-					 		<td class="p_holiday">정기휴일</td>
-					 		<td>
+						</div>
+							<div class="p_account">예금주명&nbsp;<input type="text" name="p_account"></div>
+					 		<div class="p_account_num">입금계좌번호</div><div><input type="text" name="p_account_num"></div>
+					 		<div class="p_holiday">정기휴일</div>
+					 		<div>
 					 		<select name="p_holiday">
 					 			<option value="0">일요일</option>
 					 			<option value="1">월요일</option>
@@ -66,9 +50,9 @@
 					 			<option value="5">금요일</option>
 					 			<option value="6">토요일</option>
 					 		</select>
-					 		</td>
-					 		<td class="p_open">오픈시간</td>
-					 	<td><select name="p_open">
+					 		</div>
+					 		<div class="p_open">오픈시간</div>
+					 	<div><select name="p_open">
 					 		<option value="00">0시</option>
 					 				<option value="01">1시</option>
 					 				<option value="02">2시</option>
@@ -95,9 +79,9 @@
 					 				<option value="23">23시</option>
 					 				<option value="24">24시</option>
 					 	</select>
-					 	</td>		
-					 	<td class="p_close">마감시간</td>
-					 	<td><select name="p_close">
+					 	</div>		
+					 	<div class="p_close">마감시간</div>
+					 	<div><select name="p_close">
 					 		<option value="00">0시</option>
 					 				<option value="01">1시</option>
 					 				<option value="02">2시</option>
@@ -124,31 +108,25 @@
 					 				<option value="23">23시</option>
 					 				<option value="24">24시</option>
 					 	</select>
-					 	</td>		
-					 	</tr>
-					 <tr>
-					 	<td class="p_status">구장 상태</td>
-					 	<td><select name="p_status">
+					 	</div>		
+					 	<div class="p_status">구장 상태</div>
+					 	<div><select name="p_status">
 					 		<option value="0">운영전</option>
 					 		<option value="1">운영중</option>
 					 	</select>
-					 	</td>
-					 </tr>
-					 <tr>
-					 <td class="p_file">서류 제출 유형</td>
-					 	<td>
+					 	</div>
+					 <div class="p_file">서류 제출 유형</div>
+					 	<div>
 					 		<label for = "p_file1">첨부파일</label>
-							<input type="radio" name="p_file" id="p_file1" value="" onclick="checkBox()">	
+							<input type="radio" name="p_file" id="p_file1" value="1" onclick="checkBox()">	
 					 		<label for = "p_file2">팩스</label>
-					 		<input type="radio" name="p_file" id="p_file2" value="" onclick="checkBox()">
+					 		<input type="radio" name="p_file" id="p_file2" value="2" onclick="checkBox()">
 					 		<label for = "p_file3">등기</label>
-					 		<input type="radio" name="p_file" id="p_file3" value="" onclick="checkBox()">
+					 		<input type="radio" name="p_file" id="p_file3" value="3" onclick="checkBox()">
 					 		<label for = "p_file4">메일</label>
-					 		<input type="radio" name="p_file" id="p_file4" value="" onclick="checkBox()">
-					 	</td>
-					 </tr>
-					 <tr>
-						 <td>
+					 		<input type="radio" name="p_file" id="p_file4" value="4" onclick="checkBox()">
+					 	</div>
+						 <div>
 						 <!-- 보여질 내용 -->
 						 <div id="1" style="display:none">	
 					사업자 등록증<input name="myFile" type="file"><br>통장사본<input name="myFile" type="file"><br>부동산종합공부<input name="myFile" type="file">
@@ -162,18 +140,17 @@
 					 	<div id="4" style="display:none">
 					 	메일은 여기로 보내시면 됩니다!!
 					 	</div>
-					 	</td>
-					 </tr>
-					 <tr>
-					 	<td class="p_intro">소개글</td>
-					 	<td><textarea rows="2" cols="5"></textarea>
-					 		</td>				 	
-					 </tr>  
-					  <tr>
-					 	<td><input type="submit" id="placeInsertBtn" name="placeInsertBtn" value="다음"></td>
-					 	<td><input type="button" id="placeListBtn" value="목록"></td>
-					 </tr>
-				</table>
+					 	</div>
+				
+					 	<div class="p_intro">소개글</div>
+					 	<div><textarea rows="2" cols="5"></textarea>
+					 		</div>				 	
+					   
+					  
+					 	<div><input type="submit" id="placeInsertBtn" name="placeInsertBtn" value="다음"></div>
+					 	<div><input type="button" id="placeListBtn" value="목록"></div>
+					 
+				
 			</form>
 		</div>
 	</div>
