@@ -18,7 +18,7 @@
 	<div class="contentContainer">
 		<div class="contentTit"><h3> 구장 등록</h3></div>
 		<div class="contentTB">
-			<form id="p_placeForm" action="/mypage/placeInsert.do" method="post">
+			<form id="p_placeForm" action="/mypage/placeInsert.do" method="post" onsubmit="checking();">
 				<table id="boardWrite">
 					<tr>
 					 <td class="p_name">구장명</td> <td><input type="text" name="p_name"></td>
@@ -28,14 +28,15 @@
 					 	<td class="p_num">사업자번호</td> <td><input type="text" name="p_num"></td>
 					 </tr>
 					 <tr>
-					 	<td class="p_phone">구장전화번호</td><td><input type="number" name="p_phone"></td>
+					 	<td class="p_phone">구장전화번호</td><td><input type="text" name="p_phone"></td>
 					 </tr>
 					 <tr>
 					 	<td class="p_address">구장 주소</td>
 					 		<td><input type="text" id="sample6_postcode" placeholder="우편번호">
-					 		<br><input type="text" id="sample6_address" placeholder="주소" >
+					 		<br><input type="text"  id="sample6_address" placeholder="주소" >
 					 		<br><input type="text" id="sample6_detailAddress" placeholder="상세주소">
-					 		<br><input type="text" id="sample6_extraAddress" placeholder="참고항목">
+					 		<br><input type="text"  id="sample6_extraAddress" placeholder="참고항목">
+					 			<input type="text" id="p_address" name="p_address">
 					 		</td>
 					 		<td><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
 					 </tr>
