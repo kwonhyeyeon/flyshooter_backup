@@ -17,6 +17,14 @@
 		FROM place
 	</select>
 	
+	<!-- 구장 상세페이지 출력 -->
+	<select id ="placeDetail" resultType="place">
+		SELECT
+		*
+		FROM place 
+		where p_num = #{p_num}
+	</select>
+	
 	<!-- 구장 등록 -->
 	<insert id ="placeInsert" parameterType="place">
 		INSERT INTO place(
