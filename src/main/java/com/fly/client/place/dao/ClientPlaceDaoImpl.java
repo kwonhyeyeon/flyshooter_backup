@@ -1,39 +1,41 @@
 package com.fly.client.place.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fly.client.place.vo.PlaceVO;
+import com.fly.member.rental.vo.RentalVO;
 import com.fly.member.stadium.vo.StadiumVO;
 
 @Repository("clientPlaceDao")
 public class ClientPlaceDaoImpl implements ClientPlaceDao {
 	
 	@Autowired
-	private SqlSession sqlSession;
+	private SqlSession session;
 	
-	// 구장별 경기장 리스트
+	private String NAME_SPACE = "com.fly.client.place.dao.ClientPlaceDao";
+
+	// 구장 리스트
 	@Override
-	public List<StadiumVO> stadiumList(String p_name) {
-		return sqlSession.selectList("stadiumList", p_name);
+	public List<PlaceVO> placeList(String m_id) {
+		return session.selectList("placeList", m_id);
 	}
-	//구장리스트 목록 출력
+	
+	// 경기장 리스트
 	@Override
-	public List<PlaceVO> placeList() {
-		return sqlSession.selectList("placeList");
+	public List<StadiumVO> stadiumList(String p_num) {
+		return session.selectList(NAME_SPACE + ".stadiumList", p_num);
 	}
-	//구장 등록
+	
+	// 대관 예약 리스트
 	@Override
-	public int placeInsert(PlaceVO pvo) {
-		return sqlSession.insert("placeInsert", pvo);
-	}
-	@Override
-	public PlaceVO placeDetail(String p_num) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("placeDetail", p_num);
+	public List<RentalVO> rentalList(HashMap<String, Object> map) {
+		return session.selectList("rentalList", map);
 	}
 
 }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fly.user.rental.dao.UserRentalDAO">
+
+	<select id="searchReservationTime" parameterType="hashmap" resultType="String">
+		SELECT 
+				r_start
+		FROM
+				rental
+		WHERE 
+				to_char(r_reserve_date, 'yyyy-MM-dd') = #{selectDay} and
+				to_char(s_no) = #{s_no}
+				and r_pay_status <![CDATA[ > ]]> -1 
+		ORDER BY
+				r_start asc
+	</select>
+	
+	<insert id="reservationCheck" parameterType="hashmap">
+		INSERT INTO rental_reservation
+		VALUES(
+			#{overlapKey}, 
+			#{minutes}
+			)
+	</insert>
+	
+	<delete id="deleteReservation" parameterType="hashmap">
+		DELETE 
+		FROM 
+			rental_reservation
+		WHERE 
+			to_number(#{minutes}) - to_number(reservation_minutes) <![CDATA[ >= ]]> 5 
+			<if test="overlap != 'null'">
+				or reservation_key = #{overlap}
+			</if>
+		
+	</delete>
+	
+	<insert id="insertRental" parameterType="rental">
+		<selectKey keyProperty="r_no" resultType="int" order="BEFORE">
+			SELECT rental_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO rental(
+			r_no,
+			s_no,
+			m_id,
+			r_reserve_date,
+			r_start,
+			r_total_pay,
+			r_pay_type,
+			r_bank,
+			r_account,
+			r_account_num,
+			r_pay_status,
+			r_regdate,
+			r_recall_time,
+			refund
+		)
+		values(
+			#{r_no},
+			#{s_no},
+			#{m_id},
+			#{r_reserve_date},
+			#{r_start},
+			#{r_total_pay},
+			#{r_pay_type},
+			<if test="r_pay_type == 2">
+			#{r_bank},
+			#{r_account},
+			#{r_account_num},			
+			</if>
+			<if test="r_pay_type == 1">
+			'카드결제',
+			'카드결제',
+			'카드결제',
+			</if>
+			1,
+			sysdate,
+			sysdate,
+			0
+		)
+	</insert>
+</mapper>
