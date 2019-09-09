@@ -10,7 +10,7 @@
 		FROM
 			stadium
 		WHERE
-			s_status = 0 and p_num = #{ p_num }
+			s_status = 1 and p_num = #{ p_num }
 	</select>
 	
 </mapper>
