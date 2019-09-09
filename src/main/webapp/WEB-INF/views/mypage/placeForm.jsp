@@ -20,7 +20,7 @@
 					 <div class="p_name">구장명</div> <div><input type="text" name="p_name" id="p_name"></div>
 					 	<div class="p_ceo">대표자명</div> <div><input type="text" name="p_ceo" id="p_ceo"></div>
 					 	<div class="p_num">사업자번호</div> <div><input type="text" name="p_num" id="p_num"></div>
-					 	<div class="p_phone">구장전화번호</div><div><input type="text" name="p_phone"></div>
+					 	<div class="p_phone">구장전화번호</div><div><input type="text" name="p_phone" id="p_phone"></div>
 					 	<div class="p_address">구장 주소</div>
 					 		<div><input type="text" id="sample6_postcode" placeholder="우편번호">
 					 		<br><input type="text"  id="sample6_address" placeholder="주소" >

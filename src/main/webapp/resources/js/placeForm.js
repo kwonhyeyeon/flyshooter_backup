@@ -17,6 +17,13 @@ $(document).ready(function(){
 		}
 		if(p_num == ""){
 			alert("사업자번호를 입력해주세요");
+			p_num.focus();
+			return false;
+		}
+		if(p_phone == ""){
+			alert("구장전화번호를 입력해주세요");
+			p_phone.focus();
+			return false;
 		}
 	});
 });
