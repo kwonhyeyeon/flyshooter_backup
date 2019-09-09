@@ -28,7 +28,7 @@
 					 	<td class="p_num">사업자번호</td> <td><input type="text" name="p_num"></td>
 					 </tr>
 					 <tr>
-					 	<td class="p_phone">구장전화번호</td><td><input type="number" name="p_phone"></td>
+					 	<td class="p_phone">구장전화번호</td><td><input type="text" name="p_phone"></td>
 					 </tr>
 					 <tr>
 					 	<td class="p_address">구장 주소</td>

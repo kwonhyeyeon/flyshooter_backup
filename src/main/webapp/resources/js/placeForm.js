@@ -1,6 +1,13 @@
 /**
  * 구장 등록 js
  */
+//등록 버튼 클릭 시 처리 이벤트
+$(function(){
+	$("#placeInsertBtn").click(function(){
+	location.href="/mypage/placeList.do";	
+	});
+});
+
 //목록 버튼 클릭 시 처리 이벤트
 $(function(){
 	$("#placeListBtn").click(function(){
@@ -69,7 +76,7 @@ function checkBox(){
 		}
 	}
 }
-
+//우편주소
 function checking(){
 	var ad1 = $("#sample6_postcode").val();
 	var ad2 = $("#sample6_address").val();

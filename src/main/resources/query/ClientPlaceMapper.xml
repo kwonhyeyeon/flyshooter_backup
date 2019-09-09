@@ -35,15 +35,15 @@
 		   ,#{p_open}
 		   ,#{p_close}
 		   ,#{p_file}
-		   ,#{p_register}
-		   ,#{p_account_copy}
-		   ,#{p_property}
+		   ,#{p_register, jdbcType=VARCHAR}
+		   ,#{p_account_copy, jdbcType=VARCHAR}
+		   ,#{p_property, jdbcType=VARCHAR}
 		   ,#{p_status}
-		   ,#{p_holiday_start}
-		   ,#{p_holiday_end}
+		   ,SYSDATE
+		   ,SYSDATE
 		   ,#{p_ok}
 		   ,SYSDATE
-		   ,#{p_intro}
+		   ,#{p_intro, jdbcType=VARCHAR}
 		   ,SYSDATE
 		   ,#{p_holiday}
 		)

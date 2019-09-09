@@ -15,7 +15,7 @@ public class PlaceVO {
 	private String p_account_num; // 입금 계좌번호
 	private String p_open; // 오픈시간
 	private String p_close; // 마감시간
-	private String p_file; // 서류 첨부유형
+	private int p_file; // 서류 첨부유형
 	private String p_register; // 사업자 등록증
 	private String p_account_copy; // 통장사본
 	private String p_property; // 부동산종합공부
@@ -139,12 +139,12 @@ public class PlaceVO {
 	}
 
 
-	public String getP_file() {
+	public int getP_file() {
 		return p_file;
 	}
 
 
-	public void setP_file(String p_file) {
+	public void setP_file(int p_file) {
 		this.p_file = p_file;
 	}
 
