@@ -129,7 +129,7 @@
 						 <div>
 						 <!-- 보여질 내용 -->
 						 <div id="1" style="display:none">	
-					사업자 등록증<input name="myFile" type="file"><br>통장사본<input name="myFile" type="file"><br>부동산종합공부<input name="myFile" type="file">
+					사업자 등록증<input name="p_register" type="file"><br>통장사본<input name="p_account_copy" type="file"><br>부동산종합공부<input name="p_property" type="file">
 					 	</div>
 					 	<div id="2" style="display:none">
 					 	팩스는 여기로 보내시면 됩니다!!

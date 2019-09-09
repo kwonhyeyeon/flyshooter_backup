@@ -59,9 +59,7 @@ public class ClientPlaceController {
 		String url = "";
 		//session에서 가져오기
 		String	m_id = (String) session.getAttribute("m_id");
-		System.out.println(m_id);
 		pvo.setM_id(m_id);
-		System.out.println(pvo.getP_intro());
 		result = clientPlaceService.placeInsert(pvo);
 		if (result == 1) {
 			url = "/mypage/placeList.do";
