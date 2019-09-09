@@ -61,6 +61,7 @@ public class ClientPlaceController {
 		String	m_id = (String) session.getAttribute("m_id");
 		System.out.println(m_id);
 		pvo.setM_id(m_id);
+		System.out.println(pvo.getP_intro());
 		result = clientPlaceService.placeInsert(pvo);
 		if (result == 1) {
 			url = "/mypage/placeList.do";
@@ -78,6 +79,7 @@ public class ClientPlaceController {
 		ModelAndView mav = new ModelAndView();
 		String p_num = pvo.getP_num();
 		System.out.println(pvo.getP_name()+"1");
+		pvo = clientPlaceService.placeDetail(p_num);
 		System.out.println(pvo.getP_name()+"2");
 		mav.addObject("p_name", pvo.getP_name());
 		mav.addObject("p_ceo", pvo.getP_ceo());

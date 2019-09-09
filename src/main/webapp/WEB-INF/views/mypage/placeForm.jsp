@@ -143,7 +143,7 @@
 					 	</div>
 				
 					 	<div class="p_intro">소개글</div>
-					 	<div><textarea rows="2" cols="5"></textarea>
+					 	<div><textarea rows="2" cols="5" name="p_intro"></textarea>
 					 		</div>				 	
 					   
 					  
