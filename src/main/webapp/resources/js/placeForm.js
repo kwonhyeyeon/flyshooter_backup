@@ -2,6 +2,26 @@
  * 구장 등록 js
  */
 //등록 버튼 클릭 시 처리 이벤트
+$(document).ready(function(){
+	$("#placeInsertBtn").click(function(){
+		//체크여부
+		if(p_name.value == ""){
+			alert("구장명을 입력해주세요");
+			p_name.focus();
+			return false;
+		}
+		if(p_ceo.value == ""){
+			alert("대표자명 입력해주세요");
+			p_ceo.focus();
+			return false;
+		}
+		if(p_num == ""){
+			alert("사업자번호를 입력해주세요");
+		}
+	});
+});
+
+
 
 //목록 버튼 클릭 시 처리 이벤트
 $(function(){
