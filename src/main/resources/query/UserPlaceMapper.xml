@@ -5,11 +5,11 @@
 
 	<!-- 지역으로 검색한 구장리스트 -->
 	<select id="searchPlaceList" parameterType="String" resultType="place">
-		select p_num, p_name, p_address, p_phone, p_open, p_close
-		from place
-		where p_status = 1
+		select p.p_num, p.p_name, p.p_address, p.p_phone, p.p_open, p.p_close
+		from place p, (SELECT distinct(p_num) from stadium where s_status > 0) s
+		where p.p_num = s.p_num and p.p_status = 1 
 			<if test="area != 'null'">
-				and p_address LIKE '%'|| #{area} ||'%'
+				and p.p_address LIKE '%'|| #{area} ||'%'
 			</if>
 	</select>
 	

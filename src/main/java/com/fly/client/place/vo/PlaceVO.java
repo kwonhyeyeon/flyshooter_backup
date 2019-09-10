@@ -1,6 +1,6 @@
 package com.fly.client.place.vo;
 
-
+import java.util.Date;
 
 public class PlaceVO {
 
@@ -15,7 +15,7 @@ public class PlaceVO {
 	private String p_account_num; // 입금 계좌번호
 	private String p_open; // 오픈시간
 	private String p_close; // 마감시간
-	private int p_file; // 서류 첨부유형
+	private String p_file; // 서류 첨부유형
 	private String p_register; // 사업자 등록증
 	private String p_account_copy; // 통장사본
 	private String p_property; // 부동산종합공부
@@ -24,9 +24,9 @@ public class PlaceVO {
 	private String p_holiday_start; // 구장 임시휴업시작일
 	private String p_holiday_end; // 구장 영업재개일
 	private int p_ok; // 구장 승인상태
-	private String p_ok_date; // 구장 승인일
+	private Date p_ok_date; // 구장 승인일
 	private String p_intro; // 소개글
-	private String p_regdate; // 구장 등록일
+	private Date p_regdate; // 구장 등록일
 
 
 	public String getP_num() {
@@ -139,12 +139,12 @@ public class PlaceVO {
 	}
 
 
-	public int getP_file() {
+	public String getP_file() {
 		return p_file;
 	}
 
 
-	public void setP_file(int p_file) {
+	public void setP_file(String p_file) {
 		this.p_file = p_file;
 	}
 
@@ -229,12 +229,12 @@ public class PlaceVO {
 	}
 
 
-	public String getP_ok_date() {
+	public Date getP_ok_date() {
 		return p_ok_date;
 	}
 
 
-	public void setP_ok_date(String p_ok_date) {
+	public void setP_ok_date(Date p_ok_date) {
 		this.p_ok_date = p_ok_date;
 	}
 
@@ -249,12 +249,12 @@ public class PlaceVO {
 	}
 
 
-	public String getP_regdate() {
+	public Date getP_regdate() {
 		return p_regdate;
 	}
 
 
-	public void setP_regdate(String p_regdate) {
+	public void setP_regdate(Date p_regdate) {
 		this.p_regdate = p_regdate;
 	}
 
