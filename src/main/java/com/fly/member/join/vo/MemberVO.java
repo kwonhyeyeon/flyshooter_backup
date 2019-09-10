@@ -9,6 +9,7 @@ public class MemberVO {
 	private int m_type;// 회원 유형
 	private String email_confirm;// 이메일 인증 상태
 	private int m_status;// 회원 상태
+	private String m_regdate;//가입일
 
 	// Getter Setter
 	public String getM_id() {
@@ -66,5 +67,15 @@ public class MemberVO {
 	public void setM_status(int m_status) {
 		this.m_status = m_status;
 	}
+
+	public String getM_regdate() {
+		return m_regdate;
+	}
+
+	public void setM_regdate(String m_regdate) {
+		this.m_regdate = m_regdate;
+	}
+	
+	
 
 }
