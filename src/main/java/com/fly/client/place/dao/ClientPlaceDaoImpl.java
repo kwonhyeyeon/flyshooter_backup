@@ -30,6 +30,7 @@ public class ClientPlaceDaoImpl implements ClientPlaceDao {
    public int placeInsert(PlaceVO pvo) {
       return sqlSession.insert("placeInsert", pvo);
    }
+   //구장 상세보기
    @Override
    public PlaceVO placeDetail(String p_num) {
       // TODO Auto-generated method stub

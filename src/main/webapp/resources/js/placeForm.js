@@ -15,14 +15,9 @@ $(document).ready(function(){
 			p_ceo.focus();
 			return false;
 		}
-		if(p_num == ""){
-			alert("사업자번호를 입력해주세요");
+		if(p_num.value == ""){
+			alert("ㅁㅁ")
 			p_num.focus();
-			return false;
-		}
-		if(p_phone == ""){
-			alert("구장전화번호를 입력해주세요");
-			p_phone.focus();
 			return false;
 		}
 	});

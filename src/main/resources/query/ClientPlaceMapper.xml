@@ -14,7 +14,7 @@
 	<!-- 구장 리스트 출력 -->
 	<select id="placeList" resultType="place">
 		SELECT
-		p_num, p_name, p_phone,
+		p_num, m_id, p_name, p_phone,
 		p_ceo, p_address, p_phone, p_ok
 		FROM place
 	</select>

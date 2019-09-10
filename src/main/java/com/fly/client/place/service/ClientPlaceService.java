@@ -18,5 +18,7 @@ public interface ClientPlaceService {
 
    // 구장 상세페이지
    public PlaceVO placeDetail(String p_num);
+  
+ 
 
 }

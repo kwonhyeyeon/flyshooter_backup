@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fly.client.place.service.ClientPlaceService;
@@ -24,15 +25,16 @@ public class ClientPlaceController {
 
    // 구장 목록 구현하기
    @RequestMapping(value = "/placeList.do", method = RequestMethod.GET)
-   public String placeList(Model model) {
+   public String placeList(PlaceVO pvo, Model model , HttpSession session ) {
       System.out.println("placeList 호출 성공");
-
+     //session 가져오기
+      String   m_id = (String) session.getAttribute("m_id");
+      pvo.setM_id(m_id);
       List<PlaceVO> placeList = clientPlaceService.placeList();
       model.addAttribute("placeList", placeList);
       model.addAttribute("data");
       return "mypage/placeList";
    }
-
    // 구장 약관 동의 페이지 출력하기
    @RequestMapping(value = "/placecheck.do")
    public String checkForm() {
@@ -69,7 +71,10 @@ public class ClientPlaceController {
       }
       return "redirect:" + url;
    }
+   
+  
 
+   //구장 상세보기
    @RequestMapping(value = "/placeDetail.do", method = RequestMethod.POST)
    public ModelAndView placeDetail(@ModelAttribute PlaceVO pvo, Model model, HttpSession session) {
       System.out.println("placeDetail 호출 성공");

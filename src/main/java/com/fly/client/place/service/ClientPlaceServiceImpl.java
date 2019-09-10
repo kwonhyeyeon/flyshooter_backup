@@ -52,4 +52,6 @@ public class ClientPlaceServiceImpl implements ClientPlaceService {
       return placeList;
    }
 
+   
+
 }
