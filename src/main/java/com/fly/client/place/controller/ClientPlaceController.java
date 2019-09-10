@@ -49,7 +49,6 @@ public class ClientPlaceController {
 		return "mypage/placeForm";
 	}
 
-
 	// 글 쓰기 구현하기
 
 	@RequestMapping(value = "/placeInsert.do", method = RequestMethod.POST)
@@ -58,8 +57,8 @@ public class ClientPlaceController {
 		System.out.println("placeInsert 호출 성공");
 		int result = 0;
 		String url = "";
-		//session에서 가져오기
-		String	m_id = (String) session.getAttribute("m_id");
+		// session에서 가져오기
+		String m_id = (String) session.getAttribute("m_id");
 		pvo.setM_id(m_id);
 		result = clientPlaceService.placeInsert(pvo);
 		if (result == 1) {
@@ -77,15 +76,15 @@ public class ClientPlaceController {
 
 		ModelAndView mav = new ModelAndView();
 		String p_num = pvo.getP_num();
-		System.out.println(pvo.getP_name()+"1");
+		System.out.println(pvo.getP_name() + "1");
 		pvo = clientPlaceService.placeDetail(p_num);
-		System.out.println(pvo.getP_name()+"2");
+		System.out.println(pvo.getP_name() + "2");
 		String word = pvo.getP_address();
 		String[] address = word.split("\\*");
-        System.out.println(address[0]);
-        System.out.println(address[1]);
-        System.out.println(address[2]);
-        System.out.println(address[3]);
+		System.out.println(address[0]);
+		System.out.println(address[1]);
+		System.out.println(address[2]);
+		System.out.println(address[3]);
 
 		mav.addObject("p_name", pvo.getP_name());
 		mav.addObject("p_ceo", pvo.getP_ceo());
@@ -104,14 +103,29 @@ public class ClientPlaceController {
 		mav.addObject("p_status", pvo.getP_status());
 		mav.addObject("p_file", pvo.getP_file());
 		mav.addObject("p_intro", pvo.getP_intro());
-		
-		
+
 		mav.setViewName("mypage/placeDetailEdit");
-	
+
 		return mav;
 	}
 
+	@RequestMapping(value = "/placeModify.do", method = RequestMethod.POST)
+	public String placeModify(@ModelAttribute PlaceVO pvo, Model model, HttpSession session) {
+
+		System.out.println("placeInsert 호출 성공");
+		int result = 0;
+		String url = "";
+		// session에서 가져오기
+		String m_id = (String) session.getAttribute("m_id");
+		pvo.setM_id(m_id);
+		result = clientPlaceService.placeInsert(pvo);
+		if (result == 1) {
+			url = "/mypage/placeList.do";
+		} else {
+			model.addAttribute("code", 1);
+			url = "/mypage/placeForm.do";
+		}
+		return "redirect:" + url;
+	}
+
 }
-
-
-  

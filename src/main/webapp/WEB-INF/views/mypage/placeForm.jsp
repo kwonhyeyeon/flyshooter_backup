@@ -16,11 +16,11 @@
 	<div class="contentContainer">
 		<h3> 구장 등록</h3>
 		<div class="placeForm">
-			<form id="p_placeForm" action="/mypage/placeInsert.do" method="post" onsubmit="checking();">
-					 <div class="p_name">구장명&nbsp;<input type="text" name="p_name" id="p_name"></div>
-					 	<div class="p_ceo">대표자명&nbsp;<input type="text" name="p_ceo" id="p_ceo" ></div>
-					 	<div class="p_num">사업자번호&nbsp;<input type="text" name="p_num" id="p_num" ></div> 
-					 	<div class="p_phone">구장전화번호&nbsp;<input type="text" name="p_phone" id="p_phone"></div>
+			<form id="p_placeForm" action="/mypage/placeInsert.do" method="post">
+					 <div>구장명&nbsp;<input type="text" name="p_name" id="p_name"></div>
+					 	<div>대표자명&nbsp;<input type="text" name="p_ceo" id="p_ceo" ></div>
+					 	<div>사업자번호&nbsp;<input type="text" name="p_num" id="p_num" ></div> 
+					 	<div>구장전화번호&nbsp;<input type="text" name="p_phone" id="p_phone"></div>
 					 	<div class="p_address">구장 주소
 					 		<input type="text" name="sample6_postcode" id="sample6_postcode" placeholder="우편번호">&nbsp;<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 					 		<br><input type="text" name="sample6_address" id="sample6_address" placeholder="주소" >
@@ -99,7 +99,7 @@
 					 	<div class="p_intro">소개글
 					 		<br><textarea name="p_intro">소개글 입니다!!</textarea>
 					 	</div>				 						   
-					 	<div><input type="submit" id="placeInsertBtn" name="placeInsertBtn" value="다음">&nbsp;
+					 	<div><input type="submit" value="다음">&nbsp;
 					 	<input type="button" id="placeListBtn" value="목록"></div>
 			</form>
 		</div>

@@ -3,27 +3,33 @@
  */
 //등록 버튼 클릭 시 처리 이벤트
 $(document).ready(function(){
-	$("#placeInsertBtn").click(function(){
-		//체크여부
-		if(p_name.value == ""){
-			alert("구장명을 입력해주세요");
-			p_name.focus();
-			return false;
-		}
-		if(p_ceo.value == ""){
-			alert("대표자명 입력해주세요");
-			p_ceo.focus();
-			return false;
-		}
-		if(p_num.value == ""){
-			alert("ㅁㅁ")
-			p_num.focus();
-			return false;
-		}
+	$("#p_placeForm").submit(function() {
+		return placeCheck();
 	});
 });
 
-
+//우편주소
+function placeCheck(){
+	//체크여부
+	if(p_name.value == ""){
+		alert("구장명을 입력해주세요");
+		p_name.focus();
+		return false;
+	}
+	if(p_ceo.value == ""){
+		alert("대표자명 입력해주세요");
+		p_ceo.focus();
+		return false;
+	}
+	if(p_num.value == ""){
+		alert("ㅁㅁ")
+		p_num.focus();
+		return false;
+	}
+	
+	
+	checking();
+}
 
 //목록 버튼 클릭 시 처리 이벤트
 $(function(){
