@@ -6,7 +6,51 @@ $(document).ready(function(){
 	$("#p_placeForm").submit(function() {
 		return placeCheck();
 	});
+	//사업자번호 중복
+	$("#p_num").blur(function(){
+		var p_num = $("#p_num").val();
+		
+		var pncheck = document.getElementById("pncheck");
+		if(p_num.length == 0){
+			pncheck.innerHTML = "필수 입력사항입니다.";
+			pncheck.style.color = "red";
+			ok = false;
+		}else if (p_num.length > 0){
+			pncheck.innerHTML = "";
+			
+			var query = {
+					p_num : $("#p_num").val()
+			};
+			$.ajax({
+				url:"/mypage/pnumConfirm.do",
+				type: "post",
+				data: query,
+				error: function(){
+					alert('사이트 접속에 문제로 정상 작동하지 못하였습니다. 잠시후 다시 시도 해주세요.');
+				},
+				success : function(resultData){
+					if(resultData == "1"){
+						var pncheck = document.getElementById("pncheck");
+						//중복된 사업자 번호가 있음
+						pncheck.innerHTML = "중복된 사업자 번호가 있습니다.";
+						pncheck.style.color = "red";
+						pnConfirm = 1;
+						pnok = false;
+					}else{
+						var pncheck = document.getElementById("pncheck");
+						//중복된 사업자 번호가 없음
+						pncheck.innerHTML = "사용가능한 사업자 번호";
+						pncheck.style.color = "blue";
+						pnConfirm = 2;
+						pnok = true;
+					}
+				}
+			});
+		}
+	});
 });
+
+
 
 //우편주소
 function placeCheck(){
@@ -51,21 +95,31 @@ function placeCheck(){
 	}
 	//라디오 버튼(첨부파일 유형) 유효성 검사
 	var radio = document.getElementsByName("p_file");
-	var checknum = 1;// checknum 초기값 1로 설정
-	
-	for(var i = 0; i<radio.length;i++){
-		if(radio[i].checked == true){ checknum++;}
+	p_file = 0; // undefined을 0으로 설정
+	if ($('input[name="p_file"]:checked').val()) {
+		p_file = $('input[name="p_file"]:checked').val();
 	}
-	if(checknum == 1){
-		alert("체크하세요.");
-		return false;
-	}
+	if(p_file == 0){
+		alert("첨부파일 유형을 선택해주세요.");
+			return false;
+		}
+    
 	
 	//라디오 버튼 선택(첨부파일 선택)시 사업등록증,통장사본,부동산종합공부 유효성 검사
 	
-	if(checknum == 2){
+	if(p_file == 1){
 		if(txt.value == ""){
 			alert("사업등록증 넣어주세요..");
+			txt.focus();
+			return false;
+		}
+		if(txt1.value == ""){
+			alert("통장사본 넣어주세요");
+			txt.focus();
+			return false;
+		}
+		if(txt2.value == ""){
+			alert("부동산종합공부 넣어주세요");
 			txt.focus();
 			return false;
 		}
@@ -75,7 +129,7 @@ function placeCheck(){
 	if($("#p_register").val()!= ""){
 		var ext = $('#p_register').val().split('.').pop().toLowerCase();
 		if($.inArray(ext,['gif','png','jpg']) == -1){
-			alert('gif, png, jpg 파일만 업로드 가능');
+			alert('사업자등록증은 gif, png, jpg 파일만 업로드 가능');
 			return false;
 		}
 	}
@@ -83,7 +137,7 @@ function placeCheck(){
 	if($("#p_account_copy").val()!= ""){
 		var ext = $('#p_account_copy').val().split('.').pop().toLowerCase();
 		if($.inArray(ext,['gif','png','jpg']) == -1){
-			alert('gif, png, jpg 파일만 업로드 가능');
+			alert('통장사본은 gif, png, jpg 파일만 업로드 가능');
 			return false;
 		}
 	}
@@ -91,7 +145,7 @@ function placeCheck(){
 	if($("#p_property").val()!= ""){
 		var ext = $('#p_property').val().split('.').pop().toLowerCase();
 		if($.inArray(ext,['gif','png','jpg']) == -1){
-			alert('gif, png, jpg 파일만 업로드 가능');
+			alert('부동산종합공부은 gif, png, jpg 파일만 업로드 가능');
 			return false;
 		}
 	}

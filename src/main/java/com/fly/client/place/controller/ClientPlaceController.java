@@ -76,7 +76,18 @@ public class ClientPlaceController {
 		}
 		return "redirect:" + url;
 	}
-
+	
+	//구장 사업자번호  중복 체크 메서드
+	@ResponseBody
+	@RequestMapping(value= "/pnumConfirm.do", method = RequestMethod.POST)
+	public String pnumConfirm(@RequestParam ("p_num")String p_num) {
+		System.out.println("pnumConfirm 호출 성공");
+		int result = clientPlaceService.pnumConfirm(p_num);
+		return result + "";
+	}
+	
+	
+	// 구장 상세보기
 	@RequestMapping(value = "/placeDetail.do", method = RequestMethod.POST)
 	public ModelAndView placeDetail(@ModelAttribute PlaceVO pvo, Model model, HttpSession session) {
 		System.out.println("placeDetail 호출 성공");

@@ -77,5 +77,19 @@ public class ClientPlaceServiceImpl implements ClientPlaceService {
 		}
 		return result;
 	}
+	
+	//사업자 번호 중복확인
+	@Override
+	public int pnumConfirm(String p_num) {
+		int result;
+		PlaceVO pvo = clientPlaceDao.placeDetail(p_num);
+		if(pvo != null) {
+			result = 1;//중복값있음
+		}else {
+			result = 2;
+		}
+		return result;
+	}
+
 
 }

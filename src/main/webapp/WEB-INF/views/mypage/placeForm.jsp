@@ -19,7 +19,7 @@
 			<form id="p_placeForm" action="/mypage/placeInsert.do" method="post">
 					 <div>구장명&nbsp;<input type="text" name="p_name" id="p_name"></div>
 					 	<div>대표자명&nbsp;<input type="text" name="p_ceo" id="p_ceo" ></div>
-					 	<div>사업자번호&nbsp;<input type="text" name="p_num" id="p_num" ></div> 
+					 	<label>사업자번호&nbsp;</label><input type="text" name="p_num" id="p_num"/><span id="pncheck"></span>
 					 	<div>구장전화번호&nbsp;<input type="text" name="p_phone" id="p_phone"></div>
 					 	<div class="p_address">구장 주소
 					 		<input type="text" name="sample6_postcode" id="sample6_postcode" placeholder="우편번호">&nbsp;<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
