@@ -24,5 +24,8 @@ public interface ClientPlaceService {
 	public int placeModify(PlaceVO pvo);
 
 	public int closePlace(String p_num);
+	
+	//사업자번호 중복
+	public int pnumConfirm(String p_num);
 
 }
