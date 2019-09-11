@@ -22,9 +22,78 @@ function placeCheck(){
 		return false;
 	}
 	if(p_num.value == ""){
-		alert("ㅁㅁ")
+		alert("사업자 번호를 입력해주세요");
 		p_num.focus();
 		return false;
+	}
+	if(p_phone.value == ""){
+		alert("구장 전화번호를 입력해주세요");
+		p_phone.focus();
+		return false;
+	}
+	if(sample6_postcode.value == ""){
+		alert("우편번호를 넣어주세요");
+		return false;
+	}
+	if(sample6_address.value == ""){
+		alert("주소를 넣어주세요");
+		return false;
+	}
+	if(p_account.value == ""){
+		alert("예금주명을 입력해주세요");
+		p_account.focus();
+		return false;
+	}
+	if(p_account_num.value == ""){
+		alert("입금계좌번호를 입력해주세요");
+		p_account_num.focus();
+		return false;
+	}
+	//라디오 버튼(첨부파일 유형) 유효성 검사
+	var radio = document.getElementsByName("p_file");
+	var checknum = 1;// checknum 초기값 1로 설정
+	
+	for(var i = 0; i<radio.length;i++){
+		if(radio[i].checked == true){ checknum++;}
+	}
+	if(checknum == 1){
+		alert("체크하세요.");
+		return false;
+	}
+	
+	//라디오 버튼 선택(첨부파일 선택)시 사업등록증,통장사본,부동산종합공부 유효성 검사
+	
+	if(checknum == 2){
+		if(txt.value == ""){
+			alert("사업등록증 넣어주세요..");
+			txt.focus();
+			return false;
+		}
+	}
+	
+	//file(p_register)type(gif, png, jpg) 제어 -> 사업등록증
+	if($("#p_register").val()!= ""){
+		var ext = $('#p_register').val().split('.').pop().toLowerCase();
+		if($.inArray(ext,['gif','png','jpg']) == -1){
+			alert('gif, png, jpg 파일만 업로드 가능');
+			return false;
+		}
+	}
+	//file(p_account_copy)type(gif, png, jpg) 제어 -> 통장사본
+	if($("#p_account_copy").val()!= ""){
+		var ext = $('#p_account_copy').val().split('.').pop().toLowerCase();
+		if($.inArray(ext,['gif','png','jpg']) == -1){
+			alert('gif, png, jpg 파일만 업로드 가능');
+			return false;
+		}
+	}
+	//file(p_property)type(gif, png, jpg) 제어 -> 부동산종합공부 
+	if($("#p_property").val()!= ""){
+		var ext = $('#p_property').val().split('.').pop().toLowerCase();
+		if($.inArray(ext,['gif','png','jpg']) == -1){
+			alert('gif, png, jpg 파일만 업로드 가능');
+			return false;
+		}
 	}
 	
 	

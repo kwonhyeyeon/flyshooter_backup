@@ -26,7 +26,8 @@
 					 		<br><input type="text" name="sample6_address" id="sample6_address" placeholder="주소" >
 					 		<br><input type="text" name="sample6_detailAddress" id="sample6_detailAddress" placeholder="상세주소">
 					 		<br><input type="text" name="sample6_extraAddress" id="sample6_extraAddress" placeholder="참고항목">
-					 			<input type="text" id="p_address" name="p_address" placeholder="저장될때 합쳐진 주소">
+					 			<!-- 우편번호+ 주소 + 상세주소 + 참고항목 -->
+					 			<input type="hidden" id="p_address" name="p_address" placeholder="저장될때 합쳐진 주소" >
 					 		</div>
 					 		<div class="p_bank">은행명 	
 					 		<select name="p_bank">
@@ -39,13 +40,14 @@
 					 		<div class="p_account_num">입금계좌번호&nbsp;<input type="text" name="p_account_num" id="p_account_num"></div>
 					 		<div class="p_holiday">정기휴일
 					 		<select name="p_holiday">
-					 			<option value="0">일요일</option>
-					 			<option value="1">월요일</option>
-					 			<option value="2">화요일</option>
-					 			<option value="3">수요일</option>
-					 			<option value="4">목요일</option>
-					 			<option value="5">금요일</option>
-					 			<option value="6">토요일</option>
+					 			<option value="0">월요일</option>
+					 			<option value="1">화요일</option>
+					 			<option value="2">수요일</option>
+					 			<option value="3">목요일</option>
+					 			<option value="4">금요일</option>
+					 			<option value="5">토요일</option>
+					 			<option value="6">일요일</option>
+					 			<option value="7">연중무휴</option>
 					 		</select>
 					 		</div>
 					 	<div class="p_open">오픈시간&nbsp;
@@ -84,7 +86,15 @@
 						 <div>
 						 <!-- 라디오버튼 클릭 할때 마다 보여질 내용 -->
 						 	<div id="1" style="display:none">	
-					사업자 등록증<input name="p_register" type="file"><br>통장사본<input name="p_account_copy" type="file"><br>부동산종합공부<input name="p_property" type="file">
+					사업자 등록증<input type="text" size="30" id="txt"/>
+					<img src="" onclick="document.getElementById('file').click();">
+					<input name="p_register" id="p_register" type="file" onchange="document.getElementById('txt').value=this.value;" accept=".gif, .jpg, .png">
+					<br>통장사본<input type="text" size="30" id="txt1"/>
+					<img src="" onclick="document.getElementById('file').click();">
+					<input name="p_account_copy" id="p_account_copy" type="file" onchange="document.getElementById('txt1').value=this.value;" accept=".gif, .jpg, .png">
+					<br>부동산종합공부<input type="text" size="30" id="txt2"/>
+					<img src="" onclick="document.getElementById('file').click();">
+					<input name="p_property" id="p_property" type="file" onchange="document.getElementById('txt2').value=this.value;" accept=".gif, .jpg, .png">
 					 	</div>
 					 		<div id="2" style="display:none">
 					 	팩스는 여기로 보내시면 됩니다!!
