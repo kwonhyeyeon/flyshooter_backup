@@ -1,6 +1,10 @@
 package com.fly.client.place.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -30,7 +34,7 @@ public class ClientPlaceController {
 
 	// 구장 목록 구현하기
 	@RequestMapping(value = "/placeList.do", method = RequestMethod.GET)
-	public String placeList(Model model ,
+	public String placeList(Model model,
 			@RequestParam(value = "errCode", required = false, defaultValue = "0") String errCode) {
 		System.out.println("placeList 호출 성공");
 
@@ -83,15 +87,9 @@ public class ClientPlaceController {
 
 		ModelAndView mav = new ModelAndView();
 		String p_num = pvo.getP_num();
-		System.out.println(pvo.getP_name() + "1");
 		pvo = clientPlaceService.placeDetail(p_num);
-		System.out.println(pvo.getP_name() + "2");
 		String word = pvo.getP_address();
 		String[] address = word.split("\\*");
-		System.out.println(address[0]);
-		System.out.println(address[1]);
-		System.out.println(address[2]);
-		System.out.println(address[3]);
 
 		mav.addObject("p_name", pvo.getP_name());
 		mav.addObject("p_ceo", pvo.getP_ceo());
@@ -105,6 +103,8 @@ public class ClientPlaceController {
 		mav.addObject("p_account", pvo.getP_account());
 		mav.addObject("p_account_num", pvo.getP_account_num());
 		mav.addObject("p_holiday", pvo.getP_holiday());
+		mav.addObject("p_holiday_start", pvo.getP_holiday_start());
+		mav.addObject("p_holiday_end", pvo.getP_holiday_end());
 		mav.addObject("p_open", pvo.getP_open());
 		mav.addObject("p_close", pvo.getP_close());
 		mav.addObject("p_status", pvo.getP_status());
@@ -122,7 +122,6 @@ public class ClientPlaceController {
 
 		int result = 0;
 		String url = "";
-		System.out.println(pvo.getP_address()+"주소");
 		result = clientPlaceService.placeModify(pvo);
 		if (result == 1) {
 			url = "placeList.do";
@@ -132,8 +131,6 @@ public class ClientPlaceController {
 		}
 		return "redirect:" + url;
 	}
-	
-	
 
 	@RequestMapping(value = "/closePlace.do", method = RequestMethod.POST)
 	@ResponseBody

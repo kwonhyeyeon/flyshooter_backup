@@ -32,12 +32,13 @@ $(document).ready(function() {
 	});
 
 	$("#p_status").change(function() {
+		var p_num = $("#p_num").val();
+		var closePlace = document.getElementById("closePlace");
 		if ($("#p_status").val() == "2") {
 			jQuery('#p_holidaydate').show();
+			closePlace.innerHTML = "";
 		} else if ($("#p_status").val() == "3") {
 			jQuery('#p_holidaydate').hide();
-			var p_num = $("#p_num").val();
-			var closePlace = document.getElementById("closePlace");
 			var query = {
 				p_num : p_num
 			};
@@ -66,6 +67,7 @@ $(document).ready(function() {
 			});
 		} else {
 			jQuery('#p_holidaydate').hide();
+			closePlace.innerHTML = "";
 		}
 
 	});
@@ -118,8 +120,9 @@ function placeCheck(){
 	      alert("소개글을 입력해주세요");
 	      p_intro.focus();
 	      return false;
-   }   
+   }
    checking();
+  
 }
 
 //다음 우편주소 api 복사 붙여넣기
