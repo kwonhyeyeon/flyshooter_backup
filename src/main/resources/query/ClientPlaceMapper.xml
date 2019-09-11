@@ -22,7 +22,13 @@
 	<!-- 구장 상세페이지 출력 -->
 	<select id="placeDetail" resultType="place">
 		SELECT
-		*
+		p_num, m_id, p_name, p_ceo, p_phone, p_address,
+		p_bank, p_account,
+		p_account_num, p_open, p_close, p_file,
+		p_register, p_account_copy,p_property,
+		p_status, to_char(p_holiday_start, 'yyyy-MM-dd') p_holiday_start, 
+		to_char(p_holiday_end, 'yyyy-MM-dd') p_holiday_end, 
+		p_ok, p_ok_date, p_intro, p_regdate, p_holiday
 		FROM place
 		where p_num
 		= #{p_num}
@@ -72,7 +78,6 @@
 		)
 	</insert>
 	
-	<!-- 구장 등록 -->
 	<update id="placeModify" parameterType="place">
 		update place set
 		p_name = #{p_name}, p_ceo = #{p_ceo}, 
@@ -80,8 +85,8 @@
 		p_bank = #{p_bank}, p_account = #{p_account}, 
 		p_account_num = #{p_account_num}, p_open = #{p_open}, p_close = #{p_close}, 
 		p_status = #{p_status},  
-		<if test="p_status == '2'">
-		p_holiday_start = #{p_holiday_start} , p_holiday_end = #{p_holiday_end} , 
+		<if test="p_status == 2">
+		p_holiday_start = #{p_holiday_start} , p_holiday_end = #{p_holiday_end}, 
 		</if>
 		p_intro = #{p_intro}, p_holiday = #{p_holiday} 
 		where p_num = #{p_num}

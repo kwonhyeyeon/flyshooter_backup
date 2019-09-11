@@ -116,6 +116,13 @@
 							<c:when test="${p_status eq '1'}">
 								운영중
 							</c:when>
+							<c:when test="${p_status eq '2'}">
+								임시휴업 
+								${p_holiday_start} ~ ${p_holiday_end}
+							</c:when>
+							<c:when test="${p_status eq '3'}">
+								폐업
+							</c:when>
 						</c:choose> 
 						<select name="p_status" id="p_status" id="p_status">
 							<option value="0" selected>운영상태 변경</option>
