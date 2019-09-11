@@ -85,7 +85,7 @@
 					오픈시간 
 						<select name="p_open" class="p_open" id="p_open">
 							<%
-								for (int i = 0; i < 25; i++) {
+								for (int i = 1; i < 25; i++) {
 							%>
 							<option value="<%=i%>"><%=i%>시
 							</option>
@@ -98,7 +98,7 @@
 						마감시간 
 						<select name="p_close" class="p_close" id="p_close">
 							<%
-								for (int i = 0; i < 25; i++) {
+								for (int i = 1; i < 25; i++) {
 							%>
 							<option value="<%=i%>"><%=i%>시
 							</option>

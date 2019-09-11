@@ -31,6 +31,7 @@
 					 		</div>
 					 		<div class="p_bank">은행명 	
 					 		<select name="p_bank">
+					 			<option value="" selected disabled>은행 선택</option>
 					 			<option value="신한">신한</option>
 					 			<option value="우리">우리</option>
 					 			<option value="농협">농협</option>
@@ -40,6 +41,7 @@
 					 		<div class="p_account_num">입금계좌번호&nbsp;<input type="text" name="p_account_num" id="p_account_num"></div>
 					 		<div class="p_holiday">정기휴일
 					 		<select name="p_holiday">
+					 			<option value="" selected disabled>정기휴일 선택</option>
 					 			<option value="0">월요일</option>
 					 			<option value="1">화요일</option>
 					 			<option value="2">수요일</option>
@@ -52,8 +54,9 @@
 					 		</div>
 					 	<div class="p_open">오픈시간&nbsp;
                <select name="p_open" class="p_close">
+               <option value="" selected disabled>오픈시간 선택</option>
                   <%
-                     for (int i = 0; i < 25; i++) {
+                     for (int i = 1; i < 25; i++) {
                   %>
                   <option value="<%=i%>"><%=i%>시</option>
                   <%
@@ -63,8 +66,9 @@
             </div>
             <div class="p_close">마감시간&nbsp;
                <select name="p_close" class="p_close">
+               <option value="" selected disabled>마감시간 선택</option>
                   <%
-                     for (int i = 0; i < 25; i++) {
+                     for (int i = 1; i < 25; i++) {
                   %>
                   <option value="<%=i%>"><%=i%>시</option>
                   <%

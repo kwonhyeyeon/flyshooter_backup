@@ -69,7 +69,7 @@ public class ClientPlaceController {
 		pvo.setM_id(m_id);
 		result = clientPlaceService.placeInsert(pvo);
 		if (result == 1) {
-			url = "/mypage/placeList.do";
+			url = "/mypage/stadiumForm.do";
 		} else {
 			model.addAttribute("code", 1);
 			url = "/mypage/placeForm.do";
