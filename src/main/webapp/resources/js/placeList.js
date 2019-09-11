@@ -3,7 +3,6 @@
  */
 
 $(document).ready(function(){
-	
 	/* 리스트 클릭시 대관신청페이지로 이동 */
 	$(".goRental").click(function(){
 		var p_num =  $(this).attr("data-num");	
@@ -46,8 +45,8 @@ $(document).ready(function(){
 		location.href= "/mypage/placeForm.do";
 	});
 	
-	
 });
+
 //약관 동의 한번에 2개 모두 체크 비체크
 function cAll(){
 	if($("#checkAll").is(':checked')){

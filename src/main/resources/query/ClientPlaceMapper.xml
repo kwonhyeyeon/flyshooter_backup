@@ -65,14 +65,35 @@
 		,SYSDATE
 		,SYSDATE
 		,#{p_ok}
-		,SYSDATE
-		<if test="p_intro != null">
-			,#{p_intro}
-		</if>
+		,SYSDATE 
+		,#{p_intro} 
 		,SYSDATE
 		,#{p_holiday}
 		)
 	</insert>
+	
+	<!-- 구장 등록 -->
+	<update id="placeModify" parameterType="place">
+		update place set
+		p_name = #{p_name}, p_ceo = #{p_ceo}, 
+		p_phone = #{p_phone} , p_address = #{p_address}, 
+		p_bank = #{p_bank}, p_account = #{p_account}, 
+		p_account_num = #{p_account_num}, p_open = #{p_open}, p_close = #{p_close}, 
+		p_status = #{p_status},  
+		<if test="p_status == '2'">
+		p_holiday_start = #{p_holiday_start} , p_holiday_end = #{p_holiday_end} , 
+		</if>
+		p_intro = #{p_intro}, p_holiday = #{p_holiday} 
+		where p_num = #{p_num}
+	</update>
+	
+	<select id="closePlace" parameterType="String" resultType="int"> 
+		  select count(r.r_no) from rental r 
+		  where r.r_reserve_Date 
+		  <![CDATA[<]]> sysdate and r.s_no =  
+		  (select s.s_no from stadium s 
+		  where s.p_num = #{p_num} and r.s_no = s.s_no) and r.r_pay_status <![CDATA[<]]> -1
+	</select>
 
 	<!-- <select id="searchRentalList" parameterType="String" resultType="place"> 
 		select m.m_name, m.m_phone, (r.r_reserve_date + r.r_start + r.r_end), ir.r_no 

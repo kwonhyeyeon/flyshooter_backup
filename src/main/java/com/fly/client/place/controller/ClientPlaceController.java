@@ -1,6 +1,9 @@
 package com.fly.client.place.controller;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,10 +14,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fly.client.place.service.ClientPlaceService;
 import com.fly.client.place.vo.PlaceVO;
+import com.fly.member.rental.vo.RentalVO;
 
 @Controller
 @RequestMapping("/mypage")
@@ -25,12 +30,14 @@ public class ClientPlaceController {
 
 	// 구장 목록 구현하기
 	@RequestMapping(value = "/placeList.do", method = RequestMethod.GET)
-	public String placeList(Model model) {
+	public String placeList(Model model ,
+			@RequestParam(value = "errCode", required = false, defaultValue = "0") String errCode) {
 		System.out.println("placeList 호출 성공");
 
 		List<PlaceVO> placeList = clientPlaceService.placeList();
 		model.addAttribute("placeList", placeList);
 		model.addAttribute("data");
+		model.addAttribute("errCode", errCode);
 		return "mypage/placeList";
 	}
 
@@ -111,21 +118,28 @@ public class ClientPlaceController {
 
 	@RequestMapping(value = "/placeModify.do", method = RequestMethod.POST)
 	public String placeModify(@ModelAttribute PlaceVO pvo, Model model, HttpSession session) {
+		System.out.println("placeModify 호출 성공");
 
-		System.out.println("placeInsert 호출 성공");
 		int result = 0;
 		String url = "";
-		// session에서 가져오기
-		String m_id = (String) session.getAttribute("m_id");
-		pvo.setM_id(m_id);
-		result = clientPlaceService.placeInsert(pvo);
+		System.out.println(pvo.getP_address()+"주소");
+		result = clientPlaceService.placeModify(pvo);
 		if (result == 1) {
-			url = "/mypage/placeList.do";
+			url = "placeList.do";
 		} else {
-			model.addAttribute("code", 1);
-			url = "/mypage/placeForm.do";
+			model.addAttribute("errCode", 1);
+			url = "placeList.do";
 		}
 		return "redirect:" + url;
 	}
+	
+	
 
+	@RequestMapping(value = "/closePlace.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String closePlace(@RequestParam(value = "p_num", required = false, defaultValue = "0") String p_num) {
+		System.out.println("closePlace 호출 성공");
+		int result = clientPlaceService.closePlace(p_num);
+		return result + "";
+	}
 }
