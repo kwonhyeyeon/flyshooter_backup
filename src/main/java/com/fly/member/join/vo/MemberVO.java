@@ -6,7 +6,7 @@ public class MemberVO {
 	private String m_pw;// 비밀번호
 	private String m_phone;// 휴대전화
 	private String m_name;// 회원명
-	private int m_type;// 회원 유형
+	private int m_type = 3;// 회원 유형
 	private String email_confirm;// 이메일 인증 상태
 	private int m_status;// 회원 상태
 	private String m_regdate;//가입일

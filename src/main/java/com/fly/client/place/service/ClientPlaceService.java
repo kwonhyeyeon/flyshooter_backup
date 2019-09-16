@@ -2,9 +2,8 @@ package com.fly.client.place.service;
 
 import java.util.List;
 
-import com.fly.client.place.vo.PlaceVO;
+import com.fly.member.place.vo.PlaceVO;
 import com.fly.member.rental.vo.RentalVO;
-//import com.fly.member.rental.vo.RentalVO;
 import com.fly.member.stadium.vo.StadiumVO;
 
 public interface ClientPlaceService {

@@ -31,7 +31,7 @@
 					 		</div>
 					 		<div class="p_bank">은행명 	
 					 		<select name="p_bank">
-					 			<option value="" selected disabled>은행 선택</option>
+					 			<option value="은행선택안함" selected disabled>은행 선택</option>
 					 			<option value="신한">신한</option>
 					 			<option value="우리">우리</option>
 					 			<option value="농협">농협</option>

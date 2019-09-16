@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import com.fly.member.join.vo.MemberVO;
 
-@Repository
-public class MemberDAOImpl implements MemberDAO {
+@Repository("memberDao")
+public class MemberDaoImpl implements MemberDao {
 	@Autowired
 	private SqlSession session;
 
@@ -22,7 +22,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public int memberJoin(MemberVO mvo) {
-		return session.insert("memberJoin");
+		return session.insert("memberJoin", mvo);
 	}
 
 	@Override

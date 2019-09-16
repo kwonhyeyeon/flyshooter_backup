@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.fly.member.login.vo.LoginVO;
 
 @Repository("loginDao")
-public class LoginDAOImpl implements LoginDAO {
+public class LoginDaoImpl implements LoginDao {
 	@Autowired
 	private SqlSession session;
 	

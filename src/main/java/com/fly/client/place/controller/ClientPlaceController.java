@@ -1,13 +1,6 @@
 package com.fly.client.place.controller;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,8 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fly.client.place.service.ClientPlaceService;
-import com.fly.client.place.vo.PlaceVO;
-import com.fly.member.rental.vo.RentalVO;
+import com.fly.member.place.vo.PlaceVO;
 
 @Controller
 @RequestMapping("/mypage")
@@ -71,14 +63,20 @@ public class ClientPlaceController {
 		// session에서 가져오기
 		String m_id = (String) session.getAttribute("m_id");
 		pvo.setM_id(m_id);
+		String p_num = pvo.getP_num();
+		System.out.println(p_num);
+		System.out.println(pvo.getP_account_num());
+		System.out.println(pvo.getP_address());
+		System.out.println(pvo.getP_bank());
 		result = clientPlaceService.placeInsert(pvo);
 		if (result == 1) {
-			url = "/mypage/stadiumForm.do";
-		} else {
+			model.addAttribute("p_num",p_num);
+			return "/mypage/stadiumForm";
+		} 
 			model.addAttribute("code", 1);
-			url = "/mypage/placeForm.do";
-		}
-		return "redirect:" + url;
+			return "/mypage/placeForm";
+		
+
 	}
 	
 	//구장 사업자번호  중복 체크 메서드
