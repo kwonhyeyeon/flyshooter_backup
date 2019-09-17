@@ -64,9 +64,6 @@ public class ClientPlaceController {
 		String m_id = (String) session.getAttribute("m_id");
 		pvo.setM_id(m_id);
 		String p_num = pvo.getP_num();
-		System.out.println(p_num);
-		System.out.println(pvo.getP_account_num());
-		System.out.println(pvo.getP_address());
 		System.out.println(pvo.getP_bank());
 		result = clientPlaceService.placeInsert(pvo);
 		if (result == 1) {

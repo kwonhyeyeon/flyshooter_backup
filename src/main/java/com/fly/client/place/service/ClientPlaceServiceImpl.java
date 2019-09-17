@@ -91,5 +91,11 @@ public class ClientPlaceServiceImpl implements ClientPlaceService {
 		return result;
 	}
 
+	@Override
+	public List<PlaceVO> placeChoice(String m_id) {
+		List<PlaceVO> placeChoice = clientPlaceDao.placeChoice(m_id);
+		return placeChoice;
+	}
+
 
 }

@@ -19,26 +19,35 @@ public class ClientStadiumServiceImpl implements ClientStadiumService {
 	private ClientStadiumDao clientStadiumDao;
 	
 	@Override
-	public List<StadiumVO> StadiumList() {
+	public List<StadiumVO> stadiumList(String p_num) {
 		// TODO Auto-generated method stub
-		return null;
+		List<StadiumVO> list = clientStadiumDao.stadiumList(p_num);
+		return list;
 	}
 
 	@Override
-	public StadiumVO StadiumDetail(String s_num) {
+	public StadiumVO stadiumDetail(int s_no) {
 		// TODO Auto-generated method stub
-		return null;
+		StadiumVO svo = clientStadiumDao.stadiumDetail(s_no);
+		return svo;
 	}
 
 	@Override
-	public int StadiumInsert(StadiumVO svo) {
+	public int stadiumInsert(StadiumVO svo) {
 		// TODO Auto-generated method stub
-		int result = clientStadiumDao.stadiumInsert(svo);
+		int result = 0;
+		try {
+			result =  clientStadiumDao.stadiumInsert(svo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = 0;
+		}
+		
 		return result;
 	}
 
 	@Override
-	public int StadiumModify(StadiumVO svo) {
+	public int stadiumModify(StadiumVO svo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

@@ -25,4 +25,6 @@ public interface ClientPlaceDao {
 
 	public int closePlace(String p_num);
 
+	public List<PlaceVO> placeChoice(String m_id);
+
 }

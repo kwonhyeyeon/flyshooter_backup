@@ -15,15 +15,15 @@ public class ClientStadiumDaoImpl implements ClientStadiumDao{
 	private SqlSession session;
 	
 	@Override
-	public List<StadiumVO> stadiumList() {
+	public List<StadiumVO> stadiumList(String p_num) {
 		// TODO Auto-generated method stub
-		return null;
+		return session.selectList("stadiumList", p_num);
 	}
 
 	@Override
-	public StadiumVO stadiumDetail(String s_num) {
+	public StadiumVO stadiumDetail(int s_no) {
 		// TODO Auto-generated method stub
-		return null;
+		return session.selectOne("stadiumDetail", s_no);
 	}
 
 	@Override

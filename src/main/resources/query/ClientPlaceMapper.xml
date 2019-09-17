@@ -100,6 +100,10 @@
 		  where s.p_num = #{p_num} and r.s_no = s.s_no) and r.r_pay_status <![CDATA[<]]> -1
 	</select>
 	
+	<select id="placeChoice" resultType="place">
+		SELECT p_num, p_name FROM place
+		where m_id = #{m_id}
+	</select>
 
 	<!-- <select id="searchRentalList" parameterType="String" resultType="place"> 
 		select m.m_name, m.m_phone, (r.r_reserve_date + r.r_start + r.r_end), ir.r_no 

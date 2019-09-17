@@ -53,4 +53,10 @@ public class ClientPlaceDaoImpl implements ClientPlaceDao {
 		return sqlSession.selectOne("closePlace", p_num);
 	}
 
+	@Override
+	public List<PlaceVO> placeChoice(String m_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("placeChoice", m_id);
+	}
+
 }

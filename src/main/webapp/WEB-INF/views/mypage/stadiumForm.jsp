@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,33 @@
 <title>경기장 등록</title>
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/stadiumForm.js"></script>
+<script>
+$(document).ready(function() {
+	$("#stadiumForm").submit(function() {
+		return stadiumCheck();
+	});
+	// 추가 버튼 클릭 시 처리 이벤트
+	$("#stadiumPlus").click(function() {
+		$("#select").attr({
+			"value" : "1"
+		});
+
+		$("#stadiumForm").submit();
+	});
+	errCodeCheck();
+});
+function errCodeCheck() {
+	var errCode = '<c:out value = "${errCode}"/>';
+	if (errCode != "") {
+		//명확한 자료형 명시를 위해 errCode의 타입을 정수형으로 변환.
+		switch (parseInt(errCode)) {
+		case 1:
+			alert("사이트 접속에 문제로 정상 작동하지 못하였습니다. 잠시후 다시 시도 해주세요.");
+			return false;
+		}
+	}
+}
+</script>
 </head>
 <body>
 <form id="stadiumForm" action="/mypage/stadiumInsert.do" method="post">

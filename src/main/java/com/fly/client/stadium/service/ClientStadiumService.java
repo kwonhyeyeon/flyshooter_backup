@@ -7,14 +7,14 @@ import com.fly.member.stadium.vo.StadiumVO;
 public interface ClientStadiumService {
 
 	// 경기장 리스트
-	public List<StadiumVO> StadiumList();
+	public List<StadiumVO> stadiumList(String p_num);
 
 	// 경기장 상세페이지
-	public StadiumVO StadiumDetail(String s_num);
+	public StadiumVO stadiumDetail(int s_no);
 
 	// 경기장 등록
-	public int StadiumInsert(StadiumVO svo);
+	public int stadiumInsert(StadiumVO svo);
 
 	// 경기장 수정
-	public int StadiumModify(StadiumVO svo);
+	public int stadiumModify(StadiumVO svo);
 }

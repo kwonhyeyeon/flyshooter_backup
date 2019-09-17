@@ -2,21 +2,6 @@
  * 구장 등록 js
  */
 // 등록 버튼 클릭 시 처리 이벤트
-$(document).ready(function() {
-	$("#stadiumForm").submit(function() {
-		return stadiumCheck();
-	});
-	// 추가 버튼 클릭 시 처리 이벤트
-	$("#stadiumPlus").click(function() {
-		$("#select").attr({
-			"value" : "1"
-		});
-
-		$("#stadiumForm").submit();
-	});
-
-});
-
 // 유효성 체크
 
 function stadiumCheck() {
