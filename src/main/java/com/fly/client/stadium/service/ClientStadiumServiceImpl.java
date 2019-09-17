@@ -24,13 +24,14 @@ public class ClientStadiumServiceImpl implements ClientStadiumService {
 		List<StadiumVO> list = clientStadiumDao.stadiumList(p_num);
 		return list;
 	}
-
+	//상세보기
 	@Override
-	public StadiumVO stadiumDetail(int s_no) {
+	public StadiumVO stadiumDetail(String s_no) {
 		// TODO Auto-generated method stub
-		StadiumVO svo = clientStadiumDao.stadiumDetail(s_no);
-		return svo;
+		return clientStadiumDao.stadiumDetail(s_no);
 	}
+	
+
 
 	@Override
 	public int stadiumInsert(StadiumVO svo) {
@@ -45,11 +46,29 @@ public class ClientStadiumServiceImpl implements ClientStadiumService {
 		
 		return result;
 	}
-
+	//경기장 수정
 	@Override
 	public int stadiumModify(StadiumVO svo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		try {
+			result = clientStadiumDao.stadiumModify(svo);
+			result = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = 0;
+		}
+		return result;
+	}
+	@Override
+	public int closeStadium(String s_no) {
+		int result = 0;
+		result = clientStadiumDao.closeStadium(s_no);
+		if (result > 0) {
+			result = 1;
+		}else {
+			result = 0;
+		}
+		return result;
 	}
 
 }

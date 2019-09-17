@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>경기장/구장 페이지</title>
 <script src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/js/stadiumList.js"></script>
 <script>
 	$(document).ready(function() {
 		//아이디 중복 여부 여부 확인
@@ -80,9 +81,11 @@
 								</c:otherwise>
 							</c:choose>
 						</div>
+						<%--==상세 페이지 이동을 위한 FORM --%>
 						<form id="datailForm" action="/mypage/stadiumDetail.do" method="post">
-							<input type="hidden" name="s_num" id="s_num">
+							<input type="hidden" name="s_no" id="s_no">
 						</form>
+						
 						<div id="stadiumList"></div>
 					</div>
 				</div>

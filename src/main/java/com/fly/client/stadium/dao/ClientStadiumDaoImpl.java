@@ -19,13 +19,13 @@ public class ClientStadiumDaoImpl implements ClientStadiumDao{
 		// TODO Auto-generated method stub
 		return session.selectList("stadiumList", p_num);
 	}
-
+	
 	@Override
-	public StadiumVO stadiumDetail(int s_no) {
+	public StadiumVO stadiumDetail(String s_no) {
 		// TODO Auto-generated method stub
 		return session.selectOne("stadiumDetail", s_no);
 	}
-
+	
 	@Override
 	public int stadiumInsert(StadiumVO svo) {
 		// TODO Auto-generated method stub
@@ -35,7 +35,19 @@ public class ClientStadiumDaoImpl implements ClientStadiumDao{
 	@Override
 	public int stadiumModify(StadiumVO svo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return session.update("stadiumModify", svo);
 	}
+
+	@Override
+	public int closeStadium(String s_no) {
+		// TODO Auto-generated method stub
+		return session.selectOne("closeStadium",s_no);
+	}
+
+	
+
+
+
+
 
 }

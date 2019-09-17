@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fly.client.place.service.ClientPlaceService;
 import com.fly.client.stadium.dao.ClientStadiumDao;
@@ -47,7 +48,7 @@ public class StadiumController {
 		return "mypage/stadiumList";
 	}
 
-	@RequestMapping(value = "/stadiumList.do", method = RequestMethod.GET, produces= "text/html; charset=UTF-8")
+	@RequestMapping(value = "/stadiumList.do", method = RequestMethod.GET, produces = "text/html; charset=UTF-8")
 	@ResponseBody
 	public String stadiumList(Model model, @RequestParam(value = "p_num") String p_num) {
 		System.out.println("stadiumList 호출 성공");
@@ -56,55 +57,61 @@ public class StadiumController {
 		String result = "";
 		if (list.size() > 0) {
 			result = "<table>";
-			result +="<tr>";
-			result +="<th>번호</th>";
-			result +="<th>경기장명</th>";
-			result +="<th>수용인원</th>";
-			result +="<th>경기장 상태</th>";
-			result +="</tr>";
-			for (int i = 0; i < list.size(); i ++) {
-				result +="<tr class='stadiumList' data-num='"+list.get(i).getS_no()+"'>";
-				result +="<td>"+list.get(i).getS_no()+"</td>";
-				result +="<td class='detailPage'>"+list.get(i).getS_name()+"</td>";
-				result +="<td>"+list.get(i).getS_people()+"</td>";
-				result +="<td>"+list.get(i).getS_status()+"</td>";
-				result +="</tr>";
+			result += "<tr>";
+			result += "<th>번호</th>";
+			result += "<th>경기장명</th>";
+			result += "<th>수용인원</th>";
+			result += "<th>경기장 상태</th>";
+			result += "</tr>";
+			for (int i = 0; i < list.size(); i++) {
+				result += "<tr class='stadiumList' data-num='" + list.get(i).getS_no() + "'>";
+				result += "<td>" + list.get(i).getS_no() + "</td>";
+				result += "<td class='detailPage'>" + list.get(i).getS_name() + "</td>";
+				result += "<td>" + list.get(i).getS_people() + "</td>";
+				result += "<td>" + list.get(i).getS_status() + "</td>";
+				result += "</tr>";
 			}
 			result += "</table>";
-		}else {
+		} else {
 			// TODO: handle exception
 			result = "<p>등록된 경기장이 없습니다</p>";
 			result += "<input type='button' value='경기장 등록' id='stadiumInsert'/>";
 		}
-		
+
 		return result;
 	}
 
-	/*
-	 * // 구장 상세보기
-	 * 
-	 * @RequestMapping(value = "/stadiumDetail.do", method = RequestMethod.POST)
-	 * public ModelAndView stadiumDetail(@ModelAttribute StadiumVO svo, HttpSession
-	 * session) { System.out.println("stadiumDetail 호출 성공");
-	 * 
-	 * ModelAndView mav = new ModelAndView(); int s_no = svo.getS_no(); svo =
-	 * stadiumService.stadiumDetail(s_no);
-	 * 
-	 * mav.addObject("s_no", svo.getS_no()); mav.addObject("s_name",
-	 * svo.getS_name()); mav.addObject("s_size", svo.getS_size());
-	 * mav.addObject("s_d_fee", svo.getS_d_fee()); mav.addObject("s_n_fee",
-	 * svo.getS_n_fee()); mav.addObject("s_d_fee_w", svo.getS_d_fee_w());
-	 * mav.addObject("s_n_fee_w", svo.getS_n_fee_w()); mav.addObject("s_people",
-	 * svo.getS_people()); mav.addObject("s_img1", svo.getS_img1());
-	 * mav.addObject("s_img2", svo.getS_img2()); mav.addObject("s_img3",
-	 * svo.getS_img3()); mav.addObject("s_in_out", svo.getS_in_out());
-	 * mav.addObject("s_status", svo.getS_status()); mav.addObject("s_hours",
-	 * svo.getS_hours()); mav.addObject("s_regdate", svo.getS_regdate());
-	 * 
-	 * mav.setViewName("mypage/stadiumDetailEdit");
-	 * 
-	 * return mav; }
-	 */
+	// 구장 상세보기
+
+	@RequestMapping(value = "/stadiumDetail.do", method = RequestMethod.POST)
+	public ModelAndView stadiumDetail(@ModelAttribute StadiumVO svo, HttpSession session) {
+		System.out.println("stadiumDetail 호출 성공");
+		System.out.println(svo.getS_no()+"zzzz");
+		ModelAndView mav = new ModelAndView();
+		String s_no = svo.getS_no()+"";
+		svo = stadiumService.stadiumDetail(s_no);
+		
+
+		
+		mav.addObject("s_no", svo.getS_no());
+		mav.addObject("s_name", svo.getS_name());
+		mav.addObject("s_size", svo.getS_size());
+		mav.addObject("s_d_fee", svo.getS_d_fee());
+		mav.addObject("s_n_fee", svo.getS_n_fee());
+		mav.addObject("s_d_fee_w", svo.getS_d_fee_w());
+		mav.addObject("s_n_fee_w", svo.getS_n_fee_w());
+		mav.addObject("s_people", svo.getS_people());
+		mav.addObject("s_img1", svo.getS_img1());
+		mav.addObject("s_img2", svo.getS_img2());
+		mav.addObject("s_img3", svo.getS_img3());
+		mav.addObject("s_in_out", svo.getS_in_out());
+		mav.addObject("s_status", svo.getS_status());
+		mav.addObject("s_hours", svo.getS_hours());
+		mav.addObject("s_regdate", svo.getS_regdate());
+		mav.setViewName("mypage/stadiumDetailEdit");
+
+		return mav;
+	}
 
 	// 경기장 등록 페이지 출력하기
 	@RequestMapping(value = "/stadiumForm.do", method = RequestMethod.GET)
@@ -136,4 +143,32 @@ public class StadiumController {
 		}
 		return mav;
 	}
+	
+	//경기장 수정
+	@RequestMapping(value = "/stadiumModify.do", method = RequestMethod.POST)
+	public String stadiumModify(@ModelAttribute StadiumVO svo, Model model, HttpSession session, RedirectAttributes redirectAttr) {
+		System.out.println("stadiumModify 호출 성공");
+
+		int result = 0;
+		String url = "";
+		result = stadiumService.stadiumModify(svo);
+		System.out.println(result);
+		if (result == 1) {
+			redirectAttr.addAttribute("p_num", svo.getP_num());
+			url = "/mypage/placeChoice.do";
+		} else {
+			model.addAttribute("errCode", 1);
+			url = "/mypage/stadiumModify.do";
+		}
+		return "redirect:" + url;
+	}
+	
+	@RequestMapping(value = "/closeStadium.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String closeStadium(@RequestParam(value = "s_no", required = false, defaultValue = "0") String s_no) {
+		System.out.println("closeStadium 호출 성공");
+		int result = stadiumService.closeStadium(s_no);
+		return result + "";
+	}
+	
 }
