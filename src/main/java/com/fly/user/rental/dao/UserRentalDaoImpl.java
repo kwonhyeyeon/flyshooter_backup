@@ -15,7 +15,7 @@ public class UserRentalDaoImpl implements UserRentalDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private String NAME_SPACE = "com.fly.user.rental.dao.UserRentalDAO";
+	private String NAME_SPACE = "com.fly.user.rental.dao.UserRentalDao";
 	
 	@Override
 	public List<String> searchReservationTime(HashMap<String, Object> map) {

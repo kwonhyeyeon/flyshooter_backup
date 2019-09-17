@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fly.client.place.dao.ClientPlaceDao;
-import com.fly.client.place.vo.PlaceVO;
+import com.fly.member.place.vo.PlaceVO;
 import com.fly.member.rental.vo.RentalVO;
 import com.fly.member.stadium.vo.StadiumVO;
 
@@ -89,6 +89,12 @@ public class ClientPlaceServiceImpl implements ClientPlaceService {
 			result = 2;
 		}
 		return result;
+	}
+
+	@Override
+	public List<PlaceVO> placeChoice(String m_id) {
+		List<PlaceVO> placeChoice = clientPlaceDao.placeChoice(m_id);
+		return placeChoice;
 	}
 
 

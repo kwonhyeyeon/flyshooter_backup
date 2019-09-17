@@ -2,7 +2,7 @@ package com.fly.member.join.dao;
 
 import com.fly.member.join.vo.MemberVO;
 
-public interface MemberDAO {
+public interface MemberDao {
 	public int memberDelete(String userId);
 
 	public int memberActive(String userId);

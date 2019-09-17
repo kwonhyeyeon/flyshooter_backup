@@ -1,4 +1,4 @@
-package com.fly.client.place.vo;
+package com.fly.member.place.vo;
 
 import java.util.Date;
 

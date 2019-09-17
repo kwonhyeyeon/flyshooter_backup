@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fly.common.util.MailUtils;
-import com.fly.member.join.dao.MemberDAO;
+import com.fly.member.join.dao.MemberDao;
 import com.fly.member.join.vo.MemberVO;
 
-@Service
+@Service("userMailSendService")
 public class UserMailSendService {
 
 	@Autowired
@@ -20,7 +20,7 @@ public class UserMailSendService {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	private MemberDAO memberDAO;
+	private MemberDao memberDao;
 
 	// 이메일 난수 만드는 메서드
 	private String init() {
@@ -58,9 +58,9 @@ public class UserMailSendService {
 	public void mailSendWithUserKey(MemberVO mvo) throws Exception {
 
 		mvo.setEmail_confirm(getKey(false, 20));
-		memberDAO = sqlSession.getMapper(MemberDAO.class);
+		memberDao = sqlSession.getMapper(MemberDao.class);
 		System.out.println("난수 값 넣기");
-		memberDAO.GetKey(mvo);
+		memberDao.GetKey(mvo);
 		System.out.println("이메일 보내기");
 
 		// mail 작성 관련
@@ -108,8 +108,8 @@ public class UserMailSendService {
 
 		int resultCnt = 0;
 
-		memberDAO = sqlSession.getMapper(MemberDAO.class);
-		resultCnt = memberDAO.alter_userKey(mvo);
+		memberDao = sqlSession.getMapper(MemberDao.class);
+		resultCnt = memberDao.alter_userKey(mvo);
 
 		return resultCnt;
 	}

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fly.member.login.dao.LoginDAO;
+import com.fly.member.login.dao.LoginDao;
 import com.fly.member.login.vo.LoginVO;
 
 @Service("loginService")
@@ -15,7 +15,7 @@ import com.fly.member.login.vo.LoginVO;
 public class LoginServiceImpl implements LoginService {
 	@Autowired
 	@Qualifier("loginDao")
-	private LoginDAO loginDao;
+	private LoginDao loginDao;
 
 	@Override
 	public LoginVO userIdSelect(String m_id) {
@@ -54,7 +54,6 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public LoginVO loginHistorySelect(String m_id) {
-		System.out.println("33333333333");
 		return loginDao.loginHistorySelect(m_id);
 	}
 

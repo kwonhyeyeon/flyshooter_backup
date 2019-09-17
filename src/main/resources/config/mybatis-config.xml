@@ -7,12 +7,11 @@
 	<typeAliases>
 		<typeAlias type="com.fly.client.calculate.vo.CalculateVO" alias="calculate"/>
 		<typeAlias type="com.fly.client.items.vo.ItemsVO" alias="items"/>
-		<typeAlias type="com.fly.client.stats.vo.StatsVO" alias="stats"/> 
-		<typeAlias type="com.fly.client.place.vo.PlaceVO" alias="place"/>
+		<typeAlias type="com.fly.member.place.vo.PlaceVO" alias="place"/>
+		<typeAlias type="com.fly.member.stadium.vo.StadiumVO" alias="stadium" />
 		<typeAlias type="com.fly.member.login.vo.LoginHistory" alias="loginHistory" />
 		<typeAlias type="com.fly.member.login.vo.LoginVO" alias="login" />
 		<typeAlias type="com.fly.member.join.vo.MemberVO" alias="member" />
-		<typeAlias type="com.fly.member.stadium.vo.StadiumVO" alias="stadium" />
 		<typeAlias type="com.fly.member.itemsrental.vo.ItemsRentalVO" alias="itemsrental" />
 		<typeAlias type="com.fly.member.rental.vo.RentalVO" alias="rental" />
 		<typeAlias type="com.fly.member.match.vo.MatchVO" alias="match" />

@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.fly.client.place.vo.PlaceVO;
+import com.fly.member.place.vo.PlaceVO;
 import com.fly.member.rental.vo.RentalVO;
 import com.fly.member.stadium.vo.StadiumVO;
 
@@ -51,6 +51,12 @@ public class ClientPlaceDaoImpl implements ClientPlaceDao {
 	public int closePlace(String p_num) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("closePlace", p_num);
+	}
+
+	@Override
+	public List<PlaceVO> placeChoice(String m_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("placeChoice", m_id);
 	}
 
 }

@@ -1,6 +1,5 @@
 package com.fly.user.rental.controller;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -19,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fly.client.items.service.ItemsService;
 import com.fly.client.items.vo.ItemsVO;
-import com.fly.client.place.vo.PlaceVO;
+import com.fly.member.place.vo.PlaceVO;
 import com.fly.member.rental.vo.RentalVO;
 import com.fly.member.stadium.vo.StadiumVO;
 import com.fly.user.place.service.UserPlaceService;
