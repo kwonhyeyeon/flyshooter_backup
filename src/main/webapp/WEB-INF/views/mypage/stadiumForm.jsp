@@ -89,6 +89,7 @@ function errCodeCheck() {
 	<li>
 		<input type="submit" value="등록완료">
 		<input type="button" id="stadiumPlus" value="추가 등록하기">
+		<a href="/">Home</a>
 	</li>
 </ul>
 </form>

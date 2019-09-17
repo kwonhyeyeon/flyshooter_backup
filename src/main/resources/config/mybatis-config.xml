@@ -14,5 +14,8 @@
 		<typeAlias type="com.fly.member.join.vo.MemberVO" alias="member" />
 		<typeAlias type="com.fly.member.itemsrental.vo.ItemsRentalVO" alias="itemsrental" />
 		<typeAlias type="com.fly.member.rental.vo.RentalVO" alias="rental" />
+		<typeAlias type="com.fly.member.match.vo.MatchVO" alias="match" />
+		<typeAlias type="com.fly.member.support.vo.SupportVO" alias="support" />
+		<typeAlias type="com.fly.member.recruit.vo.RecruitVO" alias="recruit" />
 	</typeAliases>
 </configuration>

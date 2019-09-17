@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fly.client.items.service.ItemsService;
+import com.fly.client.items.vo.ItemsVO;
 import com.fly.client.place.service.ClientPlaceService;
 import com.fly.client.stadium.dao.ClientStadiumDao;
 import com.fly.client.stadium.service.ClientStadiumService;
+import com.fly.client.util.MakeList;
 import com.fly.member.join.vo.MemberVO;
 import com.fly.member.place.vo.PlaceVO;
 import com.fly.member.stadium.vo.StadiumVO;
@@ -34,6 +37,9 @@ public class StadiumController {
 	@Autowired
 	private ClientPlaceService placeService;
 
+	@Autowired
+	private ItemsService itemsService;
+	
 	// 구장 목록 구현하기
 	@RequestMapping(value = "/placeChoice.do", method = RequestMethod.GET)
 	public String placeChoice(Model model, HttpSession session) {
@@ -48,37 +54,14 @@ public class StadiumController {
 		return "mypage/stadiumList";
 	}
 
-	@RequestMapping(value = "/stadiumList.do", method = RequestMethod.GET, produces = "text/html; charset=UTF-8")
+	@RequestMapping(value = "/stadiumList.do", method = RequestMethod.GET, produces= "text/html; charset=UTF-8")
 	@ResponseBody
 	public String stadiumList(Model model, @RequestParam(value = "p_num") String p_num) {
 		System.out.println("stadiumList 호출 성공");
+		List<StadiumVO> Slist = stadiumService.stadiumList(p_num);
+		List<ItemsVO> Ilist = itemsService.itemsList(p_num);
+		return MakeList.makeList(Slist, Ilist, p_num);
 
-		List<StadiumVO> list = stadiumService.stadiumList(p_num);
-		String result = "";
-		if (list.size() > 0) {
-			result = "<table>";
-			result += "<tr>";
-			result += "<th>번호</th>";
-			result += "<th>경기장명</th>";
-			result += "<th>수용인원</th>";
-			result += "<th>경기장 상태</th>";
-			result += "</tr>";
-			for (int i = 0; i < list.size(); i++) {
-				result += "<tr class='stadiumList' data-num='" + list.get(i).getS_no() + "'>";
-				result += "<td>" + list.get(i).getS_no() + "</td>";
-				result += "<td class='detailPage'>" + list.get(i).getS_name() + "</td>";
-				result += "<td>" + list.get(i).getS_people() + "</td>";
-				result += "<td>" + list.get(i).getS_status() + "</td>";
-				result += "</tr>";
-			}
-			result += "</table>";
-		} else {
-			// TODO: handle exception
-			result = "<p>등록된 경기장이 없습니다</p>";
-			result += "<input type='button' value='경기장 등록' id='stadiumInsert'/>";
-		}
-
-		return result;
 	}
 
 	// 구장 상세보기
@@ -115,24 +98,25 @@ public class StadiumController {
 
 	// 경기장 등록 페이지 출력하기
 	@RequestMapping(value = "/stadiumForm.do", method = RequestMethod.GET)
-	public String writeForm() {
+	public String writeForm(@RequestParam("p_num") String p_num, Model model) {
 		System.out.println("stadiumForm 호출 성공");
-
+		System.out.println(p_num);
+		model.addAttribute("p_num", p_num);
 		return "mypage/stadiumForm";
 	}
 
 	// 경기장 등록
 	@RequestMapping(value = "/stadiumInsert.do", method = RequestMethod.POST)
-	public ModelAndView stadiumInsert(@ModelAttribute StadiumVO svo, @RequestParam("select") String select,
-			@RequestParam("p_num") String p_num) {
+	public ModelAndView stadiumInsert(@ModelAttribute StadiumVO svo, @RequestParam("select") String select) {
 		System.out.println("stadiumInsert 호출 성공");
+		System.out.println(svo.toString());
 		ModelAndView mav = new ModelAndView();
 		int result = stadiumService.stadiumInsert(svo);
 		int plus = Integer.parseInt(select);// 추가등록여부 확인을 위한 변수
 		System.out.println(result);
 		if (result == 1) {
 			if (plus == 1) {
-				mav.addObject("p_num", p_num);
+				mav.addObject("p_num", svo.getP_num());
 				mav.setViewName("mypage/stadiumForm");
 			} else {
 				mav.setViewName("mypage/modifyLogin");
