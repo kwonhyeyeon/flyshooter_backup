@@ -12,7 +12,15 @@
 			i_status = 1 and p_num = #{p_num} and i_use = 1	
 	
 	</select>
+	<select id="itemsList" parameterType="String" resultType="items">
+		SELECT
+			*
+		FROM
+			items
+		WHERE
+			p_num = #{p_num} and i_use = 1	
 	
+	</select>
 	
 	
 </mapper>

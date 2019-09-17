@@ -19,5 +19,11 @@ public class ItemsDaoImpl implements ItemsDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAME_SPACE + ".selectItemsList", p_num);
 	}
+	
+	@Override
+	public List<ItemsVO> itemsList(String p_num) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAME_SPACE + ".itemsList", p_num);
+	}
 
 }

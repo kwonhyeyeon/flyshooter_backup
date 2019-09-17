@@ -8,4 +8,7 @@ public interface ItemsDao {
 	
 	// 해당구장의 상품리스트를 가져온다
 	public List<ItemsVO> searchItemsList(String p_num);
+	
+	// 해당구장의 상품리스트를 가져온다
+	public List<ItemsVO> itemsList(String p_num);
 }
