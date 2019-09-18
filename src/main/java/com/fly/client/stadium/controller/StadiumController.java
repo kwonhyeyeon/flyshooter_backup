@@ -59,6 +59,9 @@ public class StadiumController {
 	public String stadiumList(Model model, @RequestParam(value = "p_num") String p_num) {
 		System.out.println("stadiumList 호출 성공");
 		List<StadiumVO> Slist = stadiumService.stadiumList(p_num);
+		for (int i = 0; i < Slist.size(); i++) {
+			System.out.println(Slist.get(i).getS_no()+"asdf");
+		}
 		List<ItemsVO> Ilist = itemsService.itemsList(p_num);
 		return MakeList.makeList(Slist, Ilist, p_num);
 
@@ -67,7 +70,7 @@ public class StadiumController {
 	// 구장 상세보기
 
 	@RequestMapping(value = "/stadiumDetail.do", method = RequestMethod.POST)
-	public ModelAndView stadiumDetail(@ModelAttribute StadiumVO svo, HttpSession session) {
+	public ModelAndView stadiumDetail(@ModelAttribute StadiumVO svo) {
 		System.out.println("stadiumDetail 호출 성공");
 		System.out.println(svo.getS_no()+"zzzz");
 		ModelAndView mav = new ModelAndView();
@@ -136,7 +139,7 @@ public class StadiumController {
 		int result = 0;
 		String url = "";
 		result = stadiumService.stadiumModify(svo);
-		System.out.println(result);
+	
 		if (result == 1) {
 			redirectAttr.addAttribute("p_num", svo.getP_num());
 			url = "/mypage/placeChoice.do";

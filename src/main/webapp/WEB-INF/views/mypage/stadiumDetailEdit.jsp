@@ -31,7 +31,14 @@ $(document).ready(function() {
 					</li>
 					<li>
 						최소 이용 가능 시간 
-						<div>${s_hours}</div>
+						<c:choose>
+							<c:when test="${s_hours eq '1'}">
+								1시간
+							</c:when>
+							<c:when test="${s_hours eq '3' }">
+								2시간
+							</c:when>
+						</c:choose>
 						<select name="s_hours" id="s_hours">
 							<option value="1">1시간</option>
 							<option value="3">2시간</option>
@@ -43,7 +50,17 @@ $(document).ready(function() {
 					</li>
 					<li>
 						경기장 사이즈
-						<div>${s_size}</div>
+						<c:choose>
+							<c:when test="${s_size eq '1'}">
+								40*20
+							</c:when>
+							<c:when test="${s_size eq '2' }">
+								33*21
+							</c:when>
+							<c:when test="${s_size eq '3' }">
+								15*12
+							</c:when>
+						</c:choose>
 						<select name="s_size" class="s_size" id="s_size">
 							<option value="1">40*20</option>
 							<option value="2">33*21</option>
@@ -51,7 +68,14 @@ $(document).ready(function() {
 						</select>
 						
 						경기장 실내/외 선택
-						<div>${s_in_out}</div>
+						<c:choose>
+							<c:when test="${s_in_out eq '1'}">
+								실내
+							</c:when>
+							<c:when test="${s_in_out eq '2' }">
+								실외
+							</c:when>
+						</c:choose>
 						<select name="s_in_out" class="s_in_out" id="s_in_out">
 							<option value="1">실내</option>
 							<option value="2">실외</option>
@@ -60,13 +84,13 @@ $(document).ready(function() {
 					<li>
 						<input type="text" value="${s_img1}"size="30" id="s_img1"/>
 							<img src="" onclick="document.getElementById('file').click();">
-						<input id="s_img1" value="${s_img1}" name="s_img1" type="file" onchange="document.getElementById('s_img1').value=this.value;" accept=".gif, .jpg, .png">
+						<input id="s_img1" name="s_img1" type="file" onchange="document.getElementById('s_img1').value=this.value;" accept=".gif, .jpg, .png">
 						<input type="text" value="${s_img2}"size="30" id="s_img2"/>
 							<img src="" onclick="document.getElementById('file').click();">
-						<input id="s_img2" value="${s_img2}" name="s_img2" type="file" onchange="document.getElementById('s_img2').value=this.value;" accept=".gif, .jpg, .png">
+						<input id="s_img2"  name="s_img2" type="file" onchange="document.getElementById('s_img2').value=this.value;" accept=".gif, .jpg, .png">
 						<input type="text" value="${s_img3}"size="30" id="s_img3"/>
 							<img src="" onclick="document.getElementById('file').click();">
-						<input id="s_img3" value="${s_img3}" name="s_img3" type="file" onchange="document.getElementById('s_img3').value=this.value;" accept=".gif, .jpg, .png">
+						<input id="s_img3" name="s_img3" type="file" onchange="document.getElementById('s_img3').value=this.value;" accept=".gif, .jpg, .png">
 					</li>
 					<li>
 						경기장 상태
@@ -79,8 +103,7 @@ $(document).ready(function() {
 							</c:when>
 						</c:choose>
 					<select name="s_status" id="s_status">
-						<option value="" selected disabled>운영상태 변경</option>
-						<option value="0">close</option>
+						<option selected value="0" >close</option>
 						<option value="1">open</option>
 					</select>
 					</li>

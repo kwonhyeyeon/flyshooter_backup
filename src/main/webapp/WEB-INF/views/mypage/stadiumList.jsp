@@ -81,7 +81,7 @@
 		<div class="tab_container">
 		
 			<form id="datailForm" action="/mypage/stadiumDetail.do"method="post">
-				<input type="hidden" name="s_num" id="s_num">
+				<input type="hidden" name="s_no" id="s_no">
 			</form>
 			<div id="List">
 				<!-- Content -->
