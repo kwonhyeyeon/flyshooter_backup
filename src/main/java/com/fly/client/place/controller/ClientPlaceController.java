@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fly.client.place.service.ClientPlaceService;
+import com.fly.member.join.vo.MemberVO;
 import com.fly.member.place.vo.PlaceVO;
 
 @Controller
@@ -61,7 +62,9 @@ public class ClientPlaceController {
 		int result = 0;
 		String url = "";
 		// session에서 가져오기
-		String m_id = (String) session.getAttribute("m_id");
+		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
+		String m_id = sessionMvo.getM_id();
+		
 		pvo.setM_id(m_id);
 		String p_num = pvo.getP_num();
 		System.out.println(pvo.getP_bank());

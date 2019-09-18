@@ -45,8 +45,9 @@ public class StadiumController {
 	public String placeChoice(Model model, HttpSession session) {
 		System.out.println("placeChoice 호출 성공");
 
-		String m_id = (String) session.getAttribute("m_id");
-
+		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
+		String m_id = sessionMvo.getM_id();
+		
 		List<PlaceVO> placeChoice = placeService.placeChoice(m_id);
 
 		model.addAttribute("placeChoice", placeChoice);
