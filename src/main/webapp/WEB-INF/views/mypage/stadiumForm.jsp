@@ -37,7 +37,12 @@ function errCodeCheck() {
 </script>
 </head>
 <body>
-<form id="stadiumForm" action="/mypage/stadiumInsert.do" method="post">
+ <form id="fileForm" method="post" action="fileUpload" enctype="multipart/form-data">
+	<input type="hidden" value="${file_img1}" name="s_img1">
+	<input type="hidden" value="${file_img2}" name="s_img2">
+	<input type="hidden" value="${file_img3}" name="s_img3">
+</form> 
+<form id="stadiumForm" action="/mypage/stadiumInsert.do" method="post" >
 <input type="hidden" name="p_num" value="${p_num }"/>
 <input type="hidden" name="select" id="select" value="0"/>
 <ul>
@@ -76,6 +81,7 @@ function errCodeCheck() {
 	</li>
 	<li>
 		<label>경기장 사진</label>
+		<!-- 다중 업로드를 위해서 multiple 사용 -->
 		<input type="text" size="30" id="s_img1"/>
 		<img src="" onclick="document.getElementById('file').click();">
 		<input id="s_img1" name="s_img1" type="file" onchange="document.getElementById('s_img1').value=this.value;" accept=".gif, .jpg, .png">
