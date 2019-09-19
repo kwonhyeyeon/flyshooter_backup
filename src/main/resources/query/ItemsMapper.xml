@@ -18,9 +18,25 @@
 		FROM
 			items
 		WHERE
-			p_num = #{p_num} and i_use = 1	
-	
+			p_num = #{p_num} and i_status in(1,-1)
 	</select>
 	
+	<update id="itemDelete" parameterType="String">
+		update items set
+		i_status = -2
+		where i_no = #{i_no}
+	</update>
+	
+	<update id="itemActive" parameterType="String">
+		update items set
+		i_status = 1
+		where i_no = #{i_no}
+	</update>
+	
+	<update id="itemUnActive" parameterType="String">
+		update items set
+		i_status = -1
+		where i_no = #{i_no}
+	</update>
 	
 </mapper>

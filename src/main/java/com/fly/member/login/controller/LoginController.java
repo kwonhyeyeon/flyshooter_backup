@@ -52,7 +52,7 @@ public class LoginController {
 		ModelAndView mav = new ModelAndView();
 		String m_id = lvo.getM_id();
 		String m_pw = lvo.getM_pw();
-		String m_type = lvo.getM_type();
+		int m_type = lvo.getM_type();
 
 		int resultData = 0;
 		resultData = loginService.loginHistoryInsert(lvo);
@@ -74,8 +74,8 @@ public class LoginController {
 				return mav;
 			}
 		}
-		LoginVO lvoResult = loginService.loginSelect(m_id);
-
+		System.out.println(m_id);
+		MemberVO DBmvo = memberService.memberSelect(m_id);
 		// SHA-256를 사용하는 SHA256클래스의 객체를 얻어낸다
 		SHA256 sha = SHA256.getInsatnce();
 
@@ -84,7 +84,7 @@ public class LoginController {
 		String shaPass = sha.getSha256(m_pw.getBytes());
 		// 로그인이 틀리면 , 로그인 시도횟수를 1증가 시키고,
 		// 로그인 실패 시간을 DB에 업데이트 한다.
-		if (!BCrypt.checkpw(shaPass, lvoResult.getM_pw())) {
+		if (!BCrypt.checkpw(shaPass, DBmvo.getM_pw())) {
 			System.out.println("비밀번호 불일치");
 			lvoHistory.setRetry(lvoHistory.getRetry() + 1);
 			lvoHistory.setLastFail(new Date().getTime());
@@ -100,16 +100,12 @@ public class LoginController {
 		// 성공한 클라이언트 IP를 DB에 업데이트,로그인 성공시간 DB에 업데이트
 		else {
 			System.out.println("비밀번호 일치");
-			LoginVO lvoSession = loginService.userIdSelect(m_id);
-			if (lvoSession.getM_type().equals(m_type)) {
-				MemberVO mvo = new MemberVO();
-				mvo = memberService.memberSelect(m_id);
-				System.out.println(mvo.getM_status() + "222");
-				if (lvoSession.getEmail_confirm().equals("Y")) {
-					if (mvo.getM_status() == 0) {
+			if (DBmvo.getM_type() == m_type) {
+				System.out.println("타입 일치");
+				if (DBmvo.getEmail_confirm().equals("Y")) {
+					System.out.println("이메일 인증된 아이디");
+					if (DBmvo.getM_status() == 0) {
 						System.out.println("비활성화 로그인");
-						session.setAttribute("m_id", lvoSession.getM_id());
-						session.setAttribute("m_type", lvoSession.getM_type());
 						mav.addObject("errCode", 4);
 						mav.setViewName("member/login");
 						return mav;
@@ -119,8 +115,11 @@ public class LoginController {
 						lvoHistory.setLastPass(new Date().getTime());
 						lvoHistory.setClientIp(request.getRemoteAddr());
 						loginService.loginHistoryUpdate(lvoHistory);
-						session.setAttribute("m_id", lvoSession.getM_id());
-						session.setAttribute("m_type", lvoSession.getM_type());
+						String Session_id = DBmvo.getM_id();
+						int Session_type = DBmvo.getM_type();
+						System.out.println(Session_id);
+						System.out.println(Session_type);
+						session.setAttribute("mvo", new MemberVO(Session_id, Session_type));
 						mav.setViewName("/index");
 						return mav;
 					}
@@ -144,7 +143,8 @@ public class LoginController {
 			HttpServletRequest request) throws Exception {
 		log.info("active.do post 호출 성공");
 		ModelAndView mav = new ModelAndView();
-		String m_id = (String) session.getAttribute("m_id");
+		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
+		String m_id = sessionMvo.getM_id();
 		
 		System.out.println(m_id);
 		LoginVO lvoHistory = loginService.loginHistorySelect(m_id);

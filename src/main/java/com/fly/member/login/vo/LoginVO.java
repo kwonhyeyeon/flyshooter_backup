@@ -5,7 +5,7 @@ public class LoginVO extends LoginHistory {
 	private String m_id; // 아이디
 	private String m_pw; // 비밀번호
 	private String m_name; // 이름
-	private String m_type;
+	private int m_type;
 	private String email_confirm;
 
 	@Override
@@ -80,11 +80,11 @@ public class LoginVO extends LoginHistory {
 		this.m_name = m_name;
 	}
 
-	public String getM_type() {
+	public int getM_type() {
 		return m_type;
 	}
 
-	public void setM_type(String m_type) {
+	public void setM_type(int m_type) {
 		this.m_type = m_type;
 	}
 
@@ -98,7 +98,8 @@ public class LoginVO extends LoginHistory {
 
 	@Override
 	public String toString() {
-		return "LoginVO [m_pw=" + m_pw + "]";
+		return "LoginVO [m_id=" + m_id + ", m_pw=" + m_pw + ", m_name=" + m_name + ", m_type=" + m_type
+				+ ", email_confirm=" + email_confirm + "]";
 	}
 
 }

@@ -23,16 +23,6 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public LoginVO loginSelect(String m_id) {
-		LoginVO lvo = new LoginVO();
-		
-		lvo.setM_id(m_id);
-		lvo = loginDao.loginSelect(lvo);
-
-		return lvo;
-	}
-
-	@Override
 	public int loginHistoryInsert(LoginVO lvo) throws SQLException {
 		int result;
 		if (userIdSelect(lvo.getM_id()) == null) {

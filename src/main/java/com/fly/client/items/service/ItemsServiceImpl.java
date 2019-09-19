@@ -27,4 +27,22 @@ public class ItemsServiceImpl implements ItemsService {
 		return itemsDao.itemsList(p_num);
 	}
 
+	@Override
+	public int itemDelete(String i_no) {
+		// TODO Auto-generated method stub
+		return itemsDao.itemDelete(i_no);
+	}
+
+	@Override
+	public int itemActive(String i_no) {
+		// TODO Auto-generated method stub
+		return itemsDao.itemActive(i_no);
+	}
+
+	@Override
+	public int itemUnActive(String i_no) {
+		// TODO Auto-generated method stub
+		return itemsDao.itemUnActive(i_no);
+	}
+
 }

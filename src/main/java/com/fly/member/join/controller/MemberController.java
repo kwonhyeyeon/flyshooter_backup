@@ -1,5 +1,7 @@
 package com.fly.member.join.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,7 +20,6 @@ import com.fly.common.util.SHA256;
 import com.fly.common.util.UserMailSendService;
 import com.fly.member.join.service.MemberService;
 import com.fly.member.join.vo.MemberVO;
-import com.fly.member.login.vo.LoginVO;
 
 @Controller
 @RequestMapping(value = "/member")
@@ -110,14 +111,14 @@ public class MemberController {
 	public ModelAndView idSerch(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) {
 		System.out.println("serchId.do post 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
-		MemberVO result = new MemberVO();
-		
-		result = memberService.memberidserch(mvo);
-		if (result.getM_id().equals("")) {
+		List<MemberVO> result = memberService.memberidserch(mvo);
+		if (result.get(0).getM_id().equals("")) {
 			mav.addObject("errCode", 1); 
 			mav.setViewName("member/serchMember");
 		}
-		mav.addObject("m_id", result.getM_id());
+		for (int i = 0; i < result.size(); i++) {
+			mav.addObject("m_id", result.get(i).getM_id());
+		}
 		mav.setViewName("member/serchId");
 		return mav;
 	}
@@ -126,7 +127,6 @@ public class MemberController {
 	public ModelAndView pwSerch(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) throws Exception {
 		System.out.println("serchPw.do post 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
-		MemberVO result = new MemberVO();
 		
 		System.out.println("비밀번호 변경 메일 보내기 메서드");
 		System.out.println("currnent join member: " + mvo.toString());
@@ -170,7 +170,9 @@ public class MemberController {
 		String m_id = "";
 		ModelAndView mav = new ModelAndView();
 		try {
-			m_id = (String) session.getAttribute("m_id");
+			MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
+			m_id = sessionMvo.getM_id();
+			System.out.println(m_id);
 			m_id.length();
 		} catch (Exception e) {
 			mav.addObject("errCode", 2);
@@ -184,7 +186,8 @@ public class MemberController {
 	@RequestMapping(value = "/mypage/modify.do", method = RequestMethod.POST)
 	public ModelAndView MemberModify(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) throws Exception {
 		System.out.println("modify.do POST 방식에 의한 메서드 호출 성공");
-		String m_id = (String) session.getAttribute("m_id");
+		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
+		String m_id = sessionMvo.getM_id();
 		String m_pw = mvo.getM_pw();
 		String m_name = null;
 		String m_phone = null;
@@ -246,8 +249,9 @@ public class MemberController {
 
 		ModelAndView mav = new ModelAndView();
 		
-		String m_id = (String) session.getAttribute("m_id");
-
+		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
+		String m_id = sessionMvo.getM_id();
+		
 		int errCode = memberService.memberDelete(m_id);
 		if (errCode == 3) {
 			session.invalidate();

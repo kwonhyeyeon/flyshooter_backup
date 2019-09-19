@@ -1,7 +1,5 @@
 package com.fly.member.login.dao;
 
-import java.sql.SQLException;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,11 +15,6 @@ public class LoginDaoImpl implements LoginDao {
 	public LoginVO userIdSelect(String m_id) {
 		
 		return (LoginVO)session.selectOne("userIdSelect", m_id);
-	}
-
-	@Override
-	public LoginVO loginSelect(LoginVO lvo) {
-		return (LoginVO) session.selectOne("loginSelect", lvo);
 	}
 
 	@Override

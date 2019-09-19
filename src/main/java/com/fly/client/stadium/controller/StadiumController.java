@@ -49,8 +49,9 @@ public class StadiumController {
 	public String placeChoice(Model model, HttpSession session) {
 		System.out.println("placeChoice 호출 성공");
 
-		String m_id = (String) session.getAttribute("m_id");
-
+		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
+		String m_id = sessionMvo.getM_id();
+		
 		List<PlaceVO> placeChoice = placeService.placeChoice(m_id);
 
 		model.addAttribute("placeChoice", placeChoice);
@@ -63,9 +64,6 @@ public class StadiumController {
 	public String stadiumList(Model model, @RequestParam(value = "p_num") String p_num) {
 		System.out.println("stadiumList 호출 성공");
 		List<StadiumVO> Slist = stadiumService.stadiumList(p_num);
-		for (int i = 0; i < Slist.size(); i++) {
-			System.out.println(Slist.get(i).getS_no()+"asdf");
-		}
 		List<ItemsVO> Ilist = itemsService.itemsList(p_num);
 		return MakeList.makeList(Slist, Ilist, p_num);
 

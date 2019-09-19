@@ -83,11 +83,12 @@ public class RecruitController {
 	public String recruitInsertForm(@ModelAttribute MemberVO mvo, Model model, HttpSession session) throws Exception {
 		System.out.println("recruitInsertForm 호출 성공");
 		
-		String id = (String)session.getAttribute("m_id");
+		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
+		String m_id = sessionMvo.getM_id();
 		
-		System.out.println(id);
+		System.out.println(m_id);
 	
-		model.addAttribute("member", memberService.memberSelect(id));
+		model.addAttribute("member", memberService.memberSelect(m_id));
 		
 		return "recruit/recruitInsertForm";
 	}

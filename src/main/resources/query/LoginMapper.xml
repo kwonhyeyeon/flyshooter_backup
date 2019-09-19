@@ -11,16 +11,6 @@
 		from member
 		where m_id = #{m_id}
 	</select>
-	
-	<!-- 로그인 처리 쿼리 -->
-	<select id="loginSelect" parameterType="String" resultType="login">
-		select 
-			m_id,
-			m_pw,
-			m_type 
-		from member
-		where m_id = #{m_id}
-	</select>
  	
  	<insert id="loginHistoryInsert" parameterType="login">
  		insert into login_history(

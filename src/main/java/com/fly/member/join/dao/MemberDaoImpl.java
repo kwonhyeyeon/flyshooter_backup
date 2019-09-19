@@ -1,5 +1,7 @@
 package com.fly.member.join.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -59,15 +61,15 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public MemberVO memberidserchC(MemberVO mvo) {
+	public List<MemberVO> memberidserchC(MemberVO mvo) {
 		// TODO Auto-generated method stub
-		return (MemberVO) session.selectList("memberidserchC", mvo);
+		return session.selectList("memberidserchC", mvo);
 	}
 
 	@Override
-	public MemberVO memberidserchU(MemberVO mvo) {
+	public List<MemberVO> memberidserchU(MemberVO mvo) {
 		// TODO Auto-generated method stub
-		return (MemberVO) session.selectList("memberidserchU", mvo);
+		return session.selectList("memberidserchU", mvo);
 	}
 
 	@Override
