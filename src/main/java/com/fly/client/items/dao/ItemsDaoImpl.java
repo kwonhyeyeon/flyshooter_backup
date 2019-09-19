@@ -44,4 +44,10 @@ public class ItemsDaoImpl implements ItemsDao {
 		return sqlSession.update(NAME_SPACE + ".itemUnActive", i_no);
 	}
 
+	@Override
+	public void itemInsert(ItemsVO ivo) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(NAME_SPACE + ".itemInsert", ivo);
+	}
+
 }

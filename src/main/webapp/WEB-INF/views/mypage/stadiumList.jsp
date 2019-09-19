@@ -7,7 +7,9 @@
 <meta charset="UTF-8">
 <title>경기장/구장 페이지</title>
 <link rel="stylesheet" href="/resources/css/toggle.css" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
 <script type="text/javascript" src="/resources/js/stadiumList.js"></script>
 </head>
 <body>
@@ -42,6 +44,13 @@
 				<!-- Content -->
 				<p>구장을 선택해주세요</p>
 			</div>
+		</div>
+		<div id="dialog" title="결제창" style="display: none">
+	      <form id="itemInsertForm">
+	      	<input type="hidden" id="modalP_num" name="p_num"/>
+	        <label>용품 명<input type="text" id="modalI_name" name="i_name" /></label><br />
+	        <label>가 격<input type="text" id="modalI_rental_fee" name="i_rental_fee" /></label>
+	      </form>   
 		</div>
 	</div>
 </body>

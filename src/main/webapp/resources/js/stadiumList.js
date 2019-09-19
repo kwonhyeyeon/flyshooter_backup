@@ -1,4 +1,5 @@
 /**
+
  * 
  */
 $(document).ready(function(){
@@ -25,6 +26,7 @@ $(document).ready(function(){
 	$("#placeChoice").change(function() {
 
 		if ($("#placeChoice").val() != '선택') {
+			var p_num = $("#placeChoice").val();
 			var query = {p_num : $("#placeChoice").val()};
 			SIList(query);
 		} else {
@@ -33,10 +35,9 @@ $(document).ready(function(){
 	});
 	
 	$(document).on("click", "#IPlus", function() {
-		var $TABLE = $('#table');
-
-		var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide');
-		$TABLE.find('table').append($clone);
+		var test = $("#placeChoice").val();
+		$("#modalP_num").val(test);
+		openDialog();
 	});
 
 	$(document).on("click", ".IRemove", function() {
@@ -139,4 +140,71 @@ function SIList(query) {
 			return false;
 		}
 	});
+}
+
+
+//결제창 모달창
+function openDialog(){
+   $("#dialog").dialog({
+      title : '용품 등록창',
+      model : true,
+      width : '584',
+      height : '400',
+      closeOnEscape:false,
+      open:function(event, ui){
+         $(".ui-dialog-titlebar-close", $(this).parent()).hide();
+      },
+      resizeable : false,
+      show : {
+         effect : "blind",
+         duration : 1000
+      },
+      hide : {
+         effect : "explode",
+         duration : 1000
+      },
+      buttons:[
+         {
+            // 버튼 텍스트
+            text:'취소',
+            click:function(){
+               $(this).dialog("close");
+            }
+         },
+         {
+            text:'용품 등록',
+            click:function(){
+               //$(this).dialog("close");
+               if(confirm("용품 등록 하시겠습니까?")){
+            	  $(this).dialog("close"); 
+                  var P_num =  $('#modalP_num').val();
+                  var I_name =  $('#modalI_name').val();
+                  var I_rental_fee =  $('#modalI_rental_fee').val();
+                  $("#itemInsertForm").find("input[type='text']").val("");
+                  query = {p_num : P_num,
+                		  i_name : I_name,
+                		  i_rental_fee : I_rental_fee}
+                  $.ajax({
+              		url : "/mypage/itemInsert.do",
+              		type : "post",
+              		data : query,
+              		error : function() {
+              			alert('사이트 접속에 문제로 정상 작동하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
+              		},
+              		success : function(resultData) {
+              			if (resultData == '1') {
+              				alert('용품 등록 성공');
+              				query = {p_num : $("#placeChoice").val()};
+              				SIList(query);
+              				return false;
+              			}else{
+              				alert('용품 등록 실패');
+              			}
+              			}
+              	});
+               }
+            }
+         }
+      ]
+   });
 }
