@@ -39,4 +39,13 @@
 		where i_no = #{i_no}
 	</update>
 	
+	<insert id="itemInsert" parameterType="items">
+		<selectKey keyProperty="i_no" resultType="int" order="BEFORE">
+			SELECT items_seq.nextval FROM dual
+		</selectKey>
+		insert into items(i_no, p_num, i_name, i_rental_fee, i_status, i_regdate)
+		values(#{i_no}, #{p_num}, #{i_name}, #{i_rental_fee}, 1, sysdate)
+	</insert>
+	
+	
 </mapper>

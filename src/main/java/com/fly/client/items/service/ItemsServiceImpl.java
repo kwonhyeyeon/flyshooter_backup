@@ -45,4 +45,10 @@ public class ItemsServiceImpl implements ItemsService {
 		return itemsDao.itemUnActive(i_no);
 	}
 
+	@Override
+	public void itemInsert(ItemsVO ivo) {
+		// TODO Auto-generated method stub
+		itemsDao.itemInsert(ivo);
+	}
+
 }

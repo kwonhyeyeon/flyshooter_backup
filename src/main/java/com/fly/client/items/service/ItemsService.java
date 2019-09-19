@@ -17,4 +17,6 @@ public interface ItemsService {
 	public int itemActive(String i_no);
 	
 	public int itemUnActive(String i_no);
+
+	public void itemInsert(ItemsVO ivo);
 }
