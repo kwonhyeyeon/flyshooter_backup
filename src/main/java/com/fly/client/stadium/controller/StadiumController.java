@@ -132,7 +132,6 @@ public class StadiumController {
 			svo.setS_img3(s_img3);
 		}
 		
-		
 		if (result == 1) {
 			if (plus == 1) {
 				mav.addObject("p_num", svo.getP_num());

@@ -37,13 +37,8 @@ function errCodeCheck() {
 </script>
 </head>
 <body>
- <form id="fileForm" method="post" action="fileUpload" enctype="multipart/form-data">
-	<input type="hidden" value="${file_img1}" name="s_img1">
-	<input type="hidden" value="${file_img2}" name="s_img2">
-	<input type="hidden" value="${file_img3}" name="s_img3">
-</form> 
-<form id="stadiumForm" action="/mypage/stadiumInsert.do" method="post" >
-<input type="hidden" name="p_num" value="${p_num }"/>
+<form id="stadiumForm" action="/mypage/stadiumInsert.do" method="post" enctype="multipart/form-data" >
+<input type="hidden" name="p_num" value="${p_num}"/>
 <input type="hidden" name="select" id="select" value="0"/>
 <ul>
 	<li><label>날짜 별 요금</label>
