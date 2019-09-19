@@ -72,5 +72,11 @@ function stadiumCheck() {
 			return false;
 		}
 	}
+	
+	var file_img1= $("#s_img1").val();
+	var file_img2= $("#s_img2").val();
+	var file_img3= $("#s_img3").val();
+	$("#fileupload").submit();
+	
 }
 

@@ -1,7 +1,10 @@
 package com.fly.client.stadium.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ import com.fly.client.items.vo.ItemsVO;
 import com.fly.client.place.service.ClientPlaceService;
 import com.fly.client.stadium.dao.ClientStadiumDao;
 import com.fly.client.stadium.service.ClientStadiumService;
+import com.fly.client.util.FileUploadUtil;
 import com.fly.client.util.MakeList;
 import com.fly.member.join.vo.MemberVO;
 import com.fly.member.place.vo.PlaceVO;
@@ -108,13 +112,26 @@ public class StadiumController {
 
 	// 경기장 등록
 	@RequestMapping(value = "/stadiumInsert.do", method = RequestMethod.POST)
-	public ModelAndView stadiumInsert(@ModelAttribute StadiumVO svo, @RequestParam("select") String select) {
+	public ModelAndView stadiumInsert(@ModelAttribute StadiumVO svo, @RequestParam("select") String select, HttpServletRequest request) throws IOException {
 		System.out.println("stadiumInsert 호출 성공");
 		System.out.println(svo.toString());
 		ModelAndView mav = new ModelAndView();
 		int result = stadiumService.stadiumInsert(svo);
 		int plus = Integer.parseInt(select);// 추가등록여부 확인을 위한 변수
 		System.out.println(result);
+		
+		if(svo.getMfile()!=null) {
+			String s_img1 =
+					FileUploadUtil.fileUpload(svo.getMfile(), request, "stadium");
+			svo.setS_img1(s_img1);
+			String s_img2 =
+					FileUploadUtil.fileUpload(svo.getMfile(), request, "stadium");
+			svo.setS_img2(s_img2);
+			String s_img3 =
+					FileUploadUtil.fileUpload(svo.getMfile(), request, "stadium");
+			svo.setS_img3(s_img3);
+		}
+		
 		if (result == 1) {
 			if (plus == 1) {
 				mav.addObject("p_num", svo.getP_num());
@@ -155,5 +172,6 @@ public class StadiumController {
 		int result = stadiumService.closeStadium(s_no);
 		return result + "";
 	}
+		
 	
 }
