@@ -1,12 +1,13 @@
 package com.fly.member.join.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fly.common.util.BCrypt;
 import com.fly.common.util.SHA256;
-import com.fly.member.join.dao.MemberDAO;
+import com.fly.member.join.dao.MemberDao;
 import com.fly.member.join.vo.MemberVO;
 
 @Service("memberService")
@@ -14,7 +15,8 @@ import com.fly.member.join.vo.MemberVO;
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
-	private MemberDAO memberDAO;
+	@Qualifier("memberDao")
+	private MemberDao memberDao;
 
 	@Override
 	public int memberJoin(MemberVO mvo) {
@@ -22,7 +24,7 @@ public class MemberServiceImpl implements MemberService {
 		// SHA-256를 사용하는 SHA256클래스의 객체를 얻어낸다
 		SHA256 sha = SHA256.getInsatnce();
 
-		if (memberDAO.memberSelect(mvo.getM_id()) != null) {
+		if (memberDao.memberSelect(mvo.getM_id()) != null) {
 			return 1;
 		} else {
 			String orgPass = mvo.getM_pw();
@@ -39,7 +41,7 @@ public class MemberServiceImpl implements MemberService {
 				String bcPass = BCrypt.hashpw(shaPass, BCrypt.gensalt(10));
 
 				mvo.setM_pw(bcPass);
-				memberDAO.memberJoin(mvo);
+				memberDao.memberJoin(mvo);
 				return 3;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -52,7 +54,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int userIdConfirm(String userId) {
 		int result;
-		if (memberDAO.memberSelect(userId) != null) {
+		if (memberDao.memberSelect(userId) != null) {
 			result = 1;
 		} else {
 			result = 2;
@@ -61,8 +63,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberVO memberSelect(String m_Id) {
-		MemberVO vo = memberDAO.memberSelect(m_Id);
+	public MemberVO memberSelect(String m_id) {
+		MemberVO vo = memberDao.memberSelect(m_id);
 		return vo;
 	}
 
@@ -72,7 +74,7 @@ public class MemberServiceImpl implements MemberService {
 		// SHA-256를 사용하는 SHA256클래스의 객체를 얻어낸다
 		SHA256 sha = SHA256.getInsatnce();
 		if (mvo.getM_pw().equals("")) {
-			memberDAO.memberUpdatePN(mvo);
+			memberDao.memberUpdatePN(mvo);
 			return 3;
 		} else {
 			String orgPass = mvo.getM_pw();
@@ -89,7 +91,7 @@ public class MemberServiceImpl implements MemberService {
 				String bcPass = BCrypt.hashpw(shaPass, BCrypt.gensalt(10));
 
 				mvo.setM_pw(bcPass);
-				memberDAO.memberUpdate(mvo);
+				memberDao.memberUpdate(mvo);
 				return 3;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -103,7 +105,7 @@ public class MemberServiceImpl implements MemberService {
 	public int memberActive(String userId) {
 		int isSucessCode = 3;
 		try {
-			isSucessCode = memberDAO.memberActive(userId);
+			isSucessCode = memberDao.memberActive(userId);
 			isSucessCode = 2;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,7 +119,7 @@ public class MemberServiceImpl implements MemberService {
 	public int memberDelete(String userId) {
 		int isSucessCode = 2;
 		try {
-			isSucessCode = memberDAO.memberDelete(userId);
+			isSucessCode = memberDao.memberDelete(userId);
 			isSucessCode = 3;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -132,9 +134,9 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		MemberVO idserch = null;
 		if (mvo.getM_type() == 1) {
-			idserch = memberDAO.memberidserchU(mvo);
+			idserch = memberDao.memberidserchU(mvo);
 		} else {
-			idserch = memberDAO.memberidserchC(mvo);
+			idserch = memberDao.memberidserchC(mvo);
 		}
 
 		return idserch;
@@ -161,7 +163,7 @@ public class MemberServiceImpl implements MemberService {
 			String bcPass = BCrypt.hashpw(shaPass, BCrypt.gensalt(10));
 
 			mvo.setM_pw(bcPass);
-			memberDAO.pwUpdate(mvo);
+			memberDao.pwUpdate(mvo);
 			return 3;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

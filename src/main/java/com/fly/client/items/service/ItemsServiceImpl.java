@@ -20,5 +20,11 @@ public class ItemsServiceImpl implements ItemsService {
 		// TODO Auto-generated method stub
 		return itemsDao.searchItemsList(p_num);
 	}
+	
+	@Override
+	public List<ItemsVO> itemsList(String p_num) {
+		// TODO Auto-generated method stub
+		return itemsDao.itemsList(p_num);
+	}
 
 }

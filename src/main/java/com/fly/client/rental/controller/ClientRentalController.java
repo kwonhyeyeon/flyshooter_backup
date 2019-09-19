@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fly.client.place.service.ClientPlaceService;
-import com.fly.client.place.vo.PlaceVO;
 import com.fly.member.itemsrental.vo.ItemsRentalVO;
 import com.fly.member.join.vo.MemberVO;
+import com.fly.member.place.vo.PlaceVO;
 import com.fly.member.rental.vo.RentalVO;
 import com.fly.member.stadium.vo.StadiumVO;
 
@@ -39,7 +39,7 @@ public class ClientRentalController {
 		System.out.println(m_id);
 		
 		// 구장 리스트 출력
-		List<PlaceVO> placeList = clientPlaceService.placeList(m_id);
+		List<PlaceVO> placeList = clientPlaceService.placeList();
 		
 		if(placeList.isEmpty()) { // 구장이 없을 때
 			mav.addObject("placeList", placeList);
@@ -128,11 +128,11 @@ public class ClientRentalController {
                 
                 // 경기장 별 대관 예약 리스트
                 String r_reserve_date = "2019-09-05";
-                List<RentalVO> rentalList = clientPlaceService.rentalList(s_no, r_reserve_date);
-                for(RentalVO rental : rentalList) {
+                //List<RentalVO> rentalList = clientPlaceService.rentalList(s_no, r_reserve_date);
+                /*for(RentalVO rental : rentalList) {
                     System.out.println("대관 현황 리스트");
                     System.out.println(rental.toString());
-                }
+                }*/
                 
             }
         }

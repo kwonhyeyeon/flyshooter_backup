@@ -9,6 +9,18 @@
 <title>구장</title>
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/placeList.js"></script>
+<script>
+$(document).ready(function() {
+	var errCode = "${errCode}";
+	//에러코드 검사
+	//명확한 자료형 명시를 위해 errCode의 타입을 정수형으로 변환.
+	if (parseInt(errCode) == 1) {
+		alert("페이지에 오류가 발생하였습니다. \n잠시 후 다시 시도해 주세요");
+		return false;
+	}
+});
+
+</script>
 </head>
 <body>
 	<div class="contentContainer">

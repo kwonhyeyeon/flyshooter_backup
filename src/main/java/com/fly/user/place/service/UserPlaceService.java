@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.fly.client.place.vo.PlaceVO;
+import com.fly.member.place.vo.PlaceVO;
 import com.fly.user.place.dao.UserPlaceDao;
 
 public interface UserPlaceService {

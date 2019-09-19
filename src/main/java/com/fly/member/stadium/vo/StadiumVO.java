@@ -1,6 +1,6 @@
 package com.fly.member.stadium.vo;
 
-import com.fly.client.place.vo.PlaceVO;
+import com.fly.member.place.vo.PlaceVO;
 
 public class StadiumVO extends PlaceVO {
 	private int s_no;
@@ -18,11 +18,10 @@ public class StadiumVO extends PlaceVO {
 	private int s_status;
 	private int s_hours;
 	private String s_regdate;
-	
+
 	public StadiumVO() {
 		super();
 	}
-
 
 	public int getS_no() {
 		return s_no;
@@ -146,14 +145,13 @@ public class StadiumVO extends PlaceVO {
 
 	@Override
 	public String toString() {
+		
 		return "StadiumVO [getS_no()=" + getS_no() + ", getS_name()=" + getS_name() + ", getS_size()=" + getS_size()
 				+ ", getS_d_fee()=" + getS_d_fee() + ", getS_n_fee()=" + getS_n_fee() + ", getS_d_fee_w()="
 				+ getS_d_fee_w() + ", getS_n_fee_w()=" + getS_n_fee_w() + ", getS_people()=" + getS_people()
 				+ ", getS_img1()=" + getS_img1() + ", getS_img2()=" + getS_img2() + ", getS_img3()=" + getS_img3()
 				+ ", getS_in_out()=" + getS_in_out() + ", getS_status()=" + getS_status() + ", getS_hours()="
-				+ getS_hours() + ", getS_regdate()=" + getS_regdate() + "]";
+				+ getS_hours() + ", getS_regdate()=" + getS_regdate() + "]"+ super.getP_num()+" toString";
 	}
-	
-	
-	
+
 }

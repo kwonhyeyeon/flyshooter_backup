@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fly.client.stadium.dao.ClientStadiumDao">
+
+	<!-- 구장별 경기장 select -->
+	<select id="stadiumList" resultType="stadium">
+		select * from stadium
+		where p_num = #{p_num}
+	</select>
+	
+	<!-- 구장별 경기장 Detail -->
+	<select id="stadiumDetail" resultType="stadium" parameterType="String">
+		select s_no, s_name, s_size, s_d_fee, s_n_fee, s_d_fee_w, s_n_fee_w, 
+			s_people, s_img1, s_img2, s_img3, s_in_out, s_status, s_hours, 
+			to_char(s_regdate, 'yyyy-MM-dd') s_regdate
+		from stadium
+		where s_no = #{s_no}
+	</select>
+	
+ 
+	<!-- 구장 등록 -->
+	<insert id="stadiumInsert" parameterType="stadium">
+		<selectKey keyProperty="s_no" resultType="int" order="BEFORE">
+			SELECT stadium_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO stadium(
+		s_no, s_name, s_size, s_d_fee, s_n_fee, s_d_fee_w, s_n_fee_w, 
+		s_people, p_num, 
+		<if test="s_img1 != null">
+		s_img1, 
+		</if>
+		<if test="s_img2 != null">
+		s_img2, 
+		</if>
+		<if test="s_img3 != null">
+		s_img3, 
+		</if>
+		s_in_out, s_status, s_hours, s_regdate
+		)
+		VALUES(
+		#{s_no}
+		,#{s_name}, #{s_size}, #{s_d_fee}, #{s_n_fee}, #{s_d_fee_w}
+		, #{s_n_fee_w}, #{s_people}, #{p_num}
+		<if test="s_img1 != null">
+		,#{s_img1}
+		</if>
+		<if test="s_img2 != null">
+		,#{s_img2}
+		</if>
+		<if test="s_img3 != null">
+		,#{s_img3}
+		</if>
+		, #{s_in_out}, #{s_status}, #{s_hours}, SYSDATE
+		)
+	</insert>
+	
+	
+	<!-- 경기장 수정 --> 
+	<update id="stadiumModify" parameterType="stadium">
+		update stadium set
+		s_d_fee = #{s_d_fee}, s_n_fee = #{s_n_fee},
+		s_d_fee_w = #{s_d_fee_w}, s_n_fee_w = #{s_n_fee_w},
+		s_hours = #{s_hours}, s_size = #{s_size},
+		s_in_out = #{s_in_out}
+		<if test="s_img1 != null">
+		,s_img1 = #{s_img1}
+		</if>
+		<if test="s_img2 != null">
+		,s_img2 = #{s_img2}
+		</if>
+		<if test="s_img3 != null">
+		,s_img3 = #{s_img3}
+		</if>
+		,s_regdate = SYSDATE
+		where s_no = #{s_no}
+	</update>
+	
+
+</mapper>

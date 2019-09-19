@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fly.member.login.dao.LoginDAO">
+<mapper namespace="com.fly.member.login.dao.LoginDao">
 	
 	<select id="userIdSelect" parameterType="String" resultType="login">
 		select 
 			m_id,
 			m_type, 
 			email_confirm 
-		from member
-		where m_id = #{m_id}
-	</select>
-	
-	<!-- 로그인 처리 쿼리 -->
-	<select id="loginSelect" parameterType="String" resultType="login">
-		select 
-			m_id,
-			m_pw,
-			m_type 
 		from member
 		where m_id = #{m_id}
 	</select>

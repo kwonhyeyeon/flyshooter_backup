@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.fly.member.match.dao.MatchDao">
+
+ <!-- 게시물 전체 목록 조회 쿼리문 -->
+	<select id="matchList" resultType="match" parameterType="match">
+
+        select
+		mb_no,
+		m_id,
+		mb_type,
+		mb_name,
+		mb_m_date,
+		m_name,
+		mb_regdate,
+		mb_progress
+		FROM (
+		select LIST.*, ROWNUM AS RNUM
+		FROM (
+			select
+			board.mb_no,
+			m.m_id,
+			board.mb_type,
+			board.mb_name,
+			to_char(mb_m_date, 'YYYY-MM-DD') as mb_m_date,
+			m.m_name,
+			to_char(mb_regdate, 'YYYY-MM-DD') as mb_regdate,
+			board.mb_progress
+			FROM
+			match_board board, member m
+			where board.m_id = m.m_id
+			<if test="keyword != null">
+				and m.m_name LIKE '%' || #{keyword} || '%'
+			</if>
+		)LIST
+		)
+		<where>
+			<if test="start_row != null and start_row != ''">
+				<if test="end_row != null and end_row != ''">
+					RNUM BETWEEN #{start_row} AND #{end_row}
+				</if>
+			</if>
+		</where>
+		order by mb_regdate desc
+	</select>
+
+
+	<!-- 게시물 카운트 페이징 -->
+	<select id="matchListCnt" parameterType="match" resultType="int">
+
+		SELECT NVL(count(1), 0) FROM
+		(
+		select LIST.*, ROWNUM AS RNUM
+		FROM (
+			select
+			board.mb_no,
+			m.m_id,
+			board.mb_type,
+			board.mb_name,
+			to_char(mb_m_date, 'YYYY-MM-DD') as mb_m_date,
+			m.m_name,
+			to_char(mb_regdate, 'YYYY-MM-DD') as mb_regdate,
+			board.mb_progress
+			FROM
+			match_board board, member m
+			where board.m_id = m.m_id 
+			<if test="keyword != null">
+      			and m.m_name LIKE '%' || #{keyword} || '%' 
+     		 </if>
+		) LIST
+		)
+
+	</select>
+
+
+	<!-- 상세보기 쿼리문 -->
+	<select id="matchView" parameterType="int" resultType="match">
+		select
+		board.mb_no,
+		m.m_id,
+		m.m_name,
+		board.mb_type,
+		board.mb_name,
+		board.mb_address,
+		board.mb_stadium,
+		to_char(mb_m_date, 'YYYY-MM-DD') as
+		mb_m_date,
+		board.mb_time,
+		board.mb_uniform,
+		board.mb_level,
+		m.m_phone,
+		board.mb_progress,
+		board.mb_etc
+		FROM match_board board, member m
+		where
+		board.m_id = m.m_id
+		and board.mb_no = #{mb_no}
+	</select>
+
+	<!-- 게시물 등록 쿼리문 -->
+	<insert id="matchInsert" parameterType="match">
+		<selectKey keyProperty="mb_no" resultType="int"
+			order="BEFORE">
+			select match_board_seq.nextval from dual
+		</selectKey>
+		INSERT INTO match_board
+		(mb_no, m_id, mb_name, mb_address, mb_m_date,
+		mb_time, mb_type,
+		mb_stadium, mb_uniform, mb_level, mb_progress,
+		mb_etc, mb_regdate, mb_status)
+		values
+		(match_board_seq.nextval, #{m_id},
+		#{mb_name}, #{mb_address}, to_date(#{mb_m_date},
+		'yyyy-MM-dd'),
+		#{mb_time},
+		#{mb_type}, #{mb_stadium}, #{mb_uniform}, #{mb_level}, 1,
+		#{mb_etc}, SYSDATE, 1)
+	</insert>
+
+	<!-- 게시물 수정 쿼리문 -->
+	<update id="matchUpdate" parameterType="match">
+		UPDATE
+		match_board
+		SET
+		mb_name = #{mb_name},
+		mb_address = #{mb_address},
+		mb_m_date =
+		to_date(#{mb_m_date}, 'yyyy-MM-dd'),
+		mb_time = #{mb_time},
+		mb_type =
+		#{mb_type},
+		mb_stadium = #{mb_stadium},
+		mb_uniform = #{mb_uniform},
+		mb_level = #{mb_level},
+		mb_progress = #{mb_progress},
+		mb_etc = #{mb_etc}
+		where mb_no = #{mb_no}
+	</update>
+	
+	<update id="updateMbdate">
+	UPDATE
+	match_board
+	SET
+	mb_progress = 0
+	where to_char(mb_m_date, 'yyyy-MM-dd') <![CDATA[ < ]]> to_char(sysdate, 'yyyy-MM-dd') and mb_progress = 1
+	</update>
+
+
+</mapper>
