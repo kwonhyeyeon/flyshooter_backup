@@ -60,9 +60,6 @@ public class StadiumController {
 	public String stadiumList(Model model, @RequestParam(value = "p_num") String p_num) {
 		System.out.println("stadiumList 호출 성공");
 		List<StadiumVO> Slist = stadiumService.stadiumList(p_num);
-		for (int i = 0; i < Slist.size(); i++) {
-			System.out.println(Slist.get(i).getS_no()+"asdf");
-		}
 		List<ItemsVO> Ilist = itemsService.itemsList(p_num);
 		return MakeList.makeList(Slist, Ilist, p_num);
 

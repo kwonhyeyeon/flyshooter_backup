@@ -1,5 +1,7 @@
 package com.fly.member.join.dao;
 
+import java.util.List;
+
 import com.fly.member.join.vo.MemberVO;
 
 public interface MemberDao {
@@ -21,9 +23,9 @@ public interface MemberDao {
 
 	public int alter_userKey(MemberVO mvo);
 
-	public MemberVO memberidserchC(MemberVO mvo);
+	public List<MemberVO> memberidserchC(MemberVO mvo);
 
-	public MemberVO memberidserchU(MemberVO mvo);
+	public List<MemberVO> memberidserchU(MemberVO mvo);
 
 	public int pwUpdate(MemberVO mvo);
 
