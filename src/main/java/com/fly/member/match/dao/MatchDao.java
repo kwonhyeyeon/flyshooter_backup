@@ -18,4 +18,11 @@ public interface MatchDao {
 	public int matchUpdate(MatchVO mavo); // 글 수정 구현
 
 	public int updateMbdate(MatchVO mavo); // 신청여부 변경
+	
+	public int matchStatusUpdate(MatchVO mavo); // 글 삭제 구현
+	
+	public List<MatchVO> adminMatchList(MatchVO mavo); // 관리자용 글목록 구현
+	
+	public int adminMatchListCnt(MatchVO mavo); // 관리자용  글 목록 페이지 구현
+
 }

@@ -7,14 +7,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>용병지원 수정</title>
 
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script src="/resources/js/boardCheck.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
-<link rel="stylesheet" type="text/css"
-	href="/resources/js/jquery-ui.min.css" />
+<link rel="stylesheet" href="/resources/css/board.css" />
+<link rel="stylesheet" type="text/css" href="/resources/js/jquery-ui.min.css" />
+
 <script src="/resources/js/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
@@ -22,7 +23,9 @@
 	$(function() {
 		// 달력으로 날짜 선택할 수 있는 스크립트 ---------------------
 		var hs_date = $("#hs_date").datepicker({
-			dateFormat : 'yy-mm-dd'
+			dateFormat : 'yy-mm-dd',
+			buttonImage: "/application/db/jquery/images/calendar.gif",
+			buttonImageOnly: true
 		});
 		//-------------------------------------------------
 		
@@ -52,7 +55,7 @@
 		//------------------------------------------------------------
 
 		// 수정하기 버튼 이벤트 -------------------------------
-		$("#supportUpdateBtn").click(
+		$("#updateDataBtn").click(
 				function() {
 					
 					// 입력값 체크
@@ -76,7 +79,7 @@
 				});
 		
 		// 취소 버튼 클릭 시 새로고침
-		$("#supportUpdateCancel").click(function() {
+		$("#cancel").click(function() {
 			location.href = "/support/supportList.do";
 		});
 	});
@@ -159,19 +162,19 @@
 		</div>
 	</div>
 
-	<div>
-		<div>
+	<div id="updateData" style="width: 1200px;">
+		<div id="updateTitle">
 			<h2>용병지원(수정)</h2>
 		</div>
 
 		<form id="supportUpdateData" name="supportUpdateData">
 			<input type="hidden" id="hs_no" name="hs_no"
 				value="${updateSupportData.hs_no}" />
-			<table id="supportUpdateTable">
-				<colgroup>
-					<col width="50%" />
-					<col width="50%" />
-				</colgroup>
+			<table class="updateTable">
+				<!--<colgroup>
+						<col width="50%" />
+						<col width="50%" />
+					</colgroup> -->
 
 				<tbody>
 					<tr>
@@ -194,7 +197,7 @@
 						
 						<td><label>가능시간<br /> <input type="text"
 								name="hs_date" id="hs_date"
-								value="${updateSupportData.hs_date}" style="width: 50%;"> 
+								value="${updateSupportData.hs_date}" > 
 								<input type="text" name="hs_time" id="hs_time"
 								style="width: 45%" value="${updateSupportData.hs_time}">
 						</label></td>
@@ -202,17 +205,17 @@
 
 					<tr>
 
-						<td><label>팀 수준</label><br />
-						<select name="hs_level" id="hs_level" style="width: 100%;">
+						<td><label>팀 수준<br />
+						<select name="hs_level" id="hs_level" >
 								<option value="" selected="selected">팀 수준 선택</option>
 								<option value="2">상</option>
 								<option value="1">중</option>
 								<option value="0">하</option>
-						</select></td>
+						</select></label></td>
 						
 						<td>
-							<label>인원 수</label><br />
-							<select name="hs_people" id="hs_people" style="width: 100%;">
+							<label>인원 수<br />
+							<select name="hs_people" id="hs_people">
 								<option value="" selected="selected">모집 인원 선택</option>
 								<option value="1">1명</option>
 								<option value="2">2명</option>
@@ -224,24 +227,23 @@
 								<option value="8">8명</option>
 								<option value="9">9명</option>
 								<option value="10">10명</option>
-							</select>
+							</select></label>
 						</td>
 					</tr>
 
 					<tr>
 						
-						<td><label>진행 상태</label><br /> <select name="hs_progress"
-							id="hs_progress" style="width: 100%;">
+						<td><label>진행 상태<br /> <select name="hs_progress"
+							id="hs_progress" >
 								<option value="" selected="selected">진행 상태 선택</option>
 								<option value="-1">마감</option>
 								<option value="1">가능</option>
-						</select></td>
+						</select></label></td>
 					</tr>
 
 					<tr>
 						<td colspan="2"><label>비고<br /> <input type="text"
-								name="hs_etc" id="hs_etc" style="width: 100%; height: 60px;"
-								value="${updateSupportData.hs_etc}">
+								name="hs_etc" id="hs_etc" value="${updateSupportData.hs_etc}">
 						</label></td>
 					</tr>
 				</tbody>
@@ -249,10 +251,10 @@
 
 		</form>
 
-		<div class="sUpdateBtn">
-			<input type="button" value="수정하기" id="supportUpdateBtn"
-				name="supportUpdateBtn"> <input type="button" value="취소하기"
-				id="supportUpdateCancel" name="supportUpdateCancel">
+		<div class="updateDataButton">
+			<input type="button" value="수정하기" id="updateDataBtn"
+				name="updateDataBtn"> <input type="button" value="취소하기"
+				id="cancel" name="cancel">
 		</div>
 
 	</div>

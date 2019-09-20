@@ -7,23 +7,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>용병 모집 수정</title>
 
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script src="/resources/js/boardCheck.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
-<link rel="stylesheet" type="text/css"
-	href="/resources/js/jquery-ui.min.css" />
+<link rel="stylesheet" href="/resources/css/board.css" />
+<link rel="stylesheet" type="text/css" href="/resources/js/jquery-ui.min.css" />
+
 <script src="/resources/js/jquery-ui.min.js"></script>
-<script src="/resources/js/recruit.js"></script>
 
 <script type="text/javascript">
 	
 	$(function() {
 		// 달력으로 날짜 선택할 수 있는 스크립트 ---------------------
 		var hr_m_date = $("#hr_m_date").datepicker({
-			dateFormat : 'yy-mm-dd'
+			dateFormat : 'yy-mm-dd',
+			buttonImage: "/application/db/jquery/images/calendar.gif",
+			buttonImageOnly: true
 		});
 		//-------------------------------------------------
 		
@@ -54,7 +56,7 @@
 		//------------------------------------------------------------
 
 		// 수정하기 버튼 이벤트 -------------------------------
-		$("#recruitUpdateBtn").click(
+		$("#updateDataBtn").click(
 				function() {
 					
 					// 입력값 체크
@@ -86,7 +88,7 @@
 				});
 		
 		// 취소 버튼 클릭 시 새로고침
-		$("#recruitUpdateCancel").click(function() {
+		$("#cancel").click(function() {
 			location.href = "/recruit/recruitList.do";
 		});
 	});
@@ -169,19 +171,19 @@
 		</div>
 	</div>
 
-	<div>
-		<div>
-			<h2>매치신청(수정)</h2>
+	<div id="updateData" style="width: 1200px;">
+		<div id="updateTitle">
+			<h2>용병모집(수정)</h2>
 		</div>
 
 		<form id="recruitUpdateData" name="recruitUpdateData">
 			<input type="hidden" id="hr_no" name="hr_no"
 				value="${updateRecruitData.hr_no}" />
-			<table id="recruitUpdateTable">
-				<colgroup>
-					<col width="50%" />
-					<col width="50%" />
-				</colgroup>
+			<table class="updateTable">
+			<!--<colgroup>
+						<col width="50%" />
+						<col width="50%" />
+					</colgroup> -->
 
 				<tbody>
 					<tr>
@@ -190,7 +192,7 @@
 						</label></td>
 
 						<td><label>구장명<br /> <input type="text"
-								name="hr_name" id="hr_name" size="50"
+								name="hr_name" id="hr_name" 
 								value="${updateRecruitData.hr_name}">
 						</label></td>
 					</tr>
@@ -202,9 +204,8 @@
 							<input type="text" name="m_phone3" id="m_phone3" disabled />
 						</label></td>
 
-						<td rowspan="2"><label>구장주소<br />
+						<td><label>구장주소<br />
 								<input type="text" name="hr_address" id="hr_address"
-								style="width: 100%; height: 65px;"
 								value="${updateRecruitData.hr_address}">
 						</label></td>
 					</tr>
@@ -212,45 +213,42 @@
 					<tr>
 						<td><label>매치일자<br /> <input type="text"
 								name="hr_m_date" id="hr_m_date"
-								value="${updateRecruitData.hr_m_date}" style="width: 50%;">
-								<input type="text" name="hr_time" id="hr_time"
-								style="width: 45%" value="${updateRecruitData.hr_time}">
+								value="${updateRecruitData.hr_m_date}" >
+								<input type="text" name="hr_time" id="hr_time" value="${updateRecruitData.hr_time}">
 						</label></td>
-					</tr>
-
-					<tr>
-						<td><label>매치형태</label><br /> <select name="hr_m_type"
-							id="hr_m_type" style="width: 100%;">
-								<option value="" selected="selected">매치형태 선택</option>
-								<option value="5vs5">5vs5</option>
-								<option value="6vs6">6vs6</option>
-						</select></td>
-
+						
 						<td><label>경기장<br /> <input type="text"
-								name="hr_stadium" id="hr_stadium" size="50"
+								name="hr_stadium" id="hr_stadium" 
 								value="${updateRecruitData.hr_stadium}">
 						</label></td>
 					</tr>
 
 					<tr>
+						<td><label>매치형태<br /> <select name="hr_m_type"
+							id="hr_m_type">
+								<option value="" selected="selected">매치형태 선택</option>
+								<option value="5vs5">5vs5</option>
+								<option value="6vs6">6vs6</option>
+						</select></label></td>
+						
 						<td><label>유니폼<br /> <input type="text"
-								name="hr_nuiform" id="hr_nuiform" size="50"
+								name="hr_nuiform" id="hr_nuiform" 
 								value="${updateRecruitData.hr_nuiform}">
 						</label></td>
+					</tr>
 
-						<td><label>팀 수준</label><br />
-						<select name="hr_level" id="hr_level" style="width: 100%;">
+					<tr>
+						<td><label>팀 수준<br />
+						<select name="hr_level" id="hr_level" >
 								<option value="" selected="selected">팀 수준 선택</option>
 								<option value="2">상</option>
 								<option value="1">중</option>
 								<option value="0">하</option>
-						</select></td>
-					</tr>
-
-					<tr>
+						</select></label></td>
+						
 						<td>
-							<label>모집인원</label><br />
-							<select name="hr_people" id="hr_people" style="width: 100%;">
+							<label>모집인원<br />
+							<select name="hr_people" id="hr_people" >
 								<option value="" selected="selected">모집 인원 선택</option>
 								<option value="1">1명</option>
 								<option value="2">2명</option>
@@ -262,21 +260,22 @@
 								<option value="8">8명</option>
 								<option value="9">9명</option>
 								<option value="10">10명</option>
-							</select>
+							</select></label>
 						</td>
-						
-						<td><label>진행 상태</label><br /> <select name="hr_progress"
-							id="hr_progress" style="width: 100%;">
+					</tr>
+
+					<tr>
+						<td><label>진행 상태<br /> <select name="hr_progress"
+							id="hr_progress" >
 								<option value="" selected="selected">진행 상태 선택</option>
 								<option value="-1">마감</option>
 								<option value="1">가능</option>
-						</select></td>
+						</select></label></td>
 					</tr>
 
 					<tr>
 						<td colspan="2"><label>비고<br /> <input type="text"
-								name="hr_etc" id="hr_etc" style="width: 100%; height: 60px;"
-								value="${updateRecruitData.hr_etc}">
+								name="hr_etc" id="hr_etc" value="${updateRecruitData.hr_etc}">
 						</label></td>
 					</tr>
 				</tbody>
@@ -284,10 +283,10 @@
 
 		</form>
 
-		<div class="rUpdateBtn">
-			<input type="button" value="수정하기" id="recruitUpdateBtn"
-				name="recruitUpdateBtn"> <input type="button" value="취소하기"
-				id="recruitUpdateCancel" name="recruitUpdateCancel">
+		<div class="updateDataButton">
+			<input type="button" value="수정하기" id="updateDataBtn"
+				name="updateDataBtn"> <input type="button" value="취소하기"
+				id="cancel" name="cancel">
 		</div>
 
 	</div>

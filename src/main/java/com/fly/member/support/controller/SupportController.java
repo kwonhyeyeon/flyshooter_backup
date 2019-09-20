@@ -36,6 +36,8 @@ public class SupportController {
 	public String supportList(@ModelAttribute SupportVO svo, CommonVO cvo, Model model) {
 		System.out.println("supportList 호출 성공");
 		
+		String result = "";
+		
 		// 일자가 지났을 경우 진행상황 변경
 		supportService.supportMbdate(svo);
 		model.addAttribute("supportMbdate", svo);
@@ -143,7 +145,7 @@ public class SupportController {
 		result = supportService.supportUpdate(svo);
 
 		if (result == 1) {
-			url = "/support/supportView.do?hs_no=" + svo.getHs_no();
+			url = "/support/supportList.do?hs_no=" + svo.getHs_no();
 		} else {
 			url = "/support/supportUpdateForm.do?hs_no=" + svo.getHs_no();
 		}

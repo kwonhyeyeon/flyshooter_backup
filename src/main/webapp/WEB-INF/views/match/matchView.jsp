@@ -8,8 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>매치신청 상세보기</title>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
+<link rel="stylesheet" href="/resources/css/board.css">
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
 	// 수정 페이지 이동  스크립트
@@ -20,7 +22,7 @@
 		var id = "";
 		id += $("#m_id").val();
 		
-		$(document).on('click', '#matchUpdateBtn', function() {
+		$(document).on('click', '#updateBtn', function() {
 			if (id != "" && id == boardID) {
 				var url = "${pagecontext.request.contextpath}/match/matchUpdateForm.do";
 				url = url + "?mb_no=" + ${matchView.mb_no};
@@ -42,89 +44,16 @@
 </head>
 <body>
 
-
-	<div id="header-wrap">
-		<header id="header">
-			<h1>
-				<a href="/">FLY SHOOTER</a>
-			</h1>
-
-			<nav id="gnb">
-				<ul>
-					<li><a href="/">대관</a></li>
-					<li><a href="/match/matchList.do">매치</a></li>
-					<li><a href="/support/supportList.do">용병</a></li>
-					<li><a href="/member/mypage/modifyLogin.do">마이페이지</a></li>
-				</ul>
-			</nav>
-
-			<nav id="lnb">
-				<ul>
-					<c:if test="${empty m_id}">
-						<li><a href="/member/join.do">회원가입</a></li>
-						<li><a href="/member/login.do">로그인</a></li>
-					</c:if>
-					<c:if test="${not empty m_id}">
-						<li><a href="/member/logout.do">로그아웃</a></li>
-					</c:if>
-				</ul>
-			</nav>
-		</header>
-
-		<div class="menu-wrap">
-			<div class="menu">
-				<c:if test="${empty m_id || m_type=='1'}">
-					<ul>
-						<li><a href="/user/rental/location.do">대관 예약</a></li>
-						<li><a href="/">대관 확인</a></li>
-					</ul>
-					<ul>
-						<li><a href="/match/matchList.do">매치 신청</a></li>
-					</ul>
-					<ul>
-						<li><a href="/support/supportList.do">용병 지원</a></li>
-						<li><a href="/recruit/recruitList.do">용병 모집</a></li>
-					</ul>
-					<ul>
-						<li><a href="/member/mypage/modifyLogin.do">회원 정보 수정</a></li>
-					</ul>
-				</c:if>
-
-				<c:if test="${m_type=='0'}">
-					<ul class="member-menu">
-						<li><a href="/client/rental/rentalList.do">대관 예약 현황</a></li>
-						<li><a href="/">대관 환불 현황</a></li>
-						<li><a href="/">오프라인 대관 관리</a></li>
-					</ul>
-					<ul>
-						<li><a href="/match/matchList.do">매치 신청</a></li>
-					</ul>
-					<ul>
-						<li><a href="/support/supportList.do">용병 지원</a></li>
-						<li><a href="/recruit/recruitList.do">용병 모집</a></li>
-					</ul>
-					<ul>
-						<li><a href="/member/mypage/modifyLogin.do">회원 정보 수정</a></li>
-						<li><a href="/mypage/placeList.do">구장</a></li>
-						<li><a href="/">경기장/용품</a></li>
-						<li><a href="/">정산 관리</a></li>
-						<li><a href="/">통계</a></li>
-					</ul>
-				</c:if>
-			</div>
-		</div>
-	</div>
-
-	<div id="matchModalDialog" class="matchModal" role="dialog">
-		<div>
+	<div id="modaldialog" class="modaldialog" role="dialog">
+		<div id="viewTitle">
 			<h2>매치신청 상세보기</h2>
 		</div>
 		
 		<div>
-			<input type="hidden" name="m_id" id="m_id" value="${m_id}">
+			<input type="hidden" name="m_id" id="m_id" value="${mvo.m_id}">
 		</div>
 
-		<div class="matchContentView">
+		<div class="contentView">
 			<table border="1">
 				<colgroup>
 					<col width="20%" />
@@ -158,7 +87,7 @@
 					<tr>
 						<th>유니폼</th>
 						<td>
-						<span class="statusText"> <c:choose>
+						<span> <c:choose>
 									<c:when test="${matchView.mb_uniform == null}"></c:when>
 									<c:when test="${matchView.mb_uniform != null}">${matchView.mb_uniform}</c:when>
 								</c:choose>
@@ -166,7 +95,7 @@
 						</td>
 						
 						<th>팀 수준</th>
-						<td><span class="statusText"> <c:choose>
+						<td><span> <c:choose>
 									<c:when test="${matchView.mb_level == '2'}">상</c:when>
 									<c:when test="${matchView.mb_level == '1'}">중</c:when>
 									<c:when test="${matchView.mb_level == '0'}">하</c:when>
@@ -183,7 +112,7 @@
 							</c:choose>
 						</td>
 						<th>신청여부</th>
-						<td><span class="matchStatus"> 
+						<td><span class="statusView"> 
 								<c:choose>
 									<c:when test="${matchView.mb_progress == '1'}">가능</c:when>
 									<c:when test="${matchView.mb_progress == '0'}">종료</c:when>
@@ -197,10 +126,9 @@
 				</tbody>
 			</table>
 
-			<div class="mUpdateBtn">
-				<input type="button" value="수정하기" name="matchUpdateBtn"
-					id="matchUpdateBtn" width="100px" height="40px">
-				<input type="button" value="돌아가기" name="returnBtn" id="returnBtn" width="100px" height="40px">
+			<div class="updateButton">
+				<input type="button" value="수정하기" name="updateBtn" id="updateBtn">
+				<input type="button" value="목록" name="returnBtn" id="returnBtn">
 			</div>
 
 		</div>
