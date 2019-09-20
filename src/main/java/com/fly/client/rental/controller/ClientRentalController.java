@@ -137,7 +137,7 @@ public class ClientRentalController {
 	public String showDetail(@ModelAttribute RentalVO rvo) {
 		
 		System.out.println(rvo.toString());
-		List<ItemsRentalVO> itemsList = ItemsRentalService.getItemsRentalList(rvo.getR_no());
+		//List<ItemsRentalVO> itemsList = ItemsRentalService.getItemsRentalList(rvo.getR_no());
 		StringBuffer result = new StringBuffer();
 		
 		result.append("<p>대관정보</p>");
