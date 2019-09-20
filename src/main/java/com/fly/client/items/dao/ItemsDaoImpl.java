@@ -26,4 +26,28 @@ public class ItemsDaoImpl implements ItemsDao {
 		return sqlSession.selectList(NAME_SPACE + ".itemsList", p_num);
 	}
 
+	@Override
+	public int itemDelete(String i_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(NAME_SPACE + ".itemDelete", i_no);
+	}
+
+	@Override
+	public int itemActive(String i_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(NAME_SPACE + ".itemActive", i_no);
+	}
+	
+	@Override
+	public int itemUnActive(String i_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(NAME_SPACE + ".itemUnActive", i_no);
+	}
+
+	@Override
+	public void itemInsert(ItemsVO ivo) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(NAME_SPACE + ".itemInsert", ivo);
+	}
+
 }

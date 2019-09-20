@@ -6,54 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>경기장/구장 페이지</title>
+<link rel="stylesheet" href="/resources/css/toggle.css" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
 <script type="text/javascript" src="/resources/js/stadiumList.js"></script>
-<script>
-	$(document).ready(function() {
-		//페이지 로드..
-		$(".tab_content").hide();//content 모두 숨김
-		$("ul.tabs li:first").addClass("active").show();
-		$(".tab_content:first").show();
-
-		$("ul.tabs li").click(function() {
-			$("ul.tabs li").removeClass("active");
-			$(this).addClass("active");
-			$(".tab_content").hide();
-
-			activeTab = $(this).find("a").attr("href");
-			$(activeTab).fadeIn();
-			return false;
-		});
-		$("#placeChoice").change(function() {
-
-			if ($("#placeChoice").val() != '선택') {
-				var p_num = $("#placeChoice").val();
-				$("#p_num").val(p_num);
-				var query = {
-					p_num : $("#placeChoice").val()
-				};
-
-				$.ajax({
-					url : "/mypage/stadiumList.do",
-					type : "get",
-					data : query,
-					error : function() {
-						alert('사이트 접속에 문제로 정상 작동하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
-					},
-					success : function(resultData) {
-						$("#List").text("");
-						$("#List").append(resultData);
-					}
-				});
-			} else {
-				$("#List").text("구장을 선택해주세요");
-			}
-		});
-		$(document).on("click", "#placeInsert", function() {
-			location.href = "/mypage/placecheck.do";
-		});
-	});
-</script>
 </head>
 <body>
 	<div id="wrapper">
@@ -87,6 +44,13 @@
 				<!-- Content -->
 				<p>구장을 선택해주세요</p>
 			</div>
+		</div>
+		<div id="dialog" title="결제창" style="display: none">
+	      <form id="itemInsertForm">
+	      	<input type="hidden" id="modalP_num" name="p_num"/>
+	        <label>용품 명<input type="text" id="modalI_name" name="i_name" /></label><br />
+	        <label>가 격<input type="text" id="modalI_rental_fee" name="i_rental_fee" /></label>
+	      </form>   
 		</div>
 	</div>
 </body>

@@ -1,5 +1,7 @@
 package com.fly.member.stadium.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fly.member.place.vo.PlaceVO;
 
 public class StadiumVO extends PlaceVO {
@@ -11,17 +13,32 @@ public class StadiumVO extends PlaceVO {
 	private int s_d_fee_w;
 	private int s_n_fee_w;
 	private int s_people;
-	private String s_img1;
-	private String s_img2;
-	private String s_img3;
+	private MultipartFile mfile;//첨부파일
+	private String s_img1 = ""; // 경기장 이미지1
+	private String s_img2 = ""; // 경기장 이미지2
+	private String s_img3 = "";	// 경기장 이미지3
 	private int s_in_out;
 	private int s_status;
 	private int s_hours;
 	private String s_regdate;
+	
 
+	
 	public StadiumVO() {
 		super();
 	}
+
+	
+	
+	public MultipartFile getMfile() {
+		return mfile;
+	}
+
+	public void setMfile(MultipartFile mfile) {
+		this.mfile = mfile;
+	}
+
+
 
 	public int getS_no() {
 		return s_no;

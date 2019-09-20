@@ -1,5 +1,7 @@
 package com.fly.member.join.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -130,9 +132,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberVO memberidserch(MemberVO mvo) {
+	public List<MemberVO> memberidserch(MemberVO mvo) {
 		// TODO Auto-generated method stub
-		MemberVO idserch = null;
+		List<MemberVO> idserch = null;
 		if (mvo.getM_type() == 1) {
 			idserch = memberDao.memberidserchU(mvo);
 		} else {

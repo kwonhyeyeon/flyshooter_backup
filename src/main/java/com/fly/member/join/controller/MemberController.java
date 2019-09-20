@@ -1,5 +1,7 @@
 package com.fly.member.join.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -109,12 +111,14 @@ public class MemberController {
 	public ModelAndView idSerch(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) {
 		System.out.println("serchId.do post 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
-		MemberVO result = memberService.memberidserch(mvo);
-		if (result.getM_id().equals("")) {
+		List<MemberVO> result = memberService.memberidserch(mvo);
+		if (result.get(0).getM_id().equals("")) {
 			mav.addObject("errCode", 1); 
 			mav.setViewName("member/serchMember");
 		}
-		mav.addObject("m_id", result.getM_id());
+		for (int i = 0; i < result.size(); i++) {
+			mav.addObject("m_id", result.get(i).getM_id());
+		}
 		mav.setViewName("member/serchId");
 		return mav;
 	}

@@ -2,6 +2,8 @@ package com.fly.member.join.service;
 
 import com.fly.member.join.vo.MemberVO;
 
+import java.util.List;
+
 public interface MemberService {
 	public int memberJoin(MemberVO mvo);
 
@@ -15,7 +17,7 @@ public interface MemberService {
 
 	public int userIdConfirm(String userId);
 
-	public MemberVO memberidserch(MemberVO mvo);
+	public List<MemberVO> memberidserch(MemberVO mvo);
 
 	public int pwUpdate(MemberVO mvo);
 
