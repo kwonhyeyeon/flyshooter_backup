@@ -7,22 +7,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>매치신청 등록</title>
+<title>용병 모집 등록</title>
 
 <script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="/resources/js/boardCheck.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
-<link rel="stylesheet" type="text/css"
-	href="/resources/js/jquery-ui.min.css" />
+<link rel="stylesheet" href="/resources/css/board.css">
+<link rel="stylesheet" type="text/css" href="/resources/js/jquery-ui.min.css" />
+
 <script src="/resources/js/jquery-ui.min.js"></script>
-<script src="/resources/js/boardCheck.js"></script>
 
 <script type="text/javascript">
 	// 매칭 게시글 저장 스크립트 Controller자바 /recruit/recruitInsert.do 로 연결-----------------
 	$(function() {
 		// 달력으로 날짜 선택할 수 있는 스크립트 ---------------------
 		var hr_m_date = $("#hr_m_date").datepicker({
-			dateFormat : 'yy-mm-dd'
+			dateFormat : 'yy-mm-dd',
+			buttonImage: "/application/db/jquery/images/calendar.gif",
+			buttonImageOnly: true
 		});
 		hr_m_date.datepicker('setDate', new Date());
 		//-------------------------------------------------
@@ -50,7 +53,7 @@
 		//-------------------------------------------------
 		
 		// 등록버튼 클릭시 이벤트 스크립트
-		$("#recruitInsertBtn").click(
+		$("#insertDataBtn").click(
 				function() {
 
 					// 유니폼(상의, 하의, 스타킹) 합치는 스크립트-----------------------------------
@@ -99,7 +102,7 @@
 				});
 
 		// 취소 버튼 클릭시 목록 화면으로 돌아감
-		$("#recruitCancel").click(function() {
+		$("#cancel").click(function() {
 			location.href = "/recruit/recruitList.do";
 		});
 
@@ -187,22 +190,22 @@
 		</div>
 	</div>
 
-	<div>
-		<div>
-			<h2>매치신청</h2>
+	<div id="dataInsertPage" style="width: 1200px;">
+		<div id="insertTitle">
+			<h2>용병모집</h2>
 		</div>
 		<!-- 매치 신청 작성 -->
-		<div class="recruitContent">
+		<div class="insertContent">
 			<form id="recruitData" name="recruitData">
-				<input type="hidden" name="m_id" id="m_id" value="${m_id}">
+				<input type="hidden" name="m_id" id="m_id" value="${mvo.m_id}">
 				<input type="hidden" name="hr_progress" id="hr_progress" value="1">
 				<input type="hidden" name="hr_status" id="hr_status" value="1">
-				<table class="recruitInsertTable">
+				<table class="insertTable">
 					<!-- 입력칸 크기 설정 -->
-					<colgroup>
+					<!--<colgroup>
 						<col width="50%" />
 						<col width="50%" />
-					</colgroup>
+					</colgroup> -->
 					<!-- 매치 신청 작성 -->
 					<tbody>
 						<tr>
@@ -215,12 +218,12 @@
 
 						<tr>
 							<td>연락처<br /> 
-							<input type="text" name="m_phone1" id="m_phone1" disabled />
-							<input type="text" name="m_phone2" id="m_phone2" disabled />
-							<input type="text" name="m_phone3" id="m_phone3" disabled />
+								<input type="text" name="m_phone1" id="m_phone1" disabled />
+								<input type="text" name="m_phone2" id="m_phone2" disabled />
+								<input type="text" name="m_phone3" id="m_phone3" disabled />
 							</td>
 
-							<td rowspan="2">구장주소 <br />
+							<td>구장주소 <br />
 								<input type="text" name="hr_address" id="hr_address" />
 							</td>
 						</tr>
@@ -229,21 +232,22 @@
 							<td>매치일자<br /> <input type="text" name="hr_m_date"
 								id="hr_m_date" /> <input type="text" name="hr_time"
 								id="hr_time" placeholder="00:00 ~ 00:00" /></td>
+							
+							<td>경기장<br /> <input type="text" name="hr_stadium"
+								id="hr_stadium" />
+							</td>
+							
 						</tr>
 
 						<tr>
+							
 							<td>매치형태<br /> <select name="hr_m_type" id="hr_m_type">
 									<option value="" selected="selected">매치형태 선택</option>
 									<option value="5vs5">5vs5</option>
 									<option value="6vs6">6vs6</option>
 							</select>
 							</td>
-							<td>경기장<br /> <input type="text" name="hr_stadium"
-								id="hr_stadium" />
-							</td>
-						</tr>
-
-						<tr>
+							
 							<td>유니폼<br /> <input type="hidden" name="hr_nuiform"
 								id="hr_nuiform" /> <input type="text" name="hr_uniformTop"
 								id="hr_uniformTop" placeholder="상의" value="" /> <input
@@ -252,7 +256,9 @@
 								name="hr_uniformStarking" id="hr_uniformStarking"
 								placeholder="스타킹" value="" />
 							</td>
+						</tr>
 
+						<tr>
 							<td>팀 수준<br /> <select name="hr_level" id="hr_level">
 									<option value="" selected="selected">팀 수준 선택</option>
 									<option value="2">상</option>
@@ -260,11 +266,9 @@
 									<option value="0">하</option>
 							</select>
 							</td>
-						</tr>
-						
-						<tr>
+							
 							<td>모집인원<br/> 
-							<select name="hr_people" id="hr_people" style="width: 100%;">
+							<select name="hr_people" id="hr_people">
 								<option value="" selected="selected">모집 인원 선택</option>
 								<option value="1">1명</option>
 								<option value="2">2명</option>
@@ -279,7 +283,6 @@
 							</select>
 							</td>
 						</tr>
-
 						<tr>
 							<td colspan="2">비고<br /> <input type="text" name="hr_etc"
 								id="hr_etc" />
@@ -289,10 +292,10 @@
 				</table>
 			</form>
 		</div>
-		<div class="rInsertBtn">
-			<input type="button" value="등록하기" name="recruitInsertBtn"
-				id="recruitInsertBtn" /> <input type="button" value="취소하기"
-				name="recruitCancel" id="recruitCancel" />
+		<div class="insertData">
+			<input type="button" value="등록하기" name="insertDataBtn"
+				id="insertDataBtn" /> <input type="button" value="취소하기"
+				name="cancel" id="cancel" />
 		</div>
 	</div>
 </body>

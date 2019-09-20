@@ -52,6 +52,24 @@ public class MatchDaoImpl implements MatchDao {
 		// TODO Auto-generated method stub
 		return sqlSession.update("updateMbdate", mavo);
 	}
+	
+	// 글 삭제 구현
+	@Override
+	public int matchStatusUpdate(MatchVO mavo) {
+		return sqlSession.update("matchStatusUpdate", mavo);
+	}
+	
+	// 관리자용 글 목록 구현
+	@Override
+	public List<MatchVO> adminMatchList(MatchVO mavo) {
+		return sqlSession.selectList("adminMatchList", mavo);
+	}
+
+	// 관리자용 전체 레코드 건수 구현
+	@Override
+	public int adminMatchListCnt(MatchVO mavo) {
+		return (Integer)sqlSession.selectOne("adminMatchListCnt", mavo);
+	}
 
 
 

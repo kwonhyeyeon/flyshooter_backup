@@ -42,6 +42,8 @@ public class MatchController {
 		log.info("matchList 호출 성공");
 		System.out.println("matchList 호출 성공");
 		
+		String result = "";
+		
 		// 매치 일자가 현재날짜지 날 경우 신청여부를 종료로 바꾸는 메소드
 		matchService.updateMbdate(mavo);
 		model.addAttribute("updateMbdate", mavo);
@@ -156,7 +158,7 @@ public class MatchController {
 		result = matchService.matchUpdate(mavo);
 
 		if (result == 1) {
-			url = "/match/matchView.do?mb_no=" + mavo.getMb_no();
+			url = "/match/matchList.do?mb_no=" + mavo.getMb_no();
 		} else {
 			url = "/match/matchUpdateForm.do?mb_no=" + mavo.getMb_no();
 		}

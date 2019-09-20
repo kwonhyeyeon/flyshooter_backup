@@ -1,0 +1,581 @@
+@charset "UTF-8";
+
+/*-------------------게시판 리스트 css-------------- */
+
+div #title {
+	margin-left: 900px;
+	margin-top: 100px;
+}
+
+div #title h2 {
+	font-size: 40px;
+}
+
+div .insertBtn {
+	margin-left: 1350px;
+	margin-top: 60px;
+}
+
+div .insertBtn #insertButton {
+	width: 200px;
+	height: 50px;
+	background-color: #398387;
+	color: white;
+	font-size: 20px;
+	border-radius: 10px;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+}
+
+div .insertBtn #insertButton:hover {
+	background-color: #6c99b8;
+}
+
+
+
+div #listStart {
+	margin-left: 360px;
+	margin-top: 30px;
+}
+
+#tableHeader{
+	width: 120px;	
+	height: 50px;
+	border-top: 1px solid #408080;
+	border-bottom: 2px solid #004080;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 45px;
+}
+
+
+div #listSearch {
+	margin-top: 30px;
+	margin-left: 630px;
+}
+
+td #keyword {
+	width: 500px;
+	height: 40px;
+}
+
+#searchDataBtn {
+	width: 80px;
+	height: 45px;
+	background-color: #398387;
+	color: white;
+	font-size: 15px;
+	border-radius: 10px;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+}
+
+#allData {
+	width: 90px;
+	height: 45px;
+	background-color: #398387;
+	color: white;
+	font-size: 15px;
+	border-radius: 10px;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+}
+
+#searchDataBtn:hover {
+	background-color: #6c99b8;
+}
+
+#allData:hover {
+	background-color: #6c99b8;
+}
+
+.listContent tr td {
+	width: 120px;
+	height: 40px;
+	font-size: 20px;
+	text-align: center;
+	line-height: 35px; 
+	border-bottom: 1px solid #c0c0c0;
+}
+
+.lsitStatus {
+	font-size: 20px;
+}
+
+
+div #npage {
+	margin-top: 50px;
+	margin-left: 800px;
+	margin-bottom: 300px;
+}
+
+#firstPage {
+	width: 60px;
+	height: 40px;
+	background-color: #398387;
+	color: white;
+	font-size: 15px;
+	border-radius: 10px;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+}
+
+#prevPage {
+	width: 60px;
+	height: 40px;
+	background-color: #398387;
+	color: white;
+	font-size: 15px;
+	border-radius: 10px;
+	font-weight: bold;
+	margin-left: 10px;
+	border: none;
+	cursor: pointer;
+}
+
+.ontextAn {
+	font-size: 15px;
+	padding: 10px;
+}
+
+.textAn {
+	font-size: 15px;
+	padding: 10px;
+}
+
+#nextPage {
+	width: 60px;
+	height: 40px;
+	background-color: #398387;
+	color: white;
+	font-size: 15px;
+	border-radius: 10px;
+	font-weight: bold;
+	margin-right: 10px;
+	border: none;
+	cursor: pointer;
+}
+
+#lastPage {
+	width: 60px;
+	height: 40px;
+	background-color: #398387;
+	color: white;
+	font-size: 15px;
+	border-radius: 10px;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+}
+
+#firstPage:hover {
+	background-color: #6c99b8;
+}
+
+#prevPage:hover {
+	background-color: #6c99b8;
+}
+
+#nextPage:hover {
+	background-color: #6c99b8;
+}
+
+#lastPage:hover {
+	background-color: #6c99b8;
+}
+/* --------------------게시판 리스트 css 종료------------------ */
+
+/* --------------------게시판 리스트 상세보기 CSS -------------- */
+.modaldialog {
+	margin: 0 auto;
+	text-align: center;
+}
+
+#viewTitle {
+	margin-left: 80px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	font-size: 20px;
+}
+
+.contentView{
+	margin-left: 80px;
+	width: 400px;
+}
+
+#modaldialog table tr th {
+	width: 80px;	
+	height: 50px;
+	font-size: 15px;
+	line-height: 45px;
+	background: #408080;
+	color: white;
+	border: 1px solid #398387;
+}
+
+#modaldialog table tr td {
+	width: 80px;	
+	height: 50px;
+	font-size: 15px;
+	line-height: 45px;
+	text-align: center;
+	border: 1px solid #c0c0c0;
+}
+
+.updateButton {
+	margin-top : 10px;
+	margin-bottom: 15px;
+}
+
+#updateBtn {
+	width: 80px;
+	height: 50px;
+	color: white;
+	background: #408080;
+	border: none;
+	cursor: pointer;
+}
+
+#updateBtn:hover {
+	background-color: #6c99b8;
+}
+
+#returnBtn {
+	width: 80px;
+	height: 50px;
+	color: white;
+	background: #408080;
+	margin-left: 20px;
+	border: none;
+	cursor: pointer;
+}
+
+#returnBtn:hover {
+	background-color: #6c99b8;
+}
+
+/* --------------------게시판 리스트 상세보기 CSS 종료 ------------ */
+
+/* --------------- 글 등록 css ------------------- */
+
+
+/* ------------------- 게시판 등록 입력칸 위치/크기 설정 css ------------------*/
+
+#insertTitle {
+	margin-left: 900px;
+	margin-top: 100px;
+}
+
+#insertTitle h2 {
+	font-size: 40px;
+}
+
+.insertContent {
+	width: 1200px;
+	margin-top: 50px;
+	margin-left: 600px;
+}
+
+table#insertTable {
+	border-spacing: 10px;
+	border-collapse: separate;
+}
+
+.insertContent table tr td {
+	width: 400px;
+	height: 60px;
+	font-size: 20px;
+	line-height: 40px;
+}
+
+.insertContent table tr td input {
+	font-size: 15px;
+}
+
+#m_name {
+	width: 352px;
+	height: 30px;
+}
+
+#m_phone1 {
+	width: 110px;
+	height: 30px;
+}
+
+#m_phone2 {
+	width: 110px;
+	height: 30px;
+}
+
+#m_phone3 {
+	width: 110px;
+	height: 30px;
+}
+
+.insertData {
+	margin-top: 50px;
+	margin-left: 860px;
+}
+
+/* --------매치 신청 등록 페이지 입력칸 css -------------- */
+
+#mb_name {
+	width: 350px;
+	height: 30px;
+}
+
+#mb_address {
+	width: 350px;
+	height: 30px;
+}
+
+#mb_m_date {
+	width: 171px;
+	height: 30px;
+}
+
+#mb_time {
+	width: 171px;
+	height: 30px;
+}
+
+#mb_type {
+	width: 355px;
+	height: 35px;
+}
+
+#mb_level {
+	width: 355px;
+	height: 35px;
+}
+
+#mb_uniformTop {
+	width: 110px;
+	height: 30px;
+}
+
+#mb_uniformBottoms {
+	width: 110px;
+	height: 30px;
+}
+
+#mb_uniformStarking {
+	width: 110px;
+	height: 30px;
+}
+
+#mb_stadium {
+	width: 352px;
+	height: 30px;
+}
+
+#mb_etc {
+	width: 750px;
+	height: 60px;
+}
+
+/* --------매치 신청 등록 페이지 입력칸 css 종료---------- */
+
+/* --------용병모집 등록 페이지 입력칸 css -------------- */
+
+#hr_name {
+	width: 350px;
+	height: 30px;
+}
+
+#hr_address {
+	width: 350px;
+	height: 30px;
+}
+
+#hr_m_date {
+	width: 171px;
+	height: 30px;
+}
+
+#hr_time {
+	width: 171px;
+	height: 30px;
+}
+
+#hr_m_type {
+	width: 355px;
+	height: 35px;
+}
+
+#hr_level {
+	width: 355px;
+	height: 35px;
+}
+
+#hr_people {
+	width: 355px;
+	height: 35px;
+}
+
+#hr_uniformTop {
+	width: 110px;
+	height: 30px;
+}
+
+#hr_uniformBottoms {
+	width: 110px;
+	height: 30px;
+}
+
+#hr_uniformStarking {
+	width: 110px;
+	height: 30px;
+}
+
+#hr_stadium {
+	width: 350px;
+	height: 30px;
+}
+
+#hr_etc {
+	width: 750px;
+	height: 60px;
+}
+
+/* --------용병 모집 등록 페이지 입력칸 css 종료---------- */
+
+/* --------용병 지원 등록 페이지 입력칸 css ----------- */
+
+#hs_area {
+	width: 350px;
+	height: 30px;
+}
+
+#hs_date {
+	width: 171px;
+	height: 30px;
+}
+
+#hs_time {
+	width: 171px;
+	height: 30px;
+}
+
+#hs_level {
+	width: 355px;
+	height: 35px;
+}
+
+#hs_people {
+	width: 355px;
+	height: 35px;
+}
+
+#hs_etc {
+	width: 750px;
+	height: 60px;
+}
+
+/* --------용병 지원 등록 페이지 입력칸 css 종료---------- */
+
+
+
+#insertDataBtn {
+	width: 100px;
+	height: 60px;
+	border: none;
+	color: white;
+	background: #408080;
+	border: none;
+	cursor: pointer;
+	margin-right: 30px;
+}
+
+#cancel {
+	width: 100px;
+	height: 60px;
+	border: none;
+	color: white;
+	background: #408080;
+	border: none;
+	cursor: pointer;
+}
+
+/* ------------------- 게시판 등록 입력칸 위치/크기 설정 css 종료 ---------------*/
+
+/* --------------- 글 등록 css 종료---------------- */
+
+/* ----------------게시판 수정 입력칸 위치/크기 설정 css ----------------- */
+
+#updateTitle {
+	margin-left: 900px;
+	margin-top: 100px;
+}
+
+#updateTitle h2 {
+	font-size: 40px;
+}
+
+.updateTable {
+	border-spacing: 30px;
+	border-collapse: separate;
+	margin-top: 50px;
+	margin-left: 600px;
+}
+
+.updateTable tr td {
+	width: 400px;
+	height: 60px;
+	font-size: 20px;
+	line-height: 30px;
+}
+
+.updateTable tr td input {
+	font-size: 15px;
+}
+
+.updateDataButton {
+	margin-top: 30px;
+	margin-left: 890px;
+	margin-bottom: 50px;
+}
+
+#updateDataBtn {
+	width: 100px;
+	height: 60px;
+	border: none;
+	color: white;
+	background: #408080;
+	border: none;
+	cursor: pointer;
+	margin-right: 30px;
+}
+
+#mb_uniform {
+	width: 350px;
+	height: 30px;
+}
+
+#mb_progress {
+	width: 355px;
+	height: 35px;
+}
+
+#hr_nuiform {
+	width: 350px;
+	height: 30px;
+}
+
+#hr_progress {
+	width: 355px;
+	height: 35px;
+}
+
+#hs_progress {
+	width: 355px;
+	height: 35px;
+}
+
+/* ----------------게시판 수정 입력칸 위치/크기 설정 css 종료 -------------- */
+
+

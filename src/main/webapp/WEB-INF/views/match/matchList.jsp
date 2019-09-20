@@ -15,8 +15,7 @@
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
 <link rel="stylesheet" href="/resources/css/board.css">
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
@@ -49,22 +48,22 @@
 		});
 
 		// 전체 리스트 확인 버튼 클릭 시 처리 이벤트
-		$("#allMatchData").click(function() {
+		$("#allData").click(function() {
 			location.href = "/match/matchList.do"
 		});
 		
 		var id = "";
 		id += $("#m_id").val();
-
-		// 매치 신청 등록 버튼 클릭 시 등록 페이지로 이동
-		$("#matchInsertBtn").click(function() {
+		
+		// 매치 신청 등록 버튼 클릭 시 등록 페이지로 이동 (미 로그인 시 등록 불가) id 값이 없으면 500 에러
+		$("#insertButton").click(function() {
 			if (id != "") {
 				var url = "/match/matchInsertForm.do";
 				location.href = url;
-			} else {
+			}  else {
 				alert("로그인 후 등록 할 수 있습니다.")
 				return;
-			}
+			}  
 		});
 
 		var url = "/match/matchView.do";
@@ -72,14 +71,30 @@
 		// 리스트 클릭시 상세 보기 페이지로 이동
 		$(".mListView").click(function() {
 			var mb_no = $(this).parents("tr").attr("data-num");
-			$("#mb_no").val(mb_no);
-			// 상세 보기 폼 연결 스크립트
-			$("#matchViewForm").attr({
-				"method" : "get",
-				"action" : url
+			var data = $("#mb_no").val(mb_no);
+			$.ajax({
+				type : "get",
+				url : url,
+				data : data,
+				success: function(result) { 
+					$('#matchViewForm').text("");
+					$('#matchViewForm').show();
+					$('#matchViewForm').append(result);
+					$("#matchViewForm").dialog({
+						autoOpen:false,
+						width : "600px",
+						modal:true,
+						closeOnEscape: false,
+						open: function(event, ui) {
+							$(".ui-dialog-titlebar", $(this).parent()).hide();
+						}
+					});
+					
+					$("#matchViewForm").dialog("open");
+					
+				}
 			});
-			$("#matchViewForm").submit();
-		});
+		}); 
 
 	});
 	
@@ -179,7 +194,7 @@
 		</div>
 	</div>
 
-	<div id="modal" class="modal">
+	<div id="modal" class="modal" style="width: 1800px;">
 		<div id="title">
 			<h2>매치신청</h2>
 		</div>
@@ -190,18 +205,18 @@
 		<%-- 리스트 상세보기 --%>
 
 		<%-- 매치신청 등록--%>
-		<div class="matchBtn">
-			<input type="button" value="매치신청 등록" id="matchInsertBtn"
+		<div class="insertBtn">
+			<input type="button" value="매치신청 등록" id="insertButton"
 				width="100px" height="40px">
 		</div>
 		<%-- 매치신청 등록 종료 --%>
 
 		<%-- 로그인 아이디 --%>
-		<input type="hidden" id="m_id" name="m_id" value="${m_id}">
+		<input type="hidden" id="m_id" name="m_id" value="${mvo.m_id}">
 		<%-- 로그인 아이디 --%>
 
 		<%-- 리스트 시작 --%>
-		<div id="matchList">
+		<div id="listStart">
 			<table id="listContent" summary="게시판 리스트">
 				<colgroup>
 					<col width="10%" />
@@ -224,7 +239,7 @@
 					</tr>
 				</thead>
 				<!-- 데이터 출력 -->
-				<tbody class="matchListContent">
+				<tbody class="listContent">
 					<c:choose>
 						<c:when test="${not empty matchList}">
 							<c:forEach var="match" items="${matchList}" varStatus="status">
@@ -235,7 +250,7 @@
 									<td class="mListView">${match.mb_m_date}</td>
 									<td>${match.m_name}</td>
 									<td>${match.mb_regdate}</td>
-									<td class="mListProgress"><span class="matchStatus">
+									<td class="listProgress"><span class="lsitStatus">
 											<c:choose>
 												<c:when test="${match.mb_progress == '1'}">가능</c:when>
 												<c:when test="${match.mb_progress == '0'}">종료</c:when>
@@ -258,7 +273,7 @@
 
 		<%-- 검색기능 시작 --%>
 
-		<div id="matchSearch">
+		<div id="listSearch">
 			<form id="m_search" name="m_search">
 				<input type="hidden" id="page" name="page" value="${data.page}" />
 				<table summary="검색">
@@ -266,7 +281,7 @@
 						<td id="btd1"><input type="text" name="keyword" id="keyword"
 							placeholder="작성자 이름을 입력하세요" /> <input type="button" value="검색"
 							id="searchDataBtn" name="searchDataBtn" /> <input type="button"
-							value="전체리스트" id="allMatchData" name="allMatchData" /></td>
+							value="전체리스트" id="allData" name="allData" /></td>
 					</tr>
 				</table>
 			</form>
@@ -275,7 +290,7 @@
 		<%-- 검색기능 종료--%>
 
 		<%-- 페이지 네비게이션 시작 --%>
-		<div id="matchPage">
+		<div id="npage">
 			<tag:paging page="${data.page}" total="${total}"
 				list_size="${data.pageSize}" />
 		</div>

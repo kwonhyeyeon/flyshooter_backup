@@ -49,5 +49,23 @@ public class RecruitDaoImpl implements RecruitDao {
 	public int recruitMbdate(RecruitVO revo) {
 		return sqlSession.update("recruitMbdate", revo);
 	}
+	
+	// 글 삭제 구현
+	@Override
+	public int recruitStatusUpdate(RecruitVO revo) {
+		return sqlSession.update("recruitStatusUpdate", revo);
+	}
+
+	// 관리자용 글 목록 구현
+	@Override
+	public List<RecruitVO> adminRecruitList(RecruitVO revo) {
+		return sqlSession.selectList("adminRecruitList", revo);
+	}
+	
+	// 관리자용 전체 레코드 건수 구현
+	@Override
+	public int adminRecruitListCnt(RecruitVO revo) {
+		return (Integer)sqlSession.selectOne("adminRecruitListCnt", revo);
+	}
 
 }
