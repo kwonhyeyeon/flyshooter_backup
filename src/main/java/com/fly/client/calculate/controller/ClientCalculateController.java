@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fly.client.calculate.service.ClientCalculateService;
 import com.fly.client.calculate.vo.CalculateVO;
 import com.fly.client.place.service.ClientPlaceService;
+import com.fly.client.rental.service.ClientRentalService;
 import com.fly.member.join.vo.MemberVO;
 import com.fly.member.place.vo.PlaceVO;
 
@@ -31,6 +32,9 @@ public class ClientCalculateController {
 	@Autowired
 	private ClientPlaceService placeService;
 
+	@Resource(name = "clientRentalService")
+	private ClientRentalService clientRentalService;
+	
 	@Autowired
 	HttpServletRequest request;
 
@@ -66,7 +70,7 @@ public class ClientCalculateController {
 		System.out.println("calculateInsert 호출 성공");
 		CalculateVO cvo = new CalculateVO();
 		
-		
+		//clientRentalService.getRentalList();
 		cvo.setP_num(p_num);
 		cvo.setC_payment(1);
 		cvo.setC_rental_cnt(1);

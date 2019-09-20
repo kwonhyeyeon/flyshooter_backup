@@ -9,21 +9,23 @@ import org.springframework.stereotype.Repository;
 import com.fly.client.calculate.vo.CalculateVO;
 
 @Repository("calculateDao")
-public class ClientCalculateDaoImpl implements ClientCalculateDao{
+public class ClientCalculateDaoImpl implements ClientCalculateDao {
 
 	@Autowired
 	private SqlSession sqlSession;
 
+	private String NAME_SPACE = "com.fly.client.calculate.dao.CalculateDao";
+
 	@Override
 	public List<CalculateVO> CalculateList(String m_id) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("calculateList", m_id);
+		return sqlSession.selectList(NAME_SPACE + ".calculateList", m_id);
 	}
 
 	@Override
 	public int CalculateInsert(CalculateVO cvo) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("calculateInsert", cvo);
+		return sqlSession.insert(NAME_SPACE + "calculateInsert", cvo);
 	}
 
 }

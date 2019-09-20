@@ -10,28 +10,30 @@ import com.fly.member.login.vo.LoginVO;
 public class LoginDaoImpl implements LoginDao {
 	@Autowired
 	private SqlSession session;
-	
+
+	private String NAME_SPACE = "com.fly.member.login.dao.LoginDao";
+
 	@Override
 	public LoginVO userIdSelect(String m_id) {
-		
-		return (LoginVO)session.selectOne("userIdSelect", m_id);
+
+		return (LoginVO) session.selectOne(NAME_SPACE + ".userIdSelect", m_id);
 	}
 
 	@Override
 	public int loginHistoryInsert(LoginVO lvo) {
-		return session.insert("loginHistoryInsert", lvo);
-		
+		return session.insert(NAME_SPACE + ".loginHistoryInsert", lvo);
+
 	}
 
 	@Override
 	public int loginHistoryUpdate(LoginVO lvo) {
-		return session.update("loginHistoryUpdate", lvo);
+		return session.update(NAME_SPACE + ".loginHistoryUpdate", lvo);
 	}
 
 	@Override
 	public LoginVO loginHistorySelect(String m_id) {
-		return session.selectOne("loginHistorySelect", m_id);
-		
+		return session.selectOne(NAME_SPACE + ".loginHistorySelect", m_id);
+
 	}
 
 }
