@@ -75,23 +75,6 @@ public class ClientRentalController {
 			   	System.out.println(stadium.toString());
 			}
 		}
-		
-//		// 경기장 별 대관 예약 리스트
-//		int s_no = stadiumList.get(0).getS_no();
-//		MemberVO member = new MemberVO();
-//		
-//		List<RentalVO> rentalList = clientPlaceService.rentalList(s_no, r_reserve_date);
-//		System.out.println(s_no);
-//		System.out.println(r_reserve_date);
-//		mav.addObject("m_name", member.getM_name());
-//		mav.addObject("m_phone", member.getM_phone());
-//		mav.addObject("rentalList", rentalList);
-//		mav.setViewName("rental/rentalList");
-//		for(RentalVO rental : rentalList) {
-//			System.out.println("대관 현황 리스트");
-//			System.out.println(rentalList);
-//			System.out.println(rental.toString());
-//		}
 
 		return mav;
 	}

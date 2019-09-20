@@ -2,10 +2,11 @@ package com.fly.member.place.vo;
 
 import java.util.Date;
 
-public class PlaceVO {
+import com.fly.member.join.vo.MemberVO;
+
+public class PlaceVO extends MemberVO{
 
 	private String p_num; // 사업자번호
-	private String m_id; // ID
 	private String p_name; // 구장명
 	private String p_ceo; // 대표자명
 	private String p_phone; // 구장 전화번호
@@ -37,17 +38,6 @@ public class PlaceVO {
 	public void setP_num(String p_num) {
 		this.p_num = p_num;
 	}
-
-
-	public String getM_id() {
-		return m_id;
-	}
-
-
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
-	}
-
 
 	public String getP_name() {
 		return p_name;

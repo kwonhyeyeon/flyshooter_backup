@@ -109,7 +109,7 @@
 							<li><a href="/member/mypage/modifyLogin.do">회원 정보 수정</a></li>
 							<li><a href="/mypage/placeList.do">구장</a></li>
 							<li><a href="/mypage/placeChoice.do">경기장/용품</a></li>
-							<li><a href="/">정산 관리</a></li>
+							<li><a href="/mypage/calculate.do">정산 관리</a></li>
 							<li><a href="/">통계</a></li>
 						</ul>
 					</c:if>
