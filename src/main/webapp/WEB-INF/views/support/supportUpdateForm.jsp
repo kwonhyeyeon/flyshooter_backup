@@ -107,11 +107,11 @@
 
 			<nav id="lnb">
 				<ul>
-					<c:if test="${empty m_id}">
+					<c:if test="${empty mvo.m_id}">
 						<li><a href="/member/join.do">회원가입</a></li>
 						<li><a href="/member/login.do">로그인</a></li>
 					</c:if>
-					<c:if test="${not empty m_id}">
+					<c:if test="${not empty mvo.m_id}">
 						<li><a href="/member/logout.do">로그아웃</a></li>
 					</c:if>
 				</ul>
@@ -120,7 +120,7 @@
 
 		<div class="menu-wrap">
 			<div class="menu">
-				<c:if test="${empty m_id || m_type=='1'}">
+				<c:if test="${empty mvo.m_id || mvo.m_type=='1'}">
 					<ul>
 						<li><a href="/user/rental/location.do">대관 예약</a></li>
 						<li><a href="/">대관 확인</a></li>
@@ -137,7 +137,7 @@
 					</ul>
 				</c:if>
 
-				<c:if test="${m_type=='0'}">
+				<c:if test="${mvo.m_type=='0'}">
 					<ul class="member-menu">
 						<li><a href="/client/rental/rentalList.do">대관 예약 현황</a></li>
 						<li><a href="/">대관 환불 현황</a></li>
