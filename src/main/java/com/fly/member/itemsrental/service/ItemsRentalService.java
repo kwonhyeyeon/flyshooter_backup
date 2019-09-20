@@ -1,14 +1,11 @@
-package com.fly.member.itemsrental.dao;
+package com.fly.member.itemsrental.service;
 
 import java.util.List;
 
 import com.fly.member.itemsrental.vo.ItemsRentalVO;
 
-public interface ItemsRentalDao {
-	
-	// 대관시 선택된 옵션정보 insert
-	public int itemsRentalInsert(ItemsRentalVO irvo);
-	
+public interface ItemsRentalService {
+
 	// 대관일련번호로 등록된 대여된 아이템리스트
 	public List<ItemsRentalVO> getItemsRentalList(int r_no);
 }
