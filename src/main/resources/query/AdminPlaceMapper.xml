@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fly.admin.place.dao.AdminPlaceDao">
+
+	<!-- 구장 리스트 -->
+	<!-- 폐업 -2, 임시휴업 -1, 운영전 0, 운영중 1, 전체 2 -->
+	<!-- 구장명 검색 -->
+	<select id="adminPlaceList" parameterType="place" resultType="place">		
+		select p.m_id, p.p_ceo, p.p_name, p.p_ok, to_char(p.p_regdate, 'yyyy/MM/dd') p_regdate, p_num,
+			(select count(*) 
+			from stadium s 
+			where s.p_num = p.p_num and s.s_status = 0) p_holiday,
+			to_char(p_holiday_start, 'yyyy/MM/dd') p_holiday_start
+		from (
+			select rownum rnum, r.*
+			from (
+				select *
+				from place
+				<where>
+					<if test='p_status != 2'>
+						p_status = #{p_status}
+					</if>
+					
+					<if test='p_name != null and p_name != ""'>
+						<![CDATA[
+						p_name like '%'||#{p_name}||'%'
+						]]>
+					</if>
+				</where>
+				order by p_regdate desc
+			) r
+		) p
+		<where>
+	    	<if test="start_row != null and start_row != ''">
+	        	<if test="end_row != null and end_row != ''">
+	            	RNUM BETWEEN #{start_row} and #{end_row}
+	            </if>   
+	        </if>
+	    </where>
+	</select>
+	
+	<!-- paging -->
+	<select  id="adminPlaceListCnt" parameterType="place" resultType="int">
+		select count(*)
+		from place
+		<where>
+			<if test='p_status != 2'>
+				p_status = #{p_status}
+			</if>
+					
+			<if test='p_name != null and p_name != ""'>
+				<![CDATA[
+					p_name like '%'||#{p_name}||'%'
+				]]>
+			</if>
+		</where>
+	</select>
+	
+	<!-- 구장 상세 정보 -->
+	<select id="adminPlaceDetail" parameterType="String" resultType="place">
+		select p_num, m_id, p_name, p_ceo, p_phone, p_address,
+	      p_bank, p_account,
+	      p_account_num, p_open, p_close, p_file,
+	      p_register, p_account_copy,p_property,
+	      p_status, to_char(p_holiday_start, 'yyyy/MM/dd') p_holiday_start, 
+	      to_char(p_holiday_end, 'yyyy/MM/dd') p_holiday_end, 
+	      p_ok, to_char(p_ok_date, 'yyyy/MM/dd') p_ok_date, p_intro, to_char(p_regdate, 'yyyy/MM/dd') p_regdate, p_holiday
+		from place
+		where p_num = #{p_num}
+	</select>
+	
+	<!-- 폐업으로 변경 시 변경된 날짜 가져옴 -->
+	<update id="getCloseDate" parameterType="place">
+		UPDATE place
+		SET p_holiday_start = sysdate
+		WHERE p_status = -2 and p_num = #{p_num}
+	</update>
+	
+	<!-- 구장 승인 상태 변경 -->
+	<update id="updatePok" parameterType="place">
+        UPDATE place
+        SET p_ok = 1
+        WHERE p_num = #{p_num}
+    </update>
+    
+    <select id="getRentalCnt" parameterType="String" resultType="int">
+    	select count(*)
+		from rental
+		where s_no in(
+		    select s_no 
+		    from stadium 
+		    where p_num = (
+		    	select p_num 
+		        from place 
+		        where p_num = #{p_num})
+		    	)
+		    and to_char(r_reserve_date, 'yyyy/MM/dd') > to_char(sysdate, 'yyyy/MM/dd')
+    </select>
+	
+	<!-- 구장 폐업 등록 -->
+	<update id="updateClose" parameterType="place">
+		update place
+		set p_status = -2, p_ok = 0
+		where p_num = #{p_num}
+	</update>
+	
+</mapper>

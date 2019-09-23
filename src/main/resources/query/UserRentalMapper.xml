@@ -53,7 +53,8 @@
 			r_pay_status,
 			r_regdate,
 			r_recall_time,
-			refund
+			refund,
+			cal_status
 		)
 		values(
 			#{r_no},
@@ -76,7 +77,62 @@
 			1,
 			sysdate,
 			sysdate,
+			0,
 			0
 		)
 	</insert>
+	
+	<!-- myRentalList -->
+	<select id="selectMyRentalList" parameterType="rental" resultType="rental">
+		SELECT
+			r.r_no, r.s_no, r.r_start, to_char(r.r_reserve_date, 'yyyy-MM-dd') r_reserve_date, r.r_total_pay, to_char(r.r_regdate, 'yyyy-MM-dd') r_regdate, r.r_pay_status, 
+			s.s_name r_bank, s.s_hours r_pay_type, (select p_name from place where p_num = s.p_num) r_account
+		FROM 
+			(SELECT ROWNUM RNUM , rn.* 
+				FROM (SELECT * 
+						FROM rental 
+						WHERE m_id = #{m_id} order by r_regdate desc) rn
+						) r, 
+					(SELECT * 
+						FROM stadium 
+						WHERE s_no in(SELECT s_no FROM rental WHERE m_id = #{m_id})) s
+		WHERE 
+			r.s_no = s.s_no 
+
+		<if test="start_row != null and start_row != ''">
+	     	<if test="end_row != null and end_row != ''">
+	     		and RNUM BETWEEN #{start_row} and #{end_row}
+	     	</if>	
+	     </if>
+	</select>
+	
+	<select id="myRentalListCnt" parameterType="String" resultType="int">
+		SELECT 
+			count(*)
+		FROM
+			rental
+		WHERE 
+			m_id = #{m_id}		
+	</select>
+	
+	<select id="showRentalDetail" parameterType="int" resultType="rentalDetail">
+		SELECT r.r_no, r.m_id, to_char(r.r_reserve_date, 'yyyy-MM-dd') r_reserve_date, 
+			 	r.r_start, r.r_total_pay, r.r_pay_type, r.r_pay_status, 
+			 	to_char(r.r_regdate, 'yyyy-MM-dd') r_regdate, s.s_name, s.s_hours, nvl(s.s_img1, 'x') s_img1, 
+			 	nvl(s.s_img2, 'x') s_img2, nvl(s.s_img3, 'x') s_img3, p.p_phone, p.p_intro, p.p_name, p.p_address, m.m_name, 
+			 	m.m_phone, (Select count(*) from items_rental where r_no = #{r_no}) itemsCnt
+ 		FROM rental r, stadium s, place p, member m
+		WHERE r.s_no = s.s_no and s.p_num = p.p_num and r.m_id = m.m_id and r.r_no = #{r_no}
+	</select>
+	
+	<update id="rentalUpdate" parameterType="rental" >
+		UPDATE rental
+			   SET 
+			   	refund = #{refund},
+			   	r_recall_time = sysdate,
+			   	r_pay_status = -1
+		WHERE r_no = #{r_no}	
+	</update>
+	
+	
 </mapper>

@@ -18,9 +18,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fly.client.items.service.ItemsService;
 import com.fly.client.items.vo.ItemsVO;
+import com.fly.member.itemsrental.service.ItemsRentalService;
 import com.fly.member.place.vo.PlaceVO;
 import com.fly.member.rental.vo.RentalVO;
 import com.fly.member.stadium.vo.StadiumVO;
+import com.fly.paging.util.Paging;
+import com.fly.paging.util.Util;
+import com.fly.rental.detail.vo.RentalDetailVO;
 import com.fly.user.place.service.UserPlaceService;
 import com.fly.user.rental.service.UserRentalService;
 import com.fly.user.stadium.service.UserStadiumService;
@@ -37,6 +41,8 @@ public class UserRentalController {
 	private UserRentalService userRentalService;
 	@Resource(name = "itemsService")
 	private ItemsService itemsService;
+	@Resource(name = "itemsRentalService")
+	private ItemsRentalService itemsRentalService;
    
 	private static final Logger log = LoggerFactory.getLogger(UserRentalController.class);   
    
@@ -48,7 +54,8 @@ public class UserRentalController {
    
    // 지역으로 검색한 구장리스트
    @RequestMapping(value = "/placeList.do", method = RequestMethod.GET)
-   public String searchPlaceList(@ModelAttribute PlaceVO pvo, Model model, RedirectAttributes redirectAttr, @RequestParam(value = "area", required = true, defaultValue = "null") String area) {
+   public String searchPlaceList(@ModelAttribute PlaceVO pvo, Model model, RedirectAttributes redirectAttr, 
+		   @RequestParam(value = "area", required = true, defaultValue = "null") String area) {
       
 	   log.info("============="+area);
       
@@ -63,7 +70,9 @@ public class UserRentalController {
    
    // 대관 신청페이지
    @RequestMapping(value = "/rentalStadium.do", method = RequestMethod.POST)
-   public String rentalInfo(@ModelAttribute PlaceVO pvo, Model model, @RequestParam(value = "p_num") String p_num, @RequestParam(value = "area", required = true, defaultValue = "null") String area, RedirectAttributes redirectAttr) {
+   public String rentalInfo(@ModelAttribute PlaceVO pvo, Model model, @RequestParam(value = "p_num") String p_num, 
+		   @RequestParam(value = "area", required = true, defaultValue = "null") String area, 
+		   RedirectAttributes redirectAttr) {
 
       pvo = placeService.selectPlace(p_num);
       List<StadiumVO> stadiumList = userStadiumService.selectStadiumList(p_num);
@@ -113,6 +122,7 @@ public class UserRentalController {
 	  try {
 		  // session에 저장된 값이 없으면 오류를 낸다.
 		  overlap.length();
+		  
 		  
 		  if(overlapKey.equals(overlap)) {
 			  return "true";
@@ -164,10 +174,57 @@ public class UserRentalController {
 	   result = userRentalService.insertRental(rvo, items_no, items_ea);
 	   }catch(Exception e) {
 		   System.out.println("대관실패.. 관리자한테 문의하십시오");
+		   e.printStackTrace();
 	   }
 	   System.out.println(result);
 	   return "rental/location";
    }
    
+   @RequestMapping(value = "/myRentalList.do", method = RequestMethod.GET)
+   public String myRentalList(@ModelAttribute RentalVO rvo, Model model, HttpSession session) {
+	  
+	   //String m_id = (String)session.getAttribute("m_id");
+	   Paging.setPage(rvo, 5);
+	   rvo.setM_id("esub17@naver.com");
+	   
+	   int total = userRentalService.myRentalListCnt(rvo.getM_id());
+	   int count = total - (Util.nvl(rvo.getPage()) -1 ) * Util.nvl(rvo.getPageSize());
+	   model.addAttribute("myList", userRentalService.selectMyRentalList(rvo));
+	   model.addAttribute("count", count);
+	   model.addAttribute("total", total);
+	   model.addAttribute("data", rvo);
+	   
+	   return "rental/myRentalList";
+   }
+   
+   
+   @RequestMapping(value = "/rentalDetail.do", method = RequestMethod.POST)
+   public String rentalDetail(Model model, @RequestParam("r_no") int r_no, @RequestParam("page") String page) {
+	   
+	   model.addAttribute("data", userRentalService.showDetail(r_no));
+	   model.addAttribute("page", page);
+	   model.addAttribute("itemsList", itemsRentalService.getItemsRentalList(r_no));
+	   
+	   return "rental/rentalDetail";
+   }
+   
+   @RequestMapping(value = "/rentalUpdate.do", method = RequestMethod.POST)
+   public String rentalUpdate(@ModelAttribute RentalVO rvo, Model model, RedirectAttributes redirectAttr) {
+	   redirectAttr.addAttribute("page", rvo.getPage());
+	  int result = userRentalService.rentalUpdate(rvo);
+	   String massage = "";
+	   
+	   
+	   if(result == 1) {
+		   massage = "환불처리가 성공적으로 이루어졌습니다.";
+	   }
+	   else if(result == 0) {
+		   massage = "환불처리에 실패하였습니다.\n다시 시도해주십시오";
+	   }
+	   redirectAttr.addFlashAttribute("massage", massage);
+	   
+	   return "redirect:/user/rental/myRentalList.do";
+	   
+   }
    }
 

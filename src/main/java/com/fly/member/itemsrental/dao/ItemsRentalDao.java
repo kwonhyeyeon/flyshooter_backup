@@ -11,4 +11,7 @@ public interface ItemsRentalDao {
 	
 	// 대관일련번호로 등록된 대여된 아이템리스트
 	public List<ItemsRentalVO> getItemsRentalList(int r_no);
+	
+	// 대여된 아이템 반납여부 update
+	public int updateStatus(ItemsRentalVO irvo);
 }

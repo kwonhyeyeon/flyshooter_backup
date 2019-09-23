@@ -1,0 +1,24 @@
+package com.fly.admin.member.service;
+
+import java.util.HashMap;
+import java.util.List;
+
+import com.fly.member.join.vo.MemberVO;
+
+public interface AdminMemberService {
+	
+	// 회원 정보 list
+	public List<MemberVO> getMemberList(MemberVO mvo);
+	
+	// List의 총 갯수
+	public int getTotalSize(MemberVO mvo);
+	
+	// 회원 상태변경전 대관등록된 갯수 구하기
+	public int searchUserReservedCnt(MemberVO mvo);
+	
+	// 사업자 상태변경시 등록된 구장수 select
+	public int searchClientPlaceCnt(MemberVO mvo);
+	
+	// 회원 상태 변경
+	public void updateMember(MemberVO mvo);
+}

@@ -143,7 +143,12 @@ $(document).ready(function(){
 					var r_money = setDay();
 					var i_money = setTotalMoney();
 					$("#payment").text(r_money);
-					$("#totalMoney").text(eval(r_money) + eval(i_money));
+					if(i_money){
+						$("#totalMoney").text(eval(r_money) + eval(i_money));
+					}else{
+						$("#totalMoney").text(eval(r_money));
+					}
+					
 					$("#goRental").show();
 				});
 				
@@ -179,8 +184,8 @@ $(document).ready(function(){
 					$("#dialog").dialog({
 						title : 'fly_shooter 결제창',
 						model : true,
-						width : '700',
-						height : '500',
+						width : '584',
+						height : '400',
 						closeOnEscape:false,
 						open:function(event, ui){
 							$(".ui-dialog-titlebar-close", $(this).parent()).hide();
@@ -359,7 +364,11 @@ $(document).ready(function(){
 			var r_start = radioSplit();
 			var r_total_pay = $("#payment").text();
 			var i_money = setTotalMoney();
-			r_total_pay = eval(r_total_pay) + eval(i_money);
+			if(i_money){
+				r_total_pay = eval(r_total_pay) + eval(i_money);
+			}else{
+				r_total_pay = eval(r_total_pay);
+			}
 			$("#r_reserve_date").val(selectedDay());
 			$("#s_no").val(s_no[0]);
 			$("#r_start").val(r_start[0]);

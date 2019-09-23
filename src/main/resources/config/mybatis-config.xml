@@ -18,5 +18,7 @@
 		<typeAlias type="com.fly.member.support.vo.SupportVO" alias="support" />
 		<typeAlias type="com.fly.member.recruit.vo.RecruitVO" alias="recruit" />
 		<typeAlias type="com.fly.client.items.vo.ItemsVO" alias="items"/>
+		<typeAlias type="com.fly.admin.statistics.vo.StatisticsVO" alias="statistics"/>
+		<typeAlias type="com.fly.rental.detail.vo.RentalDetailVO" alias="rentalDetail"/>
 	</typeAliases>
 </configuration>

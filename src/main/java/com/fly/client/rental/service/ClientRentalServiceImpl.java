@@ -2,13 +2,13 @@ package com.fly.client.rental.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.fly.client.rental.dao.ClientRentalDao;
-import com.fly.member.join.vo.MemberVO;
 import com.fly.member.place.vo.PlaceVO;
 import com.fly.member.rental.vo.RentalVO;
 import com.fly.member.stadium.vo.StadiumVO;
@@ -45,13 +45,27 @@ public class ClientRentalServiceImpl implements ClientRentalService {
 		}
 
 		@Override
-		public List<RentalVO> getRefundList(MemberVO mvo) {
-			return clientRentalDao.getRefundList(mvo);
+		public List<Map<String, String>> getRefundList(PlaceVO pvo) {
+			
+			return clientRentalDao.getRefundList(pvo);
+			
 		}
 
 		@Override
 		public int refundListCnt() {
 			return clientRentalDao.refundListCnt();
+		}
+
+		@Override
+		public int refundUpdate(int r_no) {
+			// TODO Auto-generated method stub
+			return clientRentalDao.refundUpdate(r_no);
+		}
+
+		@Override
+		public int deleteRental(int r_no) {
+			// TODO Auto-generated method stub
+			return clientRentalDao.deleteRental(r_no);
 		}
 
 }

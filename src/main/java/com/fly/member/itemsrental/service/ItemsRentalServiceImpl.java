@@ -22,6 +22,12 @@ public class ItemsRentalServiceImpl implements ItemsRentalService {
 		// TODO Auto-generated method stub
 		return itemsRentalDao.getItemsRentalList(r_no);
 	}
+
+	@Override
+	public int updateStatus(ItemsRentalVO irvo) {
+		// TODO Auto-generated method stub
+		return itemsRentalDao.updateStatus(irvo);
+	}
 	
 	
 }

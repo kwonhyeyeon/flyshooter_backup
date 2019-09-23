@@ -1,7 +1,13 @@
 /**
  * 
  */
+// 뒤로가기 불가
+window.history.forward();
 
+		function noBack() {
+			window.history.forward();
+		}
+		
 $(document).ready(function(){
 	
 	var try_count = 0;
@@ -31,26 +37,26 @@ $(document).ready(function(){
 		
 		var id = $("#adminId").val();
 		var pw = $("#adminPw").val();
-		var message;
+		var error_msg;
 		
 		if( id == "admin",  pw == "admin1234" ){
 			return true;
 		}
 		
-		message = "로그인 정보가 틀렸습니다";
+		error_msg = "로그인 정보가 틀렸습니다";
 		try_count++;
 		
 		if( !id ){
-			message = "아이디를 입력하십시오.";
+			error_msg = "아이디를 입력해 주세요";
 			result = false;
 		}
 		else if( !pw ){
-			message = "비밀번호를 입력하십시오.";
+			error_msg = "비밀번호를 입력해 주세요";
 			result = false;
 		}
 		
-		$("#message").attr('style', 'color:red');
-		$("#message").text(message);
+		$(".error_msg").attr('style', 'color:red');
+		$(".error_msg").text(error_msg);
 		loginLock();
 		return eval(result);
 	}
