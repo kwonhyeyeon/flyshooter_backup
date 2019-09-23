@@ -20,17 +20,17 @@ public class ClientCalculateServiceImpl implements ClientCalculateService{
 	private ClientCalculateDao calculateDao;
 
 	@Override
-	public List<CalculateVO> CalculateList(String m_id) {
+	public List<CalculateVO> calculateList(String m_id) {
 		// TODO Auto-generated method stub
-		return calculateDao.CalculateList(m_id);
+		return calculateDao.calculateList(m_id);
 	}
 
 	@Override
-	public int CalculateInsert(CalculateVO cvo) {
+	public int calculateInsert(CalculateVO cvo) {
 		// TODO Auto-generated method stub
 		int result = 0;
 		try {
-			calculateDao.CalculateInsert(cvo);
+			calculateDao.calculateInsert(cvo);
 			result = 1;//성공
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -38,6 +38,18 @@ public class ClientCalculateServiceImpl implements ClientCalculateService{
 			result = 2;//실패
 		}
 		return result;
+	}
+
+	@Override
+	public List<CalculateVO> calculateIList(String m_id) {
+		// TODO Auto-generated method stub
+		return calculateDao.calculateIList(m_id);
+	}
+
+	@Override
+	public int pRentalUpdae(String p_num) {
+		// TODO Auto-generated method stub
+		return calculateDao.pRentalUpdae(p_num);
 	}
 
 }

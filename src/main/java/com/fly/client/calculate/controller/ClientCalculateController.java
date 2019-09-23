@@ -29,9 +29,6 @@ public class ClientCalculateController {
 	@Resource(name = "calculateService")
 	private ClientCalculateService calculateService;
 
-	@Autowired
-	private ClientPlaceService placeService;
-
 	@Resource(name = "clientRentalService")
 	private ClientRentalService clientRentalService;
 	
@@ -46,36 +43,22 @@ public class ClientCalculateController {
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
 		String m_id = sessionMvo.getM_id();
 		
-		List<PlaceVO> placeChoice = placeService.placeChoice(m_id);
-		List<CalculateVO> calculateList = calculateService.CalculateList(m_id);
+		List<CalculateVO> calculateIList = calculateService.calculateIList(m_id);
+		List<CalculateVO> calculateList = calculateService.calculateList(m_id);
 	
-		model.addAttribute("placeChoice", placeChoice);
+		model.addAttribute("calculateIList", calculateIList);
 		model.addAttribute("calculateList", calculateList);
 		return "mypage/calculate";
 	}
-
-
-	// 정산 지급액 계산하기
-	@RequestMapping(value = "/calculateTotal.do", method = RequestMethod.GET, produces= "text/html; charset=UTF-8")
-	@ResponseBody
-	public String CalculateTotal(Model model, @RequestParam(value = "p_num") String p_num) {
-		System.out.println("calculateTotal 호출 성공");
-		
-		return "1";
-	}
 	
 	// 정산 신청 구현하기
-	@RequestMapping(value = "/calculateInsert.do", method = RequestMethod.GET)
-	public String CalculateInsert(Model model, @RequestParam(value = "p_num") String p_num) {
+	@RequestMapping(value = "/calculateInsert.do", method = RequestMethod.POST)
+	public String CalculateInsert(Model model, @ModelAttribute CalculateVO cvo) {
 		System.out.println("calculateInsert 호출 성공");
-		CalculateVO cvo = new CalculateVO();
+		String result = calculateService.calculateInsert(cvo)+"";
+		System.out.println("pRentalUpdae 호출 성공");
+		String result1 = calculateService.pRentalUpdae(cvo.getP_num())+"";
 		
-		//clientRentalService.getRentalList();
-		cvo.setP_num(p_num);
-		cvo.setC_payment(1);
-		cvo.setC_rental_cnt(1);
-		cvo.setC_return_cnt(2);
-		String result = calculateService.CalculateInsert(cvo)+"";
 		System.out.println(result);
 		if (result != "1") {
 			model.addAttribute("errCode", 1);
