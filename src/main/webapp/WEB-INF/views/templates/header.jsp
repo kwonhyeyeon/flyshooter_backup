@@ -33,11 +33,11 @@
                     <li><a href="/user/rental/myRentalList.do">나의 예약 현황</a></li>
                 </ul>
                 <ul>
-                    <li><a href="/">매치 신청</a></li>
+                    <li><a href="/match/matchList.do">매치 신청</a></li>
                 </ul>
                 <ul>
-                    <li><a href="/">용병 지원</a></li>
-                    <li><a href="/">용병 모집</a></li>
+                    <li><a href="/support/supportList.do">용병 지원</a></li>
+                    <li><a href="/recruit/recruitList.do">용병 모집</a></li>
                 </ul>
                 <ul>
                     <li><a href="/">회원 정보 수정</a></li>
@@ -51,11 +51,11 @@
                     <li><a href="/">오프라인 대관 관리</a></li>
                 </ul>
                 <ul>
-                    <li><a href="/">매치 신청</a></li>
+                    <li><a href="/match/matchList.do">매치 신청</a></li>
                 </ul>
                 <ul>
-                    <li><a href="/">용병 지원</a></li>
-                    <li><a href="/">용병 모집</a></li>
+                    <li><a href="/support/supportList.do">용병 지원</a></li>
+                    <li><a href="/recruit/recruitList.do">용병 모집</a></li>
                 </ul>
                 <ul>
                     <li><a href="/">회원 정보 수정</a></li>
