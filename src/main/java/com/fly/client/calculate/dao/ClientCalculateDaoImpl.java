@@ -14,18 +14,30 @@ public class ClientCalculateDaoImpl implements ClientCalculateDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	private String NAME_SPACE = "com.fly.client.calculate.dao.CalculateDao";
+	private String NAME_SPACE = "com.fly.client.calculate.dao.ClientCalculateDao";
 
 	@Override
-	public List<CalculateVO> CalculateList(String m_id) {
+	public List<CalculateVO> calculateList(String m_id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAME_SPACE + ".calculateList", m_id);
 	}
 
 	@Override
-	public int CalculateInsert(CalculateVO cvo) {
+	public int calculateInsert(CalculateVO cvo) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert(NAME_SPACE + "calculateInsert", cvo);
+		return sqlSession.insert(NAME_SPACE + ".calculateInsert", cvo);
+	}
+
+	@Override
+	public List<CalculateVO> calculateIList(String m_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAME_SPACE + ".calculateIList", m_id);
+	}
+
+	@Override
+	public int pRentalUpdae(String p_num) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(NAME_SPACE + ".pRentalUpdae", p_num);
 	}
 
 }
