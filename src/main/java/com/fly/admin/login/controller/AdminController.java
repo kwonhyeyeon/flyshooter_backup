@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fly.admin.login.service.AdminLoginService;
 
@@ -30,8 +31,6 @@ public class AdminController {
 	// 실행시 adminlogin.jsp로 연결시켜주는 맵핑 (test를 위하여 만듬)
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String adminlogin(HttpSession session, HttpServletRequest request) {
-		
-		
 		return "admin/login";
 	}
 

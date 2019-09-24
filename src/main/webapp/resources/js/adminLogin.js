@@ -24,7 +24,7 @@ $(document).ready(function(){
 			lock_start = new Date().getTime();
 			alert("5회 연속 실패 \n30초후에 다시 시도하십시오.");
 			
-			$("#login").attr("disabled", true);
+			$(".login").attr("disabled", true);
 			setTimeout("location.reload()", 30000);
 		}
 	}
@@ -43,6 +43,7 @@ $(document).ready(function(){
 			return true;
 		}
 		
+		$("#adminPw").val("");
 		error_msg = "로그인 정보가 틀렸습니다";
 		try_count++;
 		

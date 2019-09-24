@@ -9,6 +9,12 @@
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
+		
+		if("${message}"){
+			alert("${message}");
+			location.href = "/member/login.do";
+	}
+	
 		$("#loginForm").submit(function() {
 			var id = $("#m_id").val();
 			var pw = $("#m_pw").val();
