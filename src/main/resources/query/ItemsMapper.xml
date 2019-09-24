@@ -13,7 +13,6 @@
 	
 	</select>
 	
-	
 	<select id="itemsList" parameterType="String" resultType="items">
 		SELECT
 			*

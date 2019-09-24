@@ -11,6 +11,7 @@ public class ItemsVO extends PlaceVO {
 	private int i_status;
 	private String i_regdate;
 
+	
 	public int getI_no() {
 		return i_no;
 	}
@@ -61,8 +62,10 @@ public class ItemsVO extends PlaceVO {
 
 	@Override
 	public String toString() {
-		return "ItemsVO [i_no=" + i_no + ", i_name=" + i_name + ", i_rental_fee=" + i_rental_fee + ", i_use=" + i_use
-				+ ", i_status=" + i_status + ", i_regdate=" + i_regdate + "]";
+		return "ItemsVO [getI_no()=" + getI_no() + ", getI_name()=" + getI_name() + ", getI_rental_fee()="
+				+ getI_rental_fee() + ", getI_use()=" + getI_use() + ", getI_status()=" + getI_status()
+				+ ", getI_regdate()=" + getI_regdate() + "]";
 	}
+
 
 }

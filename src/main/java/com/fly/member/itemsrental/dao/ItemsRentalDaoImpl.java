@@ -26,4 +26,10 @@ public class ItemsRentalDaoImpl implements ItemsRentalDao {
 		return session.selectList(NAME_SPACE + ".getItemsRentalList", r_no);
 	}
 
+	@Override
+	public int updateStatus(ItemsRentalVO irvo) {
+		// TODO Auto-generated method stub
+		return session.update(NAME_SPACE + ".updateStatus", irvo);
+	}
+
 }

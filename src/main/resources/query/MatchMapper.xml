@@ -141,7 +141,7 @@
 		where mb_no = #{mb_no}
 	</update>
 	
-	<update id="updateMbdate">
+	<update id="updateMbdate" parameterType="String">
 	UPDATE
 	match_board
 	SET
@@ -149,7 +149,7 @@
 	where to_char(mb_m_date, 'yyyy-MM-dd') <![CDATA[ < ]]> to_char(sysdate, 'yyyy-MM-dd') and mb_progress = 1
 	</update>
 	
-	<update id="matchStatusUpdate">
+	<update id="matchStatusUpdate" parameterType="int">
 	UPDATE
 	match_board
 	SET

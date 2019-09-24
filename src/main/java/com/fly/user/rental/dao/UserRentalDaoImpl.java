@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fly.member.rental.vo.RentalVO;
+import com.fly.rental.detail.vo.RentalDetailVO;
 @Repository("userRentalDao")
 public class UserRentalDaoImpl implements UserRentalDao {
 
@@ -41,6 +42,30 @@ public class UserRentalDaoImpl implements UserRentalDao {
 		
 		System.out.println(rvo.toString());
 		return (int)sqlSession.insert(NAME_SPACE + ".insertRental", rvo);
+	}
+
+	@Override
+	public List<RentalVO> selectMyRentalList(RentalVO rvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAME_SPACE + ".selectMyRentalList", rvo);
+	}
+
+	@Override
+	public int myRentalListCnt(String m_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAME_SPACE + ".myRentalListCnt", m_id);
+	}
+
+	@Override
+	public RentalDetailVO showDetail(int r_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAME_SPACE + ".showRentalDetail", r_no);
+	}
+
+	@Override
+	public int rentalUpdate(RentalVO rvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(NAME_SPACE + ".rentalUpdate", rvo);
 	}
 
 

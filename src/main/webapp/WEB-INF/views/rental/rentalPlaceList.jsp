@@ -14,15 +14,23 @@
 <script type="text/javascript" src="/resources/js/placeList.js"></script>
 </head>
 <body>
-			<!-- 상세 페이지 이동을 위한 form -->
-			<form id="rentalInsertForm">
-			      <input type="hidden" name="p_num" id="p_num">
-			</form>
-			
+
+	<div id="wrapper">
+	
+		<div id="header-wrap">
+			<jsp:include page="../templates/header.jsp" flush="true" />
+		</div>
 		
-		<div style="width: 1200px">
+		<div class="sub-v"></div>
+		
+		<!-- 상세 페이지 이동을 위한 form -->
+		<form id="rentalInsertForm">
+		      <input type="hidden" name="p_num" id="p_num">
+		</form>
+		
+		<article id="contents">
+			
 			<h2>대관 가능한 구장</h2>
-			<hr />
 			
 			<table>
 				<colgroup>
@@ -56,7 +64,10 @@
 					</c:otherwise>
 				</c:choose>
 			</table>
-		
-		</div>
+			
+		</article>
+	
+	</div>
+
 </body>
 </html>

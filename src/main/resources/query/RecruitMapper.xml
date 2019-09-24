@@ -138,7 +138,7 @@
 		where hr_no = #{hr_no}
 	</update>
 	
-	<update id="recruitMbdate">
+	<update id="recruitMbdate" parameterType="String">
 	UPDATE
 	recruit
 	SET
@@ -146,7 +146,7 @@
 	where to_char(hr_m_date, 'yyyy-MM-dd') <![CDATA[ < ]]> to_char(sysdate, 'yyyy-MM-dd') and hr_progress = 1
 	</update>
 	
-	<update id="recruitStatusUpdate">
+	<update id="recruitStatusUpdate" parameterType="int">
 	UPDATE
 	recruit
 	SET

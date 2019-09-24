@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fly.admin.stadium.dao.AdminStadiumDao">
+
+	<!-- 경기장 리스트 -->
+	<select id="getStadiumList" parameterType="stadium" resultType="stadium">		
+		SELECT *
+		FROM stadium
+		WHERE p_num = #{p_num}
+	</select>
+	
+	<!-- 경기장 상세 정보 -->
+	<select id="getStadiumDetail" parameterType="int" resultType="stadium">		
+		SELECT s_no, p_num, s_name, s_size,
+		s_d_fee, s_n_fee, s_d_fee_w, s_n_fee_w,
+		s_people, s_img1, s_img2, s_img3, s_in_out,
+		s_status, s_hours, to_char(s_regdate, 'yyyy/MM/dd') s_regdate
+		FROM stadium
+		WHERE s_no = #{s_no}
+	</select>
+	
+	<!-- 경기장 승인 -->
+	<update id="updateStdmAccept" parameterType="int">
+		UPDATE stadium
+		SET s_status = 1
+		WHERE s_no = #{s_no}
+	</update>
+	
+</mapper>

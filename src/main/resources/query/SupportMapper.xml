@@ -130,7 +130,7 @@
 		where hs_no = #{hs_no}
 	</update>
 	
-	<update id="supportMbdate">
+	<update id="supportMbdate" parameterType="String">
 	UPDATE
 	support
 	SET
@@ -138,7 +138,7 @@
 	where to_char(hs_date, 'yyyy-MM-dd') <![CDATA[ < ]]> to_char(sysdate, 'yyyy-MM-dd') and hs_progress = 1
 	</update>
 	
-	<update id="supportStatusUpdate">
+	<update id="supportStatusUpdate" parameterType="int">
 	UPDATE
 	support
 	SET
