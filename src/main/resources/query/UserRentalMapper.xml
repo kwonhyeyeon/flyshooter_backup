@@ -53,7 +53,8 @@
 			r_pay_status,
 			r_regdate,
 			r_recall_time,
-			refund
+			refund,
+			cal_status
 		)
 		values(
 			#{r_no},
@@ -76,6 +77,7 @@
 			1,
 			sysdate,
 			sysdate,
+			0,
 			0
 		)
 	</insert>

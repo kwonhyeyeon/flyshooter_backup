@@ -55,13 +55,15 @@ public class ClientCalculateController {
 	@RequestMapping(value = "/calculateInsert.do", method = RequestMethod.POST)
 	public String CalculateInsert(Model model, @ModelAttribute CalculateVO cvo) {
 		System.out.println("calculateInsert 호출 성공");
-		String result = calculateService.calculateInsert(cvo)+"";
+		int result = calculateService.calculateInsert(cvo);
 		System.out.println("pRentalUpdae 호출 성공");
-		String result1 = calculateService.pRentalUpdae(cvo.getP_num())+"";
+		int pRentalResult = calculateService.pRentalUpdae(cvo.getP_num());
 		
 		System.out.println(result);
-		if (result != "1") {
+		if (result != 1) {
 			model.addAttribute("errCode", 1);
+		}else if (pRentalResult != 1) {
+			model.addAttribute("errCode", 2);
 		}
 		return "redirect:/mypage/calculate.do";
 	}

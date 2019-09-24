@@ -70,20 +70,22 @@ public class UserRentalServiceImpl implements UserRentalService {
 	public int insertRental(RentalVO rvo, String items_no, String items_ea) {
 		// TODO Auto-generated method stub
 		int result = 0;
-		// 입력받은 items정보를 ","단위로 자르고 반복하여 isnert해준다.
-		String item_no[] = items_no.split(",");
-		String item_ea[] = items_ea.split(",");
-		userRentalDao.insertRental(rvo);
-		
-		ItemsRentalVO irvo = new ItemsRentalVO();
-		irvo.setR_no(rvo.getR_no());
-		
-		for(int i = 0; i < item_no.length; i++) {
-			irvo.setI_no(Integer.parseInt(item_no[i]));
-			irvo.setIr_rental_ea(Integer.parseInt(item_ea[i]));
-			// item_rental insert
-			result = itemsRentalDao.itemsRentalInsert(irvo);
-		}
+	      result = userRentalDao.insertRental(rvo);
+	      if(!("null".equals(items_no) && "null".equals(items_ea))) {
+	         // 입력받은 items정보를 ","단위로 자르고 반복하여 isnert해준다.
+	         String item_no[] = items_no.split(",");
+	         String item_ea[] = items_ea.split(",");
+	                  
+	         ItemsRentalVO irvo = new ItemsRentalVO();
+	         irvo.setR_no(rvo.getR_no());
+	                  
+	         for(int i = 0; i < item_no.length; i++) {
+	            irvo.setI_no(Integer.parseInt(item_no[i]));
+	            irvo.setIr_rental_ea(Integer.parseInt(item_ea[i]));
+	            // item_rental insert
+	            result = itemsRentalDao.itemsRentalInsert(irvo);
+	         }
+	      }
 		return result;
 	}
 

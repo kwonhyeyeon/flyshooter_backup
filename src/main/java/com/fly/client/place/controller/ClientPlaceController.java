@@ -145,7 +145,9 @@ public class ClientPlaceController {
 	@ResponseBody
 	public String closePlace(@RequestParam(value = "p_num", required = false, defaultValue = "0") String p_num) {
 		System.out.println("closePlace 호출 성공");
+		System.out.println(p_num);
 		int result = clientPlaceService.closePlace(p_num);
+		System.out.println(result);
 		return result + "";
 	}
 }

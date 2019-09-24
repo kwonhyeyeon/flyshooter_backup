@@ -163,6 +163,8 @@ public class UserRentalController {
 	   // 대관정보 (retnal) insert
 	   result = userRentalService.insertRental(rvo, items_no, items_ea);
 	   }catch(Exception e) {
+		   e.toString();
+		   e.printStackTrace();
 		   System.out.println("대관실패.. 관리자한테 문의하십시오");
 	   }
 	   System.out.println(result);
