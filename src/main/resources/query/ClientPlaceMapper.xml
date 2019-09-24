@@ -97,7 +97,7 @@
 		  where r.r_reserve_Date 
 		  <![CDATA[<]]> sysdate and r.s_no =  
 		  (select s.s_no from stadium s 
-		  where s.p_num = #{p_num} and r.s_no = s.s_no) and r.r_pay_status <![CDATA[<]]> -1
+		  where s.p_num = #{p_num} and r.s_no = s.s_no) and r.r_pay_status <![CDATA[>]]> -1
 	</select>
 	
 	<select id="placeChoice" resultType="place">

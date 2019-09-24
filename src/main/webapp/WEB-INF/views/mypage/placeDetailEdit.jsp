@@ -30,7 +30,7 @@
 					</li>
 					<li>
 						사업자번호 
-						<input type="text" value="${p_num}" name="p_num" readonly>
+						<input type="text" value="${p_num}" name="p_num" id="p_num" readonly>
 					</li>
 					<li>
 						구장전화번호 

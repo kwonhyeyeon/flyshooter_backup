@@ -2,19 +2,27 @@ package com.fly.client.stadium.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -34,7 +42,10 @@ import com.fly.member.stadium.vo.StadiumVO;
 @Controller
 @RequestMapping(value = "/mypage")
 public class StadiumController {
-
+	
+	private static final String SAVE_PATH = "파일을 저장할 경로를 적어주세요";//경기장 등록 이미지 업로드할때 사용
+	
+	
 	@Autowired
 	private ClientStadiumService stadiumService;
 
@@ -109,29 +120,32 @@ public class StadiumController {
 		model.addAttribute("p_num", p_num);
 		return "mypage/stadiumForm";
 	}
-
+	
 	// 경기장 등록
+	String uploadPath;
 	@RequestMapping(value = "/stadiumInsert.do", method = RequestMethod.POST)
-	public ModelAndView stadiumInsert(@ModelAttribute StadiumVO svo, @RequestParam("select") String select, HttpServletRequest request) throws IOException {
+	public ModelAndView stadiumInsert(@ModelAttribute StadiumVO svo, @RequestParam("select")String select,Model model, HttpServletRequest request)throws IllegalStateException,IOException{
 		System.out.println("stadiumInsert 호출 성공");
 		System.out.println(svo.toString());
 		ModelAndView mav = new ModelAndView();
-		int result = stadiumService.stadiumInsert(svo);
-		int plus = Integer.parseInt(select);// 추가등록여부 확인을 위한 변수
-		System.out.println(result);
-		
-		if(svo.getMfile()!=null) {
-			String s_img1 =
-					FileUploadUtil.fileUpload(svo.getMfile(), request, "stadium");
+		if(svo.getFile()!=null) {
+			String s_img1 = FileUploadUtil.fileUpload(svo.getFile(), request, "stadium");
 			svo.setS_img1(s_img1);
-			String s_img2 =
-					FileUploadUtil.fileUpload(svo.getMfile(), request, "stadium");
+		}
+		if(svo.getFile()!=null) {
+			String s_img2= FileUploadUtil.fileUpload(svo.getFile(), request, "stadium");
 			svo.setS_img2(s_img2);
-			String s_img3 =
-					FileUploadUtil.fileUpload(svo.getMfile(), request, "stadium");
+		}
+		if(svo.getFile()!=null) {
+			String s_img3=FileUploadUtil.fileUpload(svo.getFile(), request, "stadium");
 			svo.setS_img3(s_img3);
 		}
 		
+		
+		int plus = Integer.parseInt(select);// 추가등록여부 확인을 위한 변수
+
+		int result = stadiumService.stadiumInsert(svo);
+		System.out.println("결과"+result);
 		if (result == 1) {
 			if (plus == 1) {
 				mav.addObject("p_num", svo.getP_num());
@@ -144,6 +158,7 @@ public class StadiumController {
 			mav.setViewName("mypage/stadiumForm");
 		}
 		return mav;
+		
 	}
 	
 	//경기장 수정

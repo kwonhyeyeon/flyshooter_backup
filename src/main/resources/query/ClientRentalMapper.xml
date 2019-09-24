@@ -58,10 +58,10 @@
 				and to_char(r.r_recall_time, 'yyyy/MM') = to_char(sysdate, 'yyyy/MM')
 			</if>
 			<if test='p_ok == 2'>
-				and to_char(r.r_recall_time, 'yyyy') = #{r_recall_time}
+				and to_char(r.r_recall_time, 'yyyy') = #{p_open}
 			</if>
 			<if test='p_ok == 3'>
-				and to_char(r.r_recall_time, 'yyyy/MM') = #{r_recall_time}
+				and to_char(r.r_recall_time, 'yyyy/MM') = #{p_open}
 			</if>
 			
 		</where>
@@ -69,6 +69,7 @@
 	</select>
 	
 	<resultMap type="map" id="getRefundList">
+        <result column="r_no" property="r_no"/>
         <result column="m_id" property="m_id"/>
         <result column="m_name" property="m_name"/>
         <result column="p_name" property="p_name"/>
@@ -97,6 +98,24 @@
 	<delete id="deleteRental">
 		DELETE FROM rental WHERE r_no = #{r_no}
 	</delete>
+	
+	<select id="getRegdate" resultType="String">
+		select to_char(m_regdate, 'yyyy/MM/dd') register 
+		from member 
+		where m_id = 'esub17@naver.com'
+	</select>
+	
+	<!-- 환불 현황 상세 페이지 -->
+	<select id="getDetailRefund" resultType="rental" parameterType="int">
+		select p.p_name, p.p_phone, p.p_address,
+		r.m_id, r.r_account, m.m_phone, r.r_regdate, r.r_reserve_date, r.r_start, s.s_hours, s.s_name, r.r_total_pay,
+		r.r_recall_time, r.refund, r.r_pay_type, r.r_bank, r.r_account, r.r_account_num, r.r_no
+		from place p, member m, rental r, stadium s
+		where p.p_num = s.p_num
+		and s.s_no = r.s_no
+		and r.m_id = m.m_id
+		and r_no = #{r_no}
+	</select>
 
 	
 </mapper>

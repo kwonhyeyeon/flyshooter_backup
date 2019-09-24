@@ -2,6 +2,7 @@
  * 
  */
 $(document).ready(function() {
+	var p_num = $('#p_num').val();
 	// 등록 버튼 클릭 시 처리 이벤트
 	$("#p_placeModifyForm").submit(function() {
 		return placeCheck();
@@ -32,7 +33,6 @@ $(document).ready(function() {
 	});
 
 	$("#p_status").change(function() {
-		var p_num = $("#p_num").val();
 		var closePlace = document.getElementById("closePlace");
 		if ($("#p_status").val() == "2") {
 			jQuery('#p_holidaydate').show();

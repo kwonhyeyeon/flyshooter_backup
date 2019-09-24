@@ -42,13 +42,12 @@
 			<div class="selectArea">
 				<form id="refundListForm">
 					<input type="hidden" id="register" value="${register}" />
-					<input type="hidden" id="p_ok" name="p_ok" value="${p_ok}" />
 					
-					<select name="year" id="year">
+					<select name="p_open" id="year">
 						<option selected>연도</option>
 					</select>
 					
-					<select name="month" id="month">
+					<select name="p_close" id="month">
 						<option selected>월 선택</option>
 					</select>
 					
@@ -56,10 +55,14 @@
 				</form>
 			</div>
 			
+			<!-- 상세페이지 이동을 위한 폼 -->
+			<form name="detailRefund" id="detailRefund">
+				<input type="hidden" name="r_no" id="r_no" />
+			</form>
 			<!-- 환불 리스트 -->
 			<table class="tbl-style">
 				<tr>
-					<th>회원  ID</th>
+					<th>회원 ID</th>
 					<th>회원명</th>
 					<th>구장명</th>
 					<th>결제 금액</th>
@@ -68,7 +71,7 @@
 				</tr>
 				<c:if test="${not empty refundList}">
 					<c:forEach var="refund" items="${refundList}" varStatus="status">
-						<tr class="goDetail">
+						<tr id="getR_no" class="goDetail" data-num="${refund.r_no}">
 							<td>${refund.m_id}</td>
 							<td>${refund.m_name}</td>
 							<td>${refund.p_name}</td>
@@ -80,7 +83,7 @@
 				</c:if>
 				<c:if test="${empty refundList}">
 					<tr>
-						<td>환불 신청이 없습니다</td>
+						<td colspan="6">환불 신청이 없습니다</td>
 					</tr>
 				</c:if>
 			</table>
