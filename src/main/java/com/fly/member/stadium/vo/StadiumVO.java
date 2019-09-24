@@ -13,10 +13,10 @@ public class StadiumVO extends PlaceVO {
 	private int s_d_fee_w;
 	private int s_n_fee_w;
 	private int s_people;
-	private MultipartFile mfile;//첨부파일
-	private String s_img1 = ""; // 경기장 이미지1
-	private String s_img2 = ""; // 경기장 이미지2
-	private String s_img3 = "";	// 경기장 이미지3
+	private MultipartFile file;//첨부파일
+	private String s_img1; // 경기장 이미지1
+	private String s_img2; // 경기장 이미지2
+	private String s_img3;	// 경기장 이미지3
 	private int s_in_out;
 	private int s_status;
 	private int s_hours;
@@ -28,17 +28,13 @@ public class StadiumVO extends PlaceVO {
 		super();
 	}
 
-	
-	
-	public MultipartFile getMfile() {
-		return mfile;
+	public MultipartFile getFile() {
+		return file;
 	}
 
-	public void setMfile(MultipartFile mfile) {
-		this.mfile = mfile;
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
-
-
 
 	public int getS_no() {
 		return s_no;
