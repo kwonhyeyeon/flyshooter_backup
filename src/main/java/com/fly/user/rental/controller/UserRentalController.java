@@ -3,6 +3,7 @@ package com.fly.user.rental.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -47,14 +48,14 @@ public class UserRentalController {
 	private static final Logger log = LoggerFactory.getLogger(UserRentalController.class);   
    
     @RequestMapping(value = "/location.do")
-    public String searchLocation(Model model) {
+    public String searchLocation_UserChk(Model model,HttpServletRequest request) {
 	    
        return "rental/location";
     }
    
    // 지역으로 검색한 구장리스트
    @RequestMapping(value = "/placeList.do", method = RequestMethod.GET)
-   public String searchPlaceList(@ModelAttribute PlaceVO pvo, Model model, RedirectAttributes redirectAttr, 
+   public String searchPlaceList_UserChk(@ModelAttribute PlaceVO pvo,HttpServletRequest request, Model model, RedirectAttributes redirectAttr, 
 		   @RequestParam(value = "area", required = true, defaultValue = "null") String area) {
       
 	   log.info("============="+area);

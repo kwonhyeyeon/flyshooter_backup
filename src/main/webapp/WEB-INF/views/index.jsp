@@ -9,7 +9,24 @@
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>FLY SHOOTER</title>
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script>
 
+
+$(document).ready(function(){ 
+	
+	
+	if("${log_message}"){
+		alert("${log_message}");
+		location.href = "/";
+}
+	
+
+	
+});
+
+
+</script>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
 </head>

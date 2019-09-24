@@ -27,11 +27,40 @@
 	<!-- 자동으로 AspectJ 라이브러리를 이용해서 Proxy 객체를 생성해 내는 용도로 사용 -->
 	<aop:aspectj-autoproxy />
 	
+	
+	<!-- 로그인 상태를 확인하는 aop -->
 	<beans:bean id="adminLog" class="com.fly.admin.logadvice.LoggingAdvice"></beans:bean>
 	<aop:config>
 		<aop:pointcut expression="execution(* com.fly.admin..*Controller.*Chk(..))" id="adminLoginChk"/>
 		<aop:aspect ref="adminLog">
-			<aop:around method="sessionChk" pointcut-ref="adminLoginChk"/>
+			<aop:around method="adminSessionChk" pointcut-ref="adminLoginChk"/>
+		</aop:aspect>
+	</aop:config>
+	
+	
+	
+	<!--회원의 로그인상태를 확인하는 aop -->
+	<beans:bean id="memberlog" class="com.fly.member.logadvice.MemberAdvice"></beans:bean>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.fly.*..*Controller.*_LoginChk(..))" id="loginCheck"/>
+		<aop:aspect ref="memberlog">
+			<aop:around method="loginCheck" pointcut-ref="loginCheck"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<!-- 일반회원인지 type을 확인하는 aop -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.fly.*..*Controller.*_UserChk(..))" id="userTypeCheck"/>
+		<aop:aspect ref="memberlog">
+			<aop:around method="userCheck" pointcut-ref="userTypeCheck"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<!-- 사업자인지 type을 확인하는 aop -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.fly.*..*Controller.*_ClientChk(..))" id="clientTypeCheck"/>
+		<aop:aspect ref="memberlog">
+			<aop:around method="clientCheck" pointcut-ref="clientTypeCheck"/>
 		</aop:aspect>
 	</aop:config>
 	
