@@ -12,7 +12,6 @@ $(document).ready(function() {
 	var registerMonth = $("#register").val().split("/")[1]; // 가입 월
 	
 	// default
-	console.log(month);
 	$("#year").text(year);
 	
 	for(var i = year; i >= registerYear; i--) {
@@ -20,7 +19,7 @@ $(document).ready(function() {
 	}
 	
 	$("#month").empty();
-	for(var j = 1; j <= 12; j++) {
+	for(var j = 1; j <= month; j++) {
 		if(j < 10) {
 			j = "0" + j;
 		}
@@ -36,9 +35,10 @@ $(document).ready(function() {
 		$("#p_ok").val("2");
 		
 		$("#month").empty();
-		$("#month").append("<option>월 선택</option>");
+		$("#month").append("<option value=''>월 선택</option>");
 		
 		var sYear = $("#year").val();
+		var sMonth = $("#month").val();
 		
 		if(sYear == registerYear) { // 가입한 해이면
 			
@@ -52,6 +52,13 @@ $(document).ready(function() {
 				$("#month").append("<option value='" + j + "'>" + j + "월</option>");
 			}
 			
+		} else if(sYear == year) { // 해당 년도
+			for(var j = 1; j <= month; j++) {
+				if(j < 10) {
+					j = "0" + j;
+				}
+				$("#month").append("<option value='" + j + "'>" + j + "월</option>");
+			}
 		} else {
 			for(var j = 1; j <= 12; j++) {
 				if (j < 10) {
@@ -82,6 +89,13 @@ $(document).ready(function() {
 				$("#month").append("<option value='" + j + "'>" + j + "월</option>");
 			}
 			
+		} else if(sYear == year) { // 해당 년도
+			for(var j = 1; j <= month; j++) {
+				if(j < 10) {
+					j = "0" + j;
+				}
+				$("#month").append("<option value='" + j + "'>" + j + "월</option>");
+			}
 		} else {
 			for(var j = 1; j <= 12; j++) {
 				if (j < 10) {
@@ -97,14 +111,27 @@ $(document).ready(function() {
 	// 년, 월로 환불 현황 검색하는 폼
 	$("#refundSearch").click(function() {
 		
-		
-		
 		$("#refundListForm").attr({
 			"method" : "get",
 			"action" : "/client/rental/refundList.do"
 		});
 		
 		$("#refundListForm").submit();
+		
+	});
+	
+	// 상세 페이지 이동 폼
+	$("#getR_no").click(function() {
+		
+		var num = $("#getR_no").attr("data-num");
+		$("#r_no").val(num);
+		
+		$("#detailRefund").attr({
+			"method" : "post",
+			"action" : "/client/rental/detailRefund.do"
+		});
+		
+		$("#detailRefund").submit();
 		
 	});
 	
