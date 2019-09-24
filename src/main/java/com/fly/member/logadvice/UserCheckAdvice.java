@@ -45,12 +45,15 @@ public class UserCheckAdvice {
 				System.out.println("m_type ::::::::::::" + mvo.getM_type());
 				
 				int type = mvo.getM_type();
-				
+				if( type == 2 ) {
+					message = "일반 회원만 이용할수 있습니다.";
+					request.setAttribute("message", message);
+					return "index";
+				}
 				
 							
 			}catch(NullPointerException e) {
 				message = "로그인후 이용할수 있습니다.";
-				
 				
 				request.setAttribute("message", message);
 				return "member/login";
