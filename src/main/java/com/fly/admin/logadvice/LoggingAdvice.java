@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 
 public class LoggingAdvice {
 
-		public Object sessionChk(ProceedingJoinPoint pjp) throws Throwable {
+		public Object adminSessionChk(ProceedingJoinPoint pjp) throws Throwable {
 			System.out.println("admin login chk");
 			HttpServletRequest request = null;
 			Model model = null;

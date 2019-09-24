@@ -31,9 +31,18 @@
 	<aop:config>
 		<aop:pointcut expression="execution(* com.fly.admin..*Controller.*Chk(..))" id="adminLoginChk"/>
 		<aop:aspect ref="adminLog">
-			<aop:around method="sessionChk" pointcut-ref="adminLoginChk"/>
+			<aop:around method="adminSessionChk" pointcut-ref="adminLoginChk"/>
 		</aop:aspect>
 	</aop:config>
+	
+	<beans:bean id="userLog" class="com.fly.member.logadvice.UserCheckAdvice"></beans:bean>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.fly.*..*Controller.*_UserChk(..))" id="userSessionChk"/>
+		<aop:aspect ref="userLog">
+			<aop:around method="userSessionCheck" pointcut-ref="userSessionChk"/>
+		</aop:aspect>
+	</aop:config>
+	
 	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<!-- <resources mapping="/resources/**" location="/resources/" /> -->

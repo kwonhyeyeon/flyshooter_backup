@@ -34,10 +34,10 @@ public class ClientRentalDaoImpl implements ClientRentalDao {
 		}
 		
 		// 대관 예약 리스트
-		@Override
-		public List<RentalVO> getRentalList(HashMap<String, Object> map) {
-			return sqlSession.selectList(NAME_SPACE + ".rentalList", map);
-		}
+				@Override
+				public List<RentalVO> getRentalList(HashMap<String, Object> map) {
+					return sqlSession.selectList(NAME_SPACE + ".rentalList", map);
+				}
 
 		@Override
 		public List<Map<String, String>> getRefundList(PlaceVO pvo) {
@@ -59,6 +59,16 @@ public class ClientRentalDaoImpl implements ClientRentalDao {
 		public int deleteRental(int r_no) {
 			// TODO Auto-generated method stub
 			return sqlSession.delete(NAME_SPACE + ".deleteRental", r_no);
+		}
+		
+		@Override
+		public String getRegdate(String m_id) {
+			return sqlSession.selectOne(NAME_SPACE + ".getRegdate", m_id);
+		}
+
+		@Override
+		public RentalVO getDetailRefund(int r_no) {
+			return sqlSession.selectOne(NAME_SPACE + ".getDetailRefund", r_no);
 		}
 
 
