@@ -83,7 +83,7 @@ public class SupportController {
 	 *************************************************************/
 
 	@RequestMapping(value = "/supportInsertForm.do", method = RequestMethod.GET)
-	public String supportInsertForm_UserChk(@ModelAttribute MemberVO mvo, Model model, HttpSession session, HttpServletRequest request) throws Exception {
+	public String supportInsertForm_LoginChk(@ModelAttribute MemberVO mvo, Model model, HttpSession session, HttpServletRequest request) throws Exception {
 		System.out.println("supportInsertForm 호출 성공");
 		
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
@@ -102,7 +102,7 @@ public class SupportController {
 	 ***************************************************************/
 
 	@RequestMapping(value = "/supportInsert.do")
-	public String supportInsert(@ModelAttribute SupportVO svo) throws Exception {
+	public String supportInsert_LoginChk(@ModelAttribute SupportVO svo, HttpServletRequest request) throws Exception {
 		System.out.println("supportInsert 호출 성공");
 		int result = 0;
 		String url = "";
@@ -121,7 +121,7 @@ public class SupportController {
 	 ***************************************************************/
 
 	@RequestMapping(value = "/supportUpdateForm.do")
-	public String supportUpdateForm_UserChk(@ModelAttribute SupportVO svo, Model model, HttpServletRequest request) throws Exception {
+	public String supportUpdateForm_LoginChk(@ModelAttribute SupportVO svo, Model model, HttpServletRequest request) throws Exception {
 		System.out.println("supportUpdateForm 호출 성공");
 
 		SupportVO updateSupportData = new SupportVO();
@@ -136,7 +136,7 @@ public class SupportController {
 	 ***************************************************************/
 
 	@RequestMapping(value = "/supportUpdate.do", method = RequestMethod.POST)
-	public String supportUpdate(@ModelAttribute SupportVO svo) throws Exception {
+	public String supportUpdate_LoginChk(@ModelAttribute SupportVO svo, HttpServletRequest request) throws Exception {
 
 		System.out.println("supportUpdate 호출 성공");
 
