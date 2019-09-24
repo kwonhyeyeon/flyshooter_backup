@@ -54,8 +54,8 @@
 				<nav id="gnb">
 					<ul>
 						<li><a href="/">대관</a></li>
-						<li><a href="/">매치</a></li>
-						<li><a href="/">용병</a></li>
+						<li><a href="/match/matchList.do">매치</a></li>
+						<li><a href="/support/supportList.do">용병</a></li>
 						<li><a href="/member/mypage/modifyLogin.do">마이페이지</a></li>
 					</ul>
 				</nav>
@@ -81,11 +81,11 @@
 							<li><a href="/">대관 확인</a></li>
 						</ul>
 						<ul>
-							<li><a href="/">매치 신청</a></li>
+							<li><a href="/match/matchList.do">매치 신청</a></li>
 						</ul>
 						<ul>
-							<li><a href="/">용병 지원</a></li>
-							<li><a href="/">용병 모집</a></li>
+							<li><a href="/support/supportList.do">용병 지원</a></li>
+							<li><a href="/recruit/recruitList.do">용병 모집</a></li>
 						</ul>
 						<ul>
 							<li><a href="/member/mypage/modifyLogin.do">회원 정보 수정</a></li>
@@ -99,17 +99,17 @@
 							<li><a href="/">오프라인 대관 관리</a></li>
 						</ul>
 						<ul>
-							<li><a href="/">매치 신청</a></li>
+							<li><a href="/match/matchList.do">매치 신청</a></li>
 						</ul>
 						<ul>
-							<li><a href="/">용병 지원</a></li>
-							<li><a href="/">용병 모집</a></li>
+							<li><a href="/support/supportList.do">용병 지원</a></li>
+							<li><a href="/recruit/recruitList.do">용병 모집</a></li>
 						</ul>
 						<ul>
 							<li><a href="/member/mypage/modifyLogin.do">회원 정보 수정</a></li>
 							<li><a href="/mypage/placeList.do">구장</a></li>
 							<li><a href="/mypage/placeChoice.do">경기장/용품</a></li>
-							<li><a href="/">정산 관리</a></li>
+							<li><a href="/mypage/calculate.do">정산 관리</a></li>
 							<li><a href="/">통계</a></li>
 						</ul>
 					</c:if>

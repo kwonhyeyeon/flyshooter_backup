@@ -1,6 +1,8 @@
 package com.fly.member.itemsrental.vo;
 
-public class ItemsRentalVO {
+import com.fly.client.items.vo.ItemsVO;
+
+public class ItemsRentalVO extends ItemsVO {
 
 	private int ir_no; // 용품대여 일련번호
 	private int i_no; // 용품 일련번호

@@ -6,6 +6,7 @@
   <configuration>
 	<typeAliases>
 		<typeAlias type="com.fly.client.items.vo.ItemsVO" alias="items"/>
+		<typeAlias type="com.fly.client.calculate.vo.CalculateVO" alias="calculate"/>
 		<typeAlias type="com.fly.member.place.vo.PlaceVO" alias="place"/>
 		<typeAlias type="com.fly.member.stadium.vo.StadiumVO" alias="stadium" />
 		<typeAlias type="com.fly.member.login.vo.LoginHistory" alias="loginHistory" />
@@ -16,5 +17,8 @@
 		<typeAlias type="com.fly.member.match.vo.MatchVO" alias="match" />
 		<typeAlias type="com.fly.member.support.vo.SupportVO" alias="support" />
 		<typeAlias type="com.fly.member.recruit.vo.RecruitVO" alias="recruit" />
+		<typeAlias type="com.fly.client.items.vo.ItemsVO" alias="items"/>
+		<typeAlias type="com.fly.admin.statistics.vo.StatisticsVO" alias="statistics"/>
+		<typeAlias type="com.fly.rental.detail.vo.RentalDetailVO" alias="rentalDetail"/>
 	</typeAliases>
 </configuration>

@@ -49,5 +49,23 @@ public class SupportDaoImpl implements SupportDao {
 	public int supportMbdate(SupportVO svo) {
 		return sqlSession.update("supportMbdate", svo);
 	}
+	
+	// 글 삭제 구현
+	@Override
+	public int supportStatusUpdate(SupportVO svo) {
+		return sqlSession.update("supportStatusUpdate", svo);
+	}
+	
+	// 관리자용 글 목록 구현
+	@Override
+	public List<SupportVO> adminSupportList(SupportVO svo) {
+		return sqlSession.selectList("adminSupportList", svo);
+	}
+	
+	// 관리자용 전체 레코드 건수 구현
+	@Override
+	public int adminSupportListCnt(SupportVO svo) {
+		return (Integer)sqlSession.selectOne("adminSupportListCnt", svo);
+	}
 
 }

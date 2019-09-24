@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fly.client.rental.dao.clientRentalDao">
+
+	<!-- 구장 리스트 -->
+	<select id="placeList" parameterType="String" resultType="place">
+		select p_name, p_num
+		from place
+		where m_id = #{m_id} and p_status in(-1, 1)
+		order by p_regdate asc
+	</select>
+	
+	<!-- 경기장 리스트 -->
+	<select id="stadiumList" parameterType="String" resultType="stadium">
+		select s_name, s_no
+		from stadium
+		where p_num = #{p_num}
+	</select>
+
+	<!-- 대관 리스트 -->
+	<select id="rentalList" parameterType="hashmap" resultType="rental" >
+		SELECT r.m_id, r.r_no, m.m_name r_bank, m.m_phone r_account,
+				 r.r_start, s.s_hours cal_status,
+				  (select count(*) from items_rental where r_no = r.r_no) refund, r.r_pay_status, 
+				  to_char(r.r_regdate, 'yyyy-MM-dd') r_regdate, r.r_total_pay,
+				CASE
+                    WHEN to_char(r.r_reserve_date, 'yyyy-MM-dd') <![CDATA[ > ]]> to_char(sysdate, 'yyyy-MM-dd') THEN -1
+                    WHEN (select count(*) from items_rental where r_no = r.r_no and ir_return_status = 1) <![CDATA[  > ]]> 0 THEN 1
+                    else 2
+				END r_pay_type
+				  
+				  
+		FROM rental r, member m, stadium s
+		WHERE r.m_id = m.m_id 
+				and r.s_no = s.s_no  
+					and r.r_pay_status in(1, 0, 2) 
+						and r.s_no = #{s_no}  
+							and to_char(r.r_reserve_date, 'yyyy-MM-dd') = #{selectDay}
+		ORDER BY to_number(r.r_start) asc
+	</select>
+	
+	<select id="detailRental">
+	
+	</select>
+	
+	<!-- 환불 리스트 -->
+	<select id="getRefundList" parameterType="place" resultMap="getRefundList">
+		select r.m_id, m.m_name, p.p_name, r.r_total_pay, r.refund, 
+		to_char(r.r_recall_time, 'yyyy/MM/dd') r_recall_time, r.r_no, to_char(m.m_regdate, 'yyyy/MM/dd') m_regdate
+		from rental r, member m, place p 
+		<where>
+			r.m_id = m.m_id and p.p_num = (select p_num from stadium where s_no = r.s_no) 
+			and p.m_id = 'esub17@naver.com'
+			and r.r_pay_status in (-1, 2)
+			
+			<if test='p_ok == 1'>
+				and to_char(r.r_recall_time, 'yyyy/MM') = to_char(sysdate, 'yyyy/MM')
+			</if>
+			<if test='p_ok == 2'>
+				and to_char(r.r_recall_time, 'yyyy') = #{r_recall_time}
+			</if>
+			<if test='p_ok == 3'>
+				and to_char(r.r_recall_time, 'yyyy/MM') = #{r_recall_time}
+			</if>
+			
+		</where>
+		order by r_recall_time desc
+	</select>
+	
+	<resultMap type="map" id="getRefundList">
+        <result column="m_id" property="m_id"/>
+        <result column="m_name" property="m_name"/>
+        <result column="p_name" property="p_name"/>
+        <result column="r_total_pay" property="r_total_pay"/>
+        <result column="refund" property="refund"/>
+        <result column="r_recall_time" property="r_recall_time"/>
+        <result column="m_regdate" property="register"/>
+    </resultMap>
+	
+	
+	<!-- 환불 리스트 paging -->
+	<select  id="refundListCnt" parameterType="rental" resultType="int">
+		select count(*)
+		from rental
+		where r_pay_status in(-1, 2)
+	</select>
+	
+	<update id="refund_request" parameterType="int">
+		UPDATE rental
+			SET r_pay_status = 2,
+				refund = r_total_pay,
+				r_recall_time = sysdate
+		WHERE r_no = #{r_no}
+	</update>
+	
+	<delete id="deleteRental">
+		DELETE FROM rental WHERE r_no = #{r_no}
+	</delete>
+
+	
+</mapper>

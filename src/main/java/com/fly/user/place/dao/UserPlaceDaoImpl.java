@@ -13,7 +13,7 @@ public class UserPlaceDaoImpl implements UserPlaceDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private static final String NAME_SPACE = "com.fly.user.place.dao.UserPlaceDao";
+	private String NAME_SPACE = "com.fly.user.place.dao.UserPlaceDao";
 	
 	// 지역으로 검색한 구장리스트
 	@Override

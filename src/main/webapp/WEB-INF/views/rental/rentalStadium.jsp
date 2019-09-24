@@ -30,75 +30,7 @@
 	<div id="wrapper">
 
 		<div id="header-wrap">
-			<header id="header">
-				<h1><a href="/">FLY SHOOTER</a></h1>
-				
-				<nav id="gnb">
-					<ul>
-						<li><a href="/">대관</a></li>
-						<li><a href="/">매치</a></li>
-						<li><a href="/">용병</a></li>
-						<li><a href="/">마이페이지</a></li>
-					</ul>
-				</nav>
-				
-				<nav id="lnb">
-					<ul>
-						<c:if test="${empty m_id}">
-							<li><a href="/member/join.do">회원가입</a></li>
-							<li><a href="/">로그인</a></li>
-						</c:if>
-						<c:if test="${not empty m_id}">
-							<li><a href="/">로그아웃</a></li>
-						</c:if>
-					</ul>
-				</nav>
-			</header>
-			
-			<div class="menu-wrap">
-				<div class="menu">
-					<c:choose>
-						<c:when test="${m_type==1}">
-						<ul>
-							<li><a href="/user/rental/location.do">대관 예약</a></li>
-							<li><a href="/">대관 확인</a></li>
-						</ul>
-						<ul>
-							<li><a href="/">매치 신청</a></li>
-						</ul>
-						<ul>
-							<li><a href="/">용병 지원</a></li>
-							<li><a href="/">용병 모집</a></li>
-						</ul>
-						<ul>
-							<li><a href="/">회원 정보 수정</a></li>
-						</ul>
-						</c:when>
-					
-						<c:when test="${m_type==0}">
-						<ul class="member-menu">
-							<li><a href="/user/rental/rentalList.do">대관 예약 현황</a></li>
-							<li><a href="/">대관 환불 현황</a></li>
-							<li><a href="/">오프라인 대관 관리</a></li>
-						</ul>
-						<ul>
-							<li><a href="/">매치 신청</a></li>
-						</ul>
-						<ul>
-							<li><a href="/">용병 지원</a></li>
-							<li><a href="/">용병 모집</a></li>
-						</ul>
-						<ul>
-							<li><a href="/">회원 정보 수정</a></li>
-							<li><a href="/">구장</a></li>
-							<li><a href="/">경기장/용품</a></li>
-							<li><a href="/">정산 관리</a></li>
-							<li><a href="/">통계</a></li>
-						</ul>
-						</c:when>
-					</c:choose>
-				</div>
-			</div>
+			<jsp:include page="../templates/header.jsp" flush="true" />
 		</div>
 		
 		<div class="sub-v"></div>
@@ -210,7 +142,7 @@
 								</tr>
 							</c:forEach>
 						</table>
-						<input type="text" value="${ itemsList.size() }" id="items_ec" placeholder="0"/>
+						<input type="hidden" value="${ itemsList.size() }" id="items_ec" placeholder="0"/>
 					</c:if>
 				</div>
 				
@@ -228,17 +160,17 @@
 	</div>
 	
 	<div id="dialog" title="결제창" style="display: none">
-		<form id="insertRentalForm">
-			<input type="text" id="r_reserve_date" name="r_reserve_date" />
-			<input type="text" id="s_no" name="s_no" />
-			<input type="text" id="r_start" name="r_start" />
-			<input type="text" id="r_total_pay" name="r_total_pay" />
-			<input type="text" id="r_pay_type" name="r_pay_type"/>
-			<input type="text" id="r_bank" name="r_bank" />	
-			<input type="text" id="r_account_num" name="r_account_num"/>
-			<input type="text" id="r_account" name="r_account"/>		
-			<input type="text" id="items_no" name="items_no"/>
-			<input type="text" id="items_ea" name="items_ea"/>
+		<form id="insertRentalForm" >
+			<input type="hidden" id="r_reserve_date" name="r_reserve_date" />
+			<input type="hidden" id="s_no" name="s_no" />
+			<input type="hidden" id="r_start" name="r_start" />
+			<input type="hidden" id="r_total_pay" name="r_total_pay" />
+			<input type="hidden" id="r_pay_type" name="r_pay_type"/>
+			<input type="hidden" id="r_bank" name="r_bank" />	
+			<input type="hidden" id="r_account_num" name="r_account_num"/>
+			<input type="hidden" id="r_account" name="r_account"/>		
+			<input type="hidden" id="items_no" name="items_no"/>
+			<input type="hidden" id="items_ea" name="items_ea"/>
 		</form>	
 			<h1>결제</h1>
 			<hr />

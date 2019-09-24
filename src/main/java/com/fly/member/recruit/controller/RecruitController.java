@@ -36,6 +36,8 @@ public class RecruitController {
 	public String recruitList(@ModelAttribute RecruitVO revo, CommonVO cvo, Model model) {
 		System.out.println("recruitList 호출 성공");
 		
+		String result = "";
+		
 		// 일자가 지났을 경우 진행상황 변경
 		recruitService.recruitMbdate(revo);
 		model.addAttribute("recruitMbdate", revo);
@@ -85,6 +87,7 @@ public class RecruitController {
 		
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
 		String m_id = sessionMvo.getM_id();
+		
 		
 		System.out.println(m_id);
 	
@@ -143,7 +146,7 @@ public class RecruitController {
 		result = recruitService.recruitUpdate(revo);
 
 		if (result == 1) {
-			url = "/recruit/recruitView.do?hr_no=" + revo.getHr_no();
+			url = "/recruit/recruitList.do?hr_no=" + revo.getHr_no();
 		} else {
 			url = "/recruit/recruitUpdateForm.do?hr_no=" + revo.getHr_no();
 		}

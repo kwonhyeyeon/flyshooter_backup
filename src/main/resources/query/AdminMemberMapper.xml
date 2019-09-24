@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fly.admin.member.dao.AdminMemberDao">
+	
+	<select id="selectMemberList" parameterType="member" resultType="member">
+		SELECT 
+			m.m_id, m.m_name, m.m_phone, m.m_type, m.m_status, to_char(m.m_regdate, 'yyyy-MM-dd') m_regdate, 
+			nvl((select to_char(lastsuccessedlogin, 'yyyy-MM-dd') 
+			from login_history 
+			where m_id = m.m_id), '로그인 기록이 없습니다.') email_confirm
+     	FROM 
+     		(select ROWNUM RNUM, r.*
+     			from (select * 
+     					from member 
+     					<where>
+     						<if test="m_type != 3">
+								m_type = #{m_type}	
+							</if>
+							<if test="m_name != null and m_name != ''">
+								m_name LIKE '%'|| #{m_name} ||'%'
+							</if>
+     					</where>
+     					ORDER BY m_status desc, m_regdate desc) r
+     					) m
+     		
+     	<where>
+	     	<if test="start_row != null and start_row != ''">
+	     		<if test="end_row != null and end_row != ''">
+	     			RNUM BETWEEN #{start_row} and #{end_row}
+	     		</if>	
+	     	</if>
+		</where>
+		
+	</select>
+	
+	<select id="getListSize" parameterType="member" resultType="int">
+		SELECT 
+			nvl(count(*), 0)
+     	FROM 
+     		member
+     		
+     	<where>
+			<if test="m_type != 3">
+				m_type = #{m_type}	
+			</if>
+			<if test="m_name != null and m_name != ''">
+				m_name LIKE '%'|| #{m_name} ||'%'
+			</if>
+		</where>
+		
+	</select>
+	
+	<select id="searchUserReservedCnt" parameterType="member" resultType="int">
+		SELECT 
+			count(*)
+		FROM
+			rental
+		where
+			 r_pay_status > -1 
+			 and r_reserve_date <![CDATA[ > ]]> sysdate  and m_id = #{m_id}	
+	</select>
+	
+	<select id="searchClientPlaceCnt" parameterType="member" resultType="int">
+		SELECT 
+			count(*)
+		FROM
+			place
+		where
+			 p_status > -2 and m_id = #{m_id}
+	</select>
+	
+	<update id="updateMember" parameterType="member">
+		UPDATE member
+			SET m_status = #{m_status}
+		WHERE m_id = #{m_id}
+	</update>
+	
+</mapper>

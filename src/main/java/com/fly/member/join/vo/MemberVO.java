@@ -1,7 +1,9 @@
 package com.fly.member.join.vo;
 
+import com.fly.paging.vo.PagingVO;
+
 //memberVO
-public class MemberVO {
+public class MemberVO extends PagingVO{
 	private String m_id;// 아이디
 	private String m_pw;// 비밀번호
 	private String m_phone;// 휴대전화

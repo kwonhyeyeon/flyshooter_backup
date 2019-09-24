@@ -7,23 +7,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>매치신청 등록</title>
+<title>용병지원 등록</title>
 
 <script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="/resources/js/boardCheck.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
-<link rel="stylesheet" type="text/css"
-	href="/resources/js/jquery-ui.min.css" />
-<script src="/resources/js/jquery-ui.min.js"></script>
-<script src="/resources/js/boardCheck.js"></script>
+<link rel="stylesheet" href="/resources/css/board.css">
+<link rel="stylesheet" type="text/css" href="/resources/js/jquery-ui.min.css" />
 
+<script src="/resources/js/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
 	// 매칭 게시글 저장 스크립트 Controller자바 /support/supportInsert.do 로 연결-----------------
 	$(function() {
 		// 달력으로 날짜 선택할 수 있는 스크립트 ---------------------
 		var hs_date = $("#hs_date").datepicker({
-			dateFormat : 'yy-mm-dd'
+			dateFormat : 'yy-mm-dd',
+			buttonImage: "/application/db/jquery/images/calendar.gif",
+			buttonImageOnly: true
 		});
 		hs_date.datepicker('setDate', new Date());
 		//-------------------------------------------------
@@ -51,7 +53,7 @@
 		//-------------------------------------------------
 		
 		// 등록버튼 클릭시 이벤트 스크립트
-		$("#supportInsertBtn").click(
+		$("#insertDataBtn").click(
 				function() {
 
 					// 입력값 체크
@@ -75,7 +77,7 @@
 				});
 
 		// 취소 버튼 클릭시 목록 화면으로 돌아감
-		$("#supportCancel").click(function() {
+		$("#cancel").click(function() {
 			location.href = "/support/supportList.do";
 		});
 
@@ -89,7 +91,6 @@
 
 </head>
 <body>
-
 
 	<div id="header-wrap">
 		<header id="header">
@@ -108,11 +109,11 @@
 
 			<nav id="lnb">
 				<ul>
-					<c:if test="${empty m_id}">
+					<c:if test="${empty mvo.m_id}">
 						<li><a href="/member/join.do">회원가입</a></li>
 						<li><a href="/member/login.do">로그인</a></li>
 					</c:if>
-					<c:if test="${not empty m_id}">
+					<c:if test="${not empty mvo.m_id}">
 						<li><a href="/member/logout.do">로그아웃</a></li>
 					</c:if>
 				</ul>
@@ -121,7 +122,7 @@
 
 		<div class="menu-wrap">
 			<div class="menu">
-				<c:if test="${empty m_id || m_type=='1'}">
+				<c:if test="${empty mvo.m_id || mvo.m_type=='1'}">
 					<ul>
 						<li><a href="/user/rental/location.do">대관 예약</a></li>
 						<li><a href="/">대관 확인</a></li>
@@ -138,7 +139,7 @@
 					</ul>
 				</c:if>
 
-				<c:if test="${m_type=='0'}">
+				<c:if test="${mvo.m_type=='0'}">
 					<ul class="member-menu">
 						<li><a href="/client/rental/rentalList.do">대관 예약 현황</a></li>
 						<li><a href="/">대관 환불 현황</a></li>
@@ -163,22 +164,22 @@
 		</div>
 	</div>
 
-	<div>
-		<div>
+	<div id="dataInsertPage" style="width: 1200px;">
+		<div id="insertTitle">
 			<h2>용병지원</h2>
 		</div>
 		<!-- 용병 지원 작성 -->
-		<div class="supportContent">
+		<div class="insertContent">
 			<form id="supportData" name="supportData">
-				<input type="hidden" name="m_id" id="m_id" value="${m_id}">
+				<input type="hidden" name="m_id" id="m_id" value="${mvo.m_id}">
 				<input type="hidden" name="hs_progress" id="hs_progress" value="1">
 				<input type="hidden" name="hs_status" id="hs_status" value="1">
-				<table class="recruitInsertTable">
+				<table class="insertTable">
 					<!-- 입력칸 크기 설정 -->
-					<colgroup>
+			<!--<colgroup>
 						<col width="50%" />
 						<col width="50%" />
-					</colgroup>
+					</colgroup> -->
 					<!-- 용병 지원 작성 -->
 					<tbody>
 						<tr>
@@ -214,7 +215,7 @@
 							</td>
 							
 							<td>인원 수<br/> 
-							<select name="hs_people" id="hs_people" style="width: 100%;">
+							<select name="hs_people" id="hs_people" >
 								<option value="" selected="selected">인원 수 선택</option>
 								<option value="1">1명</option>
 								<option value="2">2명</option>
@@ -239,10 +240,10 @@
 				</table>
 			</form>
 		</div>
-		<div class="sInsertBtn">
-			<input type="button" value="등록하기" name="supportInsertBtn"
-				id="supportInsertBtn" /> <input type="button" value="취소하기"
-				name="supportCancel" id="supportCancel" />
+		<div class="insertData">
+			<input type="button" value="등록하기" name="insertDataBtn"
+				id="insertDataBtn" /> <input type="button" value="취소하기"
+				name="cancel" id="cancel" />
 		</div>
 	</div>
 </body>

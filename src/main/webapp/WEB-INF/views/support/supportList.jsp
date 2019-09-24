@@ -8,14 +8,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>매치신청 게시판</title>
+<title>용병지원 게시판</title>
 
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script src="/resources/js/boardCheck.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="/resources/css/board.css">
+<link rel="stylesheet" 	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
@@ -49,22 +49,22 @@
 		});
 
 		// 전체 리스트 확인 버튼 클릭 시 처리 이벤트
-		$("#allSupportData").click(function() {
+		$("#allData").click(function() {
 			location.href = "/support/supportList.do"
 		});
 		
 		var id = "";
 		id += $("#m_id").val();
 
-		// 등록 버튼 클릭 시 등록 페이지로 이동
-		$("#supportInsertBtn").click(function() {
-			if (id != "") {
+		// 등록 버튼 클릭 시 등록 페이지로 이동 (미 로그인 시 등록 불가) id 값이 없으면 500 에러
+		$("#insertButton").click(function() {
+			if (id != "") { 
 				var url = "/support/supportInsertForm.do";
 				location.href = url;
 			} else {
 				alert("로그인 후 등록 할 수 있습니다.")
 				return;
-			}
+			} 
 		});
 
 		var url = "/support/supportView.do";
@@ -72,14 +72,29 @@
 		// 리스트 클릭시 상세 보기 페이지로 이동
 		$(".sListView").click(function() {
 			var hs_no = $(this).parents("tr").attr("data-num");
-			$("#hs_no").val(hs_no);
-			// 상세 보기 폼 연결 스크립트
-			$("#supportViewForm").attr({
-				"method" : "get",
-				"action" : url
+			var data = $("#hs_no").val(hs_no);
+			$.ajax({
+				type : "get",
+				url : url,
+				data : data,
+				success: function(result) { 
+					$('#supportViewForm').text("");
+					$('#supportViewForm').show();
+					$('#supportViewForm').append(result);
+					$("#supportViewForm").dialog({
+						autoOpen:false,
+						width : "600px",
+						modal:true,
+						closeOnEscape: false,
+						open: function(event, ui) {
+							$(".ui-dialog-titlebar", $(this).parent()).hide();
+						}
+					});
+					
+					$("#supportViewForm").dialog("open");
+				}
 			});
-			$("#supportViewForm").submit();
-		});
+		}); 
 
 	});
 	
@@ -124,11 +139,11 @@
 
 			<nav id="lnb">
 				<ul>
-					<c:if test="${empty m_id}">
+					<c:if test="${empty mvo.m_id}">
 						<li><a href="/member/join.do">회원가입</a></li>
 						<li><a href="/member/login.do">로그인</a></li>
 					</c:if>
-					<c:if test="${not empty m_id}">
+					<c:if test="${not empty mvo.m_id}">
 						<li><a href="/member/logout.do">로그아웃</a></li>
 					</c:if>
 				</ul>
@@ -137,7 +152,7 @@
 
 		<div class="menu-wrap">
 			<div class="menu">
-				<c:if test="${empty m_id || m_type=='1'}">
+				<c:if test="${empty mvo.m_id || mvo.m_type=='1'}">
 					<ul>
 						<li><a href="/user/rental/location.do">대관 예약</a></li>
 						<li><a href="/">대관 확인</a></li>
@@ -154,7 +169,7 @@
 					</ul>
 				</c:if>
 
-				<c:if test="${m_type=='0'}">
+				<c:if test="${mvo.m_type=='0'}">
 					<ul class="member-menu">
 						<li><a href="/client/rental/rentalList.do">대관 예약 현황</a></li>
 						<li><a href="/">대관 환불 현황</a></li>
@@ -179,8 +194,8 @@
 		</div>
 	</div>
 
-	<div id="modal" class="modal">
-		<div>
+	<div id="modal" class="modal" style="width: 1800px;">
+		<div id="title">
 			<h2>용병지원</h2>
 		</div>
 		<%-- 리스트 상세보기 --%>
@@ -189,19 +204,19 @@
 		</form>
 		<%-- 리스트 상세보기 --%>
 
-		<%-- 매치신청 등록--%>
-		<div class="supportBtn">
-			<input type="button" value="용병지원 등록" id="supportInsertBtn"
+		<%-- 용병지원 등록--%>
+		<div class="insertBtn">
+			<input type="button" value="용병지원 등록" id="insertButton"
 				width="100px" height="40px">
 		</div>
-		<%-- 매치신청 등록 종료 --%>
+		<%-- 용병지원 등록 종료 --%>
 
 		<%-- 로그인 아이디 --%>
-		<input type="hidden" id="m_id" name="m_id" value="${m_id}">
+		<input type="hidden" id="m_id" name="m_id" value="${mvo.m_id}">
 		<%-- 로그인 아이디 --%>
 
 		<%-- 리스트 시작 --%>
-		<div id="supportList">
+		<div id="listStart">
 			<table summary="게시판 리스트">
 				<colgroup>
 					<col width="10%" />
@@ -213,16 +228,16 @@
 				</colgroup>
 				<thead>
 					<tr>
-						<th>글번호</th>
-						<th>지역</th>
-						<th>가능시간</th>
-						<th>작성자</th>
-						<th>작성일자</th>
-						<th>진행상태</th>
+						<th id="tableHeader">글번호</th>
+						<th id="tableHeader">지역</th>
+						<th id="tableHeader">가능시간</th>
+						<th id="tableHeader">작성자</th>
+						<th id="tableHeader">작성일자</th>
+						<th id="tableHeader">진행상태</th>
 					</tr>
 				</thead>
 				<!-- 데이터 출력 -->
-				<tbody class="supportListContent">
+				<tbody class="listContent">
 					<c:choose>
 						<c:when test="${not empty supportList}">
 							<c:forEach var="support" items="${supportList}" varStatus="status">
@@ -232,7 +247,7 @@
 									<td class="sListView">${support.hs_date}  ${support.hs_time}</td>
 									<td>${support.m_name}</td>
 									<td>${support.hs_regdate}</td>
-									<td class="sListProgress"><span class="supportStatus">
+									<td class="listProgress"><span class="lsitStatus">
 											<c:choose>
 												<c:when test="${support.hs_progress == '1'}">가능</c:when>
 												<c:when test="${support.hs_progress == '0'}">종료</c:when>
@@ -255,7 +270,7 @@
 
 		<%-- 검색기능 시작 --%>
 
-		<div id="supportSearch">
+		<div id="listSearch">
 			<form id="s_search" name="s_search">
 				<input type="hidden" id="page" name="page" value="${data.page}" />
 				<table summary="검색">
@@ -263,7 +278,7 @@
 						<td id="btd1"><input type="text" name="keyword" id="keyword"
 							placeholder="작성자 이름을 입력하세요" /> <input type="button" value="검색"
 							id="searchDataBtn" name="searchDataBtn" /> <input type="button"
-							value="전체리스트" id="allSupportData" name="allSupportData" /></td>
+							value="전체리스트" id="allData" name="allData" /></td>
 					</tr>
 				</table>
 			</form>
@@ -272,7 +287,7 @@
 		<%-- 검색기능 종료--%>
 
 		<%-- 페이지 네비게이션 시작 --%>
-		<div id="supportPage">
+		<div id="npage">
 			<tag:paging page="${data.page}" total="${total}"
 				list_size="${data.pageSize}" />
 		</div>

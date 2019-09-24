@@ -31,10 +31,11 @@
 			s.hs_progress
 			FROM
 			support s, member m
-			where s.m_id = m.m_id
+			where s.m_id = m.m_id and hs_status = 1
 			<if test="keyword != null">
 				and m.m_name LIKE '%' || #{keyword} || '%'
 			</if>
+			order by hs_regdate desc
 		)LIST
 		)
 		<where>
@@ -66,7 +67,7 @@
 			s.hs_progress
 			FROM
 			support s, member m
-			where s.m_id = m.m_id
+			where s.m_id = m.m_id and hs_status = 1
 			<if test="keyword != null">
       			and m.m_name LIKE '%' || #{keyword} || '%' 
      		 </if>
@@ -129,13 +130,95 @@
 		where hs_no = #{hs_no}
 	</update>
 	
-	<update id="supportMbdate">
+	<update id="supportMbdate" parameterType="String">
 	UPDATE
 	support
 	SET
 	hs_progress = 0
 	where to_char(hs_date, 'yyyy-MM-dd') <![CDATA[ < ]]> to_char(sysdate, 'yyyy-MM-dd') and hs_progress = 1
 	</update>
+	
+	<update id="supportStatusUpdate" parameterType="int">
+	UPDATE
+	support
+	SET
+	hs_status = 0
+	where hs_no = #{hs_no}
+	</update>
+
+	<!-- 관리자용 게시물 전체 목록 조회 쿼리문 -->
+	<select id="adminSupportList" resultType="support" parameterType="support">
+
+        select
+		hs_no,
+		m_id,
+		hs_area,
+		hs_date,
+		hs_time,
+		m_name,
+		hs_regdate,
+		hs_progress,
+		hs_status
+		FROM (
+		select LIST.*, ROWNUM AS RNUM
+		FROM (
+			select
+			s.hs_no,
+			m.m_id,
+			s.hs_area,
+			to_char(hs_date, 'YYYY-MM-DD') as hs_date,
+			s.hs_time,
+			m.m_name,
+			to_char(hs_regdate, 'YYYY-MM-DD') as hs_regdate,
+			s.hs_progress,
+			hs_status
+			FROM
+			support s, member m
+			where s.m_id = m.m_id
+			<if test="keyword != null">
+				and m.m_name LIKE '%' || #{keyword} || '%'
+			</if>
+			order by hs_regdate desc
+		)LIST
+		)
+		<where>
+			<if test="start_row != null and start_row != ''">
+				<if test="end_row != null and end_row != ''">
+					RNUM BETWEEN #{start_row} AND #{end_row}
+				</if>
+			</if>
+		</where>
+		order by hs_regdate desc
+	</select>
+
+
+	<!-- 게시물 카운트 페이징 -->
+	<select id="adminSupportListCnt" parameterType="support" resultType="int">
+
+		SELECT NVL(count(1), 0) FROM
+		(
+		select LIST.*, ROWNUM AS RNUM
+		FROM (
+			select
+			s.hs_no,
+			m.m_id,
+			s.hs_area,
+			to_char(hs_date, 'YYYY-MM-DD') as hs_date,
+			s.hs_time,
+			m.m_name,
+			to_char(hs_regdate, 'YYYY-MM-DD') as hs_regdate,
+			s.hs_progress,
+			hs_status
+			FROM
+			support s, member m
+			where s.m_id = m.m_id
+			<if test="keyword != null">
+      			and m.m_name LIKE '%' || #{keyword} || '%' 
+     		 </if>
+		) LIST
+		)
+
+	</select>
 
 
 </mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fly.admin.items.dao.AdminItemsDao">
+
+	<!-- 용품 리스트 -->
+	<select id="getItemsList" parameterType="items" resultType="items">		
+		SELECT i.i_name, i.i_rental_fee, i.i_status,
+			(
+				SELECT count(*)
+				FROM items_rental
+				WHERE i_no = i.i_no
+			) i_use,
+			to_char(i.i_regdate, 'yyyy/MM/dd') i_regdate
+ 		FROM items i
+ 		WHERE p_num = #{p_num}
+	</select>
+	
+</mapper>

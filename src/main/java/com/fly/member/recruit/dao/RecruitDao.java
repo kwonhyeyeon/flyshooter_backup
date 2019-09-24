@@ -17,5 +17,12 @@ public interface RecruitDao {
 	public int recruitUpdate(RecruitVO revo); // 글 수정 구현
 
 	public int recruitMbdate(RecruitVO revo); // 신청여부 변경
+	
+	public int recruitStatusUpdate(RecruitVO revo); // 글 삭제 구현
+	
+	public List<RecruitVO> adminRecruitList(RecruitVO revo); // 관리자용 글 목록 구현
+	
+	public int adminRecruitListCnt(RecruitVO revo); // 관리자용 글 목록 페이지 구현
+	
 
 }

@@ -10,19 +10,22 @@
 <title>Insert title here</title>
 
 <script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="/resources/js/boardCheck.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
-<link rel="stylesheet" type="text/css"
-	href="/resources/js/jquery-ui.min.css" />
+<link rel="stylesheet" href="/resources/css/board.css" />
+<link rel="stylesheet" type="text/css" href="/resources/js/jquery-ui.min.css" />
+
 <script src="/resources/js/jquery-ui.min.js"></script>
-<script src="/resources/js/boardCheck.js"></script>
 
 <script type="text/javascript">
 	
 	$(function() {
 		// 달력으로 날짜 선택할 수 있는 스크립트 ---------------------
 		var mb_m_date = $("#mb_m_date").datepicker({
-			dateFormat : 'yy-mm-dd'
+			dateFormat : 'yy-mm-dd',
+			buttonImage: "/application/db/jquery/images/calendar.gif",
+			buttonImageOnly: true
 		});
 		//-------------------------------------------------
 		
@@ -52,7 +55,7 @@
 		//------------------------------------------------------------
 
 		// 수정하기 버튼 이벤트 -------------------------------
-		$("#matchUpdateBtn").click(
+		$("#updateDataBtn").click(
 				function() {
 					
 					// 입력값 체크
@@ -82,7 +85,7 @@
 				});
 		
 		// 취소 버튼 클릭 시 새로고침
-		$("#matchUpdateCancel").click(function() {
+		$("#cancel").click(function() {
 			location.href = "/match/matchList.do";
 		});
 	});
@@ -110,11 +113,11 @@
 
 			<nav id="lnb">
 				<ul>
-					<c:if test="${empty m_id}">
+					<c:if test="${empty mvo.m_id}">
 						<li><a href="/member/join.do">회원가입</a></li>
 						<li><a href="/member/login.do">로그인</a></li>
 					</c:if>
-					<c:if test="${not empty m_id}">
+					<c:if test="${not empty mvo.m_id}">
 						<li><a href="/member/logout.do">로그아웃</a></li>
 					</c:if>
 				</ul>
@@ -123,7 +126,7 @@
 
 		<div class="menu-wrap">
 			<div class="menu">
-				<c:if test="${empty m_id || m_type=='1'}">
+				<c:if test="${empty mvo.m_id || mvo.m_type=='1'}">
 					<ul>
 						<li><a href="/user/rental/location.do">대관 예약</a></li>
 						<li><a href="/">대관 확인</a></li>
@@ -140,7 +143,7 @@
 					</ul>
 				</c:if>
 
-				<c:if test="${m_type=='0'}">
+				<c:if test="${mvo.m_type=='0'}">
 					<ul class="member-menu">
 						<li><a href="/client/rental/rentalList.do">대관 예약 현황</a></li>
 						<li><a href="/">대관 환불 현황</a></li>
@@ -165,19 +168,19 @@
 		</div>
 	</div>
 
-	<div>
-		<div>
+	<div id="updateData" style="width: 1200px;">
+		<div id="updateTitle">
 			<h2>매치신청(수정)</h2>
 		</div>
 
 		<form id="matchUpdateData" name="matchUpdateData">
 			<input type="hidden" id="mb_no" name="mb_no"
 				value="${updateMatchData.mb_no}" />
-			<table id="matchUpdateTable">
-				<colgroup>
+			<table class="updateTable">
+				<!-- <colgroup>
 					<col width="50%" />
 					<col width="50%" />
-				</colgroup>
+				</colgroup> -->
 
 				<tbody>
 					<tr>
@@ -186,7 +189,7 @@
 						</label></td>
 
 						<td><label>구장명<br /> <input type="text"
-								name="mb_name" id="mb_name" size="50"
+								name="mb_name" id="mb_name" 
 								value="${updateMatchData.mb_name}">
 						</label></td>
 					</tr>
@@ -198,64 +201,55 @@
 							<input type="text" name="m_phone3" id="m_phone3" disabled />
 						</label></td>
 
-						<td rowspan="2"><label>구장주소<br />
-								<input type="text" name="mb_address" id="mb_address"
-								style="width: 100%; height: 65px;"
-								value="${updateMatchData.mb_address}">
+						<td><label>구장주소<br />
+								<input type="text" name="mb_address" id="mb_address" value="${updateMatchData.mb_address}">
 						</label></td>
 					</tr>
 
 					<tr>
 						<td><label>매치일자<br /> <input type="text"
 								name="mb_m_date" id="mb_m_date"
-								value="${updateMatchData.mb_m_date}" style="width: 50%;">
+								value="${updateMatchData.mb_m_date}" >
 								<input type="text" name="mb_time" id="mb_time"
 								style="width: 45%" value="${updateMatchData.mb_time}">
 						</label></td>
-					</tr>
-
-					<tr>
-						<td><label>매치형태</label><br /> <select name="mb_type"
-							id="mb_type" style="width: 100%;">
-								<option value="" selected="selected">매치형태 선택</option>
-								<option value="5vs5">5vs5</option>
-								<option value="6vs6">6vs6</option>
-						</select></td>
-
 						<td><label>경기장<br /> <input type="text"
-								name="mb_stadium" id="mb_stadium" size="50"
+								name="mb_stadium" id="mb_stadium" 
 								value="${updateMatchData.mb_stadium}">
 						</label></td>
 					</tr>
 
 					<tr>
+						<td><label>매치형태<br /> <select name="mb_type" id="mb_type">
+								<option value="" selected="selected">매치형태 선택</option>
+								<option value="5vs5">5vs5</option>
+								<option value="6vs6">6vs6</option>
+						</select></label></td>
 						<td><label>유니폼<br /> <input type="text"
-								name="mb_uniform" id="mb_uniform" size="50"
+								name="mb_uniform" id="mb_uniform"
 								value="${updateMatchData.mb_uniform}">
 						</label></td>
+					</tr>
 
-						<td><label>팀 수준</label><br />
-						<select name="mb_level" id="mb_level" style="width: 100%;">
+					<tr>
+						<td><label>팀 수준<br />
+						<select name="mb_level" id="mb_level">
 								<option value="" selected="selected">팀 수준 선택</option>
 								<option value="2">상</option>
 								<option value="1">중</option>
 								<option value="0">하</option>
-						</select></td>
-					</tr>
-
-					<tr>
-						<td><label>진행 상태</label><br /> <select name="mb_progress"
-							id="mb_progress" style="width: 100%;">
+						</select></label></td>
+						<td><label>진행 상태<br /> <select name="mb_progress"
+							id="mb_progress" >
 								<option value="" selected="selected">진행 상태 선택</option>
 								<option value="-1">마감</option>
 								<option value="1">가능</option>
-						</select></td>
+						</select></label></td>
 					</tr>
 
 					<tr>
 						<td colspan="2"><label>비고<br /> <input type="text"
-								name="mb_etc" id="mb_etc" style="width: 100%; height: 60px;"
-								value="${updateMatchData.mb_etc}">
+								name="mb_etc" id="mb_etc" value="${updateMatchData.mb_etc}">
 						</label></td>
 					</tr>
 				</tbody>
@@ -263,10 +257,10 @@
 
 		</form>
 
-		<div class="mUpdateBtn">
-			<input type="button" value="수정하기" id="matchUpdateBtn"
-				name="matchUpdateBtn"> <input type="button" value="취소하기"
-				id="matchUpdateCancel" name="matchUpdateCancel">
+		<div class="updateDataButton">
+			<input type="button" value="수정하기" id="updateDataBtn"
+				name="updateDataBtn"> <input type="button" value="취소하기"
+				id="cancel" name="cancel">
 		</div>
 
 	</div>

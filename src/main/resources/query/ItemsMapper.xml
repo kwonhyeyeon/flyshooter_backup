@@ -9,9 +9,10 @@
 		FROM
 			items
 		WHERE
-			i_status = 1 and p_num = #{p_num} and i_use = 1	
+			i_status = 1 and p_num = #{p_num} 
 	
 	</select>
+	
 	<select id="itemsList" parameterType="String" resultType="items">
 		SELECT
 			*

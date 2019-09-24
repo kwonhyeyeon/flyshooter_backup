@@ -6,9 +6,9 @@
 <a href="/" class="sub">정산 관리</a>
 
 <a class="depth1">게시판 관리</a>
-<a href="/" class="sub">매치</a>
-<a href="/" class="sub">용병 모집</a>
-<a href="/" class="sub">용병 지원</a>
+<a href="/admin/match/matchList.do" class="sub">매치</a>
+<a href="/admin/recruit/recruitList.do" class="sub">용병 모집</a>
+<a href="/admin/support/supportList.do" class="sub">용병 지원</a>
 
 <a class="depth1">정보 관리</a>
 <a href="/" class="sub">이용약관</a>

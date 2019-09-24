@@ -10,20 +10,22 @@
 <title>매치신청 등록</title>
 
 <script src="http://code.jquery.com/jquery.min.js"></script>
-<script src="/resources/js/matchInsert.js"></script>
+<script src="/resources/js/boardCheck.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
-<link rel="stylesheet" type="text/css"
-	href="/resources/js/jquery-ui.min.css" />
+<link rel="stylesheet" href="/resources/css/board.css">
+<link rel="stylesheet" type="text/css" href="/resources/js/jquery-ui.min.css" />
+
 <script src="/resources/js/jquery-ui.min.js"></script>
-<script src="/resources/js/boardCheck.js"></script>
 
 <script type="text/javascript">
 	// 매칭 게시글 저장 스크립트 Controller자바 /match/matchInsert.do 로 연결-----------------
 	$(function() {
 		// 달력으로 날짜 선택할 수 있는 스크립트 ---------------------
 		var mb_m_date = $("#mb_m_date").datepicker({
-			dateFormat : 'yy-mm-dd'
+			dateFormat : 'yy-mm-dd',
+			button: "/application/db/jquery/images/calendar.gif",
+			buttonImageOnly: false
 		});
 		mb_m_date.datepicker('setDate', new Date());
 		//-------------------------------------------------
@@ -51,7 +53,7 @@
 		//-------------------------------------------------
 		
 		// 등록버튼 클릭시 이벤트 스크립트
-		$("#matchInsertBtn").click(
+		$("#insertDataBtn").click(
 				function() {
 
 					// 유니폼(상의, 하의, 스타킹) 합치는 스크립트-----------------------------------
@@ -98,14 +100,12 @@
 				});
 
 		// 취소 버튼 클릭시 목록 화면으로 돌아감
-		$("#matchCancel").click(function() {
+		$("#cancel").click(function() {
 			location.href = "/match/matchList.do";
 		});
 
 		
 	});
-
-	
 
 	//---------------------------종료-----------------------------------------------
 </script>
@@ -130,11 +130,11 @@
 
 			<nav id="lnb">
 				<ul>
-					<c:if test="${empty m_id}">
+					<c:if test="${empty mvo.m_id}">
 						<li><a href="/member/join.do">회원가입</a></li>
 						<li><a href="/member/login.do">로그인</a></li>
 					</c:if>
-					<c:if test="${not empty m_id}">
+					<c:if test="${not empty mvo.m_id}">
 						<li><a href="/member/logout.do">로그아웃</a></li>
 					</c:if>
 				</ul>
@@ -143,7 +143,7 @@
 
 		<div class="menu-wrap">
 			<div class="menu">
-				<c:if test="${empty m_id || m_type=='1'}">
+				<c:if test="${empty mvo.m_id || mvo.m_type=='1'}">
 					<ul>
 						<li><a href="/user/rental/location.do">대관 예약</a></li>
 						<li><a href="/">대관 확인</a></li>
@@ -160,7 +160,7 @@
 					</ul>
 				</c:if>
 
-				<c:if test="${m_type=='0'}">
+				<c:if test="${mvo.m_type=='0'}">
 					<ul class="member-menu">
 						<li><a href="/client/rental/rentalList.do">대관 예약 현황</a></li>
 						<li><a href="/">대관 환불 현황</a></li>
@@ -185,22 +185,22 @@
 		</div>
 	</div>
 
-	<div>
-		<div>
+	<div id="dataInsertPage" style="width: 1200px;">
+		<div id="insertTitle">
 			<h2>매치신청</h2>
 		</div>
 		<!-- 매치 신청 작성 -->
-		<div class="matchContent">
+		<div class="insertContent" >
 			<form id="matchData" name="matchData">
-				<input type="hidden" name="m_id" id="m_id" value="${m_id}">
+				<input type="hidden" name="m_id" id="m_id" value="${mvo.m_id}">
 				<input type="hidden" name="mb_progress" id="mb_progress" value="1">
 				<input type="hidden" name="mb_status" id="mb_status" value="1">
-				<table class="matchInsertTable">
+				<table class="insertTable">
 					<!-- 입력칸 크기 설정 -->
-					<colgroup>
+					<!--<colgroup>
 						<col width="50%" />
 						<col width="50%" />
-					</colgroup>
+					</colgroup> -->
 					<!-- 매치 신청 작성 -->
 					<tbody>
 						<tr>
@@ -218,7 +218,7 @@
 							<input type="text" name="m_phone3" id="m_phone3" disabled />
 							</td>
 
-							<td rowspan="2">구장주소 <br />
+							<td>구장주소 <br />
 								<input type="text" name="mb_address" id="mb_address" />
 							</td>
 						</tr>
@@ -226,7 +226,11 @@
 						<tr>
 							<td>매치일자<br /> <input type="text" name="mb_m_date"
 								id="mb_m_date" /> <input type="text" name="mb_time"
-								id="mb_time" placeholder="00:00 ~ 00:00" /></td>
+								id="mb_time" placeholder="00:00 ~ 00:00" />
+							</td>
+							<td>경기장<br /> <input type="text" name="mb_stadium"
+								id="mb_stadium" />
+							</td>
 						</tr>
 
 						<tr>
@@ -236,21 +240,7 @@
 									<option value="6vs6">6vs6</option>
 							</select>
 							</td>
-							<td>경기장<br /> <input type="text" name="mb_stadium"
-								id="mb_stadium" />
-							</td>
-						</tr>
-
-						<tr>
-							<td>유니폼<br /> <input type="hidden" name="mb_uniform"
-								id="mb_uniform" /> <input type="text" name="mb_uniformTop"
-								id="mb_uniformTop" placeholder="상의" value="" /> <input
-								type="text" name="mb_uniformBottoms" id="mb_uniformBottoms"
-								placeholder="하의" value="" /> <input type="text"
-								name="mb_uniformStarking" id="mb_uniformStarking"
-								placeholder="스타킹" value="" />
-							</td>
-
+							
 							<td>팀 수준<br /> <select name="mb_level" id="mb_level">
 									<option value="" selected="selected">팀 수준 선택</option>
 									<option value="2">상</option>
@@ -261,18 +251,28 @@
 						</tr>
 
 						<tr>
-							<td colspan="2">비고<br /> <input type="text" name="mb_etc"
-								id="mb_etc" />
+							<td>유니폼<br />
+								 <input type="hidden" name="mb_uniform" id="mb_uniform" />
+								 <input type="text" name="mb_uniformTop" id="mb_uniformTop" placeholder="상의" value="" />
+								 <input type="text" name="mb_uniformBottoms" id="mb_uniformBottoms" placeholder="하의" value="" />
+								 <input type="text" name="mb_uniformStarking" id="mb_uniformStarking" placeholder="스타킹" value="" />
+							</td>
+
+						</tr>
+
+						<tr>
+							<td colspan="2">비고<br />
+								<input type="text" name="mb_etc" id="mb_etc" />
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</form>
 		</div>
-		<div class="mInsertBtn">
-			<input type="button" value="등록하기" name="matchInsertBtn"
-				id="matchInsertBtn" /> <input type="button" value="취소하기"
-				name="matchCancel" id="matchCancel" />
+		<div class="insertData">
+			<input type="button" value="등록하기" name="insertDataBtn"
+				id="insertDataBtn" /> <input type="button" value="취소하기"
+				name="cancel" id="cancel" />
 		</div>
 	</div>
 </body>
