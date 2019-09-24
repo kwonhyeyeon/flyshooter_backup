@@ -2,19 +2,13 @@ package com.fly.client.stadium.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
-import javax.annotation.Resource;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,16 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fly.client.items.service.ItemsService;
 import com.fly.client.items.vo.ItemsVO;
 import com.fly.client.place.service.ClientPlaceService;
-import com.fly.client.stadium.dao.ClientStadiumDao;
 import com.fly.client.stadium.service.ClientStadiumService;
-import com.fly.client.util.FileUploadUtil;
 import com.fly.client.util.MakeList;
 import com.fly.member.join.vo.MemberVO;
 import com.fly.member.place.vo.PlaceVO;
@@ -42,9 +33,6 @@ import com.fly.member.stadium.vo.StadiumVO;
 @Controller
 @RequestMapping(value = "/mypage")
 public class StadiumController {
-	
-	private static final String SAVE_PATH = "파일을 저장할 경로를 적어주세요";//경기장 등록 이미지 업로드할때 사용
-	
 	
 	@Autowired
 	private ClientStadiumService stadiumService;
@@ -123,27 +111,70 @@ public class StadiumController {
 	
 	// 경기장 등록
 	String uploadPath;
+	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/stadiumInsert.do", method = RequestMethod.POST)
-	public ModelAndView stadiumInsert(@ModelAttribute StadiumVO svo, @RequestParam("select")String select,Model model, HttpServletRequest request)throws IllegalStateException,IOException{
+	public ModelAndView stadiumInsert(@RequestParam("select")String select, MultipartHttpServletRequest request){
 		System.out.println("stadiumInsert 호출 성공");
-		System.out.println(svo.toString());
-		ModelAndView mav = new ModelAndView();
-		if(svo.getFile()!=null) {
-			String s_img1 = FileUploadUtil.fileUpload(svo.getFile(), request, "stadium");
-			svo.setS_img1(s_img1);
-		}
-		if(svo.getFile()!=null) {
-			String s_img2= FileUploadUtil.fileUpload(svo.getFile(), request, "stadium");
-			svo.setS_img2(s_img2);
-		}
-		if(svo.getFile()!=null) {
-			String s_img3=FileUploadUtil.fileUpload(svo.getFile(), request, "stadium");
-			svo.setS_img3(s_img3);
-		}
+		StadiumVO svo = new StadiumVO();
+		System.out.println(svo.toString()+"초기값");
+		svo.setS_name(request.getParameter("s_name"));
+		svo.setS_size(request.getParameter("s_size"));
+		svo.setS_d_fee(Integer.parseInt(request.getParameter("s_d_fee")));
+		svo.setS_n_fee(Integer.parseInt(request.getParameter("s_n_fee")));
+		svo.setS_d_fee_w(Integer.parseInt(request.getParameter("s_d_fee_w")));
+		svo.setS_n_fee_w(Integer.parseInt(request.getParameter("s_n_fee_w")));
+		svo.setS_people(Integer.parseInt(request.getParameter("s_people")));
+		svo.setS_in_out(Integer.parseInt(request.getParameter("s_in_out")));
+		svo.setP_num(request.getParameter("p_num"));
 		
+		System.out.println(svo.toString()+"입력값");
+		ModelAndView mav = new ModelAndView();
+		if (request.getFile("s_img1") != null) {
+			MultipartFile mf1 = request.getFile("s_img1");//업로드 파라미터
+			String path1 = request.getRealPath("uploadFile/s_img1");//저장할 위치
+			String fileName1 = mf1.getOriginalFilename();//업로드 파일 이름
+			File uploadFile1 = new File(path1+"//"+fileName1);//복사할 위치
+			try {
+				mf1.transferTo(uploadFile1);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			svo.setS_img1(fileName1);
+		}
+		if (request.getFile("s_img2") != null) {
+			MultipartFile mf2 = request.getFile("s_img2");//업로드 파라미터
+			String path2 = request.getRealPath("uploadFile/s_img2");//저장할 위치
+			String fileName2 = mf2.getOriginalFilename();//업로드 파일 이름
+			File uploadFile2 = new File(path2+"//"+fileName2);//복사할 위치
+			try {
+				mf2.transferTo(uploadFile2);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			svo.setS_img2(fileName2);
+		}
+		if (request.getFile("s_img3") != null) {
+			MultipartFile mf3 = request.getFile("s_img3");//업로드 파라미터
+			String path3 = request.getRealPath("uploadFile/s_img3");//저장할 위치
+			String fileName3 = mf3.getOriginalFilename();//업로드 파일 이름
+			File uploadFile3 = new File(path3+"//"+fileName3);//복사할 위치
+			try {
+				mf3.transferTo(uploadFile3);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			svo.setS_img3(fileName3);
+		}
 		
 		int plus = Integer.parseInt(select);// 추가등록여부 확인을 위한 변수
 
+		System.out.println(svo.toString()+"라스트");
 		int result = stadiumService.stadiumInsert(svo);
 		System.out.println("결과"+result);
 		if (result == 1) {
