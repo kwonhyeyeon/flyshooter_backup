@@ -2,6 +2,7 @@ package com.fly.member.support.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +83,7 @@ public class SupportController {
 	 *************************************************************/
 
 	@RequestMapping(value = "/supportInsertForm.do", method = RequestMethod.GET)
-	public String supportInsertForm(@ModelAttribute MemberVO mvo, Model model, HttpSession session) throws Exception {
+	public String supportInsertForm_UserChk(@ModelAttribute MemberVO mvo, Model model, HttpSession session, HttpServletRequest request) throws Exception {
 		System.out.println("supportInsertForm 호출 성공");
 		
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
@@ -120,7 +121,7 @@ public class SupportController {
 	 ***************************************************************/
 
 	@RequestMapping(value = "/supportUpdateForm.do")
-	public String supportUpdateForm(@ModelAttribute SupportVO svo, Model model) throws Exception {
+	public String supportUpdateForm_UserChk(@ModelAttribute SupportVO svo, Model model, HttpServletRequest request) throws Exception {
 		System.out.println("supportUpdateForm 호출 성공");
 
 		SupportVO updateSupportData = new SupportVO();

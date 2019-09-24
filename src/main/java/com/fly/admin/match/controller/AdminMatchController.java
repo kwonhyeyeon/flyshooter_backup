@@ -2,6 +2,8 @@ package com.fly.admin.match.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +27,7 @@ public class AdminMatchController {
 	 ***************************************************************/
 	
 	@RequestMapping(value = "/match/matchList.do", method = RequestMethod.GET)
-	public String matchList(@ModelAttribute MatchVO mavo, CommonVO cvo, Model  model) {
+	public String matchListChk(@ModelAttribute MatchVO mavo, CommonVO cvo, Model model, HttpServletRequest request) {
 		System.out.println("admin matchList 호출 성공");
 		
 		// 전체 레코드 수 구현 하기
@@ -47,7 +49,7 @@ public class AdminMatchController {
 	 *************************************************************/
 
 	@RequestMapping(value = "/match/matchView.do", method = RequestMethod.GET)
-	public String matchView(@ModelAttribute MatchVO mavo, Model model) throws Exception {
+	public String matchViewChk(@ModelAttribute MatchVO mavo, Model model, HttpServletRequest request) throws Exception {
 		System.out.println("admin matchview 호출 성공");
 		
 		String result = "";
@@ -64,7 +66,7 @@ public class AdminMatchController {
 	 * 글 삭제 구현
 	 *************************************************************/
 	@RequestMapping(value = "/match/matchDelete.do", method = RequestMethod.GET)
-	public String matchStatusUpdate(@ModelAttribute MatchVO mavo, Model model) throws Exception {
+	public String matchStatusUpdateChk(@ModelAttribute MatchVO mavo, Model model, HttpServletRequest request) throws Exception {
 		System.out.println("admin matchDelete 호출 성공");
 		int result = 0;
 		String url = "";
