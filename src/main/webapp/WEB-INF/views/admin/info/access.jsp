@@ -39,12 +39,13 @@
             	
             		<h2 class="con-subject">이용 약관</h2>
             		
-            		<form id="editorForm" action="post">
-            			<input type="hidden" name="getData" id="getData" />
-            			<textarea id="editor"></textarea>
-            			
-            			<input id="editorSave" type="submit" value="저장" />
+            		<form action="admin/info/access.do">
+            			<input type="hidden" name="content" />
+	            		<textarea id="content" class="content" name="content"></textarea>
+	            		<input type="submit" id="showValues">
             		</form>
+					<div id="values"></div>
+					<div class="test"></div>
 				    
             	</article><!-- contents -->
             </div><!-- container -->

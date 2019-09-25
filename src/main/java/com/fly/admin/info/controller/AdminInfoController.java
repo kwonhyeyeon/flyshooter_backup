@@ -10,14 +10,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping(value = "/admin/info")
 public class AdminInfoController {
 
-	@RequestMapping(value = "/access.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/access.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String accessTermsChk(
 			Model model,
-			@RequestParam(value = "getData") String getData
-			) {
+			@RequestParam("content") String content
+			) throws Exception {
 		System.out.println("accessTerms 호출 성공");
 		
-		model.addAttribute("getData", getData);
+		model.addAttribute("content", content);
+		System.out.println(content);
 		
 		return "/admin/info/access";
 	}

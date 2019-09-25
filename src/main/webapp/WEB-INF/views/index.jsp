@@ -38,7 +38,7 @@ $(document).ready(function(){
 				<nav id="main-lnb">
 					<ul>
 						<c:if test="${empty mvo.m_id}">
-							<li><a href="/member/join.do">회원가입</a></li>
+							<li><a href="/member/terms.do">회원가입</a></li>
 							<li><a href="/member/login.do">로그인</a></li>
 						</c:if>
 						<c:if test="${not empty mvo.m_id}">
