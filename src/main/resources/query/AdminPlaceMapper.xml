@@ -105,4 +105,35 @@
 		where p_num = #{p_num}
 	</update>
 	
+	<!-- 사업자가 요청한 환불 리스트 -->
+	<select id="getClientRefund" resultMap="getClientRefund">
+		SELECT r.r_recall_time, r.r_total_pay, r.r_pay_status, r.m_id as mem, r.r_start,
+		to_char(r.r_regdate, 'yyyy/MM/dd') r_regdate, to_char(r.r_reserve_date, 'yyyy/MM/dd') r_reserve_date,
+		p.m_id as client, p.p_ceo, p.p_name, 
+		s.s_no, s.s_name, s.s_hours,
+		m.m_name, m.m_phone
+		FROM rental r, stadium s, place p, member m
+		WHERE r.s_no = s.s_no
+		and s.p_num = p.p_num
+		and r.m_id = m.m_id
+		and r_pay_status = 2
+	</select>
+	<resultMap type="hashMap" id="getClientRefund">
+        <result column="r_recall_time" property="recall_time"/>
+        <result column="r_total_pay" property="total_pay"/>
+        <result column="r_pay_status" property="pay_status"/>
+        <result column="mem" property="mem"/>
+        <result column="r_start" property="start"/>
+        <result column="r_regdate" property="regdate"/>
+        <result column="r_reserve_date" property="reserve_date"/>
+        <result column="client" property="client"/>
+        <result column="p_ceo" property="ceo"/>
+        <result column="p_name" property="p_name"/>
+        <result column="s_no" property="s_no"/>
+        <result column="s_name" property="s_name"/>
+        <result column="s_hours" property="hours"/>
+        <result column="m_name" property="m_name"/>
+        <result column="m_phone" property="m_phone"/>
+    </resultMap>
+	
 </mapper>

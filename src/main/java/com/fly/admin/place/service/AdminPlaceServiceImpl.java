@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.fly.admin.place.dao.AdminPlaceDao;
 import com.fly.member.place.vo.PlaceVO;
+import com.fly.member.rental.vo.RentalVO;
 
 @Service("adminPlaceService")
 public class AdminPlaceServiceImpl implements AdminPlaceService {
@@ -50,6 +51,11 @@ public class AdminPlaceServiceImpl implements AdminPlaceService {
 	@Override
 	public int getRentalCnt(String p_num) {
 		return adminPlaceDao.getRentalCnt(p_num);
+	}
+
+	@Override
+	public List<RentalVO> getRefundList() {
+		return adminPlaceDao.getRefundList();
 	}
 
 }
