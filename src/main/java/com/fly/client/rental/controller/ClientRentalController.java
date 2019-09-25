@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,13 +39,17 @@ public class ClientRentalController {
 
 	// 구장 별 경기장 별 대관 예약 현황(첫 로드)
 	@RequestMapping(value = "/rentalList.do", method = RequestMethod.GET)
-	public String rentalListByStadiumByPlace(Model model) {
+	public String rentalListByStadiumByPlace(Model model, HttpServletRequest request, HttpSession session) {
 		/*
 		 * Session에서 회원 ID를 뺴와서 사용해야함 수정하시오.
 		 */
-		String m_id = "esub17@naver.com";
+		/*
+		 * MemberVO mvo = (MemberVO) session.getAttribute("mvo"); String m_id =
+		 * mvo.getM_id();
+		 */
 
-		model.addAttribute("placeList", clientRentalService.getPlaceList(m_id));
+		
+		model.addAttribute("placeList", clientRentalService.getPlaceList("esub17@naver.com"));
 
 		return "/rental/rentalList";
 	}
@@ -60,10 +66,12 @@ public class ClientRentalController {
 
 		if (stadiumList.isEmpty()) {
 			result.append("<p class='noStadium'>등록된 경기장이 없습니다.</p>");
+			
 			return result.toString();
 		}
 
 		result.append("<h1 style='color:red'> ※ 온라인 대관일경우 환불요청  / 오프라인 대관일경우 대관취소 기능만 이용하실수 있습니다.</h1>");
+		result.append("<h1 style='color:red'> ※ 리스트 클릭시 상세정보를 확인할수 있습니다.</h1>");
 		for (StadiumVO svo : stadiumList) {
 
 			result.append("<p class='stadiumName'>");
@@ -114,6 +122,7 @@ public class ClientRentalController {
 							break;
 						default:
 							result.append("<td>유");
+							break;
 						}
 
 					} else {
@@ -255,7 +264,6 @@ public class ClientRentalController {
 	}
 
 	@RequestMapping(value = "/updateItems_rental.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
-
 	@ResponseBody
 	public String updateItems_rental(@ModelAttribute ItemsRentalVO irvo) {
 

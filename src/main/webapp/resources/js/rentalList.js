@@ -36,13 +36,14 @@ $(document).ready(function(){
 	// 구장명 값 변경 시 해당 경기장 리스트 가져오는 이벤트
 	$(".placeName").on("change", function(){
 		
-		
 		getList();
 		
 	});
 	
 	$("#datepicker").change(function(){
-
+		
+		
+		
 		getList();
 	});
 	
