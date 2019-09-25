@@ -188,6 +188,8 @@ $(document).ready(function(){
 				});
 				// 결제창 모달창
 				function openDialog(){
+					
+					
 					$("#dialog").dialog({
 						title : 'fly_shooter 결제창',
 						model : true,
