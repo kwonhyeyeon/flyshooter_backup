@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +35,7 @@ public class ClientRentalController {
 
 	// 구장 별 경기장 별 대관 예약 현황(첫 로드)
 	@RequestMapping(value = "/rentalList.do", method = RequestMethod.GET)
-	public String rentalListByStadiumByPlace(Model model) {
+	public String rentalListByStadiumByPlace_ClientChk(Model model, HttpServletRequest request) {
 		/*
 		 * Session에서 회원 ID를 뺴와서 사용해야함 수정하시오.
 		 */
@@ -248,7 +249,6 @@ public class ClientRentalController {
 	}
 
 	@RequestMapping(value = "/updateItems_rental.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
-
 	@ResponseBody
 	public String updateItems_rental(@ModelAttribute ItemsRentalVO irvo) {
 
