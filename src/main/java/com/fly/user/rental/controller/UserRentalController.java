@@ -73,7 +73,7 @@ public class UserRentalController {
    
    // 대관 신청페이지
    @RequestMapping(value = "/rentalStadium.do", method = RequestMethod.POST)
-   public String rentalInfo_LoginChk(@ModelAttribute PlaceVO pvo, Model model,
+   public String rentalInfo_UserChk(@ModelAttribute PlaceVO pvo, Model model,
 		   @RequestParam(value = "p_num") String p_num, 
 		   @RequestParam(value = "area", required = true, defaultValue = "null") String area, 
 		   RedirectAttributes redirectAttr, HttpServletRequest request) {
