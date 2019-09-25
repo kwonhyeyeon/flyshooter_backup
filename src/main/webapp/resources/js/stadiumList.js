@@ -33,7 +33,6 @@ $(document).ready(function(){
 			$("#List").text("구장을 선택해주세요");
 		}
 	});
-	
 	$(document).on("click", "#IPlus", function() {
 		var test = $("#placeChoice").val();
 		$("#modalP_num").val(test);

@@ -1,6 +1,5 @@
 package com.fly.client.stadium.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,6 +22,7 @@ import com.fly.client.items.service.ItemsService;
 import com.fly.client.items.vo.ItemsVO;
 import com.fly.client.place.service.ClientPlaceService;
 import com.fly.client.stadium.service.ClientStadiumService;
+import com.fly.client.util.FileUploadUtil;
 import com.fly.client.util.MakeList;
 import com.fly.member.join.vo.MemberVO;
 import com.fly.member.place.vo.PlaceVO;
@@ -64,6 +64,8 @@ public class StadiumController {
 		System.out.println("stadiumList 호출 성공");
 		List<StadiumVO> Slist = stadiumService.stadiumList(p_num);
 		List<ItemsVO> Ilist = itemsService.itemsList(p_num);
+		
+		
 		return MakeList.makeList(Slist, Ilist, p_num);
 
 	}
@@ -78,7 +80,9 @@ public class StadiumController {
 		String s_no = svo.getS_no()+"";
 		svo = stadiumService.stadiumDetail(s_no);
 		
-
+		System.out.println(svo.getS_img1());
+		System.out.println(svo.getS_img2());
+		System.out.println(svo.getS_img3());
 		
 		mav.addObject("s_no", svo.getS_no());
 		mav.addObject("s_name", svo.getS_name());
@@ -95,8 +99,9 @@ public class StadiumController {
 		mav.addObject("s_status", svo.getS_status());
 		mav.addObject("s_hours", svo.getS_hours());
 		mav.addObject("s_regdate", svo.getS_regdate());
+		
 		mav.setViewName("mypage/stadiumDetailEdit");
-
+		
 		return mav;
 	}
 
@@ -110,71 +115,28 @@ public class StadiumController {
 	}
 	
 	// 경기장 등록
-	String uploadPath;
-	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/stadiumInsert.do", method = RequestMethod.POST)
-	public ModelAndView stadiumInsert(@RequestParam("select")String select, MultipartHttpServletRequest request){
+	public ModelAndView stadiumInsert(@ModelAttribute StadiumVO svo, @RequestParam("select")String select, MultipartHttpServletRequest request) throws IOException, Exception{
 		System.out.println("stadiumInsert 호출 성공");
-		StadiumVO svo = new StadiumVO();
-		System.out.println(svo.toString()+"초기값");
-		svo.setS_name(request.getParameter("s_name"));
-		svo.setS_size(request.getParameter("s_size"));
-		svo.setS_d_fee(Integer.parseInt(request.getParameter("s_d_fee")));
-		svo.setS_n_fee(Integer.parseInt(request.getParameter("s_n_fee")));
-		svo.setS_d_fee_w(Integer.parseInt(request.getParameter("s_d_fee_w")));
-		svo.setS_n_fee_w(Integer.parseInt(request.getParameter("s_n_fee_w")));
-		svo.setS_people(Integer.parseInt(request.getParameter("s_people")));
-		svo.setS_in_out(Integer.parseInt(request.getParameter("s_in_out")));
-		svo.setP_num(request.getParameter("p_num"));
 		
-		System.out.println(svo.toString()+"입력값");
 		ModelAndView mav = new ModelAndView();
-		if (request.getFile("s_img1") != null) {
-			MultipartFile mf1 = request.getFile("s_img1");//업로드 파라미터
-			String path1 = request.getRealPath("uploadFile/s_img1");//저장할 위치
-			String fileName1 = mf1.getOriginalFilename();//업로드 파일 이름
-			File uploadFile1 = new File(path1+"//"+fileName1);//복사할 위치
-			try {
-				mf1.transferTo(uploadFile1);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			svo.setS_img1(fileName1);
-		}
-		if (request.getFile("s_img2") != null) {
-			MultipartFile mf2 = request.getFile("s_img2");//업로드 파라미터
-			String path2 = request.getRealPath("uploadFile/s_img2");//저장할 위치
-			String fileName2 = mf2.getOriginalFilename();//업로드 파일 이름
-			File uploadFile2 = new File(path2+"//"+fileName2);//복사할 위치
-			try {
-				mf2.transferTo(uploadFile2);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			svo.setS_img2(fileName2);
-		}
-		if (request.getFile("s_img3") != null) {
-			MultipartFile mf3 = request.getFile("s_img3");//업로드 파라미터
-			String path3 = request.getRealPath("uploadFile/s_img3");//저장할 위치
-			String fileName3 = mf3.getOriginalFilename();//업로드 파일 이름
-			File uploadFile3 = new File(path3+"//"+fileName3);//복사할 위치
-			try {
-				mf3.transferTo(uploadFile3);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			svo.setS_img3(fileName3);
-		}
-		
+		if(svo.getFile1() != null && !(svo.getFile1().equals(""))){
+	         String pt_image1 = FileUploadUtil.fileUpload(svo.getFile1(), request, "image1");
+	         svo.setS_img1(pt_image1);
+	         
+	      }
+	      if(svo.getFile2() != null && !(svo.getFile2().equals(""))){
+	         String pt_image2 = FileUploadUtil.fileUpload(svo.getFile2(), request, "image2");
+	         svo.setS_img2(pt_image2);
+	         
+	      }
+	      if(svo.getFile3() != null && !(svo.getFile3().equals(""))){
+	         String pt_image3 = FileUploadUtil.fileUpload(svo.getFile3(), request, "image3");
+	         svo.setS_img3(pt_image3);
+	         
+	      }
 		int plus = Integer.parseInt(select);// 추가등록여부 확인을 위한 변수
 
-		System.out.println(svo.toString()+"라스트");
 		int result = stadiumService.stadiumInsert(svo);
 		System.out.println("결과"+result);
 		if (result == 1) {
@@ -194,19 +156,38 @@ public class StadiumController {
 	
 	//경기장 수정
 	@RequestMapping(value = "/stadiumModify.do", method = RequestMethod.POST)
-	public String stadiumModify(@ModelAttribute StadiumVO svo, Model model, HttpSession session, RedirectAttributes redirectAttr) {
+	public String stadiumModify(@ModelAttribute StadiumVO svo, Model model, MultipartHttpServletRequest session, MultipartHttpServletRequest request, RedirectAttributes redirectAttr) throws IOException {
 		System.out.println("stadiumModify 호출 성공");
 
 		int result = 0;
 		String url = "";
+		System.out.println(svo.toString());
+		System.out.println(svo.getFile1().toString());
+		if(svo.getFile1() != null && !(svo.getFile1().equals(""))){
+	         String pt_image1 = FileUploadUtil.fileUpload(svo.getFile1(), request, "image1");
+	         svo.setS_img1(pt_image1);
+	         
+	      }
+	      if(svo.getFile2() != null && !(svo.getFile2().equals(""))){
+	         String pt_image2 = FileUploadUtil.fileUpload(svo.getFile2(), request, "image2");
+	         svo.setS_img2(pt_image2);
+	         
+	      }
+	      if(svo.getFile3() != null && !(svo.getFile3().equals(""))){
+	         String pt_image3 = FileUploadUtil.fileUpload(svo.getFile3(), request, "image3");
+	         svo.setS_img3(pt_image3);
+	         
+	      }
+	      System.out.println(svo.toString());
 		result = stadiumService.stadiumModify(svo);
 	
-		if (result == 1) {
+		if (result >= 1) {
 			redirectAttr.addAttribute("p_num", svo.getP_num());
 			url = "/mypage/placeChoice.do";
 		} else {
 			model.addAttribute("errCode", 1);
-			url = "/mypage/stadiumModify.do";
+			model.addAttribute("s_no", svo.getS_no());
+			url = "/mypage/stadiumDetail.do";
 		}
 		return "redirect:" + url;
 	}

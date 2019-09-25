@@ -76,9 +76,27 @@ function errCodeCheck() {
 	</li>
 	<li>
 		<label>경기장 사진</label>
-		<input id="s_img1" name="s_img1"  type="file">
-		<input id="s_img2" name="s_img2"  type="file">
-		<input id="s_img3" name="s_img3"  type="file">
+	</li>
+	<li>
+	<div class="inputArea">
+ 		<label for="s_img1">이미지1</label>
+ 		<input type="file" id="s_img1" name="file1" />
+ 		<div class="select_img1"><img src="" /></div>
+	</div>
+	</li>
+	<li>
+	<div class="inputArea">
+ 		<label for="s_img2">이미지2</label>
+ 		<input type="file" id="s_img2" name="file2" />
+ 		<div class="select_img2"><img src="" /></div>
+	</div>
+	</li>
+	<li>
+	<div class="inputArea">
+ 		<label for="s_img3">이미지3</label>
+ 		<input type="file" id="s_img3" name="file3" />
+ 		<div class="select_img3"><img src="" /></div>
+	</div>
 	</li>
 </ul>
 <div>
@@ -87,5 +105,36 @@ function errCodeCheck() {
 		<a href="/">Home</a>
 </div>
 </form>
+
 </body>
+<script>
+$("#s_img1").change(function(){
+	if(this.files && this.files[0]) {
+		var reader = new FileReader;
+	    reader.onload = function(data) {
+	    	$(".select_img1 img").attr("src", data.target.result).width(500);        
+	    }
+	reader.readAsDataURL(this.files[0]);
+	}
+});
+$("#s_img2").change(function(){
+	if(this.files && this.files[0]) {
+		var reader = new FileReader;
+	    reader.onload = function(data) {
+	    	$(".select_img2 img").attr("src", data.target.result).width(500);        
+	    }
+	reader.readAsDataURL(this.files[0]);
+	}
+});
+$("#s_img3").change(function(){
+	if(this.files && this.files[0]) {
+		var reader = new FileReader;
+	    reader.onload = function(data) {
+	    	$(".select_img3 img").attr("src", data.target.result).width(500);        
+	    }
+	reader.readAsDataURL(this.files[0]);
+	}
+});
+
+</script>
 </html>

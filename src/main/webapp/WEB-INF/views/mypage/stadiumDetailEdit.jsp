@@ -14,12 +14,38 @@ $(document).ready(function() {
 	$("#s_stadiumModifyForm").submit(function() {
 		return stadiumModifyCheck();
 	});
+    var file1 = "<c:out value='${s_img1}'/>";
+    if (file1 != "") {
+       $("#fileImage1").attr({
+          src : "/uploadStorage/image1/${s_img1}",
+          width : "250px",
+          height : "100px"
+       });
+    }
+    var file2 = "<c:out value='${s_img2}'/>";
+    if (file2 != "") {
+       $("#fileImage2").attr({
+          src : "/uploadStorage/image2/${s_img2}",
+          width : "250px",
+          height : "100px"
+       });
+    }
+    var file3 = "<c:out value='${s_img3}'/>";
+    if (file3 != "") {
+       $("#fileImage3").attr({
+          src : "/uploadStorage/image3/${s_img3}",
+          width : "250px",
+          height : "100px"
+       });
+    }
+
+});
 </script>
 <body>
 	<div class="contentContainer">
 	<h3>${s_no}</h3>
 		<div class="contentTB">
-			<form id="s_stadiumModifyForm" action="/mypage/stadiumModify.do" method="post">
+			<form id="s_stadiumModifyForm" action="/mypage/stadiumModify.do" method="post" enctype="multipart/form-data">
 				<ul>
 					<li><label>날짜 별 요금</label>
 					평일 주간 요금 <input type="text" value="${s_d_fee}" name="s_d_fee" id="s_d_fee"/>
@@ -45,6 +71,7 @@ $(document).ready(function() {
 						</select>
 					</li>
 					<li>
+						<input type="hidden" name="s_no" value="${s_no}"/>
 						수용 인원 <input type="text" value="${s_people}" name="s_people" id="s_people"/>
 						경기장 명 <input type="text" value="${s_name}" name="s_name" id="s_name"/>
 					</li>
@@ -82,15 +109,26 @@ $(document).ready(function() {
 		</select>
 					</li>
 					<li>
-						<input type="text" value="${s_img1}"size="30" id="s_img1"/>
-							<img src="" onclick="document.getElementById('file').click();">
-						<input id="s_img1" name="s_img1" type="file" onchange="document.getElementById('s_img1').value=this.value;" accept=".gif, .jpg, .png">
-						<input type="text" value="${s_img2}"size="30" id="s_img2"/>
-							<img src="" onclick="document.getElementById('file').click();">
-						<input id="s_img2"  name="s_img2" type="file" onchange="document.getElementById('s_img2').value=this.value;" accept=".gif, .jpg, .png">
-						<input type="text" value="${s_img3}"size="30" id="s_img3"/>
-							<img src="" onclick="document.getElementById('file').click();">
-						<input id="s_img3" name="s_img3" type="file" onchange="document.getElementById('s_img3').value=this.value;" accept=".gif, .jpg, .png">
+						<div class="inputArea">
+ 							<label>이미지1</label>
+ 							<input type="file" id="s_img1" name="file1" />
+ 							<div class="fileImage1"><img id="fileImage1" src=""/></div>
+						</div>
+					</li>
+					<li>
+						<div class="inputArea">
+ 							<label>이미지2</label>
+ 							<input type="file" id="s_img2" name="file2" />
+ 							<div class="fileImage2"><img id="fileImage2" src=""></div>
+						</div>
+						
+					</li>
+					<li>
+						<div class="inputArea">
+ 							<label>이미지3</label>
+ 							<input type="file" id="s_img3" name="file3" />
+ 							<div class="fileImage3"><img id="fileImage3" src=""></div>
+						</div>
 					</li>
 					<li>
 						경기장 상태
@@ -117,4 +155,34 @@ $(document).ready(function() {
 		</div>
 	</div>
 </body>
+<script>
+$("#s_img1").change(function(){
+	if(this.files && this.files[0]) {
+		var reader = new FileReader;
+	    reader.onload = function(data) {
+	    	$("#fileImage1").attr("src", data.target.result).width(500);        
+	    }
+	reader.readAsDataURL(this.files[0]);
+	}
+});
+$("#s_img2").change(function(){
+	if(this.files && this.files[0]) {
+		var reader = new FileReader;
+	    reader.onload = function(data) {
+	    	$("#fileImage2").attr("src", data.target.result).width(500);        
+	    }
+	reader.readAsDataURL(this.files[0]);
+	}
+});
+$("#s_img3").change(function(){
+	if(this.files && this.files[0]) {
+		var reader = new FileReader;
+	    reader.onload = function(data) {
+	    	$("#fileImage3").attr("src", data.target.result).width(500);        
+	    }
+	reader.readAsDataURL(this.files[0]);
+	}
+});
+
+</script>
 </html>
