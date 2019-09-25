@@ -264,4 +264,12 @@ public class MemberController {
 		} 
 		
 	}
+	
+	@RequestMapping("/terms.do")
+	public String terms() {
+		System.out.println("terms 호출 성공");
+		
+		return "/member/terms";
+	}
+	
 }

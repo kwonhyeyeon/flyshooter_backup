@@ -10,8 +10,8 @@
 <script>
 	$(document).ready(function() {
 		
-		if("${message}"){
-			alert("${message}");
+		if("${log_message}"){
+			alert("${log_message}");
 			location.href = "/member/login.do";
 	}
 	

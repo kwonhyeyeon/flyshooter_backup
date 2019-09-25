@@ -933,36 +933,58 @@ table.chat-table tr.chat td button.save {
 }
 
 /* toggle */
+.toggle-wrap {
+	display:inline-block;
+	width:60px;
+  	height:32px;
+  	line-height:32px;
+}
 .toggle {
-	cursor:pointer;	
+  display:none;
 }
-.toggle input {
-	display:none;	
+.toggle-btn {
+  outline: 0;
+  display: block;
+  width:4em;
+  height:2em;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  top:-100%;
+  left:50px;
 }
-.toggle .track {
-	width:100px;
-	height:40px;
-	line-height:40px;
-	border:none;	
-	text-align:center;
-	background:#ebebeb;
-	color:#4b4b4b;
-	-webkit-transition-timing-function: ease-in-out;
-  transition-timing-function: ease-in-out;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
+.toggle-btn:after, .toggle-btn:before {
+  position: relative;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
 }
-.toggle input:checked + .track {
-	background:#06569f;
-	color:#fff;
+.toggle-btn:after {
+  left: 0;
 }
-.toggle .toggle .handle {
-	width:0; height:0; visibility:hidden;	
+.toggle-btn:before {
+  display: none;
 }
-
-.summary {
-	padding:10px;
-	width:70%;	
+.toggle:checked + .toggle-btn:after {
+  left: 50%;
+}
+.toggle + .toggle-btn {
+  background: #f0f0f0;
+  border-radius: 2em;
+  padding: 2px;
+  transition: all .4s ease;
+}
+.toggle + .toggle-btn:after {
+  border-radius: 50%;
+  background: #fff;
+  transition: all .2s ease;
+}
+.toggle:checked + .toggle-btn {
+  background: #9FD6AE;
 }
 
 /* popup-event */

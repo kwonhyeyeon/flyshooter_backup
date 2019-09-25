@@ -2,6 +2,7 @@ package com.fly.member.match.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -91,7 +92,7 @@ public class MatchController {
 	 *************************************************************/
 
 	@RequestMapping(value = "/matchInsertForm.do", method = RequestMethod.GET)
-	public String matchInsertForm(@ModelAttribute MemberVO mvo, Model model, HttpSession session) throws Exception {
+	public String matchInsertForm_LoginChk(@ModelAttribute MemberVO mvo, Model model, HttpSession session, HttpServletRequest request) throws Exception {
 		log.info("matchInsertForm 호출 성공");
 		System.out.println("matchInsertForm 호출 성공");
 		
@@ -110,7 +111,7 @@ public class MatchController {
 	 ***************************************************************/
 
 	@RequestMapping(value = "/matchInsert.do")
-	public String matchInsert(@ModelAttribute MatchVO mavo) throws Exception {
+	public String matchInsert_LoginChk(@ModelAttribute MatchVO mavo, HttpServletRequest request) throws Exception {
 		log.info("matchInsert 호출 성공");
 		System.out.println("matchInsert 호출 성공");
 		int result = 0;
@@ -130,7 +131,7 @@ public class MatchController {
 	 ***************************************************************/
 
 	@RequestMapping(value = "/matchUpdateForm.do")
-	public String matchUpdateForm(@ModelAttribute MatchVO mavo, Model model) throws Exception {
+	public String matchUpdateForm_LoginChk(@ModelAttribute MatchVO mavo, Model model, HttpServletRequest request) throws Exception {
 		log.info("matchUpdateForm 호출 성공");
 
 		System.out.println("matchUpdateForm 호출 성공");
@@ -147,7 +148,7 @@ public class MatchController {
 	 ***************************************************************/
 
 	@RequestMapping(value = "/matchUpdate.do", method = RequestMethod.POST)
-	public String matchUpdate(@ModelAttribute MatchVO mavo) throws Exception {
+	public String matchUpdate_LoginChk(@ModelAttribute MatchVO mavo, HttpServletRequest request) throws Exception {
 
 		log.info("matchUpdate 호출 성공");
 		System.out.println("matchUpdate 호출 성공");

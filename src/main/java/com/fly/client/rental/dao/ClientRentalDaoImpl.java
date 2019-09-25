@@ -67,7 +67,7 @@ public class ClientRentalDaoImpl implements ClientRentalDao {
 		}
 
 		@Override
-		public RentalVO getDetailRefund(int r_no) {
+		public HashMap<String, Object> getDetailRefund(int r_no) {
 			return sqlSession.selectOne(NAME_SPACE + ".getDetailRefund", r_no);
 		}
 

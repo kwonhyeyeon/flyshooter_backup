@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.fly.member.place.vo.PlaceVO;
+import com.fly.member.rental.vo.RentalVO;
 
 @Repository("adminPlaceDao")
 public class AdminPlaceDaoImpl implements AdminPlaceDao {
@@ -50,6 +51,11 @@ public class AdminPlaceDaoImpl implements AdminPlaceDao {
 	@Override
 	public int getRentalCnt(String p_num) {
 		return sqlSession.selectOne(NAME_SPACE + ".getRentalCnt", p_num);
+	}
+
+	@Override
+	public List<RentalVO> getRefundList() {
+		return sqlSession.selectList(NAME_SPACE + ".getClientRefund");
 	}
 
 }

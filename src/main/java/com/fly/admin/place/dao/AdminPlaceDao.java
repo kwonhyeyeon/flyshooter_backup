@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.fly.member.place.vo.PlaceVO;
+import com.fly.member.rental.vo.RentalVO;
 
 public interface AdminPlaceDao {
 
@@ -27,5 +28,8 @@ public interface AdminPlaceDao {
 	
 	// 폐업 등록 시 대관 리스트 확인
 	public int getRentalCnt(String p_num);
+	
+	// 사업자가 요청한 환불 리스트 출력
+	public List<RentalVO> getRefundList();
 	
 }

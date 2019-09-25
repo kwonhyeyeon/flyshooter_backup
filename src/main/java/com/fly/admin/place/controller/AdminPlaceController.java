@@ -1,5 +1,6 @@
 package com.fly.admin.place.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -19,6 +20,7 @@ import com.fly.admin.place.service.AdminPlaceService;
 import com.fly.admin.stadium.service.AdminStadiumService;
 import com.fly.client.items.vo.ItemsVO;
 import com.fly.member.place.vo.PlaceVO;
+import com.fly.member.rental.vo.RentalVO;
 import com.fly.member.stadium.vo.StadiumVO;
 import com.fly.paging.util.Paging;
 import com.fly.paging.util.Util;
@@ -132,6 +134,23 @@ public class AdminPlaceController {
 		
 		return "redirect:/admin/place/placeDetail.do";
 		
+	}
+	
+	// 환불 관리
+	@RequestMapping(value = "/updateRefund.do", method = RequestMethod.GET)
+	public String updateRefundChk(
+			@ModelAttribute RentalVO rvo,
+			Model model
+			) {
+		
+		System.out.println("updateRefundChk 호출 성공");
+		// service에서 list --> hash 변경
+		//HashMap<String, Object> data = adminPlaceService.getRefundList();
+		//model.addAttribute("data", data);
+		//System.out.println(data);
+		
+		return "/admin/place/refund";
+				
 	}
 
 }

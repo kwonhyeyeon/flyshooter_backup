@@ -32,9 +32,9 @@
 		
 		//------연락처 자르기 자바 스크립트------------------------
 		
+		
 		var phone = "${member.m_phone}";
 		var m_phone = phone.split('-');
-		
 		var p1 = m_phone[0];
 		var p2 = m_phone[1];
 		var p3 = m_phone[2];
@@ -262,7 +262,7 @@
 
 						<tr>
 							<td colspan="2">비고<br />
-								<input type="text" name="mb_etc" id="mb_etc" />
+								<textarea id="mb_etc" name="mb_etc" rows="5" cols="40"></textarea>
 							</td>
 						</tr>
 					</tbody>

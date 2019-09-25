@@ -248,8 +248,8 @@
 					</tr>
 
 					<tr>
-						<td colspan="2"><label>비고<br /> <input type="text"
-								name="mb_etc" id="mb_etc" value="${updateMatchData.mb_etc}">
+						<td colspan="2"><label>비고<br />
+						<textarea id="mb_etc" name="mb_etc" rows="5" cols="40">${updateMatchData.mb_etc}</textarea>
 						</label></td>
 					</tr>
 				</tbody>
