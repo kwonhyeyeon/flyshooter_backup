@@ -39,66 +39,58 @@
 			
 			<h2 class="articleTit">환불 상세 페이지</h2>
 			
-			<table>
+			<table class="tbl-style2">
 				<tr>
 					<th>구장명</th>
-					<td></td>
+					<td>${data.p_name}</td>
 					<th>구장 전화번호</th>
-					<td></td>
+					<td>${data.p_phone}</td>
 				</tr>
 				<tr>
 					<th>구장 주소</th>
-					<td colspan="3"></td>
-				</tr>
-				<tr>
-					<th>유의사항</th>
-					<td colspan="3"></td>
-				</tr>
-				<tr>
-					<th>환불 규정</th>
-					<td colspan="3"></td>
+					<td colspan="3">${data.p_address}</td>
 				</tr>
 				
 				<tr>
 					<th>회원 ID</th>
-					<td colspan="3"></td>
+					<td colspan="3">${data.m_id}</td>
 				</tr>
 				<tr>
 					<th>신청자</th>
-					<td></td>
+					<td>${data.m_name}</td>
 					<th>연락처</th>
-					<td></td>
+					<td>${data.m_phone}</td>
 				</tr>
 				<tr>
 					<th>예약한 경기장</th>
-					<td></td>
+					<td>${data.s_name}</td>
 					<th>총 결제 금액</th>
-					<td></td>
+					<td>${data.r_total_pay}</td>
 				</tr>
 				<tr>
-					<th>이용 시간</th>
-					<td></td>
+					<th>결제 일자</th>
+					<td>${data.r_regdate}</td>
 					<th>예약 일자</th>
-					<td></td>
+					<td>${data.r_reserve_date} ${data.r_start} 시 ~ ${(data.r_start + data.s_hours)} 시</td>
 				</tr>
 				
 				<tr>
 					<th>환불 신청일</th>
-					<td></td>
+					<td>${data.r_recall_time}</td>
 					<th>환불 금액</th>
-					<td></td>
+					<td>${data.refund}</td>
 				</tr>
 				<tr>
 					<th>환불 유형</th>
-					<td></td>
+					<td>${data.r_pay_type}</td>
 					<th>은행명</th>
-					<td></td>
+					<td>${data.r_bank}</td>
 				</tr>
 				<tr>
 					<th>예금주명</th>
-					<td></td>
+					<td>${data.r_account}</td>
 					<th>계좌번호</th>
-					<td></td>
+					<td>${data.r_account_num}</td>
 				</tr>
 			</table>
 			

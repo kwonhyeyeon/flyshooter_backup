@@ -90,9 +90,9 @@
 			<!-- 환불 리스트 -->
 			
 			<!-- pagination -->
-			<%-- <div class="pagination">
+			<div class="pagination">
 				<tag:paging page="${param.page}" total="${total}" list_size="${pageSize}" />
-			</div> --%>
+			</div>
 			<!-- pagination -->
 			
 		</article>

@@ -1,5 +1,6 @@
 package com.fly.client.rental.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,6 @@ public interface ClientRentalService {
 	public int deleteRental(int r_no);
 
 	// 대관 상세 정보
-	public RentalVO getDetailRefund(int r_no);
+	public HashMap<String, Object> getDetailRefund(int r_no);
 
 }

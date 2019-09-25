@@ -1,7 +1,10 @@
 package com.fly.client.rental.controller;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -217,6 +220,10 @@ public class ClientRentalController {
 		String pageSize = rvo.getPageSize();
 		int total = clientRentalService.refundListCnt();
 		int count = total - (Util.nvl(rvo.getPage()) - 1) * Util.nvl(rvo.getPageSize());
+		
+		model.addAttribute("count", count);
+	    model.addAttribute("total", total);
+	    model.addAttribute("pageSize", pageSize);
 
 		List<Map<String, String>> refundList = clientRentalService.getRefundList(pvo);
 		model.addAttribute("refundList", refundList);
@@ -273,9 +280,10 @@ public class ClientRentalController {
 		System.out.println("getDetailRefund 호출 성공");
 
 		int r_no = rvo.getR_no();
-		rvo = clientRentalService.getDetailRefund(r_no);
-		model.addAttribute("rvo", rvo);
-		System.out.println(rvo);
+		HashMap<String, Object> data = clientRentalService.getDetailRefund(r_no);
+		
+		model.addAttribute("data", data);
+		System.out.println(data);
 
 		return "/rental/detailRefund";
 	}

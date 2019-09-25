@@ -92,7 +92,7 @@ public class ClientRentalServiceImpl implements ClientRentalService {
 		}
 
 		@Override
-		public RentalVO getDetailRefund(int r_no) {
+		public HashMap<String, Object> getDetailRefund(int r_no) {
 			return clientRentalDao.getDetailRefund(r_no);
 		}
 
