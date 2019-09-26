@@ -167,7 +167,6 @@ public class PlaceVO extends PagingVO {
 	public void setP_regdate(String p_regdate) {
 		this.p_regdate = p_regdate;
 	}
-	
 	@Override
 	public String toString() {
 		return "PlaceVO [p_num=" + p_num + ", m_id=" + m_id + ", p_name=" + p_name + ", p_ceo=" + p_ceo + ", p_phone="
@@ -176,7 +175,7 @@ public class PlaceVO extends PagingVO {
 				+ p_file + ", p_register=" + p_register + ", p_account_copy=" + p_account_copy + ", p_property="
 				+ p_property + ", p_holiday=" + p_holiday + ", p_status=" + p_status + ", p_holiday_start="
 				+ p_holiday_start + ", p_holiday_end=" + p_holiday_end + ", p_ok=" + p_ok + ", p_ok_date=" + p_ok_date
-				+ ", p_intro=" + p_intro + ", p_regdate=" + p_regdate + "]";
+				+ ", p_intro=" + p_intro + ", p_regdate=" + p_regdate + ", refund_day=" + "]";
 	}
 	
 }

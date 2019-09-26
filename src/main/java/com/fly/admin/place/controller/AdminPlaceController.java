@@ -2,6 +2,7 @@ package com.fly.admin.place.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -143,14 +144,61 @@ public class AdminPlaceController {
 			Model model
 			) {
 		
+		Paging.setPage(rvo, 15);
+		String pageSize = rvo.getPageSize();
+		int total = adminPlaceService.clientRefundCnt(rvo);
+		int count = total - (Util.nvl(rvo.getPage()) - 1) * Util.nvl(rvo.getPageSize());
+		
+		model.addAttribute("count", count);
+	    model.addAttribute("total", total);
+	    model.addAttribute("pageSize", pageSize);
+	    model.addAttribute("data", rvo);
+		
 		System.out.println("updateRefundChk 호출 성공");
-		// service에서 list --> hash 변경
-		//HashMap<String, Object> data = adminPlaceService.getRefundList();
-		//model.addAttribute("data", data);
-		//System.out.println(data);
+		List<Map<String, Object>> refundList = adminPlaceService.getRefundList(rvo);
+		model.addAttribute("refundList", refundList);
+		System.out.println(refundList);
 		
 		return "/admin/place/refund";
 				
+	}
+	
+	// 환불 관리 상세페이지
+	@RequestMapping(value = "/refundDetail.do", method = RequestMethod.GET)
+	public String detailRefundChk(
+			@ModelAttribute RentalVO rvo,
+			Model model
+			) {
+		
+		int r_no = rvo.getR_no();
+		HashMap<String, Object> refundDetail = adminPlaceService.refundDetail(r_no);
+		model.addAttribute("data", refundDetail);
+		System.out.println(refundDetail);
+		
+		return "/admin/place/refundDetail";
+		
+	}
+	
+	// 환불 상태 변경
+	@RequestMapping(value ="/updateRefundStatus.do", method = RequestMethod.GET)
+	public String updateRefundChk(
+			@ModelAttribute RentalVO rvo,
+			HttpServletRequest request,
+			RedirectAttributes redirectAttr
+			) {
+		
+		System.out.println("updateRefundChk 호출 성공");
+		int r_no = rvo.getR_no();
+		// 환불 상태 변경
+		adminPlaceService.updateRefund(r_no);
+		redirectAttr.addAttribute("r_no", r_no);
+		
+		// 환불 지급일 등록
+		adminPlaceService.getRefundDay(r_no);
+		redirectAttr.addAttribute("refund_day", rvo.getRefund_day());
+		
+		return "redirect:/admin/place/refundDetail.do";
+		
 	}
 
 }
