@@ -36,7 +36,6 @@
 		</div>
 		<!-- 탭 콘텐츠 영역 -->
 		<div class="tab_container">
-		
 			<form id="datailForm" action="/mypage/stadiumDetail.do"method="post">
 				<input type="hidden" name="s_no" id="s_no">
 			</form>
