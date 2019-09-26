@@ -48,7 +48,11 @@
 	<select id="getRefundList" parameterType="place" resultMap="getRefundList">
 		select r.m_id, m.m_name, p.p_name, r.r_total_pay, r.refund, 
 		to_char(r.r_recall_time, 'yyyy/MM/dd') r_recall_time, r.r_no, to_char(m.m_regdate, 'yyyy/MM/dd') m_regdate
-		from rental r, member m, place p 
+		from (SELECT ROWNUM RNUM , rn.* 
+			   FROM (SELECT * 
+			      	 FROM rental 
+			         order by r_regdate desc) rn
+			         ) r, member m, place p 
 		<where>
 			r.m_id = m.m_id and p.p_num = (select p_num from stadium where s_no = r.s_no) 
 			and p.m_id = 'esub17@naver.com'
@@ -58,17 +62,23 @@
 				and to_char(r.r_recall_time, 'yyyy/MM') = to_char(sysdate, 'yyyy/MM')
 			</if>
 			<if test='p_ok == 2'>
-				and to_char(r.r_recall_time, 'yyyy') = #{r_recall_time}
+				and to_char(r.r_recall_time, 'yyyy') = #{p_open}
 			</if>
 			<if test='p_ok == 3'>
-				and to_char(r.r_recall_time, 'yyyy/MM') = #{r_recall_time}
+				and to_char(r.r_recall_time, 'yyyy/MM') = #{p_open}
 			</if>
 			
+			<if test="start_row != null and start_row != ''">
+	           <if test="end_row != null and end_row != ''">
+	              and RNUM BETWEEN #{start_row} and #{end_row}
+	           </if>   
+	        </if>
 		</where>
 		order by r_recall_time desc
 	</select>
 	
 	<resultMap type="map" id="getRefundList">
+        <result column="r_no" property="r_no"/>
         <result column="m_id" property="m_id"/>
         <result column="m_name" property="m_name"/>
         <result column="p_name" property="p_name"/>
@@ -97,6 +107,46 @@
 	<delete id="deleteRental">
 		DELETE FROM rental WHERE r_no = #{r_no}
 	</delete>
-
+	
+	<select id="getRegdate" resultType="String">
+		select to_char(m_regdate, 'yyyy/MM/dd') register 
+		from member 
+		where m_id = 'esub17@naver.com'
+	</select>
+	
+	<!-- 환불 현황 상세 페이지 -->
+	<select id="getDetailRefund" resultMap="getDetailRefund" parameterType="int">
+		select p.p_name, p.p_phone, p.p_address, m.m_name,
+		r.m_id, r.r_account, m.m_phone, to_char(r.r_regdate, 'yyyy/MM/dd') r_regdate, to_char(r.r_reserve_date, 'yyyy/MM/dd') r_reserve_date, 
+		r.r_start, s.s_hours, s.s_name, r.r_total_pay,
+		to_char(r.r_recall_time, 'yyyy/MM/dd') r_recall_time, r.refund, r.r_pay_type, r.r_bank, r.r_account, r.r_account_num, r.r_no
+		from place p, member m, rental r, stadium s
+		where p.p_num = s.p_num
+		and s.s_no = r.s_no
+		and r.m_id = m.m_id
+		and r_no = #{r_no}
+	</select>
+	<resultMap type="hashMap" id="getDetailRefund">
+        <result column="p_name" property="p_name"/>
+        <result column="p_phone" property="p_phone"/>
+        <result column="p_address" property="p_address"/>
+        <result column="m_id" property="m_id"/>
+        <result column="m_name" property="m_name"/>
+        <result column="r_account" property="r_account"/>
+        <result column="m_phone" property="m_phone"/>
+        <result column="r_regdate" property="r_regdate"/>
+        <result column="r_reserve_date" property="r_reserve_date"/>
+        <result column="r_start" property="r_start"/>
+        <result column="s_hours" property="s_hours"/>
+        <result column="s_name" property="s_name"/>
+        <result column="r_total_pay" property="r_total_pay"/>
+        <result column="r_recall_time" property="r_recall_time"/>
+        <result column="refund" property="refund"/>
+        <result column="r_pay_type" property="r_pay_type"/>
+        <result column="r_bank" property="r_bank"/>
+        <result column="r_account" property="r_account"/>
+        <result column="r_account_num" property="r_account_num"/>
+        <result column="r_no" property="r_no"/>
+    </resultMap>
 	
 </mapper>

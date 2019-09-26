@@ -1,20 +1,13 @@
 package com.fly.client.stadium.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
-import javax.annotation.Resource;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,14 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fly.client.items.service.ItemsService;
 import com.fly.client.items.vo.ItemsVO;
 import com.fly.client.place.service.ClientPlaceService;
-import com.fly.client.stadium.dao.ClientStadiumDao;
 import com.fly.client.stadium.service.ClientStadiumService;
 import com.fly.client.util.FileUploadUtil;
 import com.fly.client.util.MakeList;
@@ -42,9 +33,6 @@ import com.fly.member.stadium.vo.StadiumVO;
 @Controller
 @RequestMapping(value = "/mypage")
 public class StadiumController {
-	
-	private static final String SAVE_PATH = "파일을 저장할 경로를 적어주세요";//경기장 등록 이미지 업로드할때 사용
-	
 	
 	@Autowired
 	private ClientStadiumService stadiumService;
@@ -76,6 +64,8 @@ public class StadiumController {
 		System.out.println("stadiumList 호출 성공");
 		List<StadiumVO> Slist = stadiumService.stadiumList(p_num);
 		List<ItemsVO> Ilist = itemsService.itemsList(p_num);
+		
+		
 		return MakeList.makeList(Slist, Ilist, p_num);
 
 	}
@@ -90,7 +80,9 @@ public class StadiumController {
 		String s_no = svo.getS_no()+"";
 		svo = stadiumService.stadiumDetail(s_no);
 		
-
+		System.out.println(svo.getS_img1());
+		System.out.println(svo.getS_img2());
+		System.out.println(svo.getS_img3());
 		
 		mav.addObject("s_no", svo.getS_no());
 		mav.addObject("s_name", svo.getS_name());
@@ -107,8 +99,9 @@ public class StadiumController {
 		mav.addObject("s_status", svo.getS_status());
 		mav.addObject("s_hours", svo.getS_hours());
 		mav.addObject("s_regdate", svo.getS_regdate());
+		
 		mav.setViewName("mypage/stadiumDetailEdit");
-
+		
 		return mav;
 	}
 
@@ -122,26 +115,26 @@ public class StadiumController {
 	}
 	
 	// 경기장 등록
-	String uploadPath;
 	@RequestMapping(value = "/stadiumInsert.do", method = RequestMethod.POST)
-	public ModelAndView stadiumInsert(@ModelAttribute StadiumVO svo, @RequestParam("select")String select,Model model, HttpServletRequest request)throws IllegalStateException,IOException{
+	public ModelAndView stadiumInsert(@ModelAttribute StadiumVO svo, @RequestParam("select")String select, MultipartHttpServletRequest request) throws IOException, Exception{
 		System.out.println("stadiumInsert 호출 성공");
-		System.out.println(svo.toString());
+		
 		ModelAndView mav = new ModelAndView();
-		if(svo.getFile()!=null) {
-			String s_img1 = FileUploadUtil.fileUpload(svo.getFile(), request, "stadium");
-			svo.setS_img1(s_img1);
-		}
-		if(svo.getFile()!=null) {
-			String s_img2= FileUploadUtil.fileUpload(svo.getFile(), request, "stadium");
-			svo.setS_img2(s_img2);
-		}
-		if(svo.getFile()!=null) {
-			String s_img3=FileUploadUtil.fileUpload(svo.getFile(), request, "stadium");
-			svo.setS_img3(s_img3);
-		}
-		
-		
+		if(svo.getFile1() != null && !(svo.getFile1().equals(""))){
+	         String pt_image1 = FileUploadUtil.fileUpload(svo.getFile1(), request, "image1");
+	         svo.setS_img1(pt_image1);
+	         
+	      }
+	      if(svo.getFile2() != null && !(svo.getFile2().equals(""))){
+	         String pt_image2 = FileUploadUtil.fileUpload(svo.getFile2(), request, "image2");
+	         svo.setS_img2(pt_image2);
+	         
+	      }
+	      if(svo.getFile3() != null && !(svo.getFile3().equals(""))){
+	         String pt_image3 = FileUploadUtil.fileUpload(svo.getFile3(), request, "image3");
+	         svo.setS_img3(pt_image3);
+	         
+	      }
 		int plus = Integer.parseInt(select);// 추가등록여부 확인을 위한 변수
 
 		int result = stadiumService.stadiumInsert(svo);
@@ -163,19 +156,38 @@ public class StadiumController {
 	
 	//경기장 수정
 	@RequestMapping(value = "/stadiumModify.do", method = RequestMethod.POST)
-	public String stadiumModify(@ModelAttribute StadiumVO svo, Model model, HttpSession session, RedirectAttributes redirectAttr) {
+	public String stadiumModify(@ModelAttribute StadiumVO svo, Model model, MultipartHttpServletRequest session, MultipartHttpServletRequest request, RedirectAttributes redirectAttr) throws IOException {
 		System.out.println("stadiumModify 호출 성공");
 
 		int result = 0;
 		String url = "";
+		System.out.println(svo.toString());
+		System.out.println(svo.getFile1().toString());
+		if(svo.getFile1() != null && !(svo.getFile1().equals(""))){
+	         String pt_image1 = FileUploadUtil.fileUpload(svo.getFile1(), request, "image1");
+	         svo.setS_img1(pt_image1);
+	         
+	      }
+	      if(svo.getFile2() != null && !(svo.getFile2().equals(""))){
+	         String pt_image2 = FileUploadUtil.fileUpload(svo.getFile2(), request, "image2");
+	         svo.setS_img2(pt_image2);
+	         
+	      }
+	      if(svo.getFile3() != null && !(svo.getFile3().equals(""))){
+	         String pt_image3 = FileUploadUtil.fileUpload(svo.getFile3(), request, "image3");
+	         svo.setS_img3(pt_image3);
+	         
+	      }
+	      System.out.println(svo.toString());
 		result = stadiumService.stadiumModify(svo);
 	
-		if (result == 1) {
+		if (result >= 1) {
 			redirectAttr.addAttribute("p_num", svo.getP_num());
 			url = "/mypage/placeChoice.do";
 		} else {
 			model.addAttribute("errCode", 1);
-			url = "/mypage/stadiumModify.do";
+			model.addAttribute("s_no", svo.getS_no());
+			url = "/mypage/stadiumDetail.do";
 		}
 		return "redirect:" + url;
 	}

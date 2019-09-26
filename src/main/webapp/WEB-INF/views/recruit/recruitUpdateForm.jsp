@@ -274,8 +274,8 @@
 					</tr>
 
 					<tr>
-						<td colspan="2"><label>비고<br /> <input type="text"
-								name="hr_etc" id="hr_etc" value="${updateRecruitData.hr_etc}">
+						<td colspan="2"><label>비고<br />
+						<textarea id="hr_etc" name="hr_etc" rows="5" cols="40">${updateRecruitData.hr_etc}</textarea>
 						</label></td>
 					</tr>
 				</tbody>

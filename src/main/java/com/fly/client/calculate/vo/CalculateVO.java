@@ -1,8 +1,8 @@
 package com.fly.client.calculate.vo;
 
-import com.fly.member.place.vo.PlaceVO;
+import com.fly.paging.vo.PagingVO;
 
-public class CalculateVO extends PlaceVO {
+public class CalculateVO extends PagingVO {
 	private int c_no;
 	private int c_payment;
 	private String c_payment_date;
@@ -10,6 +10,10 @@ public class CalculateVO extends PlaceVO {
 	private String c_regdate;
 	private int c_rental_cnt;
 	private int c_return_cnt;
+	private String m_id;
+	private String p_ceo;
+	private String p_num;
+	private int statusChoice;
 
 	// getter and setter
 	public int getC_no() {
@@ -66,6 +70,38 @@ public class CalculateVO extends PlaceVO {
 
 	public void setC_return_cnt(int c_return_cnt) {
 		this.c_return_cnt = c_return_cnt;
+	}
+
+	public String getM_id() {
+		return m_id;
+	}
+
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
+
+	public String getP_ceo() {
+		return p_ceo;
+	}
+
+	public void setP_ceo(String p_ceo) {
+		this.p_ceo = p_ceo;
+	}
+
+	public int getStatusChoice() {
+		return statusChoice;
+	}
+
+	public void setStatusChoice(int statusChoice) {
+		this.statusChoice = statusChoice;
+	}
+
+	public String getP_num() {
+		return p_num;
+	}
+
+	public void setP_num(String p_num) {
+		this.p_num = p_num;
 	}
 
 	@Override

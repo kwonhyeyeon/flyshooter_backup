@@ -105,7 +105,7 @@
 				
 					<table>
 						<tr>
-							<td><input type="text" id="datepicker" name="datepicker" placeholder="날짜를 선택하세요"/></td>
+							<td><input type="text" id="datepicker" name="datepicker" readonly="readonly" placeholder="날짜를 선택하세요"/></td>
 						</tr>
 						<tr>
 							<td>
@@ -150,7 +150,7 @@
 				<p>대관료 <span id='payment'>0</span> 원</p>
 				<p>총 결제금액  <span id="totalMoney">0</span> 원</p>
 				
-				<div id='goRental' style='display:none'>
+				<div id='goRental'>
 	 				<button id='goRentalBtn'>결제</button>
 	  			</div>				
 			</div>

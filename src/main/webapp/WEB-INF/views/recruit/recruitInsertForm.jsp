@@ -284,8 +284,8 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2">비고<br /> <input type="text" name="hr_etc"
-								id="hr_etc" />
+							<td colspan="2">비고<br />
+								<textarea id="hr_etc" name="hr_etc" rows="5" cols="40"></textarea>
 							</td>
 						</tr>
 					</tbody>

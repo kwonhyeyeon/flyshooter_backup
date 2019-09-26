@@ -6,9 +6,9 @@
 	<select id="selectMemberList" parameterType="member" resultType="member">
 		SELECT 
 			m.m_id, m.m_name, m.m_phone, m.m_type, m.m_status, to_char(m.m_regdate, 'yyyy-MM-dd') m_regdate, 
-			nvl((select to_char(lastsuccessedlogin, 'yyyy-MM-dd') 
+			nvl((select lastpass
 			from login_history 
-			where m_id = m.m_id), '로그인 기록이 없습니다.') email_confirm
+			where m_id = m.m_id), '0') email_confirm
      	FROM 
      		(select ROWNUM RNUM, r.*
      			from (select * 

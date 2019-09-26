@@ -1,5 +1,8 @@
 package com.fly.admin.member.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,15 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fly.admin.member.service.AdminMemberService;
 import com.fly.member.join.vo.MemberVO;
 import com.fly.paging.util.Paging;
 import com.fly.paging.util.Util;
-import com.fly.paging.vo.PagingVO;
 
 @Controller
 @RequestMapping(value = "/admin/member")
@@ -36,7 +36,27 @@ public class AdminMemberController {
 		// 글번호 재설정
 		int count = total - (Util.nvl(mvo.getPage()) -1 ) * Util.nvl(mvo.getPageSize());
 		
-		model.addAttribute("memberList", adminMemberService.getMemberList(mvo));
+		List<MemberVO> m_list = adminMemberService.getMemberList(mvo);
+		
+		
+		for(MemberVO mmvo : m_list) {
+			try {
+			long date = Long.parseLong(mmvo.getEmail_confirm());
+			if(  date != 0 ) {
+				mmvo.setEmail_confirm(new SimpleDateFormat("YYYY-MM-dd hh:mm:ss").format(date));
+			}else {
+				mmvo.setEmail_confirm("로그인 기록이 없습니다.");
+			}
+			}catch(Exception e) {
+				mmvo.setEmail_confirm("데이터를 불러오는데 실패했습니다.");
+			}
+		}
+	      
+		
+		
+		
+		
+		model.addAttribute("memberList", m_list);
 		//paging.setTotal( adminMemberService.getTotalSize(status, name) );
 		model.addAttribute("count", count);
 		model.addAttribute("total", total);

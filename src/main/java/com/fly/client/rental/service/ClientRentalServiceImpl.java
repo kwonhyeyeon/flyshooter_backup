@@ -1,5 +1,6 @@
 package com.fly.client.rental.service;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,23 @@ public class ClientRentalServiceImpl implements ClientRentalService {
 		@Override
 		public List<Map<String, String>> getRefundList(PlaceVO pvo) {
 			
+			String p_open = pvo.getP_open(); // year
+			String p_close = pvo.getP_close(); // month
+			int year = Calendar.getInstance().get(Calendar.YEAR);
+			
+			System.out.println(p_open);
+			System.out.println(p_close);
+			if(p_open == null || p_close == null) {
+				pvo.setP_ok(1);
+			} else if(p_close == null || p_close.equals("")) {
+				p_open = year + "";
+				pvo.setP_ok(2);
+			} else {
+				String full = p_open + "/" + p_close;
+				pvo.setP_open(full);
+				pvo.setP_ok(3);
+			}
+			
 			return clientRentalDao.getRefundList(pvo);
 			
 		}
@@ -66,6 +84,16 @@ public class ClientRentalServiceImpl implements ClientRentalService {
 		public int deleteRental(int r_no) {
 			// TODO Auto-generated method stub
 			return clientRentalDao.deleteRental(r_no);
+		}
+		
+		@Override
+		public String getRegdate(String m_id) {
+			return clientRentalDao.getRegdate(m_id);
+		}
+
+		@Override
+		public HashMap<String, Object> getDetailRefund(int r_no) {
+			return clientRentalDao.getDetailRefund(r_no);
 		}
 
 }

@@ -2,6 +2,8 @@ package com.fly.admin.support.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +28,7 @@ public class AdminSupportController {
 	 ***************************************************************/
 	
 	@RequestMapping(value = "/support/supportList.do", method = RequestMethod.GET)
-	public String supportList(@ModelAttribute SupportVO svo, CommonVO cvo, Model  model) {
+	public String supportListChk(@ModelAttribute SupportVO svo, CommonVO cvo, Model  model, HttpServletRequest request) {
 		System.out.println("admin supportList 호출 성공");
 		
 		// 전체 레코드 수 구현 하기
@@ -48,7 +50,7 @@ public class AdminSupportController {
 	 *************************************************************/
 
 	@RequestMapping(value = "/support/supportView.do", method = RequestMethod.GET)
-	public String supportView(@ModelAttribute SupportVO svo, Model model) throws Exception {
+	public String supportViewChk(@ModelAttribute SupportVO svo, Model model, HttpServletRequest request) throws Exception {
 		System.out.println("admin supportview 호출 성공");
 		
 		String result = "";
@@ -65,7 +67,7 @@ public class AdminSupportController {
 	 * 글 삭제 구현
 	 *************************************************************/
 	@RequestMapping(value = "/support/supportDelete.do", method = RequestMethod.GET)
-	public String supportStatusUpdate(@ModelAttribute SupportVO svo, Model model) throws Exception {
+	public String supportStatusUpdateChk(@ModelAttribute SupportVO svo, Model model, HttpServletRequest request) throws Exception {
 		System.out.println("admin supportDelete 호출 성공");
 		int result = 0;
 		String url = "";

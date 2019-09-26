@@ -2,6 +2,7 @@ package com.fly.member.recruit.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +83,7 @@ public class RecruitController {
 	 *************************************************************/
 
 	@RequestMapping(value = "/recruitInsertForm.do", method = RequestMethod.GET)
-	public String recruitInsertForm(@ModelAttribute MemberVO mvo, Model model, HttpSession session) throws Exception {
+	public String recruitInsertForm_LoginChk(@ModelAttribute MemberVO mvo, Model model, HttpSession session, HttpServletRequest request) throws Exception {
 		System.out.println("recruitInsertForm 호출 성공");
 		
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
@@ -102,7 +103,7 @@ public class RecruitController {
 	 ***************************************************************/
 
 	@RequestMapping(value = "/recruitInsert.do")
-	public String recruitInsert(@ModelAttribute RecruitVO revo) throws Exception {
+	public String recruitInsert_LoginChk(@ModelAttribute RecruitVO revo, HttpServletRequest request) throws Exception {
 		System.out.println("recruitInsert 호출 성공");
 		int result = 0;
 		String url = "";
@@ -121,7 +122,7 @@ public class RecruitController {
 	 ***************************************************************/
 
 	@RequestMapping(value = "/recruitUpdateForm.do")
-	public String recruitUpdateForm(@ModelAttribute RecruitVO revo, Model model) throws Exception {
+	public String recruitUpdateForm_LoginChk(@ModelAttribute RecruitVO revo, Model model, HttpServletRequest request) throws Exception {
 		System.out.println("recruitUpdateForm 호출 성공");
 
 		RecruitVO updateRecruitData = new RecruitVO();
@@ -136,7 +137,7 @@ public class RecruitController {
 	 ***************************************************************/
 
 	@RequestMapping(value = "/recruitUpdate.do", method = RequestMethod.POST)
-	public String recruitUpdate(@ModelAttribute RecruitVO revo) throws Exception {
+	public String recruitUpdate_LoginChk(@ModelAttribute RecruitVO revo, HttpServletRequest request) throws Exception {
 
 		System.out.println("recruitUpdate 호출 성공");
 

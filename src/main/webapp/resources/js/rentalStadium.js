@@ -7,6 +7,7 @@ $(document).ready(function(){
 	var p_holiday = $('#holiday').val();
 	var arr = holiDay();
 	
+	
 				$("#datepicker").datepicker({
 	               dateFormat : 'yy-mm-dd',
 	               prevText : '이전 달',
@@ -88,12 +89,10 @@ $(document).ready(function(){
 				$("#datepicker").change(function(){
 					$("#stadiumSelectBox").val("경기장선택");
 					$("#selectTime").html("");
-					$("#goRental").hide();
 				});
 				
 				// 경기장을 선택할경우 비동기로 예약가능한 시간을 조회하는 함수
 				$("#stadiumSelectBox").change(function(){
-					$("#goRental").hide();
 					var selectDay = selectedDay();
 					var p_open = $("#p_open").val();
 					var p_close = $("#p_close").val();
@@ -138,7 +137,6 @@ $(document).ready(function(){
 				
 				// 예약시간을 선택할경우 동적으로 결제금액을 계산해서 넣어주는 함수
 				$(document).on("change","input[name='reservationTime']:radio",function(){  
-					$("#goRental").hide();
 					// 8,2,20000,10000,30000,20000
 					var r_money = setDay();
 					var i_money = setTotalMoney();
@@ -149,20 +147,29 @@ $(document).ready(function(){
 						$("#totalMoney").text(eval(r_money));
 					}
 					
-					$("#goRental").show();
 				});
 				
 				// 다음단계 이동전 해당시간대가 예약중인지 비동기로 확인하는 함수
-				$(document).on("click","#goRentalBtn",function(){  
-						$("#goRental").hide();
-						param = makeOverlapKey();
-						// 선택된 시간대가 현재 예약이 진행중인지 확인하는 비동기처리
+				$(document).on("click","#goRentalBtn",function(){ 
+					
+					
+					// 시간이 선택되지 않았을 경우
+					if( !($('input:radio[name=reservationTime]').is(':checked')) ){
+					
+						alert("예약시간을 선택해주십시오.");
+						return;
+					}
+					
+					
+					param = makeOverlapKey();
+						// 선택된 시간대가 현재 예약이 진행중인지 확인하는 동기처리
 						$.ajax({
 							type:"post",
 							url:"/user/rental/reservationCheck.do",
+							async : false, // 동기
 							data:{overlapKey : param},
 							error: function() {
-								alert("비동기 실패");
+								alert("결제페이지를 불러오는데 실패하였습니다.\n잠시후 다시 시도해주십시오.")
 							},
 							success:function(result){
 								if(eval(result)){
@@ -181,6 +188,8 @@ $(document).ready(function(){
 				});
 				// 결제창 모달창
 				function openDialog(){
+					
+					
 					$("#dialog").dialog({
 						title : 'fly_shooter 결제창',
 						model : true,
@@ -257,8 +266,21 @@ $(document).ready(function(){
 					
 				});
 				
+				// 용품수량에서 숫자만 입력가능하도록
+				$(".i_ea").on("keyup", function() {
+					var temp = $(this).children().val();
+					$(this).val($(this).val().replace(/[^0-9]/g,""));
+					if ( $(this).val() > 99 ) {
+			            alert("최대  99개까지 대여가능합니다");
+			            $(this).val(99);
+			            return;
+					}
+					return;
+				});
+				
 				// 용품별 가격설정
 				$(".r_ec").change(function(){
+					
 					var price = $(this).parent("tr").attr("data-num");
 					var ec = $(this).children().val();
 					$(this).next().next().children('span').text( eval(ec*price)+"원");

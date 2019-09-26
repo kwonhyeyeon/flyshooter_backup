@@ -2,6 +2,8 @@ package com.fly.admin.recruit.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +26,7 @@ public class AdminRecruitController {
 	 ***************************************************************/
 	
 	@RequestMapping(value = "/recruit/recruitList.do", method = RequestMethod.GET)
-	public String recruitList(@ModelAttribute RecruitVO revo, CommonVO cvo, Model  model) {
+	public String recruitListChk(@ModelAttribute RecruitVO revo, CommonVO cvo, Model  model, HttpServletRequest request) {
 		System.out.println("admin recruitList 호출 성공");
 		
 		// 전체 레코드 수 구현 하기
@@ -46,7 +48,7 @@ public class AdminRecruitController {
 	 *************************************************************/
 
 	@RequestMapping(value = "/recruit/recruitView.do", method = RequestMethod.GET)
-	public String recruitView(@ModelAttribute RecruitVO revo, Model model) throws Exception {
+	public String recruitViewChk(@ModelAttribute RecruitVO revo, Model model, HttpServletRequest request) throws Exception {
 		System.out.println("admin recruitview 호출 성공");
 		
 		String result = "";
@@ -63,7 +65,7 @@ public class AdminRecruitController {
 	 * 글 삭제 구현
 	 *************************************************************/
 	@RequestMapping(value = "/recruit/recruitDelete.do", method = RequestMethod.GET)
-	public String recruitStatusUpdate(@ModelAttribute RecruitVO revo, Model model) throws Exception {
+	public String recruitStatusUpdateChk(@ModelAttribute RecruitVO revo, Model model, HttpServletRequest request) throws Exception {
 		System.out.println("admin recruitDelete 호출 성공");
 		int result = 0;
 		String url = "";

@@ -13,27 +13,43 @@ public class StadiumVO extends PlaceVO {
 	private int s_d_fee_w;
 	private int s_n_fee_w;
 	private int s_people;
-	private MultipartFile file;//첨부파일
+	private MultipartFile file1;// 첨부파일
+	private MultipartFile file2;// 첨부파일
+	private MultipartFile file3;// 첨부파일
 	private String s_img1; // 경기장 이미지1
 	private String s_img2; // 경기장 이미지2
-	private String s_img3;	// 경기장 이미지3
+	private String s_img3; // 경기장 이미지3
 	private int s_in_out;
 	private int s_status;
 	private int s_hours;
 	private String s_regdate;
-	
 
-	
 	public StadiumVO() {
 		super();
 	}
 
-	public MultipartFile getFile() {
-		return file;
+	public MultipartFile getFile1() {
+		return file1;
 	}
 
-	public void setFile(MultipartFile file) {
-		this.file = file;
+	public void setFile1(MultipartFile file1) {
+		this.file1 = file1;
+	}
+
+	public MultipartFile getFile2() {
+		return file2;
+	}
+
+	public void setFile2(MultipartFile file2) {
+		this.file2 = file2;
+	}
+
+	public MultipartFile getFile3() {
+		return file3;
+	}
+
+	public void setFile3(MultipartFile file3) {
+		this.file3 = file3;
 	}
 
 	public int getS_no() {
@@ -158,13 +174,13 @@ public class StadiumVO extends PlaceVO {
 
 	@Override
 	public String toString() {
-		
+
 		return "StadiumVO [getS_no()=" + getS_no() + ", getS_name()=" + getS_name() + ", getS_size()=" + getS_size()
 				+ ", getS_d_fee()=" + getS_d_fee() + ", getS_n_fee()=" + getS_n_fee() + ", getS_d_fee_w()="
 				+ getS_d_fee_w() + ", getS_n_fee_w()=" + getS_n_fee_w() + ", getS_people()=" + getS_people()
 				+ ", getS_img1()=" + getS_img1() + ", getS_img2()=" + getS_img2() + ", getS_img3()=" + getS_img3()
 				+ ", getS_in_out()=" + getS_in_out() + ", getS_status()=" + getS_status() + ", getS_hours()="
-				+ getS_hours() + ", getS_regdate()=" + getS_regdate() + "]"+ super.getP_num()+" toString";
+				+ getS_hours() + ", getS_regdate()=" + getS_regdate() + "]" + super.getP_num() + " toString";
 	}
 
 }

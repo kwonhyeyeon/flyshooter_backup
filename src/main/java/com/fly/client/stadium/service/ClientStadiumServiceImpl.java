@@ -50,9 +50,11 @@ public class ClientStadiumServiceImpl implements ClientStadiumService {
 	@Override
 	public int stadiumModify(StadiumVO svo) {
 		int result = 0;
+		
 		try {
 			result = clientStadiumDao.stadiumModify(svo);
-			result = 1;
+			System.out.println(result+"결과");
+			System.out.println(svo.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = 0;

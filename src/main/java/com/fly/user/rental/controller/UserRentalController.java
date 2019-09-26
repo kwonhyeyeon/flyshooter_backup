@@ -3,6 +3,7 @@ package com.fly.user.rental.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fly.client.items.service.ItemsService;
 import com.fly.client.items.vo.ItemsVO;
 import com.fly.member.itemsrental.service.ItemsRentalService;
+import com.fly.member.join.vo.MemberVO;
 import com.fly.member.place.vo.PlaceVO;
 import com.fly.member.rental.vo.RentalVO;
 import com.fly.member.stadium.vo.StadiumVO;
@@ -47,14 +49,15 @@ public class UserRentalController {
 	private static final Logger log = LoggerFactory.getLogger(UserRentalController.class);   
    
     @RequestMapping(value = "/location.do")
-    public String searchLocation(Model model) {
+    public String searchLocation_UserChk(Model model,HttpServletRequest request) {
 	    
        return "rental/location";
     }
    
    // 지역으로 검색한 구장리스트
    @RequestMapping(value = "/placeList.do", method = RequestMethod.GET)
-   public String searchPlaceList(@ModelAttribute PlaceVO pvo, Model model, RedirectAttributes redirectAttr, 
+   public String searchPlaceList_UserChk(@ModelAttribute PlaceVO pvo,HttpServletRequest request, Model model,
+		   RedirectAttributes redirectAttr, 
 		   @RequestParam(value = "area", required = true, defaultValue = "null") String area) {
       
 	   log.info("============="+area);
@@ -70,9 +73,10 @@ public class UserRentalController {
    
    // 대관 신청페이지
    @RequestMapping(value = "/rentalStadium.do", method = RequestMethod.POST)
-   public String rentalInfo(@ModelAttribute PlaceVO pvo, Model model, @RequestParam(value = "p_num") String p_num, 
+   public String rentalInfo_UserChk(@ModelAttribute PlaceVO pvo, Model model,
+		   @RequestParam(value = "p_num") String p_num, 
 		   @RequestParam(value = "area", required = true, defaultValue = "null") String area, 
-		   RedirectAttributes redirectAttr) {
+		   RedirectAttributes redirectAttr, HttpServletRequest request) {
 
       pvo = placeService.selectPlace(p_num);
       List<StadiumVO> stadiumList = userStadiumService.selectStadiumList(p_num);
@@ -153,7 +157,7 @@ public class UserRentalController {
    // 예약취소시 세션에 저장되어 있는 overlap을 불러와 데이터 삭제.
    @RequestMapping(value = "/removeReservation.do", method = RequestMethod.POST, produces= "text/html; charset=UTF-8")
    @ResponseBody
-   public String removeReservation(HttpSession session){
+   public String removeReservation_LoginChk(HttpSession session,HttpServletRequest request){
 	   String result = "삭제상공";
 	   String overlap = (String)session.getAttribute("overlap");
 	   userRentalService.deleteReservation(overlap);
@@ -163,12 +167,14 @@ public class UserRentalController {
    
    // 예약이 완료되어 예약정보를 DB에 insert한다.
    @RequestMapping(value = "/insertRental.do", method = RequestMethod.POST)
-   public String insertRental(@ModelAttribute RentalVO rvo, Model model, 
+   public String insertRental_LoginChk(@ModelAttribute RentalVO rvo, Model model, 
 		   @RequestParam(value = "items_no", required = true, defaultValue = "null") String items_no, 
-		   @RequestParam(value = "items_ea", required = true, defaultValue = "null") String items_ea) {
+		   @RequestParam(value = "items_ea", required = true, defaultValue = "null") String items_ea, 
+		   HttpSession session, HttpServletRequest request) {
 	   int result = 0;
-	   // 임의로 회원 아이디 설정
-	   rvo.setM_id("esub17@naver.com");
+
+	   MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+	   rvo.setM_id(mvo.getM_id());
 	   try {
 	   // 대관정보 (retnal) insert
 	   result = userRentalService.insertRental(rvo, items_no, items_ea);
@@ -176,18 +182,20 @@ public class UserRentalController {
 		   e.toString();
 		   e.printStackTrace();
 		   System.out.println("대관실패.. 관리자한테 문의하십시오");
-		   e.printStackTrace();
 	   }
 	   System.out.println(result);
 	   return "rental/location";
    }
    
    @RequestMapping(value = "/myRentalList.do", method = RequestMethod.GET)
-   public String myRentalList(@ModelAttribute RentalVO rvo, Model model, HttpSession session) {
+   public String myRentalList_LoginChk(@ModelAttribute RentalVO rvo, Model model, HttpSession session,
+		   HttpServletRequest request) {
 	  
 	   //String m_id = (String)session.getAttribute("m_id");
 	   Paging.setPage(rvo, 5);
-	   rvo.setM_id("esub17@naver.com");
+	   
+	   MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+	   rvo.setM_id(mvo.getM_id());
 	   
 	   int total = userRentalService.myRentalListCnt(rvo.getM_id());
 	   int count = total - (Util.nvl(rvo.getPage()) -1 ) * Util.nvl(rvo.getPageSize());
@@ -201,7 +209,8 @@ public class UserRentalController {
    
    
    @RequestMapping(value = "/rentalDetail.do", method = RequestMethod.POST)
-   public String rentalDetail(Model model, @RequestParam("r_no") int r_no, @RequestParam("page") String page) {
+   public String rentalDetail_LoginChk(Model model, @RequestParam("r_no") int r_no, 
+		   @RequestParam("page") String page, HttpServletRequest request) {
 	   
 	   model.addAttribute("data", userRentalService.showDetail(r_no));
 	   model.addAttribute("page", page);
@@ -211,7 +220,8 @@ public class UserRentalController {
    }
    
    @RequestMapping(value = "/rentalUpdate.do", method = RequestMethod.POST)
-   public String rentalUpdate(@ModelAttribute RentalVO rvo, Model model, RedirectAttributes redirectAttr) {
+   public String rentalUpdate_LoginChk(@ModelAttribute RentalVO rvo, Model model, 
+		   RedirectAttributes redirectAttr, HttpServletRequest request) {
 	   redirectAttr.addAttribute("page", rvo.getPage());
 	  int result = userRentalService.rentalUpdate(rvo);
 	   String massage = "";

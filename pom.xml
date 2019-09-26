@@ -52,22 +52,20 @@
 		</dependency>
 		<!-- 정효성 이메일 관련 dependency 추가완료 -->
 
-		
-	<!-- fileupload -->
-	<dependency>
-   	 <groupId>commons-fileupload</groupId>
-   	 <artifactId>commons-fileupload</artifactId>
-   	 <version>1.4</version>
-	</dependency>	
-<dependency>
-    <groupId>commons-io</groupId>
-    <artifactId>commons-io</artifactId>
-    <version>1.4</version>
-</dependency>
-	
-	
-		<!-- 첨부파일 이미지 업로드 추가 완료-->
-		
+		<!-- 심정민 이미지 업로드 관련 dependency 추가 -->
+		<!-- fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<!-- 첨부파일 이미지 업로드 추가 완료 -->
+		<!-- 심정민 이미지 업로드 관련 dependency 추가완료 -->
 
 		<!-- jdbc -->
 		<dependency>
@@ -105,13 +103,13 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjtools</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>

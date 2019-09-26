@@ -9,7 +9,24 @@
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>FLY SHOOTER</title>
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script>
 
+
+$(document).ready(function(){ 
+	
+	
+	if("${log_message}"){
+		alert("${log_message}");
+		location.href = "/";
+}
+	
+
+	
+});
+
+
+</script>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
 </head>
@@ -21,7 +38,7 @@
 				<nav id="main-lnb">
 					<ul>
 						<c:if test="${empty mvo.m_id}">
-							<li><a href="/member/join.do">회원가입</a></li>
+							<li><a href="/member/terms.do">회원가입</a></li>
 							<li><a href="/member/login.do">로그인</a></li>
 						</c:if>
 						<c:if test="${not empty mvo.m_id}">

@@ -63,16 +63,9 @@
 		s_d_fee_w = #{s_d_fee_w}, s_n_fee_w = #{s_n_fee_w},
 		s_hours = #{s_hours}, s_size = #{s_size},
 		s_in_out = #{s_in_out}
-		<if test="s_img1 != null">
 		,s_img1 = #{s_img1}
-		</if>
-		<if test="s_img2 != null">
 		,s_img2 = #{s_img2}
-		</if>
-		<if test="s_img3 != null">
 		,s_img3 = #{s_img3}
-		</if>
-		,s_regdate = SYSDATE
 		where s_no = #{s_no}
 	</update>
 	
