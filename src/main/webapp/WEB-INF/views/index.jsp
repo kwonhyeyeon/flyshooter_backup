@@ -20,7 +20,6 @@ $(document).ready(function(){
 		alert("${log_message}");
 		location.href = "/";
 }
-	
 
 	
 });

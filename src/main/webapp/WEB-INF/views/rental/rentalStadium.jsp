@@ -189,15 +189,15 @@
 						</tr>
 						<tr>
 							<td>출금계좌</td>
-							<td><input type="text" class="input" /></td>
+							<td><input type="text" class="input" id="outNum" /></td>
 						</tr>
 						<tr>
 							<td>비밀번호</td>
-							<td><input type="password" class="input" /></td>
+							<td><input type="password" class="input" id="outPw"/></td>
 						</tr>
 						<tr>
 							<td>예금주</td>
-							<td><input type="text" class="input"/></td>
+							<td><input type="text" class="input" id="outName"/></td>
 						</tr>
 						<tr>
 							<td colspan="2">환불</td>
@@ -233,7 +233,7 @@
 					    </select>
 				    </td>
 					<td>
-						<input type="text" class="input" /> - <input type="text" class="input" /> - <input type="text" class="input" /> - <input type="text" class="input" />
+						<input type="text" class="cardNum" /> - <input type="text" class="cardNum" /> - <input type="text" class="cardNum" /> - <input type="text" class="cardNum" />
 			  		</td>
 				</tr>
 			</table>	

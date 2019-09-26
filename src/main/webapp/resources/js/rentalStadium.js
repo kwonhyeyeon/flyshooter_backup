@@ -235,6 +235,12 @@ $(document).ready(function(){
 								click:function(){
 									//$(this).dialog("close");
 									setInsertRentalForm();	
+									if( !(validateChk()) ){
+										
+										return;
+										
+									}else{
+										
 									resetDialog();
 									
 									$("#insertRentalForm").attr({
@@ -244,6 +250,8 @@ $(document).ready(function(){
 									if(confirm("대관하시겠습니까?")){
 										$("#insertRentalForm").submit();
 										$("#insertRentalForm").find("input[type='text']").val("");
+									}
+										return;
 									}
 								}
 							}
@@ -455,4 +463,197 @@ $(document).ready(function(){
 		function selectedDay(){
 			var result = $("#datepicker").val();
 			return result;
+		}
+		
+		// 유효성 검사
+		function validateChk(){
+			
+			var chack = false;
+			
+			var type = $("input:radio[name='r_pay_type']:checked").val();
+			
+			if( !(type) ){
+				alert("결제수단을 선택해 주십시오.");
+				return false;
+			}
+			
+			// type = 2 (계좌이체), 1 (카드결제)
+			if(type == '2'){
+				// 계좌이체시 유효성검사
+
+				chack = nameChk(); if( !(eval(chack)) ) return false;
+				chack = pwChk(); if( !(eval(chack)) ) return false;
+				chack = backChk(); if( !(eval(chack)) ) return false;
+				chack = acNumChk(); if( !(eval(chack)) ) return false;
+				
+			}else{
+				// 카드결제시 유효성검사
+				chack = cardNumChk(); if( !(eval(chack)) ) return false;
+			}
+			
+			
+			return true;
+
+
+		}
+		
+		function cardNumChk(){
+			
+			var length = $(".cardNum").length;
+			
+			
+			for(var i=0; i<length; i++) {
+				if($('.cardNum').eq(i).val() == 0){
+					alert("카드번호를 정확히 입력해주십시오.");
+					return false;
+				}
+			}
+			
+			
+			if( $("#selectCard").val() == '선택하세요' ){
+				alert("카드사를 선택해주십시오.");
+				
+				return false;
+			}
+			
+			return true;
+		}
+		
+		
+		// 계좌번호 유효성 검사
+		function acNumChk(){
+			
+			if ( $("#outNum").val().length <= 1 ) {
+				alert("출금계좌를 입력해주세요");
+				$("#outNum").val("");
+				$("#outNum").focus();
+				return false;
+			}
+			if ( $("#r_ac_num").val().length <= 1 ) {
+				alert("환불계좌를 입력해주세요");
+				$("#r_ac_num").val("");
+				$("#r_ac_num").focus();
+				return false;
+			}
+			return true;
+		}
+		
+		
+		// 은행 radio 유효성검사
+		function backChk(){
+			
+			var bank = $("input:radio[name='bank']:checked").val();
+			var r_bank = $("input:radio[name='r_bank']:checked").val();
+			
+			if( !(bank) ){
+				
+				alert("출금은행을 선택해주십시오");
+				return false;
+			}else if( !(r_bank) ){
+				
+				alert("환불시 사용할 은행을 선택해주십시오");
+				return false;
+			}
+			
+			return true;
+		}
+		
+		// 비밀번호 유효성검사
+		function pwChk(){
+			 var pw = /^[0-9]{4}$/;
+			 
+			 if( !(pw.test($("#outPw").val())) ){
+				 alert("비밀번호를 정확히 입력해주십시오.");
+				 $("#outPw").val("");
+				 $("#outPw").focus();
+				 return false;
+			 }
+			return true;
+			
+		}
+		
+		// 예금주 유효성검사
+		function nameChk(){
+			if ( $("#outName").val().length <= 1 ) {
+
+				alert("예금주를 정확히 입력해주세요");
+				$("#outName").val("");
+				$("#outName").focus();
+				return false;
+			}else if ( $("#r_ac").val().length <= 1 ) {
+
+				alert("예금주를 정확히 입력해주세요");
+				$("#r_ac").val("");
+				$("#r_ac").focus();
+				
+				return false;
+			}
+			
+			for (var i=0; i<$("#outName").val().length; i++)  { 
+
+			    var outName = $("#outName").val().substring(i,i+1); 
+
+			    if(outName.match(/[0-9]|[a-z]|[A-Z]/)) { 
+
+			    	alert("이름을 정확히 입력해주세요");
+			    	$("#outName").val("");
+					$("#outName").focus();
+			        return false;
+
+			    }
+
+			    if(outName.match(/([^가-힣\x20])/i)){
+
+			    	alert("이름을 정확히 입력해주세요");
+			    	$("#outName").val("");
+					$("#outName").focus();
+			        return false;
+
+			    }
+
+			    if($("#outName").val() == " "){
+
+			    	alert("이름을 정확히 입력해주세요");
+			    	$("#outName").val("");
+					$("#outName").focus();
+			        return false;
+
+			    }
+
+			} 
+			
+			for (var i=0; i<$("#r_ac").val().length; i++)  { 
+
+			    var r_ac = $("#r_ac").val().substring(i,i+1); 
+
+			    if(r_ac.match(/[0-9]|[a-z]|[A-Z]/)) { 
+
+			    	alert("이름을 정확히 입력해주세요");
+			    	$("#r_ac").val("");
+					$("#r_ac").focus();
+			        return false;
+
+			    }
+
+			    if(r_ac.match(/([^가-힣\x20])/i)){
+
+			    	alert("이름을 정확히 입력해주세요");
+			    	$("#r_ac").val("");
+					$("#r_ac").focus();
+			        return false;
+
+			    }
+
+			    if($("#r_ac").val() == " "){
+
+			    	alert("이름을 정확히 입력해주세요");
+			    	$("#r_ac").val("");
+					$("#r_ac").focus();
+			        return false;
+
+			    }
+
+			} 
+			
+			return true;
 		}
