@@ -277,17 +277,41 @@ $(document).ready(function(){
 				// 용품수량에서 숫자만 입력가능하도록
 				$(".i_ea").on("keyup", function() {
 					var temp = $(this).children().val();
+					
 					$(this).val($(this).val().replace(/[^0-9]/g,""));
+					$(this).val($(this).val().replace(/(^0+)/, ""));
+					
 					if ( $(this).val() > 99 ) {
 			            alert("최대  99개까지 대여가능합니다");
 			            $(this).val(99);
 			            return;
 					}
+
 					return;
 				});
 				
 				// 용품별 가격설정
-				$(".r_ec").change(function(){
+				$(".r_ec").on("keyup", function() {
+					
+					var price = $(this).parent("tr").attr("data-num");
+					var ec = $(this).children().val();
+					$(this).next().next().children('span').text( eval(ec*price)+"원");
+					
+					var i_price = setTotalMoney();
+					var r_pay = $("#payment").text();
+					$("#itemsPrice").text(i_price);
+					var result = 0;
+					if(r_pay){
+						 result = eval(i_price)+eval(r_pay);
+						$("#totalMoney").text(result);
+					}else{
+						$("#totalMoney").text(i_price);
+					}
+					
+				});
+				
+				// 용품별 가격설정
+				$(".r_ec").on("change", function() {
 					
 					var price = $(this).parent("tr").attr("data-num");
 					var ec = $(this).children().val();

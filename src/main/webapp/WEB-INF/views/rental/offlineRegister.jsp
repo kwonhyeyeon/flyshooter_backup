@@ -72,9 +72,9 @@
 						<p>※예약일자와 구장을 먼저 선택해주십시오.</p>
 					
 						<select id="stadiumSelectBox" name="selectStadium" >
-							<option>경기장선택</option>
+							<option value="">경기장선택</option>
 							<c:forEach var="stadium" items="${ stadiumList }">
-								<option value="${ stadium.s_no },${ stadium.s_hours},${stadium.s_n_fee },${stadium.s_d_fee },${stadium.s_n_fee_w },${stadium.s_d_fee_w }">${ stadium.s_name }</option>
+								<option value="${ stadium.s_no }">${ stadium.s_name }</option>
 							</c:forEach>	
 						</select>	
 					</section>

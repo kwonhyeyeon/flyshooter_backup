@@ -319,17 +319,50 @@ public class ClientRentalController {
 		}
 	
 	
-	// 오프라인 대관 등록
+	// 오프라인 대관시 경기장 SelectBox설정
 	@RequestMapping(value = "/getStadium.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
 	@ResponseBody
 	public String getStadiumInfo(@RequestParam(value = "p_num") String p_num) {
-			
+		
+		
+		// 회원ID수정할것.
 		/*
 		 * MemberVO mvo = (MemberVO) session.getAttribute("mvo"); String m_id =
 		 * mvo.getM_id();
 		 */
+		StringBuffer result = new StringBuffer();
 		
 		List<StadiumVO> stadiumList = userStadiumService.selectStadiumList(p_num);
-			return "/rental/offlineRegister";
+		if(stadiumList.isEmpty()) {
+			result.append("Empty");
+			return result.toString();
 		}
+		
+		result.append("<option value=''>경기장선택</option>");
+		for( StadiumVO svo : stadiumList ) {
+			result.append("<option value='");
+			result.append(svo.getS_no());
+			result.append("'>");
+			result.append(svo.getS_name());
+			result.append("</option>");
+			
+		}
+		
+		
+			return result.toString();
+		}
+	
+	
+		// 오프라인 대관시 경기장 SelectBox설정
+		@RequestMapping(value = "/searchTime.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+		@ResponseBody
+		public String getPosibleTimeList(@ModelAttribute StadiumVO svo,
+				   @RequestParam(value = "selectDay") String selectDay) {
+			
+			StringBuffer result = new StringBuffer();
+			
+			
+			
+				return result.toString();
+			}
 }
