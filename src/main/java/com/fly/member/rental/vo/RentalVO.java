@@ -19,10 +19,16 @@ public class RentalVO extends PagingVO {
 	private String r_recall_time; // 환불 신청 이랒
 	private int refund; // 환불 금액
 	private int cal_status; // 환불 지급 상태
+	private String refund_day; // 환불 지급일
 	
-	
-	
-	
+	public String getRefund_day() {
+		return refund_day;
+	}
+
+	public void setRefund_day(String refund_day) {
+		this.refund_day = refund_day;
+	}
+
 	public RentalVO() {
 		super();
 	}
@@ -117,16 +123,14 @@ public class RentalVO extends PagingVO {
 	public void setCal_status(int cal_status) {
 		this.cal_status = cal_status;
 	}
+
 	@Override
 	public String toString() {
-		return "RentalVO [getR_no()=" + getR_no() + ", getS_no()=" + getS_no() + ", getM_id()=" + getM_id()
-				+ ", getR_reserve_date()=" + getR_reserve_date() + ", getR_start()=" + getR_start()
-				+ ", getR_total_pay()=" + getR_total_pay() + ", getR_pay_type()=" + getR_pay_type() + ", getR_bank()="
-				+ getR_bank() + ", getR_account()=" + getR_account() + ", getR_account_num()=" + getR_account_num()
-				+ ", getR_pay_status()=" + getR_pay_status() + ", getR_regdate()=" + getR_regdate()
-				+ ", getR_recall_time()=" + getR_recall_time() + ", getRefund()=" + getRefund() + ", getCal_status()="
-				+ getCal_status() + "]";
-	}
-	
+		return "RentalVO [r_no=" + r_no + ", s_no=" + s_no + ", m_id=" + m_id + ", r_reserve_date=" + r_reserve_date
+				+ ", r_start=" + r_start + ", r_total_pay=" + r_total_pay + ", r_pay_type=" + r_pay_type + ", r_bank="
+				+ r_bank + ", r_account=" + r_account + ", r_account_num=" + r_account_num + ", r_pay_status="
+				+ r_pay_status + ", r_regdate=" + r_regdate + ", r_recall_time=" + r_recall_time + ", refund=" + refund
+				+ ", cal_status=" + cal_status + ", refund_day=" + refund_day + "]";
+	}	
 	
 }
