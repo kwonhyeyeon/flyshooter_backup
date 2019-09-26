@@ -20,5 +20,6 @@
 		<typeAlias type="com.fly.client.items.vo.ItemsVO" alias="items"/>
 		<typeAlias type="com.fly.admin.statistics.vo.StatisticsVO" alias="statistics"/>
 		<typeAlias type="com.fly.rental.detail.vo.RentalDetailVO" alias="rentalDetail"/>
+		<typeAlias type="com.fly.client.stats.vo.StatsVO" alias="clientstats"/>
 	</typeAliases>
 </configuration>
