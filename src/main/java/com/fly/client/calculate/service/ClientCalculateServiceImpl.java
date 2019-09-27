@@ -20,9 +20,9 @@ public class ClientCalculateServiceImpl implements ClientCalculateService{
 	private ClientCalculateDao calculateDao;
 
 	@Override
-	public List<CalculateVO> calculateList(String m_id) {
+	public List<CalculateVO> calculateList(CalculateVO cvo) {
 		// TODO Auto-generated method stub
-		return calculateDao.calculateList(m_id);
+		return calculateDao.calculateList(cvo);
 	}
 
 	@Override
@@ -41,15 +41,21 @@ public class ClientCalculateServiceImpl implements ClientCalculateService{
 	}
 
 	@Override
-	public List<CalculateVO> calculateIList(String m_id) {
+	public List<CalculateVO> calculateIList(CalculateVO cvo) {
 		// TODO Auto-generated method stub
-		return calculateDao.calculateIList(m_id);
+		return calculateDao.calculateIList(cvo);
 	}
 
 	@Override
 	public int pRentalUpdae(String p_num) {
 		// TODO Auto-generated method stub
 		return calculateDao.pRentalUpdae(p_num);
+	}
+
+	@Override
+	public int pageingSize(CalculateVO cvo) {
+		// TODO Auto-generated method stub
+		return calculateDao.pageingSize(cvo);
 	}
 
 }

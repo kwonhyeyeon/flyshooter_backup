@@ -17,3 +17,13 @@ $(document).ready(function(){
 		}
 	});
 });
+function goPage(page){
+	$("#page").val(page);
+	$("#f_search").attr({
+		"method":"get",
+		"action":"/mypage/calculate.do"
+	});
+	
+	$("#f_search").submit();
+}
+

@@ -166,7 +166,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/mypage/modifyLogin.do", method = RequestMethod.GET)
-	public ModelAndView ModifyLogin_LoginChk(@ModelAttribute("MemberVO") MemberVO mvo
+	public ModelAndView ModifyLogin(@ModelAttribute("MemberVO") MemberVO mvo
 			, HttpSession session,HttpServletRequest request) {
 		System.out.println("modifyLogin.do get 방식에 의한 메서드 호출 성공");
 		String m_id = "";
