@@ -1131,3 +1131,6 @@ h2.order-header {
   outline:none;
 }
 
+#content {
+	display:none;
+}

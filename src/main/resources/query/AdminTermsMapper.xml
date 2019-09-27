@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fly.admin.terms.dao.AdminTermsDao">
+	
+	<update id="updateTerms" parameterType="terms">
+		UPDATE terms
+		SET content = #{content}, regdate = sysdate
+		WHERE ctype = #{ctype}
+	</update>
+	
+	<resultMap id="getContent" type="com.fly.admin.terms.vo.TermsVO">
+		<result property="content" column="content" jdbcType="CLOB" javaType="java.lang.String" />
+		<result property="regdate" column="regdate" />
+		<result property="ctype" column="ctype" />
+	</resultMap>
+	
+	<select id="getTerms" parameterType="int" resultMap="getContent">
+		SELECT content, to_char(regdate, 'yyyy/MM/dd') regdate, ctype
+		FROM terms
+		WHERE ctype = #{ctype}
+	</select>
+
+</mapper>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,14 +16,18 @@
 		<input type="checkbox" name="agree" id="agree" />
 		<label for="agree">이용약관 동의(필수)</label>
 		
-		<textarea name="content" id="agreeTerms"></textarea>
+		<c:if test="${ctype == 1}">
+			<textarea name="content" id="agreeTerms">${content}</textarea>
+		</c:if>
 	</div>
 	
 	<div>
 		<input type="checkbox" name=privacy id="privacy" />
 		<label for="privacy">개인정보 취급방침(필수)</label>
 		
-		<textarea name="privacyTerms" id="privacyTerms"></textarea>
+		<c:if test="${ctype == 2}">
+			<textarea name="privacyTerms" id="privacyTerms">${content}</textarea>
+		</c:if>
 	</div>
 	
 	<form id="agreeForm" action="/member/join.do" method="get">

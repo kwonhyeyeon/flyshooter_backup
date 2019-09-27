@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fly.admin.terms.service.AdminTermsService;
+import com.fly.admin.terms.vo.TermsVO;
 import com.fly.common.util.BCrypt;
 import com.fly.common.util.SHA256;
 import com.fly.common.util.UserMailSendService;
@@ -30,7 +32,10 @@ public class MemberController {
 
 	@Resource(name="userMailSendService")
 	private UserMailSendService mailsender;
-
+	
+	@Resource(name ="adminTermsService")
+	private AdminTermsService adminTermsService;
+	
 	@Autowired
 	HttpServletRequest request;
 
@@ -266,8 +271,22 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/terms.do")
-	public String terms() {
+	public String terms(
+			HttpServletRequest request,
+			@ModelAttribute TermsVO tvo,
+			Model model
+			) {
 		System.out.println("terms 호출 성공");
+		
+		int ctype = tvo.getCtype();
+		
+		List<TermsVO> termsList = adminTermsService.getTerms(ctype);
+		model.addAttribute("tvo", termsList);
+		model.addAttribute("ctype", ctype);
+		model.addAttribute("content", termsList.get(0).getContent());
+		model.addAttribute("regdate", termsList.get(0).getRegdate());
+		System.out.println(termsList);
+		System.out.println(ctype);
 		
 		return "/member/terms";
 	}
