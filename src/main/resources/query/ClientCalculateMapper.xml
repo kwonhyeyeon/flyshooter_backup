@@ -5,23 +5,28 @@
 	namespace="com.fly.client.calculate.dao.ClientCalculateDao">
 
 	<select id="calculateList" resultType="calculate"
-		parameterType="String">
+		parameterType="calculate">
 		SELECT
-		p.p_name, c.c_payment, c.c_rental_cnt,
-		c.c_return_cnt, c.c_payment, c.c_status
-		, to_char(c.c_regdate,
-		'yyyy-MM-dd') c_regdate
-		FROM calculate c, place p
-		where c.p_num =
-		p.p_num and c.p_num
-		in(SELECT p_num FROM place
-		where m_id = #{m_id})
-
+		(select p_name from place where m_id = #{m_id}  and p_num = c.p_num ) p_name, 
+		c.c_payment, c.c_rental_cnt, 
+		c.c_return_cnt, c.c_payment, c.c_status, 
+		to_char(c.c_regdate, 'yyyy-MM-dd') c_regdate
+		FROM (select ROWNUM RNUM, r.*
+     			from (select * 
+     					from calculate 
+     					ORDER BY c_status asc , c_regdate desc) r
+     					) c 
+		
+		<if test="start_row != null and start_row != ''">
+	    	<if test="end_row != null and end_row != ''">
+	     		where RNUM BETWEEN #{start_row} and #{end_row} 
+	     	</if>	
+	    </if>
 	</select>
 
 
 	<select id="calculateIList" resultType="calculate"
-		parameterType="String">
+		parameterType="calculate">
 		select p.p_name, p.p_num,
 		(select count(*) from rental where s_no
 		in(select s_no from stadium where
@@ -59,6 +64,17 @@
 		where m_id = #{m_id}
 	</select>
 
+	<select id="pageingSize" resultType="int"
+		parameterType="calculate">
+		SELECT
+		nvl(count(*), 0)
+		FROM calculate c, place p
+		where c.p_num =
+		p.p_num and c.p_num
+		in(SELECT p_num FROM place
+		where m_id = #{m_id}) 
+	</select>
+	
 	<insert id="calculateInsert" parameterType="calculate">
 		<selectKey keyProperty="c_no" resultType="int"
 			order="BEFORE">
@@ -83,8 +99,10 @@
 	<update id="pRentalUpdae" parameterType="String">
 		update rental
 		set cal_status = -1
-		where s_no in(select s_no from stadium where p_num = #{p_num})
-		and cal_status = 0 and to_char(r_reserve_date, 'yyyy-MM-dd') <![CDATA[<]]>
+		where s_no in(select s_no from stadium
+		where p_num = #{p_num})
+		and cal_status = 0 and to_char(r_reserve_date,
+		'yyyy-MM-dd') <![CDATA[<]]>
 		to_char(sysdate - 15, 'yyyy-MM-dd')
 		and r_pay_status in(-1, 1)
 	</update>

@@ -17,9 +17,9 @@ public class ClientCalculateDaoImpl implements ClientCalculateDao {
 	private String NAME_SPACE = "com.fly.client.calculate.dao.ClientCalculateDao";
 
 	@Override
-	public List<CalculateVO> calculateList(String m_id) {
+	public List<CalculateVO> calculateList(CalculateVO cvo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAME_SPACE + ".calculateList", m_id);
+		return sqlSession.selectList(NAME_SPACE + ".calculateList", cvo);
 	}
 
 	@Override
@@ -29,15 +29,21 @@ public class ClientCalculateDaoImpl implements ClientCalculateDao {
 	}
 
 	@Override
-	public List<CalculateVO> calculateIList(String m_id) {
+	public List<CalculateVO> calculateIList(CalculateVO cvo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAME_SPACE + ".calculateIList", m_id);
+		return sqlSession.selectList(NAME_SPACE + ".calculateIList", cvo);
 	}
 
 	@Override
 	public int pRentalUpdae(String p_num) {
 		// TODO Auto-generated method stub
 		return sqlSession.update(NAME_SPACE + ".pRentalUpdae", p_num);
+	}
+
+	@Override
+	public int pageingSize(CalculateVO cvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAME_SPACE + ".pageingSize", cvo);
 	}
 
 }

@@ -22,14 +22,17 @@
 		       AND c_status = 1 
 		    </when>
 		    <otherwise>
-		    
+		     
 		    </otherwise>
 		</choose>
 	     <if test="start_row != null and start_row != ''">
 	     	<if test="end_row != null and end_row != ''">
-	     		and RNUM BETWEEN #{start_row} and #{end_row}
+	     		and RNUM BETWEEN #{start_row} and #{end_row} 
 	     	</if>	
 	     </if>
+	     <if test="p_ceo != null">
+				 AND p_ceo LIKE '%'|| #{p_ceo} ||'%' 
+		</if>
 	</select>
 	
 	<select id="pageingSize" resultType="int"
@@ -46,9 +49,12 @@
 			       AND c_status = 1  
 			    </when>
 			    <otherwise>
-			    
+			    	 
 			    </otherwise>
 			</choose>
+			<if test="p_ceo != null">
+				 AND p_ceo LIKE '%'|| #{p_ceo} ||'%' 
+			</if>
 	</select>
 		
 	<update id="adminCRentalUpdate" parameterType="String">
@@ -59,7 +65,7 @@
 		and cal_status = -1
 		
 	</update>
-	<update id="adminCalculateUpdate" parameterType="String">
+	<update id="adminCalculateUpdate" parameterType="calculate">
 		update calculate
 		set c_status = 1, c_payment_date = sysdate 
 		where c_no = #{c_no}

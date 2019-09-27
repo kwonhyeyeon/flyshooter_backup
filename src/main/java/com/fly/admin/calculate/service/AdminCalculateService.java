@@ -8,7 +8,7 @@ public interface AdminCalculateService {
 
 	List<CalculateVO> adminCalculateList(CalculateVO cvo);
 
-	int adminCalculateUpdate(int c_no);
+	int adminCalculateUpdate(CalculateVO cvo);
 
 	int adminCRentalUpdate(String p_num);
 

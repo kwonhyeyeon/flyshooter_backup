@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="tag" uri="/WEB-INF/tld/custom_tag.tld" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,7 +77,14 @@
 								<td>${calculate.c_rental_cnt}</td>
 								<td>${calculate.c_return_cnt}</td>
 								<td>${calculate.c_payment}</td>
-								<td>${calculate.c_status}</td>
+								<td>
+								<c:if test="${calculate.c_status eq '-1'}">
+								<p style="color: red;">지급 대기</p>
+								</c:if>
+								<c:if test="${calculate.c_status eq '1'}">
+								<p style="color: blue;">지급 완료</p>
+								</c:if>
+								</td>
 								<td>${calculate.c_regdate}</td>
 							</tr>
 						</c:forEach>
@@ -89,6 +97,16 @@
 				</c:choose>
 			</table>
 		</div>
+		<!--  paging view -->    
+        <div id="boardSearch">
+        <form id="f_search" name="f_search">
+        	<input type="hidden" id="page" name="page" value="${data.page }"/>
+        	<input type="hidden" id="p_name" name="p_name" value="${data.p_name }"/>
+        </form>
+        </div>
+	    <div class="pagination">
+        	<tag:paging page="${data.page }" total="${total }" list_size="${data.pageSize }" />
+        </div> 
 	</div>
 </body>
 </html>

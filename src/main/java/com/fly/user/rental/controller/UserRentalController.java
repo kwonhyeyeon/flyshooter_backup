@@ -98,9 +98,10 @@ public class UserRentalController {
 	   String result = "";
 	   
 	  List<String> impossibleTime = userRentalService.searchReservationTime(selectDay, svo.getS_no());
-	  int start = Integer.parseInt(svo.getP_open());
-	  int end = Integer.parseInt(svo.getP_close());
-	  int increase = svo.getS_hours();
+
+	  int start = Integer.parseInt(svo.getP_open()); // 구장의 영업시작시간
+	  int end = Integer.parseInt(svo.getP_close()); // 종료시간
+	  int increase = svo.getS_hours(); // 최소 이용가능시간
 	   
 	  for(int i = start; i+increase <= end; i+=increase) {
 		  result += "<label><input type='radio' name='reservationTime' value='"+i+","+(i+increase)+"'";

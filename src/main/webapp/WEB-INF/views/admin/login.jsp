@@ -18,6 +18,12 @@
 		function noBack() {
 			window.history.forward();
 		}
+		
+		if("${log_message}"){
+			alert("${log_message}");
+			location.href = "/admin/login.do";
+	}
+
 </script>
 </head>
 <body>
