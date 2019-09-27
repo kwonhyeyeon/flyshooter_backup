@@ -13,4 +13,14 @@
 			s_status = 1 and p_num = #{ p_num }
 	</select>
 	
+	<select id="selectStadiumInfo" parameterType="int" resultType="stadium">
+	SELECT 
+		p_open, p_close, s_hours 
+	FROM
+		stadium s, place p 
+	WHERE 
+		s.p_num = p.p_num and s_no = #{s_no}
+	
+	</select>
+	
 </mapper>

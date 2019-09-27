@@ -71,6 +71,12 @@ public class ClientRentalDaoImpl implements ClientRentalDao {
 			return sqlSession.selectOne(NAME_SPACE + ".getDetailRefund", r_no);
 		}
 
+		@Override
+		public int offlineRentalInsert(RentalVO rvo) {
+			// TODO Auto-generated method stub
+			return sqlSession.insert(NAME_SPACE + ".offlineInsertRental", rvo);
+		}
+
 
 	
 }

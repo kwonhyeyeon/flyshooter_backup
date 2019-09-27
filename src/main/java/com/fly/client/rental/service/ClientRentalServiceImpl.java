@@ -96,4 +96,10 @@ public class ClientRentalServiceImpl implements ClientRentalService {
 			return clientRentalDao.getDetailRefund(r_no);
 		}
 
+		@Override
+		public int offlineRentalInsert(RentalVO rvo) {
+			// TODO Auto-generated method stub
+			return clientRentalDao.offlineRentalInsert(rvo);
+		}
+
 }
