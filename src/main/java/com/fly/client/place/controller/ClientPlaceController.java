@@ -110,8 +110,13 @@ public class ClientPlaceController {
 		mav.addObject("p_phone", pvo.getP_phone());
 		mav.addObject("sample6_postcode", address[0]);
 		mav.addObject("sample6_address", address[1]);
+		try {
 		mav.addObject("sample6_detailAddress", address[2]);
 		mav.addObject("sample6_extraAddress", address[3]);
+		}catch(Exception e) {
+			mav.addObject("sample6_detailAddress", "");
+			mav.addObject("sample6_extraAddress", "");
+		}
 		mav.addObject("p_bank", pvo.getP_bank());
 		mav.addObject("p_account", pvo.getP_account());
 		mav.addObject("p_account_num", pvo.getP_account_num());
@@ -123,7 +128,6 @@ public class ClientPlaceController {
 		mav.addObject("p_status", pvo.getP_status());
 		mav.addObject("p_file", pvo.getP_file());
 		mav.addObject("p_intro", pvo.getP_intro());
-
 		mav.setViewName("mypage/placeDetailEdit");
 
 		return mav;
