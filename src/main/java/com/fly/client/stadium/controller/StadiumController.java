@@ -84,21 +84,11 @@ public class StadiumController {
 		System.out.println(svo.getS_img2());
 		System.out.println(svo.getS_img3());
 		
-		mav.addObject("s_no", svo.getS_no());
-		mav.addObject("s_name", svo.getS_name());
-		mav.addObject("s_size", svo.getS_size());
-		mav.addObject("s_d_fee", svo.getS_d_fee());
-		mav.addObject("s_n_fee", svo.getS_n_fee());
-		mav.addObject("s_d_fee_w", svo.getS_d_fee_w());
-		mav.addObject("s_n_fee_w", svo.getS_n_fee_w());
-		mav.addObject("s_people", svo.getS_people());
 		mav.addObject("s_img1", svo.getS_img1());
 		mav.addObject("s_img2", svo.getS_img2());
 		mav.addObject("s_img3", svo.getS_img3());
-		mav.addObject("s_in_out", svo.getS_in_out());
-		mav.addObject("s_status", svo.getS_status());
-		mav.addObject("s_hours", svo.getS_hours());
-		mav.addObject("s_regdate", svo.getS_regdate());
+		
+		mav.addObject("svo", svo);
 		
 		mav.setViewName("mypage/stadiumDetailEdit");
 		
@@ -138,7 +128,6 @@ public class StadiumController {
 	         
 	      }
 		int plus = Integer.parseInt(select);// 추가등록여부 확인을 위한 변수
-
 		int result = stadiumService.stadiumInsert(svo);
 		System.out.println("결과"+result);
 		if (result == 1) {
@@ -190,7 +179,7 @@ public class StadiumController {
 		} else {
 			model.addAttribute("errCode", 1);
 			model.addAttribute("s_no", svo.getS_no());
-			url = "/mypage/stadiumDetail.do";
+			url = "/mypage/placeChoice.do";
 		}
 		return "redirect:" + url;
 	}

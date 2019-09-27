@@ -7,13 +7,22 @@
 <head>
 <meta charset="UTF-8">
 <title>구장 등록</title>
-</head>
+<link rel="stylesheet" href="/resources/css/reset.css" />
+<link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/placeForm.js"></script>
 <!-- 다음 우편 주소 api-->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
+</head>
 <body>
-	<div class="contentContainer">
+
+	<div id="header-wrap">
+		<jsp:include page="../templates/header.jsp" flush="true" />
+	</div>
+
+	<div class="sub-v"></div>
+
+	<div id="contents">
 		<h3> 구장 등록</h3>
 		<div class="placeForm">
 			<form name="p_placeForm" id="p_placeForm" action="/mypage/placeInsert.do" method="post">

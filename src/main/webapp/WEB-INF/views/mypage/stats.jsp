@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>경기장/구장 페이지</title>
-
+<link rel="stylesheet" href="/resources/css/reset.css" />
+<link rel="stylesheet" href="/resources/css/style.css" />
 <script type="text/javascript" src="/resources/js/stats.js"></script>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery.min.js"></script>
@@ -168,7 +169,12 @@ $(document).ready(function(){
 </head>
 <body>
 	<div id="wrapper">
-		<div>
+		<div id="header-wrap">
+			<jsp:include page="../templates/header.jsp" flush="true" />
+		</div>
+
+		<div class="sub-v"></div>
+		<div id="contents">
 			<c:choose>
 				<c:when test="${not empty placeChoice}">
 					<select name="placeChoice" id="placeChoice">

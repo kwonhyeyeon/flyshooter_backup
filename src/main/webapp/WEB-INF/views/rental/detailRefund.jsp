@@ -15,16 +15,7 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script src="/resources/js/clientRefund.js"></script>
-<script>
-	$(function() {
-		$("#gnb").hover(function() {
-			$(".menu-wrap").slideDown(500);
-		});
-		$(".menu-wrap").mouseleave(function() {
-			$(".menu-wrap").slideUp(500);
-		});
-	})
-</script>
+<script type="text/javascript" src="/resources/js/common.js"></script>
 </head>
 <body>
 	<div id="wrapper">
