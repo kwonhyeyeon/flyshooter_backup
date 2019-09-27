@@ -16,7 +16,7 @@
 	<div class="contentContainer">
 		<h3> 구장 등록</h3>
 		<div class="placeForm">
-			<form id="p_placeForm" action="/mypage/placeInsert.do" method="post">
+			<form name="p_placeForm" id="p_placeForm" action="/mypage/placeInsert.do" method="post">
 					 <div>구장명&nbsp;<input type="text" name="p_name" id="p_name"></div>
 					 	<div>대표자명&nbsp;<input type="text" name="p_ceo" id="p_ceo" ></div>
 					 	<label>사업자번호&nbsp;</label><input type="text" name="p_num" id="p_num"/><span id="pncheck"></span>
@@ -30,8 +30,8 @@
 					 			<input type="hidden" id="p_address" name="p_address" placeholder="저장될때 합쳐진 주소" >
 					 		</div>
 					 		<div class="p_bank">은행명 	
-					 		<select name="p_bank">
-					 			<option value="은행선택안함" selected disabled>은행 선택</option>
+					 		<select name="p_bank" class="p_bank" id="p_bank" required>
+					 			<option value="" selected disabled>은행 선택</option>
 					 			<option value="신한">신한</option>
 					 			<option value="우리">우리</option>
 					 			<option value="농협">농협</option>
@@ -40,7 +40,7 @@
 							<div class="p_account">예금주명&nbsp;<input type="text" name="p_account" id="p_account"></div>
 					 		<div class="p_account_num">입금계좌번호&nbsp;<input type="text" name="p_account_num" id="p_account_num"></div>
 					 		<div class="p_holiday">정기휴일
-					 		<select name="p_holiday">
+					 		<select name="p_holiday" class="p_holiday" required>
 					 			<option value="" selected disabled>정기휴일 선택</option>
 					 			<option value="0">월요일</option>
 					 			<option value="1">화요일</option>
@@ -53,7 +53,7 @@
 					 		</select>
 					 		</div>
 					 	<div class="p_open">오픈시간&nbsp;
-               <select name="p_open" class="p_close">
+               <select name="p_open" class="p_open" required>
                <option value="" selected disabled>오픈시간 선택</option>
                   <%
                      for (int i = 1; i < 25; i++) {
@@ -65,7 +65,7 @@
                </select>
             </div>
             <div class="p_close">마감시간&nbsp;
-               <select name="p_close" class="p_close">
+               <select name="p_close" class="p_close" required>
                <option value="" selected disabled>마감시간 선택</option>
                   <%
                      for (int i = 1; i < 25; i++) {
