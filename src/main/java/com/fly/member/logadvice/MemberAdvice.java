@@ -49,9 +49,12 @@ public class MemberAdvice {
 							
 			}catch(NullPointerException e) {
 				log_message = "로그인후 이용할수 있습니다.";
-				
 				request.setAttribute("log_message", log_message);
-				return "member/login";
+				try {
+					return "member/login";
+				}catch(Exception ex){
+					mav.setViewName("member/login");
+				}
 			}
 		}
 		Object returnObj = pjp.proceed();
@@ -100,7 +103,11 @@ public class MemberAdvice {
 					log_message = "사업자회원은 이용하실수 없습니다.";
 					
 					request.setAttribute("log_message", log_message);
-					return "index";
+					try {
+						return "index";
+					}catch(Exception ex){
+						mav.setViewName("index");
+					}
 					
 				}
 							
@@ -108,7 +115,11 @@ public class MemberAdvice {
 				log_message = "로그인후 이용할수 있습니다.";
 				
 				request.setAttribute("log_message", log_message);
-				return "member/login";
+				try {
+					return "member/login";
+				}catch(Exception ex){
+					mav.setViewName("member/login");
+				}
 			}
 		}
 		Object returnObj = pjp.proceed();
@@ -159,14 +170,22 @@ public class MemberAdvice {
 						log_message = "일반회원은 이용하실수 없습니다.";
 						
 						request.setAttribute("log_message", log_message);
-						return "index";
+						try {
+							return "index";
+						}catch(Exception ex){
+							mav.setViewName("index");
+						}
 						
 					}
 				}catch(NullPointerException e) {
 					log_message = "로그인후 이용할수 있습니다.";
 					
 					request.setAttribute("log_message", log_message);
-					return "member/login";
+					try {
+						return "member/login";
+					}catch(Exception ex){
+						mav.setViewName("member/login");
+					}
 				}
 			}
 			Object returnObj = pjp.proceed();
