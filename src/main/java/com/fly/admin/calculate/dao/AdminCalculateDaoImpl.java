@@ -23,9 +23,9 @@ public class AdminCalculateDaoImpl implements AdminCalculateDao{
 	}
 
 	@Override
-	public int adminCalculateUpdate(int c_no) {
+	public int adminCalculateUpdate(CalculateVO cvo) {
 		// TODO Auto-generated method stub
-		return session.update(NAME_SPACE + ".adminCalculateUpdate", c_no);
+		return session.update(NAME_SPACE + ".adminCalculateUpdate", cvo);
 	}
 
 	@Override
