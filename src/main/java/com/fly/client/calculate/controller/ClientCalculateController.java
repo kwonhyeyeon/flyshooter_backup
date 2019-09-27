@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,7 +38,7 @@ public class ClientCalculateController {
 
 	// 정산 리스트 구현하기
 	@RequestMapping(value = "/calculate.do", method = RequestMethod.GET)
-	public String calculate(Model model, HttpSession session) {
+	public String calculate_ClientChk(Model model, HttpSession session,HttpServletRequest request) {
 		System.out.println("calculate 호출 성공");
 
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
@@ -53,7 +54,7 @@ public class ClientCalculateController {
 	
 	// 정산 신청 구현하기
 	@RequestMapping(value = "/calculateInsert.do", method = RequestMethod.POST)
-	public String CalculateInsert(Model model, @ModelAttribute CalculateVO cvo) {
+	public String CalculateInsert_ClientChk(Model model, @ModelAttribute CalculateVO cvo, HttpServletRequest request) {
 		System.out.println("calculateInsert 호출 성공");
 		int result = calculateService.calculateInsert(cvo);
 		System.out.println("pRentalUpdae 호출 성공");

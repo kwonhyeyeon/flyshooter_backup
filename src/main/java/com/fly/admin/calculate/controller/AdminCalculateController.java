@@ -3,6 +3,7 @@ package com.fly.admin.calculate.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +26,7 @@ public class AdminCalculateController {
 
 	// 관리자 정산 목록 구현하기
 	@RequestMapping(value = "/adminCalculateList.do", method = RequestMethod.GET)
-	public String adminCalculateForm(Model model, @ModelAttribute CalculateVO cvo) {
+	public String adminCalculateFormChk(Model model, @ModelAttribute CalculateVO cvo, HttpServletRequest request) {
 		System.out.println("adminCalculateList 호출 성공");
 		// 페이지 세팅
 		Paging.setPage(cvo, 15);
@@ -45,7 +46,7 @@ public class AdminCalculateController {
 	// 관리자 정산 구현하기
 	@RequestMapping(value = "/adminCalculateUpdate.do", method = RequestMethod.GET, produces = "text/html; charset=UTF-8")
 	@ResponseBody
-	public String adminCalculateUpdate(Model model, @ModelAttribute CalculateVO cvo) {
+	public String adminCalculateUpdateChk(Model model, @ModelAttribute CalculateVO cvo,  HttpServletRequest request) {
 		System.out.println("cal_update 호출 성공");
 		String result = "0";
 		try {
