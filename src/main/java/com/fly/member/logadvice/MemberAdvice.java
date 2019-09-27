@@ -1,17 +1,13 @@
 package com.fly.member.logadvice;
 
-import java.util.Collection;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.PageContext;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import com.fly.member.join.vo.MemberVO;
 
