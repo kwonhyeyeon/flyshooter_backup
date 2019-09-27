@@ -104,17 +104,17 @@
 	
 		<form id="modifyForm" action="/member/mypage/modify_success.do" method="post">
 			<div>
-				<c:if test="${m_type=='1'}">
+				<c:if test="${mvo.m_type=='1'}">
 					<input type="radio" name="m_type" value="1" id="m_type" checked readonly/>일반 
 				</c:if>
-				<c:if test="${m_type=='0'}">
+				<c:if test="${mvo.m_type=='0'}">
 					<input type="radio" name="m_type" value="0" id="m_type" checked readonly/>사업자
 				</c:if>
 			</div>
 			<div>
 				<label for="id">ID</label>
 				<div>
-					<input type="email" id="m_id" name="m_id" value="${m_id }" readonly/>
+					<input type="email" id="m_id" name="m_id" value="${mvo.m_id }" readonly/>
 				</div>
 			</div>
 			<div>

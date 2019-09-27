@@ -27,9 +27,9 @@ public class ClientPlaceServiceImpl implements ClientPlaceService {
 
 	// 구장 리스트 출력 리스트
 	@Override
-	public List<PlaceVO> placeList() {
+	public List<PlaceVO> placeList(PlaceVO pvo) {
 		List<PlaceVO> placeList = null;
-		placeList = clientPlaceDao.placeList();
+		placeList = clientPlaceDao.placeList(pvo);
 		return placeList;
 	}
 

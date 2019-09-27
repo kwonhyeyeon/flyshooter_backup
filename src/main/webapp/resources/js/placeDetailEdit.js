@@ -9,25 +9,25 @@ $(document).ready(function() {
 	});
 
 	$(".p_holiday option").each(function() {
-		if ($(this).val() == "${p_holiday}") {
+		if ($(this).val() == "${pvo.p_holiday}") {
 			$(this).attr("selected", "selected");
 		}
 	});
 
 	$(".p_open option").each(function() {
-		if ($(this).val() == "${p_open}") {
+		if ($(this).val() == "${pvo.p_open}") {
 			$(this).attr("selected", "selected");
 		}
 	});
 
 	$(".p_close option").each(function() {
-		if ($(this).val() == "${p_close}") {
+		if ($(this).val() == "${pvo.p_close}") {
 			$(this).attr("selected", "selected");
 		}
 	});
 	
 	$(".p_bank option").each(function() {
-		if ($(this).val() == "${p_bank}") {
+		if ($(this).val() == "${pvo.p_bank}") {
 			$(this).attr("selected", "selected");
 		}
 	});

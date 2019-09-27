@@ -12,7 +12,7 @@ public interface ClientPlaceDao {
 	public List<StadiumVO> stadiumList(String p_name);
 
 	// 구장 리스트
-	public List<PlaceVO> placeList();
+	public List<PlaceVO> placeList(PlaceVO pvo);
 
 	// 구장 상세페이지
 	public PlaceVO placeDetail(String p_num);

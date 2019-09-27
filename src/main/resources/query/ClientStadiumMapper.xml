@@ -59,13 +59,20 @@
 	<!-- 경기장 수정 --> 
 	<update id="stadiumModify" parameterType="stadium">
 		update stadium set
+		s_name = #{s_name}, s_people = #{s_people},
 		s_d_fee = #{s_d_fee}, s_n_fee = #{s_n_fee},
 		s_d_fee_w = #{s_d_fee_w}, s_n_fee_w = #{s_n_fee_w},
 		s_hours = #{s_hours}, s_size = #{s_size},
-		s_in_out = #{s_in_out}
+		s_in_out = #{s_in_out}, s_status = #{s_status}  
+		<if test="s_img1 != null">
 		,s_img1 = #{s_img1}
+		</if>
+		<if test="s_img2 != null">
 		,s_img2 = #{s_img2}
+		</if>
+		<if test="s_img3 != null">
 		,s_img3 = #{s_img3}
+		</if>
 		where s_no = #{s_no}
 	</update>
 	

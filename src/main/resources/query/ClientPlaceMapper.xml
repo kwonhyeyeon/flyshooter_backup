@@ -16,7 +16,8 @@
 		SELECT
 		p_num, m_id, p_name, p_phone,
 		p_ceo, p_address, p_phone, p_ok
-		FROM place
+		FROM place 
+		where m_id = #{m_id}
 	</select>
 
 	<!-- 구장 상세페이지 출력 -->

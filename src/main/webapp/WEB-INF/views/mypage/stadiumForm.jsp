@@ -52,7 +52,7 @@ function errCodeCheck() {
 			<select name="s_hours" id="s_hours" class="s_hours">
 				<option value="" selected disabled hidden>최소 이용 가능 시간 선택</option>
 				<option value="1">1시간</option>
-				<option value="3">2시간</option>
+				<option value="2">2시간</option>
 			</select>
 		</li>
 	<li>
