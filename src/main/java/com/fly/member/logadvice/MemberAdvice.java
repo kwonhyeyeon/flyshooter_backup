@@ -22,7 +22,9 @@ public class MemberAdvice {
 		System.out.println("login session chk");
 		HttpServletRequest request = null;
 		Model model = null;
-		ModelAndView mav = null;
+		ModelAndView mav = new ModelAndView();
+		
+		
 		
 		RedirectAttributes redirectAttr = null;
 		
@@ -35,45 +37,44 @@ public class MemberAdvice {
 				model = (Model) obj;
 			}
 		}
-		
 		if(request != null) {
 			HttpSession session = request.getSession();
-			
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 			
 			try {
 				
 				System.out.println("m_id ::::::::::::" + mvo.getM_id());
 				System.out.println("m_type ::::::::::::" + mvo.getM_type());
-				
+				System.out.println("3");
 							
 			}catch(NullPointerException e) {
+				
 				log_message = "로그인후 이용할수 있습니다.";
 				request.setAttribute("log_message", log_message);
-				try {
-					return "member/login";
-				}catch(Exception ex){
+				
+				if( pjp.getSignature().toString().contains("ModelAndView") ) {
 					mav.setViewName("member/login");
+					return mav;
 				}
+					return "member/login";
+				
 			}
 		}
-		Object returnObj = pjp.proceed();
+		Object returnObj = null;
 		
-		if(returnObj instanceof ModelAndView ) {
-			 mav = (ModelAndView) returnObj;
-			 return mav;
-		}
+		 returnObj = pjp.proceed();
+		
 		
 		
 		return returnObj;
-	}
+		}
 
 	// 로그인 정보가 일반회원인지 검사
 	public Object userCheck(ProceedingJoinPoint pjp) throws Throwable {
 		System.out.println("user type chk");
 		HttpServletRequest request = null;
 		Model model = null;
-		ModelAndView mav = null;
+		ModelAndView mav = new ModelAndView();
 		
 		RedirectAttributes redirectAttr = null;
 		
@@ -103,11 +104,12 @@ public class MemberAdvice {
 					log_message = "사업자회원은 이용하실수 없습니다.";
 					
 					request.setAttribute("log_message", log_message);
-					try {
-						return "index";
-					}catch(Exception ex){
+					
+					if( pjp.getSignature().toString().contains("ModelAndView") ) {
 						mav.setViewName("index");
+						return mav;
 					}
+					return "index";
 					
 				}
 							
@@ -115,20 +117,18 @@ public class MemberAdvice {
 				log_message = "로그인후 이용할수 있습니다.";
 				
 				request.setAttribute("log_message", log_message);
-				try {
-					return "member/login";
-				}catch(Exception ex){
+				
+				
+				if( pjp.getSignature().toString().contains("ModelAndView") ) {
 					mav.setViewName("member/login");
+					return mav;
 				}
+					return "member/login";
+					
 			}
 		}
 		Object returnObj = pjp.proceed();
 		
-		
-		if(returnObj instanceof ModelAndView ) {
-			 mav = (ModelAndView) returnObj;
-			 return mav;
-		}
 		
 		return returnObj;
 	}
@@ -139,7 +139,7 @@ public class MemberAdvice {
 			System.out.println("client type chk");
 			HttpServletRequest request = null;
 			Model model = null;
-			ModelAndView mav = null;
+			ModelAndView mav = new ModelAndView();
 			
 			RedirectAttributes redirectAttr = null;
 			
@@ -152,6 +152,7 @@ public class MemberAdvice {
 					model = (Model) obj;
 				}
 			}
+			
 			
 			if(request != null) {
 				HttpSession session = request.getSession();
@@ -170,30 +171,29 @@ public class MemberAdvice {
 						log_message = "일반회원은 이용하실수 없습니다.";
 						
 						request.setAttribute("log_message", log_message);
-						try {
-							return "index";
-						}catch(Exception ex){
+						
+						
+						if( pjp.getSignature().toString().contains("ModelAndView") ) {
 							mav.setViewName("index");
+							return mav;
 						}
+					return "index";
 						
 					}
 				}catch(NullPointerException e) {
 					log_message = "로그인후 이용할수 있습니다.";
 					
 					request.setAttribute("log_message", log_message);
-					try {
-						return "member/login";
-					}catch(Exception ex){
-						mav.setViewName("member/login");
-					}
+					
+						if( pjp.getSignature().toString().contains("ModelAndView") ) {
+							mav.setViewName("member/login");
+							return mav;
+						}
+					return "member/login";
 				}
 			}
 			Object returnObj = pjp.proceed();
 			
-			if(returnObj instanceof ModelAndView ) {
-				 mav = (ModelAndView) returnObj;
-				 return mav;
-			}
 			
 			return returnObj;
 		}
