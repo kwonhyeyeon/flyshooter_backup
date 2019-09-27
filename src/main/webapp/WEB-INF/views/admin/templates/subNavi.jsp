@@ -3,7 +3,7 @@
 
 <a class="depth1">구장 관리</a>
 <a href="/admin/place/placeList.do" class="sub">구장 관리</a>
-<a href="/admin/place/adminCalculateForm.do" class="sub">정산 관리</a>
+<a href="/admin/place/adminCalculateList.do" class="sub">정산 관리</a>
 <a href="/admin/place/updateRefund.do" class="sub">환불 관리</a>
 
 <a class="depth1">게시판 관리</a>

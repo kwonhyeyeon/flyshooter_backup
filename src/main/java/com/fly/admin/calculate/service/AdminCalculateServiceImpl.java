@@ -23,9 +23,9 @@ public class AdminCalculateServiceImpl implements AdminCalculateService{
 	}
 
 	@Override
-	public int adminCalculateUpdate(int c_no) {
+	public int adminCalculateUpdate(CalculateVO cvo) {
 		// TODO Auto-generated method stub
-		return adminCalculateDao.adminCalculateUpdate(c_no);
+		return adminCalculateDao.adminCalculateUpdate(cvo);
 	}
 
 	@Override
