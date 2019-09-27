@@ -2,9 +2,11 @@ package com.fly.client.place.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,7 +29,7 @@ public class ClientPlaceController {
 
 	// 구장 목록 구현하기
 	@RequestMapping(value = "/placeList.do", method = RequestMethod.GET)
-	public String placeList(Model model,
+	public String placeList_ClientChk(Model model,HttpServletRequest request,
 			@RequestParam(value = "errCode", required = false, defaultValue = "0") String errCode) {
 		System.out.println("placeList 호출 성공");
 
@@ -40,7 +42,7 @@ public class ClientPlaceController {
 
 	// 구장 약관 동의 페이지 출력하기
 	@RequestMapping(value = "/placecheck.do")
-	public String checkForm() {
+	public String checkForm_ClientChk(HttpServletRequest request) {
 		System.out.println("placeCheck 호출 성공");
 		return "mypage/placecheck";
 
@@ -48,7 +50,7 @@ public class ClientPlaceController {
 
 	// 구장 등록 페이지 출력하기
 	@RequestMapping(value = "/placeForm.do")
-	public String writeForm() {
+	public String writeForm_ClientChk(HttpServletRequest request) {
 		System.out.println("placeForm 호출 성공");
 		return "mypage/placeForm";
 	}
@@ -56,7 +58,8 @@ public class ClientPlaceController {
 	// 글 쓰기 구현하기
 
 	@RequestMapping(value = "/placeInsert.do", method = RequestMethod.POST)
-	public String placeInsert(@ModelAttribute PlaceVO pvo, Model model, HttpSession session) {
+	public String placeInsert_ClientChk(@ModelAttribute PlaceVO pvo, Model model, HttpSession session
+			,HttpServletRequest request) {
 
 		System.out.println("placeInsert 호출 성공");
 		int result = 0;
@@ -91,7 +94,8 @@ public class ClientPlaceController {
 	
 	// 구장 상세보기
 	@RequestMapping(value = "/placeDetail.do", method = RequestMethod.POST)
-	public ModelAndView placeDetail(@ModelAttribute PlaceVO pvo, Model model, HttpSession session) {
+	public ModelAndView placeDetail_ClientChk(@ModelAttribute PlaceVO pvo, Model model
+			, HttpSession session,HttpServletRequest request) {
 		System.out.println("placeDetail 호출 성공");
 
 		ModelAndView mav = new ModelAndView();
@@ -126,7 +130,8 @@ public class ClientPlaceController {
 	}
 
 	@RequestMapping(value = "/placeModify.do", method = RequestMethod.POST)
-	public String placeModify(@ModelAttribute PlaceVO pvo, Model model, HttpSession session) {
+	public String placeModify_ClientChk(@ModelAttribute PlaceVO pvo, Model model
+			, HttpSession session,HttpServletRequest request) {
 		System.out.println("placeModify 호출 성공");
 
 		int result = 0;

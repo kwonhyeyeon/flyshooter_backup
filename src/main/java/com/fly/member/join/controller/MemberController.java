@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -165,7 +166,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/mypage/modifyLogin.do", method = RequestMethod.GET)
-	public ModelAndView ModifyLogin(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) {
+	public ModelAndView ModifyLogin_LoginChk(@ModelAttribute("MemberVO") MemberVO mvo
+			, HttpSession session,HttpServletRequest request) {
 		System.out.println("modifyLogin.do get 방식에 의한 메서드 호출 성공");
 		String m_id = "";
 		ModelAndView mav = new ModelAndView();
@@ -184,7 +186,8 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/mypage/modify.do", method = RequestMethod.POST)
-	public ModelAndView MemberModify(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) throws Exception {
+	public ModelAndView MemberModify_LoginChk(@ModelAttribute("MemberVO") MemberVO mvo
+			, HttpSession session,HttpServletRequest request) throws Exception {
 		System.out.println("modify.do POST 방식에 의한 메서드 호출 성공");
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
 		String m_id = sessionMvo.getM_id();
@@ -227,7 +230,8 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/mypage/modify_success.do", method = RequestMethod.POST)
-	public ModelAndView memberModifyProcess(@ModelAttribute MemberVO mvo, HttpSession session) {
+	public ModelAndView memberModifyProcess_LoginChk(@ModelAttribute MemberVO mvo, HttpSession session
+			,HttpServletRequest request) {
 		System.out.println("modify_success.do post방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
 
@@ -244,7 +248,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("/delete.do")
-	public ModelAndView memberDelete(HttpSession session) {
+	public ModelAndView memberDelete_LoginChk(HttpSession session,HttpServletRequest request) {
 		System.out.println("delete.do get방식에의한 메서드 호출 성공");
 
 		ModelAndView mav = new ModelAndView();

@@ -2,9 +2,11 @@ package com.fly.client.stats.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,7 +37,7 @@ public class StatsController {
 
 	// 구장 목록 구현하기
 	@RequestMapping(value = "/stats.do", method = RequestMethod.GET)
-	public String placeChoice(Model model, HttpSession session) {
+	public String placeChoice_ClientChk(Model model, HttpSession session, HttpServletRequest request) {
 		System.out.println("stats 호출 성공");
 
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
@@ -49,7 +51,8 @@ public class StatsController {
 	}
 	//통계
 	@RequestMapping(value="/stadiumstats.do", method = RequestMethod.GET)
-	public String stadiumstats(Model model , HttpSession session, StatsVO stvo) {
+	public String stadiumstats_ClientChk(Model model , HttpSession session, StatsVO stvo
+			, HttpServletRequest request) {
 		System.out.println("stadiumstats 호출 성공");
 		
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
