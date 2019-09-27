@@ -29,7 +29,7 @@
 <div class="menu-wrap">
     <div class="menu">
         <c:choose>
-            <c:when test="${mvo.m_type == 1}">
+            <c:when test="${mvo.m_type eq 1}">
                 <ul>
                     <li><a href="/user/rental/location.do">경기장 예약</a></li>
                     <li><a href="/user/rental/myRentalList.do">나의 예약 현황</a></li>
@@ -46,11 +46,11 @@
                 </ul>
             </c:when>
 
-            <c:when test="${mvo.m_type == 0}">
+            <c:when test="${mvo.m_type eq 0}">
                 <ul class="member-menu">
                     <li><a href="/client/rental/rentalList.do">예약 현황</a></li>
                     <li><a href="/client/rental/refundList.do">환불 현황</a></li>
-                    <li><a href="/">오프라인 대관 관리</a></li>
+                    <li><a href="/client/rental/offlineRental.do">오프라인 대관 관리</a></li>
                 </ul>
                 <ul>
                     <li><a href="/match/matchList.do">매치 신청</a></li>
