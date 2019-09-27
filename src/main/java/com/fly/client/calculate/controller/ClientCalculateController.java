@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,6 +22,8 @@ import com.fly.client.place.service.ClientPlaceService;
 import com.fly.client.rental.service.ClientRentalService;
 import com.fly.member.join.vo.MemberVO;
 import com.fly.member.place.vo.PlaceVO;
+import com.fly.paging.util.Paging;
+import com.fly.paging.util.Util;
 
 @Controller
 @RequestMapping(value = "/mypage")
@@ -31,38 +34,46 @@ public class ClientCalculateController {
 
 	@Resource(name = "clientRentalService")
 	private ClientRentalService clientRentalService;
-	
-	@Autowired
-	HttpServletRequest request;
 
 	// 정산 리스트 구현하기
 	@RequestMapping(value = "/calculate.do", method = RequestMethod.GET)
-	public String calculate(Model model, HttpSession session) {
+	public String calculate_ClientChk(Model model, HttpSession session, @ModelAttribute CalculateVO cvo,
+			HttpServletRequest request) {
 		System.out.println("calculate 호출 성공");
 
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
 		String m_id = sessionMvo.getM_id();
+		cvo.setM_id(m_id);
+		// 페이지 세팅
+		Paging.setPage(cvo, 15);
+		// 전체 레코드수
+		int total = calculateService.pageingSize(cvo);
+		// 글번호 재설정
+		int count = total - (Util.nvl(cvo.getPage()) - 1) * Util.nvl(cvo.getPageSize());
 		
-		List<CalculateVO> calculateIList = calculateService.calculateIList(m_id);
-		List<CalculateVO> calculateList = calculateService.calculateList(m_id);
-	
+		List<CalculateVO> calculateIList = calculateService.calculateIList(cvo);
+		List<CalculateVO> calculateList = calculateService.calculateList(cvo);
+		
+		model.addAttribute("count", count);
+		model.addAttribute("total", total);
+		model.addAttribute("data", cvo);
 		model.addAttribute("calculateIList", calculateIList);
 		model.addAttribute("calculateList", calculateList);
 		return "mypage/calculate";
 	}
-	
+
 	// 정산 신청 구현하기
 	@RequestMapping(value = "/calculateInsert.do", method = RequestMethod.POST)
-	public String CalculateInsert(Model model, @ModelAttribute CalculateVO cvo) {
+	public String CalculateInsert_ClientChk(Model model, @ModelAttribute CalculateVO cvo, HttpServletRequest request) {
 		System.out.println("calculateInsert 호출 성공");
 		int result = calculateService.calculateInsert(cvo);
 		System.out.println("pRentalUpdae 호출 성공");
 		int pRentalResult = calculateService.pRentalUpdae(cvo.getP_num());
-		
+
 		System.out.println(result);
 		if (result != 1) {
 			model.addAttribute("errCode", 1);
-		}else if (pRentalResult != 1) {
+		} else if (pRentalResult != 1) {
 			model.addAttribute("errCode", 2);
 		}
 		return "redirect:/mypage/calculate.do";

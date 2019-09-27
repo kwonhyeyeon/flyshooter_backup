@@ -21,6 +21,11 @@
 		<typeAlias type="com.fly.admin.statistics.vo.StatisticsVO" alias="statistics"/>
 		<typeAlias type="com.fly.rental.detail.vo.RentalDetailVO" alias="rentalDetail"/>
 		<typeAlias type="com.fly.client.stats.vo.StatsVO" alias="clientstats"/>
+<<<<<<< HEAD
 		<typeAlias type="com.fly.admin.terms.vo.TermsVO" alias="terms"/>
+=======
+		<typeAlias type="com.fly.admin.status.vo.AdminPlaceStatusVO" alias="adminstatus"/>
+		<typeAlias type="com.fly.admin.rentalstatus.vo.AdminRentalStatusVO" alias="adminrental"/>
+>>>>>>> b66ba675281562bfa333576c5697609b482b9e62
 	</typeAliases>
 </configuration>

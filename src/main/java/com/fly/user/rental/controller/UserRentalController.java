@@ -192,7 +192,6 @@ public class UserRentalController {
    public String myRentalList_LoginChk(@ModelAttribute RentalVO rvo, Model model, HttpSession session,
 		   HttpServletRequest request) {
 	  
-	   //String m_id = (String)session.getAttribute("m_id");
 	   Paging.setPage(rvo, 5);
 	   
 	   MemberVO mvo = (MemberVO) session.getAttribute("mvo");

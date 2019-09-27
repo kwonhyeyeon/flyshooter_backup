@@ -6,12 +6,14 @@ import com.fly.client.calculate.vo.CalculateVO;
 
 public interface ClientCalculateService {
 
-	List<CalculateVO> calculateList(String m_id);
+	List<CalculateVO> calculateList(CalculateVO cvo);
 
 	int calculateInsert(CalculateVO cvo);
 
-	List<CalculateVO> calculateIList(String m_id);
+	List<CalculateVO> calculateIList(CalculateVO cvo);
 
 	int pRentalUpdae(String p_num);
+
+	int pageingSize(CalculateVO cvo);
 
 }

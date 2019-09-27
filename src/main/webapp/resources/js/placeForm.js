@@ -83,6 +83,7 @@ function placeCheck(){
 		alert("주소를 넣어주세요");
 		return false;
 	}
+	
 	if(p_account.value == ""){
 		alert("예금주명을 입력해주세요");
 		p_account.focus();
@@ -93,6 +94,9 @@ function placeCheck(){
 		p_account_num.focus();
 		return false;
 	}
+	
+	
+
 	//라디오 버튼(첨부파일 유형) 유효성 검사
 	var radio = document.getElementsByName("p_file");
 	p_file = 0; // undefined을 0으로 설정

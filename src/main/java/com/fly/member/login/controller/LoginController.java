@@ -62,7 +62,16 @@ public class LoginController {
 			mav.setViewName("member/login");
 			return mav;
 		}
-		LoginVO lvoHistory = loginService.loginHistorySelect(m_id);
+		LoginVO lvoHistory = null;
+		try {
+			lvoHistory = loginService.loginHistorySelect(m_id);
+		} catch (Exception e) {
+			// TODO: handle exception
+			mav.addObject("errCode", 1);
+			mav.setViewName("member/login");
+			return mav;
+		}
+		
 		log.info("최근 로그인 일시:" + new SimpleDateFormat("YYYY-MM-dd hh:mm:ss").format(lvoHistory.getLastFail()));
 		log.info("retry:" + lvoHistory.getRetry());
 		// 로그인 시도횟수가 5회가 넘으면 30초간 로그인 잠금
@@ -74,7 +83,6 @@ public class LoginController {
 				return mav;
 			}
 		}
-		System.out.println(m_id);
 		MemberVO DBmvo = memberService.memberSelect(m_id);
 		// SHA-256를 사용하는 SHA256클래스의 객체를 얻어낸다
 		SHA256 sha = SHA256.getInsatnce();

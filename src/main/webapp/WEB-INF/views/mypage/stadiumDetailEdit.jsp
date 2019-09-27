@@ -7,12 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>경기장 상세보기 수정</title>
-</head>
+<link rel="stylesheet" href="/resources/css/reset.css" />
+<link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
+
 $(document).ready(function() {
-	$("#s_stadiumModifyForm").submit(function() {
-		return stadiumModifyCheck();
+	$("#StadiumListBtn").click(function() {
+		location = "/mypage/placeChoice.do"
 	});
     var file1 = "<c:out value='${s_img1}'/>";
     if (file1 != "") {
@@ -38,56 +40,48 @@ $(document).ready(function() {
           height : "100px"
        });
     }
-
+    $("#s_hours").val('${svo.s_hours}');
+    $("#s_size").val('${svo.s_size}');
+    $("#s_in_out").val('${svo.s_in_out}');
+    $("#s_status").val('${svo.s_status}');
 });
 </script>
+</head>
 <body>
-	<div class="contentContainer">
+
+<div id="header-wrap">
+	<jsp:include page="../templates/header.jsp" flush="true" />
+</div>
+
+<div class="sub-v"></div>
+
+	<div id="contents">
 	<h3>${s_no}</h3>
 		<div class="contentTB">
 			<form id="s_stadiumModifyForm" action="/mypage/stadiumModify.do" method="post" enctype="multipart/form-data">
 				<ul>
 					<li><label>날짜 별 요금</label>
-					평일 주간 요금 <input type="text" value="${s_d_fee}" name="s_d_fee" id="s_d_fee"/>
-					평일 야간 요금 <input type="text" value="${s_n_fee}" name="s_n_fee" id="s_n_fee"/></li>
+					평일 주간 요금 <input type="text" value="${svo.s_d_fee}" name="s_d_fee" id="s_d_fee"/>
+					평일 야간 요금 <input type="text" value="${svo.s_n_fee}" name="s_n_fee" id="s_n_fee"/></li>
 				
 					<li>
-						주말 주간 요금 <input type="text" value="${s_d_fee_w}" name="s_d_fee_w" id="s_d_fee_w"/>
-						주말 야간 요금 <input type="text" value="${s_n_fee_w}" name="s_n_fee_w" id="s_n_fee_w"/>
+						주말 주간 요금 <input type="text" value="${svo.s_d_fee_w}" name="s_d_fee_w" id="s_d_fee_w"/>
+						주말 야간 요금 <input type="text" value="${svo.s_n_fee_w}" name="s_n_fee_w" id="s_n_fee_w"/>
 					</li>
 					<li>
 						최소 이용 가능 시간 
-						<c:choose>
-							<c:when test="${s_hours eq '1'}">
-								1시간
-							</c:when>
-							<c:when test="${s_hours eq '3' }">
-								2시간
-							</c:when>
-						</c:choose>
 						<select name="s_hours" id="s_hours">
 							<option value="1">1시간</option>
-							<option value="3">2시간</option>
+							<option value="2">2시간</option>
 						</select>
 					</li>
 					<li>
-						<input type="hidden" name="s_no" value="${s_no}"/>
-						수용 인원 <input type="text" value="${s_people}" name="s_people" id="s_people"/>
-						경기장 명 <input type="text" value="${s_name}" name="s_name" id="s_name"/>
+						<input type="hidden" name="s_no" value="${svo.s_no}"/>
+						수용 인원 <input type="text" value="${svo.s_people}" name="s_people" id="s_people"/>
+						경기장 명 <input type="text" value="${svo.s_name}" name="s_name" id="s_name"/>
 					</li>
 					<li>
 						경기장 사이즈
-						<c:choose>
-							<c:when test="${s_size eq '1'}">
-								40*20
-							</c:when>
-							<c:when test="${s_size eq '2' }">
-								33*21
-							</c:when>
-							<c:when test="${s_size eq '3' }">
-								15*12
-							</c:when>
-						</c:choose>
 						<select name="s_size" class="s_size" id="s_size">
 							<option value="1">40*20</option>
 							<option value="2">33*21</option>
@@ -95,30 +89,22 @@ $(document).ready(function() {
 						</select>
 						
 						경기장 실내/외 선택
-						<c:choose>
-							<c:when test="${s_in_out eq '1'}">
-								실내
-							</c:when>
-							<c:when test="${s_in_out eq '2' }">
-								실외
-							</c:when>
-						</c:choose>
 						<select name="s_in_out" class="s_in_out" id="s_in_out">
 							<option value="1">실내</option>
 							<option value="2">실외</option>
-		</select>
+						</select>
 					</li>
 					<li>
 						<div class="inputArea">
  							<label>이미지1</label>
- 							<input type="file" id="s_img1" name="file1" />
+ 							<input type="file" id="s_img1" name="file1"/>
  							<div class="fileImage1"><img id="fileImage1" src=""/></div>
 						</div>
 					</li>
 					<li>
 						<div class="inputArea">
  							<label>이미지2</label>
- 							<input type="file" id="s_img2" name="file2" />
+ 							<input type="file" id="s_img2" name="file2"/>
  							<div class="fileImage2"><img id="fileImage2" src=""></div>
 						</div>
 						
@@ -126,26 +112,19 @@ $(document).ready(function() {
 					<li>
 						<div class="inputArea">
  							<label>이미지3</label>
- 							<input type="file" id="s_img3" name="file3" />
+ 							<input type="file" id="s_img3" name="file3"/>
  							<div class="fileImage3"><img id="fileImage3" src=""></div>
 						</div>
 					</li>
-					<li>
+					<c:if test="${svo.s_status ne '0'}">
+						<li>
 						경기장 상태
-						<c:choose>
-							<c:when test="${s_status eq '0'}">
-								close
-							</c:when>
-							<c:when test="${s_status eq '1' }">
-								open
-							</c:when>
-						</c:choose>
-					<select name="s_status" id="s_status">
-						<option selected value="0" >close</option>
-						<option value="1">open</option>
-					</select>
-					</li>
-					
+							<select name="s_status" id="s_status">
+								<option value="-1">close</option>
+								<option value="1">open</option>
+							</select>
+						</li>
+					</c:if>
 				</ul>
 				<div>
 					<input type="submit" value="수정하기"> 

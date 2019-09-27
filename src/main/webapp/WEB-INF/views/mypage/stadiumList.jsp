@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>경기장/구장 페이지</title>
+<link rel="stylesheet" href="/resources/css/reset.css" />
+<link rel="stylesheet" href="/resources/css/style.css" />
 <link rel="stylesheet" href="/resources/css/toggle.css" />
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
@@ -13,7 +15,14 @@
 <script type="text/javascript" src="/resources/js/stadiumList.js"></script>
 </head>
 <body>
-	<div id="wrapper">
+
+	<div id="header-wrap">
+		<jsp:include page="../templates/header.jsp" flush="true" />
+	</div>
+
+	<div class="sub-v"></div>
+
+	<div id="contents">
 		<ul class="tabs">
 			<li><a href="#tab1">경기장</a></li>
 			<li><a href="#tab2">용품</a></li>

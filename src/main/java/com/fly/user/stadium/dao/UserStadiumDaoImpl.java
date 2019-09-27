@@ -22,4 +22,10 @@ public class UserStadiumDaoImpl implements UserStadiumDao {
 		return sqlSession.selectList(NAME_SPACE + ".stadiumList", p_num);
 	}
 
+	@Override
+	public StadiumVO getSelectedStadiumInfo(int s_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAME_SPACE + ".selectStadiumInfo", s_no);
+	}
+
 }

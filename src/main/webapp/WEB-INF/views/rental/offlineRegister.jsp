@@ -17,19 +17,8 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="/resources/js/offlineRegister.js"></script>
+<script type="text/javascript" src="/resources/js/common.js"></script>
 <!-- datepicker -->
-<script>
-
-	$(function() {
-		$("#gnb").hover(function() {
-			$(".menu-wrap").slideDown(500);
-		});
-		$(".menu-wrap").mouseleave(function() {
-			$(".menu-wrap").slideUp(500);
-		});
-	})
-	
-</script>
 </head>
 <body>
 	<div id="wrapper">
@@ -69,7 +58,7 @@
 					</section>
 					
 					<section class="stadiumSelectBox">
-						<p>※예약일자와 구장을 먼저 선택해주십시오.</p>
+						<p>※경기장을 선택하면 대관가능한 시간대를 보여줍니다.</p>
 					
 						<select id="stadiumSelectBox" name="selectStadium" >
 							<option value="">경기장선택</option>
@@ -78,6 +67,11 @@
 							</c:forEach>	
 						</select>	
 					</section>
+					
+				</section>
+				
+				<!-- 대관가능한 시간리스트 비동기로 append예정 -->
+				<section id="selectTime">
 					
 				</section>
 			</section>

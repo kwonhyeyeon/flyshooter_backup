@@ -25,6 +25,7 @@ import com.fly.member.rental.vo.RentalVO;
 import com.fly.member.stadium.vo.StadiumVO;
 import com.fly.paging.util.Paging;
 import com.fly.paging.util.Util;
+import com.fly.user.rental.service.UserRentalService;
 import com.fly.user.stadium.service.UserStadiumService;
 
 @Controller
@@ -37,20 +38,21 @@ public class ClientRentalController {
 	private ItemsRentalService ItemsRentalService;
 	@Resource(name = "userStadiumService")
 	private UserStadiumService userStadiumService;
+	@Resource(name = "userRentalService")
+	private UserRentalService userRentalService;
 
 	// 구장 별 경기장 별 대관 예약 현황(첫 로드)
 	@RequestMapping(value = "/rentalList.do", method = RequestMethod.GET)
-	public String rentalListByStadiumByPlace(Model model, HttpServletRequest request, HttpSession session) {
+	public String rentalListByStadiumByPlace_ClientChk(Model model, HttpServletRequest request, HttpSession session) {
 		/*
 		 * Session에서 회원 ID를 뺴와서 사용해야함 수정하시오.
 		 */
-		/*
-		 * MemberVO mvo = (MemberVO) session.getAttribute("mvo"); String m_id =
-		 * mvo.getM_id();
-		 */
-
 		
-		model.addAttribute("placeList", clientRentalService.getPlaceList("esub17@naver.com"));
+		 MemberVO mvo = (MemberVO) session.getAttribute("mvo"); 
+		 String m_id = mvo.getM_id();
+		 
+
+		model.addAttribute("placeList", clientRentalService.getPlaceList(m_id));
 
 		return "/rental/rentalList";
 	}
@@ -67,7 +69,7 @@ public class ClientRentalController {
 
 		if (stadiumList.isEmpty()) {
 			result.append("<p class='noStadium'>등록된 경기장이 없습니다.</p>");
-			
+
 			return result.toString();
 		}
 
@@ -220,7 +222,7 @@ public class ClientRentalController {
 
 	// 환불 현황 리스트
 	@RequestMapping(value = "/refundList.do", method = RequestMethod.GET)
-	public String getRefundList(@ModelAttribute RentalVO rvo, @ModelAttribute MemberVO mvo, @ModelAttribute PlaceVO pvo,
+	public String getRefundList_ClientChk(@ModelAttribute RentalVO rvo, @ModelAttribute MemberVO mvo, @ModelAttribute PlaceVO pvo,
 			Model model) {
 
 		System.out.println("getRefundList 호출 성공");
@@ -229,10 +231,10 @@ public class ClientRentalController {
 		String pageSize = rvo.getPageSize();
 		int total = clientRentalService.refundListCnt();
 		int count = total - (Util.nvl(rvo.getPage()) - 1) * Util.nvl(rvo.getPageSize());
-		
+
 		model.addAttribute("count", count);
-	    model.addAttribute("total", total);
-	    model.addAttribute("pageSize", pageSize);
+		model.addAttribute("total", total);
+		model.addAttribute("pageSize", pageSize);
 
 		List<Map<String, String>> refundList = clientRentalService.getRefundList(pvo);
 		model.addAttribute("refundList", refundList);
@@ -290,79 +292,115 @@ public class ClientRentalController {
 
 		int r_no = rvo.getR_no();
 		HashMap<String, Object> data = clientRentalService.getDetailRefund(r_no);
-		
+
 		model.addAttribute("data", data);
 		System.out.println(data);
 
 		return "/rental/detailRefund";
 	}
 
-	
 	// 오프라인 대관 등록
 	@RequestMapping(value = "/offlineRental.do", method = RequestMethod.GET)
-	public String offlineRental(Model model, HttpServletRequest request, HttpSession session) {
-		
-		/*
-		 * MemberVO mvo = (MemberVO) session.getAttribute("mvo"); String m_id =
-		 * mvo.getM_id();
-		 */
-		List<PlaceVO> placeList = clientRentalService.getPlaceList("esub17@naver.com");
-		
+	public String offlineRental_ClientChk(Model model, HttpServletRequest request, HttpSession session) {
+
+		 MemberVO mvo = (MemberVO) session.getAttribute("mvo"); 
+		 String m_id = mvo.getM_id();
+		 
+		List<PlaceVO> placeList = clientRentalService.getPlaceList(m_id);
+
 		model.addAttribute("placeList", placeList);
 		try {
 			List<StadiumVO> stadiumList = userStadiumService.selectStadiumList(placeList.get(0).getP_num());
 			model.addAttribute("stadiumList", stadiumList);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-			return "/rental/offlineRegister";
-		}
-	
-	
+		return "/rental/offlineRegister";
+	}
+
 	// 오프라인 대관시 경기장 SelectBox설정
 	@RequestMapping(value = "/getStadium.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
 	@ResponseBody
 	public String getStadiumInfo(@RequestParam(value = "p_num") String p_num) {
-		
-		
-		// 회원ID수정할것.
-		/*
-		 * MemberVO mvo = (MemberVO) session.getAttribute("mvo"); String m_id =
-		 * mvo.getM_id();
-		 */
+
 		StringBuffer result = new StringBuffer();
-		
+
 		List<StadiumVO> stadiumList = userStadiumService.selectStadiumList(p_num);
-		if(stadiumList.isEmpty()) {
+		if (stadiumList.isEmpty()) {
 			result.append("Empty");
 			return result.toString();
 		}
-		
+
 		result.append("<option value=''>경기장선택</option>");
-		for( StadiumVO svo : stadiumList ) {
+		for (StadiumVO svo : stadiumList) {
 			result.append("<option value='");
 			result.append(svo.getS_no());
 			result.append("'>");
 			result.append(svo.getS_name());
 			result.append("</option>");
-			
+
 		}
-		
-		
-			return result.toString();
-		}
-	
-	
-		// 오프라인 대관시 경기장 SelectBox설정
-		@RequestMapping(value = "/searchTime.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
-		@ResponseBody
-		public String getPosibleTimeList(@ModelAttribute StadiumVO svo,
-				   @RequestParam(value = "selectDay") String selectDay) {
-			
-			StringBuffer result = new StringBuffer();
-			
-			
-			
-				return result.toString();
+
+		return result.toString();
+	}
+
+	// 오프라인 대관시 경기장 SelectBox설정
+	@RequestMapping(value = "/searchTime.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+	@ResponseBody
+	public String getPosibleTimeList(@RequestParam(value = "s_no") int s_no,
+			@RequestParam(value = "selectDay") String selectDay) {
+
+		StringBuffer result = new StringBuffer();
+
+		StadiumVO svo = null;
+
+		svo = userStadiumService.getSelectedStadiumInfo(s_no);
+
+		List<String> impossibleTime = userRentalService.searchReservationTime(selectDay, s_no);
+
+		int start = Integer.parseInt(svo.getP_open()); // 구장의 영업시작시간
+		int end = Integer.parseInt(svo.getP_close()); // 종료시간
+		int increase = svo.getS_hours(); // 최소 이용가능시간
+
+		for (int i = start; i + increase <= end; i += increase) {
+			result.append("<label><input type='radio' name='reservationTime' value='");
+			result.append(i);
+			result.append(",");
+			result.append(i + increase);
+			result.append("'");
+
+			if (impossibleTime.contains(i + "")) {
+				result.append(" style='display:none' /></label>");
+			} else {
+				result.append("/>");
+				result.append(i);
+				result.append(" ~ ");
+				result.append(i + increase);
+				result.append("(시)</label>");
 			}
+		}
+
+		result.append("<button id='offRegister'>등록</button>");
+		result.append("<button id='goRentalList'>대관현황</button>");
+		return result.toString();
+	}
+
+	// 오프라인 대관시 경기장 SelectBox설정
+	@RequestMapping(value = "/offlineInsert.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+	@ResponseBody
+	public String offlineRentalInsert(@ModelAttribute RentalVO rvo, HttpSession session) {
+		int result = 0;
+		 MemberVO mvo = (MemberVO) session.getAttribute("mvo"); 
+		 String m_id = mvo.getM_id();
+
+		rvo.setM_id(m_id);
+		
+		try {
+			result = clientRentalService.offlineRentalInsert(rvo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0 + "";
+		}
+		return result + "";
+	}
 }

@@ -28,132 +28,67 @@
 <body>
 	<div>
 	
+		
 		<div id="header-wrap">
-			<header id="header">
-				<h1>
-					<a href="/">FLY SHOOTER</a>
-				</h1>
-
-				<nav id="gnb">
-					<ul>
-						<li><a href="/">대관</a></li>
-						<li><a href="/match/matchList.do">매치</a></li>
-						<li><a href="/support/supportList.do">용병</a></li>
-						<li><a href="/member/mypage/modifyLogin.do">마이페이지</a></li>
-					</ul>
-				</nav>
-
-				<nav id="lnb">
-					<ul>
-						<c:if test="${empty mvo.m_id}">
-							<li><a href="/member/join.do">회원가입</a></li>
-							<li><a href="/member/login.do">로그인</a></li>
-						</c:if>
-						<c:if test="${not empty mvo.m_id}">
-							<li><a href="/member/logout.do">로그아웃</a></li>
-						</c:if>
-					</ul>
-				</nav>
-			</header>
-
-			<div class="menu-wrap">
-				<div class="menu">
-					<c:if test="${empty mvo.m_id || mvo.m_type=='1'}">
-						<ul>
-							<li><a href="/user/rental/location.do">대관 예약</a></li>
-							<li><a href="/">대관 확인</a></li>
-						</ul>
-						<ul>
-							<li><a href="/match/matchList.do">매치 신청</a></li>
-						</ul>
-						<ul>
-							<li><a href="/support/supportList.do">용병 지원</a></li>
-							<li><a href="/recruit/recruitList.do">용병 모집</a></li>
-						</ul>
-						<ul>
-							<li><a href="/member/mypage/modifyLogin.do">회원 정보 수정</a></li>
-						</ul>
-					</c:if>
-
-					<c:if test="${mvo.m_type=='0'}">
-						<ul class="member-menu">
-							<li><a href="/client/rental/rentalList.do">대관 예약 현황</a></li>
-							<li><a href="/">대관 환불 현황</a></li>
-							<li><a href="/">오프라인 대관 관리</a></li>
-						</ul>
-						<ul>
-							<li><a href="/match/matchList.do">매치 신청</a></li>
-						</ul>
-						<ul>
-							<li><a href="/support/supportList.do">용병 지원</a></li>
-							<li><a href="/recruit/recruitList.do">용병 모집</a></li>
-						</ul>
-						<ul>
-							<li><a href="/member/mypage/modifyLogin.do">회원 정보 수정</a></li>
-							<li><a href="/mypage/placeList.do">구장</a></li>
-							<li><a href="/mypage/placeChoice.do">경기장/용품</a></li>
-							<li><a href="/mypage/calculate.do">정산 관리</a></li>
-							<li><a href="/mypage/stats.do">통계</a></li>
-						</ul>
-					</c:if>
-				</div>
-			</div>
+			<jsp:include page="../templates/header.jsp" flush="true" />
 		</div>
 
 		<div class="sub-v"></div>
-	
-		<form id="modifyForm" action="/member/mypage/modify_success.do" method="post">
-			<div>
-				<c:if test="${m_type=='1'}">
-					<input type="radio" name="m_type" value="1" id="m_type" checked readonly/>일반 
-				</c:if>
-				<c:if test="${m_type=='0'}">
-					<input type="radio" name="m_type" value="0" id="m_type" checked readonly/>사업자
-				</c:if>
-			</div>
-			<div>
-				<label for="id">ID</label>
+
+		<div id="contents">
+			<form id="modifyForm" action="/member/mypage/modify_success.do" method="post">
 				<div>
-					<input type="email" id="m_id" name="m_id" value="${m_id }" readonly/>
+					<c:if test="${mvo.m_type=='1'}">
+						<input type="radio" name="m_type" value="1" id="m_type" checked readonly/>일반 
+					</c:if>
+					<c:if test="${mvo.m_type=='0'}">
+						<input type="radio" name="m_type" value="0" id="m_type" checked readonly/>사업자
+					</c:if>
 				</div>
-			</div>
-			<div>
-				<label for="pw">비밀 번호</label>
 				<div>
-					<input type="password" id="m_pw" name="m_pw" maxlength="15"
-						value="">
+					<label for="id">ID</label>
+					<div>
+						<input type="email" id="m_id" name="m_id" value="${mvo.m_id }" readonly/>
+					</div>
 				</div>
-			</div>
-			<div>
-				<label for="pwCheck">비밀번호 확인 </label>
 				<div>
-					<input type="password" id="m_pwCheck" name="m_pwCheck"
-						maxlength="15" value=""> <span
-						id="pwcheck"></span>
+					<label for="pw">비밀 번호</label>
+					<div>
+						<input type="password" id="m_pw" name="m_pw" maxlength="15"
+							value="">
+					</div>
 				</div>
-			</div>
-			<div>
-				<label for="userName">회원이름</label>
 				<div>
-					<input type="text" id="m_name" name="m_name" maxlength="10"
-						value="${m_name }">
+					<label for="pwCheck">비밀번호 확인 </label>
+					<div>
+						<input type="password" id="m_pwCheck" name="m_pwCheck"
+							maxlength="15" value=""> <span
+							id="pwcheck"></span>
+					</div>
 				</div>
-			</div>
-			<div>
-				<label for="phone">핸드폰번호 </label>
 				<div>
-					<input type="text" id="m_phone" name="m_phone" maxlength="15"
-						value="${m_phone }">
+					<label for="userName">회원이름</label>
+					<div>
+						<input type="text" id="m_name" name="m_name" maxlength="10"
+							value="${m_name }">
+					</div>
 				</div>
-			</div>
-			<div>
 				<div>
-					<input type="submit" value="확인" id="modifyInsert" /> 
-					<input type="button" value="회원탈퇴" id="delete" /> 
-					<input type="button" value="홈으로" id="home" />
+					<label for="phone">핸드폰번호 </label>
+					<div>
+						<input type="text" id="m_phone" name="m_phone" maxlength="15"
+							value="${m_phone }">
+					</div>
 				</div>
-			</div>
-		</form>
+				<div>
+					<div>
+						<input type="submit" value="확인" id="modifyInsert" /> 
+						<input type="button" value="회원탈퇴" id="delete" /> 
+						<input type="button" value="홈으로" id="home" />
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

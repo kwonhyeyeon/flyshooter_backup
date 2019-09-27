@@ -1,16 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="tag" uri="/WEB-INF/tld/custom_tag.tld" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>정산 페이지</title>
+<link rel="stylesheet" href="/resources/css/reset.css" />
+<link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/calculate.js"></script>
 </head>
 <body>
-	<div id="wrapper">
+
+	<div id="header-wrap">
+		<jsp:include page="../templates/header.jsp" flush="true" />
+	</div>
+
+	<div class="sub-v"></div>
+
+	<div id="contents">
 		<div>
 		<p>
 		Fly Shooter은 예약일자가 15일 지난 예약을 기준으로 매출을 인식합니다. <br />
@@ -76,7 +86,14 @@
 								<td>${calculate.c_rental_cnt}</td>
 								<td>${calculate.c_return_cnt}</td>
 								<td>${calculate.c_payment}</td>
-								<td>${calculate.c_status}</td>
+								<td>
+								<c:if test="${calculate.c_status eq '-1'}">
+								<p style="color: red;">지급 대기</p>
+								</c:if>
+								<c:if test="${calculate.c_status eq '1'}">
+								<p style="color: blue;">지급 완료</p>
+								</c:if>
+								</td>
 								<td>${calculate.c_regdate}</td>
 							</tr>
 						</c:forEach>
@@ -89,6 +106,16 @@
 				</c:choose>
 			</table>
 		</div>
+		<!--  paging view -->    
+        <div id="boardSearch">
+        <form id="f_search" name="f_search">
+        	<input type="hidden" id="page" name="page" value="${data.page }"/>
+        	<input type="hidden" id="p_name" name="p_name" value="${data.p_name }"/>
+        </form>
+        </div>
+	    <div class="pagination">
+        	<tag:paging page="${data.page }" total="${total }" list_size="${data.pageSize }" />
+        </div> 
 	</div>
 </body>
 </html>

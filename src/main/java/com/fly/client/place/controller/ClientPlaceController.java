@@ -2,9 +2,11 @@ package com.fly.client.place.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,11 +29,17 @@ public class ClientPlaceController {
 
 	// 구장 목록 구현하기
 	@RequestMapping(value = "/placeList.do", method = RequestMethod.GET)
-	public String placeList(Model model,
-			@RequestParam(value = "errCode", required = false, defaultValue = "0") String errCode) {
+	public String placeList_ClientChk(Model model,HttpServletRequest request,
+			@RequestParam(value = "errCode", required = false, defaultValue = "0") String errCode, 
+			HttpSession session, @ModelAttribute PlaceVO pvo) {
 		System.out.println("placeList 호출 성공");
-
-		List<PlaceVO> placeList = clientPlaceService.placeList();
+		
+		// session에서 가져오기
+		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
+		String m_id = sessionMvo.getM_id();
+		pvo.setM_id(m_id);
+		
+		List<PlaceVO> placeList = clientPlaceService.placeList(pvo);
 		model.addAttribute("placeList", placeList);
 		model.addAttribute("data");
 		model.addAttribute("errCode", errCode);
@@ -40,7 +48,7 @@ public class ClientPlaceController {
 
 	// 구장 약관 동의 페이지 출력하기
 	@RequestMapping(value = "/placecheck.do")
-	public String checkForm() {
+	public String checkForm_ClientChk(HttpServletRequest request) {
 		System.out.println("placeCheck 호출 성공");
 		return "mypage/placecheck";
 
@@ -48,7 +56,7 @@ public class ClientPlaceController {
 
 	// 구장 등록 페이지 출력하기
 	@RequestMapping(value = "/placeForm.do")
-	public String writeForm() {
+	public String writeForm_ClientChk(HttpServletRequest request) {
 		System.out.println("placeForm 호출 성공");
 		return "mypage/placeForm";
 	}
@@ -56,7 +64,8 @@ public class ClientPlaceController {
 	// 글 쓰기 구현하기
 
 	@RequestMapping(value = "/placeInsert.do", method = RequestMethod.POST)
-	public String placeInsert(@ModelAttribute PlaceVO pvo, Model model, HttpSession session) {
+	public String placeInsert_ClientChk(@ModelAttribute PlaceVO pvo, Model model, HttpSession session
+			,HttpServletRequest request) {
 
 		System.out.println("placeInsert 호출 성공");
 		int result = 0;
@@ -91,7 +100,8 @@ public class ClientPlaceController {
 	
 	// 구장 상세보기
 	@RequestMapping(value = "/placeDetail.do", method = RequestMethod.POST)
-	public ModelAndView placeDetail(@ModelAttribute PlaceVO pvo, Model model, HttpSession session) {
+	public ModelAndView placeDetail_ClientChk(@ModelAttribute PlaceVO pvo, Model model
+			, HttpSession session,HttpServletRequest request) {
 		System.out.println("placeDetail 호출 성공");
 
 		ModelAndView mav = new ModelAndView();
@@ -100,33 +110,24 @@ public class ClientPlaceController {
 		String word = pvo.getP_address();
 		String[] address = word.split("\\*");
 
-		mav.addObject("p_name", pvo.getP_name());
-		mav.addObject("p_ceo", pvo.getP_ceo());
-		mav.addObject("p_num", pvo.getP_num());
-		mav.addObject("p_phone", pvo.getP_phone());
 		mav.addObject("sample6_postcode", address[0]);
 		mav.addObject("sample6_address", address[1]);
+		try {
 		mav.addObject("sample6_detailAddress", address[2]);
 		mav.addObject("sample6_extraAddress", address[3]);
-		mav.addObject("p_bank", pvo.getP_bank());
-		mav.addObject("p_account", pvo.getP_account());
-		mav.addObject("p_account_num", pvo.getP_account_num());
-		mav.addObject("p_holiday", pvo.getP_holiday());
-		mav.addObject("p_holiday_start", pvo.getP_holiday_start());
-		mav.addObject("p_holiday_end", pvo.getP_holiday_end());
-		mav.addObject("p_open", pvo.getP_open());
-		mav.addObject("p_close", pvo.getP_close());
-		mav.addObject("p_status", pvo.getP_status());
-		mav.addObject("p_file", pvo.getP_file());
-		mav.addObject("p_intro", pvo.getP_intro());
-
+		}catch(Exception e) {
+			mav.addObject("sample6_detailAddress", "");
+			mav.addObject("sample6_extraAddress", "");
+		}
+		mav.addObject("pvo", pvo);
 		mav.setViewName("mypage/placeDetailEdit");
 
 		return mav;
 	}
 
 	@RequestMapping(value = "/placeModify.do", method = RequestMethod.POST)
-	public String placeModify(@ModelAttribute PlaceVO pvo, Model model, HttpSession session) {
+	public String placeModify_ClientChk(@ModelAttribute PlaceVO pvo, Model model
+			, HttpSession session,HttpServletRequest request) {
 		System.out.println("placeModify 호출 성공");
 
 		int result = 0;
