@@ -3,7 +3,7 @@ package com.fly.client.stats.vo;
 public class StatsVO {
 	private String s_name;// 경기장 이름
 	private String r_reserve_date;//대관 결제 날짜
-	private int count;//결제일렬번호
+	private int count;//
 	private int r_no;//결제 일렬번호
 	
 	
