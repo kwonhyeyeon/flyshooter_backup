@@ -69,5 +69,7 @@
 		where s_no = #{s_no}
 	</update>
 	
+	
+	
 
 </mapper>

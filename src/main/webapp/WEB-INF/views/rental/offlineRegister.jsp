@@ -69,7 +69,7 @@
 					</section>
 					
 					<section class="stadiumSelectBox">
-						<p>※예약일자와 구장을 먼저 선택해주십시오.</p>
+						<p>※경기장을 선택하면 대관가능한 시간대를 보여줍니다.</p>
 					
 						<select id="stadiumSelectBox" name="selectStadium" >
 							<option value="">경기장선택</option>
@@ -78,6 +78,11 @@
 							</c:forEach>	
 						</select>	
 					</section>
+					
+				</section>
+				
+				<!-- 대관가능한 시간리스트 비동기로 append예정 -->
+				<section id="selectTime">
 					
 				</section>
 			</section>

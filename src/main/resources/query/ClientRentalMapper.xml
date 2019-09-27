@@ -148,5 +148,45 @@
         <result column="r_account_num" property="r_account_num"/>
         <result column="r_no" property="r_no"/>
     </resultMap>
+    
+    <insert id="offlineInsertRental" parameterType="rental">
+		<selectKey keyProperty="r_no" resultType="int" order="BEFORE">
+			SELECT rental_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO rental(
+			r_no,
+			s_no,
+			m_id,
+			r_reserve_date,
+			r_start,
+			r_total_pay,
+			r_pay_type,
+			r_bank,
+			r_account,
+			r_account_num,
+			r_pay_status,
+			r_regdate,
+			r_recall_time,
+			refund,
+			cal_status
+		)
+		values(
+			#{r_no},
+			#{s_no},
+			#{m_id},
+			#{r_reserve_date},
+			#{r_start},
+			0,
+			0,
+			'오프라인',
+			'오프라인',
+			'오프라인',
+			0,
+			sysdate,
+			sysdate,
+			0,
+			0
+		)
+	</insert>
 	
 </mapper>

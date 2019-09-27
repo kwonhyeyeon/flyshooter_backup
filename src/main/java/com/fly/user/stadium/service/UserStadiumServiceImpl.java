@@ -22,4 +22,10 @@ public class UserStadiumServiceImpl implements UserStadiumService {
 		return stadiumDao.selectStadiumList(p_num);
 	}
 
+	@Override
+	public StadiumVO getSelectedStadiumInfo(int s_no) {
+		// TODO Auto-generated method stub
+		return stadiumDao.getSelectedStadiumInfo(s_no);
+	}
+
 }

@@ -37,5 +37,8 @@ public interface ClientRentalDao {
 
 	// 대관 상세 정보
 	public HashMap<String, Object> getDetailRefund(int r_no);
+	
+	// 오프라인 대관등록
+	public int offlineRentalInsert(RentalVO rvo);
 
 }

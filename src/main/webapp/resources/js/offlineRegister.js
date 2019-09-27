@@ -35,6 +35,7 @@ $(document).ready(function(){
 		var p_num = $("#placeName").val();
 		
 		getStadium(p_num);
+
 	});
 	
 	// 대관가능한 시간 조회 - 경기장 변경시
@@ -57,10 +58,108 @@ $(document).ready(function(){
 		
 	});
 	
-});
 	
+	// 대관현황 페이지 이동
+	$(document).on("click","#goRentalList",function(){ 
+		location.href = "/client/rental/rentalList.do";
+	});
+	
+	
+	// 오프라인 대관등록
+	$(document).on("click","#offRegister",function(){ 
+		
+		
+		// 시간이 선택되지 않았을 경우
+		if( !($('input:radio[name=reservationTime]').is(':checked')) ){
+		
+			alert("예약시간을 선택해주십시오.");
+			return;
+		}
+		
+		if( !(confirm("오프라인대관 등록입니다.\n등록하시겠습니까?")) ) return;
+			
+		var s_no = $("#stadiumSelectBox").val();
+		var r_reserve_date = $("#datepicker").val();
+		var arg = $("input:radio[name='reservationTime']:checked").val();
+		var reserve_time = arg.split(",");
+		var r_start = reserve_time[0];
+		
+		var rvo = {
+			s_no : s_no,
+			r_reserve_date : r_reserve_date,
+			r_start : r_start
+		};
+		
+		
+		var param = makeOverlapKey();
+			// 선택된 시간대가 현재 예약이 진행중인지 확인하는 동기처리
+			$.ajax({
+				type:"post",
+				url:"/user/rental/reservationCheck.do",
+				async : false, // 동기
+				data:{overlapKey : param},
+				error: function() {
+					alert("시스템에러\n관리자에게 문의하십시오.")
+				},
+				success:function(result){
+					if(eval(result)){
+						// 오프라인 대관등록
+						offlineRentalInsert(rvo);
+						// 예약가능한 시간대 리로드
+						getPossibleTimeList(s_no, r_reserve_date);
+					}else{
+						alert("해당시간은 현재 온라인예약이 진행중입니다.");
+					}
+					
+					
+				}
+				
+			});
+	});
+	
+});
+
+
+function offlineRentalInsert(rvo){
+	
+	
+	$.ajax({
+		type:"post",
+		url:"/client/rental/offlineInsert.do",
+		async : false, // 동기
+		data:rvo,
+		error: function() {
+			 alert("시스템에러\n관리자한테 문의하십시오");
+		},
+		success:function(result){
+			if(result == '1'){
+				alert("대관등록이 완료되었습니다");
+			}else{
+				alert("대관등록이 실패하였습니다.\n잠시후 다시 등록해주십시오");
+			}
+		}
+		
+	});
+	
+}
+
+	
+function makeOverlapKey(){
+	var selectDay = $("#datepicker").val();
+	var arg1 = $("input:radio[name='reservationTime']:checked").val();
+	var result = arg1.split(",");
+	var s_no = $("#stadiumSelectBox").val();
+	
+	// 예약중인 대관테이블에 저장될 key값
+	var param = s_no+""+selectDay+""+result[0];
+	
+	return param;
+}
 
 function getStadium(p_num){
+	
+	$("#selectTime").html("");
+	
 	$.ajax({
 		type:"post",
 		url:"/client/rental/getStadium.do",
@@ -101,14 +200,7 @@ function getPossibleTimeList(s_no, selectDay){
 		},
 		success:function(result){
 			
-			alert("성공");
-			if( result == "Empty" ){
-				
-				return;
-			}else{
-				return;
-			}
-			
+			$("#selectTime").html(result);
 			
 		}
 		
