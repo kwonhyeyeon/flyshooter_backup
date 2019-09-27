@@ -10,7 +10,7 @@
 	WHERE
 		<![CDATA[r_reserve_date <= SYSDATE]]> and r.s_no = s.s_no and r_pay_status = 1 
 		and s.s_no in(select s_no from STADIUM where p_num = '0109973329112')
-	GROUP BY s_name, to_char(r_reserve_date, ' yyyy/MM');
+	GROUP BY s_name, to_char(r_reserve_date, ' yyyy/MM')
 </select>
 	
 </mapper>
