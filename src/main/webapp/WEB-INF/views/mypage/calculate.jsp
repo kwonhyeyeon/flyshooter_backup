@@ -7,11 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>정산 페이지</title>
+<link rel="stylesheet" href="/resources/css/reset.css" />
+<link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/calculate.js"></script>
 </head>
 <body>
-	<div id="wrapper">
+
+	<div id="header-wrap">
+		<jsp:include page="../templates/header.jsp" flush="true" />
+	</div>
+
+	<div class="sub-v"></div>
+
+	<div id="contents">
 		<div>
 		<p>
 		Fly Shooter은 예약일자가 15일 지난 예약을 기준으로 매출을 인식합니다. <br />

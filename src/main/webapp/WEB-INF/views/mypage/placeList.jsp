@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>구장</title>
+<link rel="stylesheet" href="/resources/css/reset.css" />
+<link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/placeList.js"></script>
 <script>
@@ -23,7 +25,14 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-	<div class="contentContainer">
+
+	<div id="header-wrap">
+		<jsp:include page="../templates/header.jsp" flush="true" />
+	</div>
+
+	<div class="sub-v"></div>
+
+	<div id="contents">
 		<div class="contentTit">
 			<h3>구장 리스트</h3>
 		</div>

@@ -8,7 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>구장 상세 보기 및 수정 페이지</title>
-</head>
+<link rel="stylesheet" href="/resources/css/reset.css" />
+<link rel="stylesheet" href="/resources/css/style.css" />
+
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/placeDetailEdit.js"></script>
 <!-- 다음 우편 주소 api-->
@@ -23,8 +25,16 @@
 		$("#p_bank").val('${pvo.p_bank}');
 	});
 </script>
+</head>
 <body>
-	<div class="contentContainer">
+
+	<div id="header-wrap">
+		<jsp:include page="../templates/header.jsp" flush="true" />
+	</div>
+
+	<div class="sub-v"></div>
+
+	<div id="contents">
 		<h3>${pvo.p_name}</h3>
 		<div class="contentTB">
 			<form id="p_placeModifyForm" action="/mypage/placeModify.do"

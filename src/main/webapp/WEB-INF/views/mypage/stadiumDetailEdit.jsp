@@ -7,9 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>경기장 상세보기 수정</title>
-</head>
+<link rel="stylesheet" href="/resources/css/reset.css" />
+<link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
+
 $(document).ready(function() {
 	$("#StadiumListBtn").click(function() {
 		location = "/mypage/placeChoice.do"
@@ -44,8 +46,16 @@ $(document).ready(function() {
     $("#s_status").val('${svo.s_status}');
 });
 </script>
+</head>
 <body>
-	<div class="contentContainer">
+
+<div id="header-wrap">
+	<jsp:include page="../templates/header.jsp" flush="true" />
+</div>
+
+<div class="sub-v"></div>
+
+	<div id="contents">
 	<h3>${s_no}</h3>
 		<div class="contentTB">
 			<form id="s_stadiumModifyForm" action="/mypage/stadiumModify.do" method="post" enctype="multipart/form-data">
@@ -106,13 +116,15 @@ $(document).ready(function() {
  							<div class="fileImage3"><img id="fileImage3" src=""></div>
 						</div>
 					</li>
-					<li>
+					<c:if test="${svo.s_status ne '0'}">
+						<li>
 						경기장 상태
-					<select name="s_status" id="s_status">
-						<option value="0">close</option>
-						<option value="1">open</option>
-					</select>
-					</li>
+							<select name="s_status" id="s_status">
+								<option value="-1">close</option>
+								<option value="1">open</option>
+							</select>
+						</li>
+					</c:if>
 				</ul>
 				<div>
 					<input type="submit" value="수정하기"> 
