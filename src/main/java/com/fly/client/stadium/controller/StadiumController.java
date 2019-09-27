@@ -3,6 +3,7 @@ package com.fly.client.stadium.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -45,7 +45,7 @@ public class StadiumController {
 	
 	// 구장 목록 구현하기
 	@RequestMapping(value = "/placeChoice.do", method = RequestMethod.GET)
-	public String placeChoice(Model model, HttpSession session) {
+	public String placeChoice_ClientChk(Model model, HttpSession session, HttpServletRequest request) {
 		System.out.println("placeChoice 호출 성공");
 
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
@@ -73,7 +73,7 @@ public class StadiumController {
 	// 구장 상세보기
 
 	@RequestMapping(value = "/stadiumDetail.do", method = RequestMethod.POST)
-	public ModelAndView stadiumDetail(@ModelAttribute StadiumVO svo) {
+	public ModelAndView stadiumDetail_ClientChk(@ModelAttribute StadiumVO svo, HttpServletRequest request) {
 		System.out.println("stadiumDetail 호출 성공");
 		System.out.println(svo.getS_no()+"zzzz");
 		ModelAndView mav = new ModelAndView();
@@ -107,7 +107,8 @@ public class StadiumController {
 
 	// 경기장 등록 페이지 출력하기
 	@RequestMapping(value = "/stadiumForm.do", method = RequestMethod.GET)
-	public String writeForm(@RequestParam("p_num") String p_num, Model model) {
+	public String writeForm_ClientChk(@RequestParam("p_num") String p_num, Model model
+			, HttpServletRequest request) {
 		System.out.println("stadiumForm 호출 성공");
 		System.out.println(p_num);
 		model.addAttribute("p_num", p_num);
@@ -116,7 +117,8 @@ public class StadiumController {
 	
 	// 경기장 등록
 	@RequestMapping(value = "/stadiumInsert.do", method = RequestMethod.POST)
-	public ModelAndView stadiumInsert(@ModelAttribute StadiumVO svo, @RequestParam("select")String select, MultipartHttpServletRequest request) throws IOException, Exception{
+	public ModelAndView stadiumInsert_ClientChk(@ModelAttribute StadiumVO svo, @RequestParam("select")String select, MultipartHttpServletRequest request
+			, HttpServletRequest request1) throws IOException, Exception{
 		System.out.println("stadiumInsert 호출 성공");
 		
 		ModelAndView mav = new ModelAndView();
@@ -156,7 +158,8 @@ public class StadiumController {
 	
 	//경기장 수정
 	@RequestMapping(value = "/stadiumModify.do", method = RequestMethod.POST)
-	public String stadiumModify(@ModelAttribute StadiumVO svo, Model model, MultipartHttpServletRequest session, MultipartHttpServletRequest request, RedirectAttributes redirectAttr) throws IOException {
+	public String stadiumModify_ClientChk(@ModelAttribute StadiumVO svo, Model model, MultipartHttpServletRequest session, MultipartHttpServletRequest request
+			, RedirectAttributes redirectAttr, HttpServletRequest request1) throws IOException {
 		System.out.println("stadiumModify 호출 성공");
 
 		int result = 0;

@@ -108,7 +108,7 @@
 				        </c:if>
 				        <c:if test="${empty memberList }">
 					        <tr class="list-hover">
-	                           <td class="empty" colspan="7">조회된 구장이 없습니다</td>
+	                           <td class="empty" colspan="7">조회된 회원이 없습니다</td>
 	                   		 </tr>
 				        </c:if>
 				    </table>

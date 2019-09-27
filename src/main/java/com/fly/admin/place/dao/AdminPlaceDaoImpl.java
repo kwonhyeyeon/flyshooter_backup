@@ -2,6 +2,7 @@ package com.fly.admin.place.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,8 +55,28 @@ public class AdminPlaceDaoImpl implements AdminPlaceDao {
 	}
 
 	@Override
-	public List<RentalVO> getRefundList() {
-		return sqlSession.selectList(NAME_SPACE + ".getClientRefund");
+	public List<Map<String, Object>> getRefundList(RentalVO rvo) {
+		return sqlSession.selectList(NAME_SPACE + ".getClientRefund", rvo);
+	}
+
+	@Override
+	public int clientRefundCnt(RentalVO rvo) {
+		return sqlSession.selectOne(NAME_SPACE + ".clientRefundCnt", rvo);
+	}
+
+	@Override
+	public HashMap<String, Object> refundDetail(int r_no) {
+		return sqlSession.selectOne(NAME_SPACE + ".refundDetail", r_no);
+	}
+
+	@Override
+	public void updateRefund(int r_no) {
+		sqlSession.update(NAME_SPACE + ".updateRefund", r_no);
+	}
+
+	@Override
+	public void getRefundDay(int r_no) {
+		sqlSession.update(NAME_SPACE + ".getRefundDay", r_no);
 	}
 
 }

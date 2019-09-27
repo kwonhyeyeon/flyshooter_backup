@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
 
 public class LoggingAdvice {
 
@@ -12,6 +13,7 @@ public class LoggingAdvice {
 			System.out.println("admin login chk");
 			HttpServletRequest request = null;
 			Model model = null;
+			ModelAndView mav = null;
 			
 			for(Object obj : pjp.getArgs()) {
 				if(obj instanceof HttpServletRequest) {
@@ -33,7 +35,13 @@ public class LoggingAdvice {
 					return "redirect:/admin/login.do";
 				}
 			}
+			
 			Object returnObj = pjp.proceed();
+			
+			if(returnObj instanceof ModelAndView ) {
+				 mav = (ModelAndView) returnObj;
+				 return mav;
+			}
 			
 			
 			return returnObj;

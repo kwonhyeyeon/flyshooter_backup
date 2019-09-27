@@ -2,6 +2,7 @@ package com.fly.admin.place.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fly.member.place.vo.PlaceVO;
 import com.fly.member.rental.vo.RentalVO;
@@ -30,6 +31,18 @@ public interface AdminPlaceDao {
 	public int getRentalCnt(String p_num);
 	
 	// 사업자가 요청한 환불 리스트 출력
-	public List<RentalVO> getRefundList();
+	public List<Map<String, Object>> getRefundList(RentalVO rvo);
+	
+	// 환불 리스트 사이즈
+	public int clientRefundCnt(RentalVO rvo);
+	
+	// 환불 상세 페이지
+	public HashMap<String, Object> refundDetail(int r_no);
+	
+	// 환불 상태 변경
+	public void updateRefund(int r_no);
+	
+	// 환불 지급일 출력
+	public void getRefundDay(int r_no);
 	
 }

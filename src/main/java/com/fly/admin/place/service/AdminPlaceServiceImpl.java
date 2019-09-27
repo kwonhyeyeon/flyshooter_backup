@@ -2,6 +2,7 @@ package com.fly.admin.place.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -54,8 +55,28 @@ public class AdminPlaceServiceImpl implements AdminPlaceService {
 	}
 
 	@Override
-	public List<RentalVO> getRefundList() {
-		return adminPlaceDao.getRefundList();
+	public List<Map<String, Object>> getRefundList(RentalVO rvo) {
+		return adminPlaceDao.getRefundList(rvo);
+	}
+
+	@Override
+	public int clientRefundCnt(RentalVO rvo) {
+		return adminPlaceDao.clientRefundCnt(rvo);
+	}
+
+	@Override
+	public HashMap<String, Object> refundDetail(int r_no) {
+		return adminPlaceDao.refundDetail(r_no);
+	}
+
+	@Override
+	public void updateRefund(int r_no) {
+		adminPlaceDao.updateRefund(r_no);
+	}
+
+	@Override
+	public void getRefundDay(int r_no) {
+		adminPlaceDao.getRefundDay(r_no);
 	}
 
 }

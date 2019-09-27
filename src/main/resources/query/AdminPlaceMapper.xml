@@ -106,17 +106,54 @@
 	</update>
 	
 	<!-- 사업자가 요청한 환불 리스트 -->
-	<select id="getClientRefund" resultMap="getClientRefund">
-		SELECT r.r_recall_time, r.r_total_pay, r.r_pay_status, r.m_id as mem, r.r_start,
-		to_char(r.r_regdate, 'yyyy/MM/dd') r_regdate, to_char(r.r_reserve_date, 'yyyy/MM/dd') r_reserve_date,
-		p.m_id as client, p.p_ceo, p.p_name, 
-		s.s_no, s.s_name, s.s_hours,
-		m.m_name, m.m_phone
-		FROM rental r, stadium s, place p, member m
+	<select id="getClientRefund" parameterType="rental" resultMap="getClientRefund">
+		SELECT to_char(r.r_recall_time, 'yyyy/MM/dd') r_recall_time, 
+		r.r_total_pay, r.r_pay_status, r.r_no,
+		to_char(r.refund_day, 'yyyy/MM/dd') refund_day,
+		p.m_id as client, p.p_ceo
+		FROM (SELECT ROWNUM RNUM , rn.* 
+			   FROM (SELECT * 
+			      	 FROM rental
+			      	 <where>
+			      	 	<if test='r_pay_status == -1'>
+			      	 		r_pay_status = -1
+			      	 	</if>
+			      	 	<if test='r_pay_status == 2'>
+			      	 		r_pay_status = 2
+			      	 	</if>
+			      	 	<if test='r_pay_status == 0'>
+			      	 		r_pay_status in (-1, 2)
+			      	 	</if>
+			      	 </where>
+			         order by r_recall_time desc) rn
+			         ) r, stadium s, place p, member m
 		WHERE r.s_no = s.s_no
 		and s.p_num = p.p_num
 		and r.m_id = m.m_id
-		and r_pay_status = 2
+		<if test="start_row != null and start_row != ''">
+	    	<if test="end_row != null and end_row != ''">
+	        	and RNUM BETWEEN #{start_row} and #{end_row}
+	        </if>   
+	    </if>
+	</select>
+	
+	<!-- 환불 상세페이지 -->
+	<select id="refundDetail" parameterType="int" resultMap="getClientRefund">
+		SELECT to_char(r.r_recall_time, 'yyyy/MM/dd') r_recall_time, r.r_total_pay, r.r_pay_status, r.m_id as mem, r.r_start,
+		to_char(r.r_regdate, 'yyyy/MM/dd') r_regdate, to_char(r.r_reserve_date, 'yyyy/MM/dd') r_reserve_date,
+		to_char(r.refund_day, 'yyyy/MM/dd') refund_day, r.r_no,
+		p.m_id as client, p.p_ceo, p.p_name, 
+		s.s_no, s.s_name, s.s_hours,
+		m.m_name, m.m_phone,
+		r.r_pay_type, r.r_bank, r.r_account, r.r_account_num
+		FROM (SELECT ROWNUM RNUM , rn.* 
+			   FROM (SELECT * 
+			      	 FROM rental) rn
+			         ) r, stadium s, place p, member m
+		WHERE r.s_no = s.s_no
+		and s.p_num = p.p_num
+		and r.m_id = m.m_id
+		and r.r_no = #{r_no}
 	</select>
 	<resultMap type="hashMap" id="getClientRefund">
         <result column="r_recall_time" property="recall_time"/>
@@ -134,6 +171,31 @@
         <result column="s_hours" property="hours"/>
         <result column="m_name" property="m_name"/>
         <result column="m_phone" property="m_phone"/>
+        <result column="refund_day" property="refund_day"/>
+        <result column="r_pay_type" property="pay_type"/>
+        <result column="r_bank" property="bank"/>
+        <result column="r_account" property="account"/>
+        <result column="r_account_num" property="account_num"/>
+        <result column="r_no" property="r_no"/>
     </resultMap>
+    
+    <select id="clientRefundCnt" parameterType="rental" resultType="int">
+    	select count(*)
+		from rental
+		where r_pay_status in(-1, 2)
+    </select>
+    
+    <!-- 환불 상태 변경 -->
+    <update id="updateRefund" parameterType="int">
+    	update rental
+		set r_pay_status = -1
+		where r_no = #{r_no}
+    </update>
+    <!-- 환불 상태 변경 시 지급일 가져옴 -->
+	<update id="getRefundDay" parameterType="int">
+		UPDATE rental
+		SET refund_day = sysdate
+		WHERE r_pay_status = -1 and r_no = #{r_no}
+	</update>
 	
 </mapper>

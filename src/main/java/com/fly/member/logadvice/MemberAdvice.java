@@ -9,6 +9,7 @@ import javax.servlet.jsp.PageContext;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
@@ -21,6 +22,7 @@ public class MemberAdvice {
 		System.out.println("login session chk");
 		HttpServletRequest request = null;
 		Model model = null;
+		ModelAndView mav = null;
 		
 		RedirectAttributes redirectAttr = null;
 		
@@ -54,6 +56,11 @@ public class MemberAdvice {
 		}
 		Object returnObj = pjp.proceed();
 		
+		if(returnObj instanceof ModelAndView ) {
+			 mav = (ModelAndView) returnObj;
+			 return mav;
+		}
+		
 		
 		return returnObj;
 	}
@@ -63,6 +70,7 @@ public class MemberAdvice {
 		System.out.println("user type chk");
 		HttpServletRequest request = null;
 		Model model = null;
+		ModelAndView mav = null;
 		
 		RedirectAttributes redirectAttr = null;
 		
@@ -106,6 +114,11 @@ public class MemberAdvice {
 		Object returnObj = pjp.proceed();
 		
 		
+		if(returnObj instanceof ModelAndView ) {
+			 mav = (ModelAndView) returnObj;
+			 return mav;
+		}
+		
 		return returnObj;
 	}
 	
@@ -115,6 +128,7 @@ public class MemberAdvice {
 			System.out.println("client type chk");
 			HttpServletRequest request = null;
 			Model model = null;
+			ModelAndView mav = null;
 			
 			RedirectAttributes redirectAttr = null;
 			
@@ -157,6 +171,10 @@ public class MemberAdvice {
 			}
 			Object returnObj = pjp.proceed();
 			
+			if(returnObj instanceof ModelAndView ) {
+				 mav = (ModelAndView) returnObj;
+				 return mav;
+			}
 			
 			return returnObj;
 		}
