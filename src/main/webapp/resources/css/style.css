@@ -467,3 +467,35 @@
 	color:#fff;
 }
 /* pagination */
+
+
+/* offlineRental start */
+.offlineRental {
+	clear:both;
+	width:1200px;
+	margin:235px auto 0;
+	padding-top:15px;
+	text-align:center;
+}
+
+.offlineCal {
+	width:600px;
+	height:auto;
+	margin-left: 300px;
+	margin-top: 100px;
+}
+
+.placeSelectBox {
+	width:300px;
+	float:left;
+}
+.stadiumSelectBox {
+	width:300px;
+	float:right;
+}
+.stadiumSelectBox p {
+	color: red;
+}
+
+
+/* offlineRental end */

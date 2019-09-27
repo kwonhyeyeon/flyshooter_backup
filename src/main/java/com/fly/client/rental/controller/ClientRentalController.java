@@ -1,10 +1,8 @@
 package com.fly.client.rental.controller;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +25,7 @@ import com.fly.member.rental.vo.RentalVO;
 import com.fly.member.stadium.vo.StadiumVO;
 import com.fly.paging.util.Paging;
 import com.fly.paging.util.Util;
+import com.fly.user.stadium.service.UserStadiumService;
 
 @Controller
 @RequestMapping(value = "/client/rental")
@@ -36,6 +35,8 @@ public class ClientRentalController {
 	private ClientRentalService clientRentalService;
 	@Resource(name = "itemsRentalService")
 	private ItemsRentalService ItemsRentalService;
+	@Resource(name = "userStadiumService")
+	private UserStadiumService userStadiumService;
 
 	// 구장 별 경기장 별 대관 예약 현황(첫 로드)
 	@RequestMapping(value = "/rentalList.do", method = RequestMethod.GET)
@@ -296,4 +297,72 @@ public class ClientRentalController {
 		return "/rental/detailRefund";
 	}
 
+	
+	// 오프라인 대관 등록
+	@RequestMapping(value = "/offlineRental.do", method = RequestMethod.GET)
+	public String offlineRental(Model model, HttpServletRequest request, HttpSession session) {
+		
+		/*
+		 * MemberVO mvo = (MemberVO) session.getAttribute("mvo"); String m_id =
+		 * mvo.getM_id();
+		 */
+		List<PlaceVO> placeList = clientRentalService.getPlaceList("esub17@naver.com");
+		
+		model.addAttribute("placeList", placeList);
+		try {
+			List<StadiumVO> stadiumList = userStadiumService.selectStadiumList(placeList.get(0).getP_num());
+			model.addAttribute("stadiumList", stadiumList);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+			return "/rental/offlineRegister";
+		}
+	
+	
+	// 오프라인 대관시 경기장 SelectBox설정
+	@RequestMapping(value = "/getStadium.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+	@ResponseBody
+	public String getStadiumInfo(@RequestParam(value = "p_num") String p_num) {
+		
+		
+		// 회원ID수정할것.
+		/*
+		 * MemberVO mvo = (MemberVO) session.getAttribute("mvo"); String m_id =
+		 * mvo.getM_id();
+		 */
+		StringBuffer result = new StringBuffer();
+		
+		List<StadiumVO> stadiumList = userStadiumService.selectStadiumList(p_num);
+		if(stadiumList.isEmpty()) {
+			result.append("Empty");
+			return result.toString();
+		}
+		
+		result.append("<option value=''>경기장선택</option>");
+		for( StadiumVO svo : stadiumList ) {
+			result.append("<option value='");
+			result.append(svo.getS_no());
+			result.append("'>");
+			result.append(svo.getS_name());
+			result.append("</option>");
+			
+		}
+		
+		
+			return result.toString();
+		}
+	
+	
+		// 오프라인 대관시 경기장 SelectBox설정
+		@RequestMapping(value = "/searchTime.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+		@ResponseBody
+		public String getPosibleTimeList(@ModelAttribute StadiumVO svo,
+				   @RequestParam(value = "selectDay") String selectDay) {
+			
+			StringBuffer result = new StringBuffer();
+			
+			
+			
+				return result.toString();
+			}
 }

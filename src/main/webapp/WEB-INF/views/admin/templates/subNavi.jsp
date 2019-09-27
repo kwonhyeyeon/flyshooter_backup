@@ -14,7 +14,6 @@
 <a class="depth1">정보 관리</a>
 <a href="/admin/info/access.do" class="sub">이용약관</a>
 <a href="/" class="sub">개인정보 취급방침</a>
-<a href="/" class="sub">환불 규정</a>
 
 <a class="depth1">통계</a>
 <a href="/" class="sub">구장 등록 현황</a>
