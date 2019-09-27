@@ -17,16 +17,7 @@
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- datepicker -->
 <script type="text/javascript" src="/resources/js/rentalList.js"></script>
-<script>
-	$(function() {
-		$("#gnb").hover(function() {
-			$(".menu-wrap").slideDown(500);
-		});
-		$(".menu-wrap").mouseleave(function() {
-			$(".menu-wrap").slideUp(500);
-		});
-	})
-</script>
+<script type="text/javascript" src="/resources/js/common.js"></script>
 </head>
 <body>
 	<div id="wrapper">

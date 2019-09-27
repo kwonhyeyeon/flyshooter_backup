@@ -17,19 +17,8 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="/resources/js/offlineRegister.js"></script>
+<script type="text/javascript" src="/resources/js/common.js"></script>
 <!-- datepicker -->
-<script>
-
-	$(function() {
-		$("#gnb").hover(function() {
-			$(".menu-wrap").slideDown(500);
-		});
-		$(".menu-wrap").mouseleave(function() {
-			$(".menu-wrap").slideUp(500);
-		});
-	})
-	
-</script>
 </head>
 <body>
 	<div id="wrapper">
