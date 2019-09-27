@@ -43,16 +43,16 @@ public class ClientRentalController {
 
 	// 구장 별 경기장 별 대관 예약 현황(첫 로드)
 	@RequestMapping(value = "/rentalList.do", method = RequestMethod.GET)
-	public String rentalListByStadiumByPlace(Model model, HttpServletRequest request, HttpSession session) {
+	public String rentalListByStadiumByPlace_ClientChk(Model model, HttpServletRequest request, HttpSession session) {
 		/*
 		 * Session에서 회원 ID를 뺴와서 사용해야함 수정하시오.
 		 */
-		/*
-		 * MemberVO mvo = (MemberVO) session.getAttribute("mvo"); String m_id =
-		 * mvo.getM_id();
-		 */
+		
+		 MemberVO mvo = (MemberVO) session.getAttribute("mvo"); 
+		 String m_id = mvo.getM_id();
+		 
 
-		model.addAttribute("placeList", clientRentalService.getPlaceList("esub17@naver.com"));
+		model.addAttribute("placeList", clientRentalService.getPlaceList(m_id));
 
 		return "/rental/rentalList";
 	}
@@ -222,7 +222,7 @@ public class ClientRentalController {
 
 	// 환불 현황 리스트
 	@RequestMapping(value = "/refundList.do", method = RequestMethod.GET)
-	public String getRefundList(@ModelAttribute RentalVO rvo, @ModelAttribute MemberVO mvo, @ModelAttribute PlaceVO pvo,
+	public String getRefundList_ClientChk(@ModelAttribute RentalVO rvo, @ModelAttribute MemberVO mvo, @ModelAttribute PlaceVO pvo,
 			Model model) {
 
 		System.out.println("getRefundList 호출 성공");
@@ -301,13 +301,12 @@ public class ClientRentalController {
 
 	// 오프라인 대관 등록
 	@RequestMapping(value = "/offlineRental.do", method = RequestMethod.GET)
-	public String offlineRental(Model model, HttpServletRequest request, HttpSession session) {
+	public String offlineRental_ClientChk(Model model, HttpServletRequest request, HttpSession session) {
 
-		/*
-		 * MemberVO mvo = (MemberVO) session.getAttribute("mvo"); String m_id =
-		 * mvo.getM_id();
-		 */
-		List<PlaceVO> placeList = clientRentalService.getPlaceList("esub17@naver.com");
+		 MemberVO mvo = (MemberVO) session.getAttribute("mvo"); 
+		 String m_id = mvo.getM_id();
+		 
+		List<PlaceVO> placeList = clientRentalService.getPlaceList(m_id);
 
 		model.addAttribute("placeList", placeList);
 		try {
@@ -389,15 +388,12 @@ public class ClientRentalController {
 	// 오프라인 대관시 경기장 SelectBox설정
 	@RequestMapping(value = "/offlineInsert.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
 	@ResponseBody
-	public String offlineRentalInsert(@ModelAttribute RentalVO rvo) {
+	public String offlineRentalInsert(@ModelAttribute RentalVO rvo, HttpSession session) {
 		int result = 0;
-		// 회원ID수정할것.
-		/*
-		 * MemberVO mvo = (MemberVO) session.getAttribute("mvo"); String m_id =
-		 * mvo.getM_id();
-		 */
+		 MemberVO mvo = (MemberVO) session.getAttribute("mvo"); 
+		 String m_id = mvo.getM_id();
 
-		rvo.setM_id("esub17@naver.com");
+		rvo.setM_id(m_id);
 		
 		try {
 			result = clientRentalService.offlineRentalInsert(rvo);

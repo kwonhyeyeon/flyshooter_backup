@@ -35,7 +35,7 @@
 	}
 	
 	function goBack(){
-		window.history.back();
+		location.href = "/user/rental/myRentalList.do";
 	}
 </script>
 </head>

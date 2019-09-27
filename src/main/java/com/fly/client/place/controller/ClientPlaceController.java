@@ -112,10 +112,14 @@ public class ClientPlaceController {
 
 		mav.addObject("sample6_postcode", address[0]);
 		mav.addObject("sample6_address", address[1]);
+		try {
 		mav.addObject("sample6_detailAddress", address[2]);
 		mav.addObject("sample6_extraAddress", address[3]);
+		}catch(Exception e) {
+			mav.addObject("sample6_detailAddress", "");
+			mav.addObject("sample6_extraAddress", "");
+		}
 		mav.addObject("pvo", pvo);
-
 		mav.setViewName("mypage/placeDetailEdit");
 
 		return mav;
