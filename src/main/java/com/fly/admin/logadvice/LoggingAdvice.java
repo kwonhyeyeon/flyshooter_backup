@@ -20,8 +20,6 @@ public class LoggingAdvice {
 					request = (HttpServletRequest) obj;
 				}else if(obj instanceof Model) {
 					model = (Model) obj;
-				}else if(obj instanceof ModelAndView) {
-					mav = (ModelAndView) obj;
 				}
 			}
 			
@@ -37,7 +35,13 @@ public class LoggingAdvice {
 					return "redirect:/admin/login.do";
 				}
 			}
+			
 			Object returnObj = pjp.proceed();
+			
+			if(returnObj instanceof ModelAndView ) {
+				 mav = (ModelAndView) returnObj;
+				 return mav;
+			}
 			
 			
 			return returnObj;

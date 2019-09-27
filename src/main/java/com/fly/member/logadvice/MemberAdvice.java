@@ -33,8 +33,6 @@ public class MemberAdvice {
 				request = (HttpServletRequest) obj;
 			}else if(obj instanceof Model) {
 				model = (Model) obj;
-			}else if(obj instanceof ModelAndView) {
-				mav = (ModelAndView) obj;
 			}
 		}
 		
@@ -58,6 +56,11 @@ public class MemberAdvice {
 		}
 		Object returnObj = pjp.proceed();
 		
+		if(returnObj instanceof ModelAndView ) {
+			 mav = (ModelAndView) returnObj;
+			 return mav;
+		}
+		
 		
 		return returnObj;
 	}
@@ -78,8 +81,6 @@ public class MemberAdvice {
 				request = (HttpServletRequest) obj;
 			}else if(obj instanceof Model) {
 				model = (Model) obj;
-			}else if(obj instanceof ModelAndView) {
-				mav = (ModelAndView) obj;
 			}
 		}
 		
@@ -113,6 +114,11 @@ public class MemberAdvice {
 		Object returnObj = pjp.proceed();
 		
 		
+		if(returnObj instanceof ModelAndView ) {
+			 mav = (ModelAndView) returnObj;
+			 return mav;
+		}
+		
 		return returnObj;
 	}
 	
@@ -133,8 +139,6 @@ public class MemberAdvice {
 					request = (HttpServletRequest) obj;
 				}else if(obj instanceof Model) {
 					model = (Model) obj;
-				}else if(obj instanceof ModelAndView) {
-					mav = (ModelAndView) obj;
 				}
 			}
 			
@@ -167,6 +171,10 @@ public class MemberAdvice {
 			}
 			Object returnObj = pjp.proceed();
 			
+			if(returnObj instanceof ModelAndView ) {
+				 mav = (ModelAndView) returnObj;
+				 return mav;
+			}
 			
 			return returnObj;
 		}
