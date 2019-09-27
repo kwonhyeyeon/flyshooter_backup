@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.fly.admin.status.dao.AdminPlaceStatusDao">
+
+	<select id="selectPlace" resultType="adminstatus" parameterType="adminstatus">
+		select count(p_ok) as count, to_char(p_ok_date, 'yyyy/MM') as p_ok_date from place 
+		where p_ok_date <![CDATA[ <= ]]> sysdate
+		group by to_char(p_ok_date, 'yyyy/MM')
+		order by p_ok_date asc
+	</select>
+
+</mapper>
