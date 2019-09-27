@@ -99,16 +99,3 @@ function check(re, what, message) {
 	what.focus();
 	// return false;
 }
-// 아이디에 비밀번호 포함 여부 확인
-function idPwdCheck() {
-	var m_id = $("#m_id").val();
-	var m_pw = $("#m_pw").val();
-	if (m_pw.indexOf(m_id) > -1) {
-		alert("비밀번호에 아이디를 포함할 수 없습니다.");
-		$("#m_pw").val("");
-		$("#m_pw").focus();
-		return false;
-	} else {
-		return true;
-	}
-}

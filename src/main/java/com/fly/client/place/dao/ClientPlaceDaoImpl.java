@@ -25,8 +25,8 @@ public class ClientPlaceDaoImpl implements ClientPlaceDao {
 
 	// 구장리스트 목록 출력
 	@Override
-	public List<PlaceVO> placeList() {
-		return sqlSession.selectList(NAME_SPACE + ".placeList");
+	public List<PlaceVO> placeList(PlaceVO pvo) {
+		return sqlSession.selectList(NAME_SPACE + ".placeList", pvo);
 	}
 
 	// 구장 등록

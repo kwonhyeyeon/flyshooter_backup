@@ -30,10 +30,16 @@ public class ClientPlaceController {
 	// 구장 목록 구현하기
 	@RequestMapping(value = "/placeList.do", method = RequestMethod.GET)
 	public String placeList_ClientChk(Model model,HttpServletRequest request,
-			@RequestParam(value = "errCode", required = false, defaultValue = "0") String errCode) {
+			@RequestParam(value = "errCode", required = false, defaultValue = "0") String errCode, 
+			HttpSession session, @ModelAttribute PlaceVO pvo) {
 		System.out.println("placeList 호출 성공");
-
-		List<PlaceVO> placeList = clientPlaceService.placeList();
+		
+		// session에서 가져오기
+		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
+		String m_id = sessionMvo.getM_id();
+		pvo.setM_id(m_id);
+		
+		List<PlaceVO> placeList = clientPlaceService.placeList(pvo);
 		model.addAttribute("placeList", placeList);
 		model.addAttribute("data");
 		model.addAttribute("errCode", errCode);
@@ -104,25 +110,11 @@ public class ClientPlaceController {
 		String word = pvo.getP_address();
 		String[] address = word.split("\\*");
 
-		mav.addObject("p_name", pvo.getP_name());
-		mav.addObject("p_ceo", pvo.getP_ceo());
-		mav.addObject("p_num", pvo.getP_num());
-		mav.addObject("p_phone", pvo.getP_phone());
 		mav.addObject("sample6_postcode", address[0]);
 		mav.addObject("sample6_address", address[1]);
 		mav.addObject("sample6_detailAddress", address[2]);
 		mav.addObject("sample6_extraAddress", address[3]);
-		mav.addObject("p_bank", pvo.getP_bank());
-		mav.addObject("p_account", pvo.getP_account());
-		mav.addObject("p_account_num", pvo.getP_account_num());
-		mav.addObject("p_holiday", pvo.getP_holiday());
-		mav.addObject("p_holiday_start", pvo.getP_holiday_start());
-		mav.addObject("p_holiday_end", pvo.getP_holiday_end());
-		mav.addObject("p_open", pvo.getP_open());
-		mav.addObject("p_close", pvo.getP_close());
-		mav.addObject("p_status", pvo.getP_status());
-		mav.addObject("p_file", pvo.getP_file());
-		mav.addObject("p_intro", pvo.getP_intro());
+		mav.addObject("pvo", pvo);
 
 		mav.setViewName("mypage/placeDetailEdit");
 
