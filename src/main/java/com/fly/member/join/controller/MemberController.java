@@ -187,7 +187,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/mypage/modify.do", method = RequestMethod.POST)
 	public ModelAndView MemberModify_LoginChk(@ModelAttribute("MemberVO") MemberVO mvo
-			, HttpSession session,HttpServletRequest request) throws Exception {
+			,HttpSession session, HttpServletRequest request) throws Exception {
 		System.out.println("modify.do POST 방식에 의한 메서드 호출 성공");
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
 		String m_id = sessionMvo.getM_id();

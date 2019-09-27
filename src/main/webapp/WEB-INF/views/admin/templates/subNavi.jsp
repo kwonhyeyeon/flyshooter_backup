@@ -16,5 +16,5 @@
 <a href="/" class="sub">개인정보 취급방침</a>
 
 <a class="depth1">통계</a>
-<a href="/" class="sub">구장 등록 현황</a>
-<a href="/" class="sub">월별 예약 현황</a>
+<a href="/admin/placestatus/placeStatus.do" class="sub">구장 등록 현황</a>
+<a href="/admin/rentalstatus/rentalStatus.do" class="sub">월별 예약 현황</a>

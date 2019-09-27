@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fly.admin.rentalstatus.dao.AdminRentalStatusDao">
+
+	<select id="selectRental" resultType="adminrental" parameterType="adminrental">
+		select count(r_no) as count, to_char(r_regdate, 'yyyy/MM') as r_regdate from rental 
+		where r_regdate <![CDATA[<=]]> sysdate
+		group by to_char(r_regdate, 'yyyy/MM')
+		order by r_regdate asc
+	</select>
+	
+</mapper>

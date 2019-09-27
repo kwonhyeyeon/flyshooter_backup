@@ -13,15 +13,14 @@ public class LoggingAdvice {
 			System.out.println("admin login chk");
 			HttpServletRequest request = null;
 			Model model = null;
-			ModelAndView mav = null;
+			ModelAndView mav = new ModelAndView();
+			String log_message = "";
 			
 			for(Object obj : pjp.getArgs()) {
 				if(obj instanceof HttpServletRequest) {
 					request = (HttpServletRequest) obj;
 				}else if(obj instanceof Model) {
 					model = (Model) obj;
-				}else if(obj instanceof ModelAndView) {
-					mav = (ModelAndView) obj;
 				}
 			}
 			
@@ -33,10 +32,18 @@ public class LoggingAdvice {
 				try {
 					adminId.length();
 				}catch(NullPointerException e) {
-					System.out.println("로그인이 안되어 있습니다. 로그인후 이용하시오");
+					log_message = "로그인후 이용할수 있습니다.";
+					request.setAttribute("log_message", log_message);
+					
+					if( pjp.getSignature().toString().contains("ModelAndView") ) {
+						mav.setViewName("admin/login.do");
+						return mav;
+					}
 					return "redirect:/admin/login.do";
+					
 				}
 			}
+			
 			Object returnObj = pjp.proceed();
 			
 			
