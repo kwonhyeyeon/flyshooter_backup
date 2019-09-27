@@ -324,11 +324,6 @@ public class ClientRentalController {
 	@ResponseBody
 	public String getStadiumInfo(@RequestParam(value = "p_num") String p_num) {
 
-		// 회원ID수정할것.
-		/*
-		 * MemberVO mvo = (MemberVO) session.getAttribute("mvo"); String m_id =
-		 * mvo.getM_id();
-		 */
 		StringBuffer result = new StringBuffer();
 
 		List<StadiumVO> stadiumList = userStadiumService.selectStadiumList(p_num);
