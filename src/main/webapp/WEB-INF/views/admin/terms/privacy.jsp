@@ -39,10 +39,10 @@
             		<h2 class="con-subject">개인정보 취급방침</h2>
             		
             		<form id="innerForm" style="display:none;">
-            			<input type="hidden" name="ctype" id="ctype" value="${ctype}" />
-            			<input type="hidden" name="content" id="content" value="${content}" />
+            			<input type="hidden" name="ctype" id="ctype" value="${tvo.ctype}" />
+            			<input type="hidden" name="content" id="content" />
             		</form>
-            		<textarea id="tinymce">${content}</textarea>
+            		<textarea id="tinymce">${tvo.content}</textarea>
             		
             		<div class="button-area">
             			<button class="save" id="saveTerms">저장</button>

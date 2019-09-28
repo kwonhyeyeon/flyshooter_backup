@@ -20,5 +20,10 @@
 		FROM terms
 		WHERE ctype = #{ctype}
 	</select>
+	
+	<select id="listTerms" resultMap="getContent">
+		SELECT *
+		FROM terms
+	</select>
 
 </mapper>

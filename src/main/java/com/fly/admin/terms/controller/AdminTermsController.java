@@ -27,27 +27,24 @@ public class AdminTermsController {
 	@RequestMapping(value = "/terms.do", method = {RequestMethod.POST, RequestMethod.GET})
 	public String termsFormChk(
 			Model model,
-			@RequestParam(value="ctype", defaultValue="1") int ctype,
 			HttpServletRequest request,
 			@ModelAttribute TermsVO tvo
 			) {
 		System.out.println("terms 호출 성공");
 		
+		int ctype = tvo.getCtype();
+		
 		if(ctype == 1) {
-			List<TermsVO> termsList = adminTermsService.getTerms(ctype);
-			model.addAttribute("tvo", termsList);
-			model.addAttribute("ctype", ctype);
-			model.addAttribute("content", termsList.get(0).getContent());
-			model.addAttribute("regdate", termsList.get(0).getRegdate());
+			tvo = adminTermsService.getTerms(ctype);
+			model.addAttribute("tvo", tvo);
+			model.addAttribute("ctype", 1);
 			System.out.println(ctype);
 			
 			return "/admin/terms/access";
 		} else {
-			List<TermsVO> termsList = adminTermsService.getTerms(ctype);
-			model.addAttribute("tvo", termsList);
-			model.addAttribute("ctype", ctype);
-			model.addAttribute("content", termsList.get(0).getContent());
-			model.addAttribute("regdate", termsList.get(0).getRegdate());
+			tvo = adminTermsService.getTerms(ctype);
+			model.addAttribute("tvo", tvo);
+			model.addAttribute("ctype", 2);
 			System.out.println(ctype);
 			
 			return "/admin/terms/privacy";
@@ -66,7 +63,6 @@ public class AdminTermsController {
 		
 		adminTermsService.updateTerms(tvo);
 		redirectAttr.addAttribute("ctype", tvo.getCtype());
-		redirectAttr.addAttribute("content", tvo.getContent());
 		
 		return "redirect:/admin/terms/terms.do";
 	}

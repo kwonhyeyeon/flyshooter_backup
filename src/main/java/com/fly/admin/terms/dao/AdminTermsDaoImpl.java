@@ -22,8 +22,13 @@ public class AdminTermsDaoImpl implements AdminTermsDao {
 	}
 
 	@Override
-	public List<TermsVO> getTerms(int ctype) {
-		return sqlSession.selectList(NAME_SPACE + ".getTerms", ctype);
+	public TermsVO getTerms(int ctype) {
+		return (TermsVO)sqlSession.selectOne(NAME_SPACE + ".getTerms", ctype);
+	}
+
+	@Override
+	public List<TermsVO> listTerms() {
+		return sqlSession.selectList(NAME_SPACE + ".listTerms");
 	}
 	
 }

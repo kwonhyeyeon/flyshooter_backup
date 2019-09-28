@@ -38,15 +38,16 @@
             	
             		<h2 class="con-subject">이용 약관</h2>
             		
-            		<form id="innerForm" style="display:none;">
-            			<input type="hidden" name="ctype" id="ctype" value="${ctype}" />
-            			<input type="hidden" name="content" id="content" value="${content}" />
-            		</form>
-            		<textarea id="tinymce">${content}</textarea>
+            		<form method="post" id="innerForm">
+            			<input type="hidden" name="ctype" id="ctype" value="${tvo.ctype}" />
+            			<input type="hidden" name="content" id="content" />
             		
-            		<div class="button-area">
-            			<button class="save" id="saveTerms">저장</button>
-            		</div>
+	            		<textarea id="tinymce">${tvo.content}</textarea>
+	            		
+	            		<div class="button-area">
+	            			<button class="save" id="saveTerms" disabled>저장</button>
+	            		</div>
+            		</form>
 				    
             	</article><!-- contents -->
             </div><!-- container -->

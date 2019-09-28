@@ -1,4 +1,4 @@
-﻿package com.fly.common.util;
+package com.fly.common.util;
 
 // Copyright (c) 2006 Damien Miller <djm@mindrot.org>
 //

@@ -12,11 +12,8 @@
 <a href="/admin/support/supportList.do" class="sub">용병 지원</a>
 
 <a class="depth1">정보 관리</a>
-<form name="termsForm" id="termsForm">
-	<input type="hidden" name="ctype" id="getCtype" />
-</form>
-<a href="/admin/terms/terms.do?ctype=1" class="sub" id="terms1" data-type="1">이용약관</a>
-<a href="/admin/terms/terms.do?ctype=2" class="sub" id="terms2" data-type="2">개인정보 취급방침</a>
+<a href="/admin/terms/terms.do?ctype=1" class="sub">이용약관</a>
+<a href="/admin/terms/terms.do?ctype=2" class="sub">개인정보 취급방침</a>
 
 <a class="depth1">통계</a>
 <a href="/admin/placestatus/placeStatus.do" class="sub">구장 등록 현황</a>

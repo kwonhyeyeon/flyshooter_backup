@@ -496,6 +496,35 @@
 .stadiumSelectBox p {
 	color: red;
 }
-
-
 /* offlineRental end */
+
+/* account */
+#wrapper.account {
+	background:#ebebeb;
+}
+#account-header {
+	width:520px;
+	margin:0 auto;
+	text-align:center;
+}
+#account-header h1 {
+	font-size:40px;
+	padding:80px 0;
+}
+#account-contents {
+	width:520px;
+	margin:0 auto;
+}
+.embed {
+	margin:20px 0;
+	background:#fff;
+	height:200px;
+	border:1px solid #dedede;
+	overflow-y:scroll;
+	padding:10px;
+}
+.term_check input,
+.term_check label {
+	display:inline-block;
+}
+/* account */

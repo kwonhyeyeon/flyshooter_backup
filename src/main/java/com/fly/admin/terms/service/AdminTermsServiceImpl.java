@@ -22,8 +22,13 @@ public class AdminTermsServiceImpl implements AdminTermsService {
 	}
 
 	@Override
-	public List<TermsVO> getTerms(int ctype) {
+	public TermsVO getTerms(int ctype) {
 		return adminTermsDao.getTerms(ctype);
+	}
+
+	@Override
+	public List<TermsVO> listTerms() {
+		return adminTermsDao.listTerms();
 	}
 	
 }

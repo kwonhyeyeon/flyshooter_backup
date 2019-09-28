@@ -1,7 +1,6 @@
 /**
  * tiny Setting js
  */
-
 $(document).ready(function() {
 
 	// tinymce editor init setting
@@ -13,7 +12,10 @@ $(document).ready(function() {
 		height: 700,
 		language: 'ko_KR',
 		statusbar: false,
+		auto_focus: 'element1',
+		autosave_ask_before_unload: true, // 현재 창을 닫을 때 저장하지 않은 변경 사항이 있음을 알림
 		autosave_interval: "30s",
+		autosave_restore_when_empty: true, // 비어있을 때 로컬에 있는 값 자동으로 불러옴
 		content_style: '.left { text-align: left; }' +
 					   'img.left { float: left; }' +
 					   'table.left { float: left; }' +
@@ -44,26 +46,24 @@ $(document).ready(function() {
 			customformat: { inline: 'span', styles: { color: '#00ff00', fontSize: '20px' }}
 		},
 		setup: function(editor) {
-            editor.on("change", function() {
-                editor.save();
-            });
-        }
-	});
-	
-	// 저장 버튼 클릭 시
-	$("#saveTerms").click(function() {
-		
-		var content = tinymce.get("tinymce").getContent();
-		//var content = $("#tinymce").val();
-		$("#content").val(content);
-		
-		$("#innerForm").attr({
-			"method" : "post",
-			"action" : "/admin/terms/access.do"
-		});
-		
-		$("#innerForm").submit();
-		
+			editor.on("change", function() {
+				$("#saveTerms").removeAttr("disabled");
+			});
+			
+			$("#saveTerms").click(function() {
+				
+				//var content = tinymce.get("tinymce").getContent();
+				var content = tinymce.activeEditor.getContent({format: 'document'});
+				$("#content").val(content);
+				
+				$("#innerForm").attr({
+					"method" : "post",
+					"action" : "/admin/terms/access.do"
+				});
+				
+				$("#innerForm").submit();
+			});
+		}
 	});
 	
 });

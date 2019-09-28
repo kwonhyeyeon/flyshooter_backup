@@ -1131,6 +1131,9 @@ h2.order-header {
   outline:none;
 }
 
-#content {
-	display:none;
+#content > html {
+	display:none !important;
+	line-height:0;
+	height:0;
+	outline:none;
 }

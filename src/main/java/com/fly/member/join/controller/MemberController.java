@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -274,7 +275,7 @@ public class MemberController {
 		
 	}
 	
-	@RequestMapping("/terms.do")
+	@RequestMapping(value = "/terms.do")
 	public String terms(
 			HttpServletRequest request,
 			@ModelAttribute TermsVO tvo,
@@ -282,17 +283,12 @@ public class MemberController {
 			) {
 		System.out.println("terms 호출 성공");
 		
-		int ctype = tvo.getCtype();
-		
-		List<TermsVO> termsList = adminTermsService.getTerms(ctype);
-		model.addAttribute("tvo", termsList);
-		model.addAttribute("ctype", ctype);
-		model.addAttribute("content", termsList.get(0).getContent());
-		model.addAttribute("regdate", termsList.get(0).getRegdate());
-		System.out.println(termsList);
-		System.out.println(ctype);
+		List<TermsVO> data = adminTermsService.listTerms();
+		model.addAttribute("data", data);
+		System.out.println(data);
 		
 		return "/member/terms";
-	}
+
+	}	
 	
 }

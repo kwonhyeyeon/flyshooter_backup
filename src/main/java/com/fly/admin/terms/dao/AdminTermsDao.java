@@ -10,6 +10,9 @@ public interface AdminTermsDao {
 	public void updateTerms(TermsVO tvo);
 	
 	// 내용 출력
-	public List<TermsVO> getTerms(int ctype);
+	public TermsVO getTerms(int ctype);
+	
+	// 회원 가입 전 내용 출력
+	public List<TermsVO> listTerms();
 	
 }
