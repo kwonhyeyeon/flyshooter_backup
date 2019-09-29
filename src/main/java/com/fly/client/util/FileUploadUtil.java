@@ -32,12 +32,14 @@ public class FileUploadUtil {
 
 		// 파일명 변경(중복되지 않게)
 		if (org_name != null && (!org_name.equals(""))) {
+			
+			// image3_1569678061829_yanie-yang-nxjnmlh2.jpg
 			real_name = fileName + "_" + System.currentTimeMillis() + "_" + org_name;
 			// 저장할 파일 이름
-
+			
 			String docRoot = request.getSession().getServletContext().getRealPath("/uploadStorage/" + fileName);
 			makeDir(docRoot);
-
+			System.out.println("docRoot : " + docRoot);
 			File fileAdd = new File(docRoot + "/" + real_name); // 파일 생성 후
 			log.info("업로드할 파일(fileAdd) : " + fileAdd);
 			file.transferTo(fileAdd);

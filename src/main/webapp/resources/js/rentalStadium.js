@@ -98,6 +98,7 @@ $(document).ready(function(){
 					var p_close = $("#p_close").val();
 					var param = stadiumInfoSplit();
 					
+					
 					if(!(selectDay)){
 						if(param[0] != '경기장선택'){
 							$("#stadiumSelectBox").val("경기장선택");
@@ -132,6 +133,28 @@ $(document).ready(function(){
 						
 					});
 					
+					// 경기장 이미지 비동기 처리
+					$.ajax({
+						type:"post",
+						url:"/user/rental/stadiumImg.do",
+						data:{
+							s_no : param[0]
+						},
+						error: function() {
+							 alert("경기장 이미지를 불러오는데 실패하였습니다.");
+						},
+						success:function(result){
+							
+							if( result == "Empty"){
+								return;
+							}
+							
+							$(".slider").html("");
+							$(".slider").html(result);
+							
+						}
+						
+					});
 					
 				});
 				

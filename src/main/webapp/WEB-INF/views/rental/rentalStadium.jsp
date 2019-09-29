@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet"  href="/resources/css/reset.css" />
 <link rel="stylesheet"  href="/resources/css/style.css" />
+
 <!-- datepicker를 사용하기 위한 css, js -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
@@ -16,6 +17,8 @@
 <script type="text/javascript" src="/resources/js/rentalStadium.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtzXWTJTZ4tnfXjE2yVo3YjQndGozENJQ&callback=initMap"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
+
+
 </head>
 <body>
 	<div id="wrapper">
@@ -31,9 +34,14 @@
 			<div class="stadiumInfo">
 				
 				<div>
-					<!-- 사이트 로고이미지 출력 -->
-					<article id="stadiumImg">
-							<img src="/resources/img/default_img.jpg" />
+					<article class="stadiumImg">
+						<ul class="slider">
+						    <li>
+						        <input type="radio" id="slide1" name="slide" checked>
+						        <label for="slide1"></label>
+						        <img src="/resources/img/default_img.jpg" alt="Panel 1">
+						    </li>
+						</ul>
 					</article>
 					<br />
 					<br />

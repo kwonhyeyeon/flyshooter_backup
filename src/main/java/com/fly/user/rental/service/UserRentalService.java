@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fly.member.rental.vo.RentalVO;
+import com.fly.member.stadium.vo.StadiumVO;
 import com.fly.rental.detail.vo.RentalDetailVO;
 @Transactional
 public interface UserRentalService {
@@ -32,4 +33,7 @@ public interface UserRentalService {
 	
 	// rentalUpdate (환불처리)
 	public int rentalUpdate(RentalVO rvo);
+	
+	// 경기장 이미지 select
+	public StadiumVO selectStadiumImg(int s_no);
 }

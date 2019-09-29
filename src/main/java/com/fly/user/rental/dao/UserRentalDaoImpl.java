@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fly.member.rental.vo.RentalVO;
+import com.fly.member.stadium.vo.StadiumVO;
 import com.fly.rental.detail.vo.RentalDetailVO;
 @Repository("userRentalDao")
 public class UserRentalDaoImpl implements UserRentalDao {
@@ -66,6 +67,12 @@ public class UserRentalDaoImpl implements UserRentalDao {
 	public int rentalUpdate(RentalVO rvo) {
 		// TODO Auto-generated method stub
 		return sqlSession.update(NAME_SPACE + ".rentalUpdate", rvo);
+	}
+
+	@Override
+	public StadiumVO selectStadiumImg(int s_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAME_SPACE + ".selectImg", s_no);
 	}
 
 

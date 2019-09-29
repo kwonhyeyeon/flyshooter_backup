@@ -134,5 +134,12 @@
 		WHERE r_no = #{r_no}	
 	</update>
 	
+	<select id="selectImg" parameterType="int" resultType="stadium">
+	
+		SELECT s_img1, s_img2, s_img3
+		FROM stadium
+		WHERE s_no = #{s_no}
+		
+	</select>
 	
 </mapper>

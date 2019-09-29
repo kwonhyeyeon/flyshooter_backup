@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fly.member.itemsrental.dao.ItemsRentalDao;
 import com.fly.member.itemsrental.vo.ItemsRentalVO;
 import com.fly.member.rental.vo.RentalVO;
+import com.fly.member.stadium.vo.StadiumVO;
 import com.fly.rental.detail.vo.RentalDetailVO;
 import com.fly.user.rental.dao.UserRentalDao;
 @Transactional
@@ -113,6 +114,12 @@ public class UserRentalServiceImpl implements UserRentalService {
 	public int rentalUpdate(RentalVO rvo) {
 		// TODO Auto-generated method stub
 		return userRentalDao.rentalUpdate(rvo);
+	}
+
+	@Override
+	public StadiumVO selectStadiumImg(int s_no) {
+		// TODO Auto-generated method stub
+		return userRentalDao.selectStadiumImg(s_no);
 	}
 
 }

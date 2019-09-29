@@ -116,6 +116,45 @@ public class UserRentalController {
    }
    
    
+   // 대관일, 경기장일련번호로 예약가능한 시간을 비동기로 조회하는 메소드
+   @RequestMapping(value = "/stadiumImg.do", method = RequestMethod.POST, produces= "text/html; charset=UTF-8")
+   @ResponseBody
+   public String searchTime(@RequestParam(value = "s_no") int s_no){
+	   StringBuffer result = new StringBuffer();
+	   
+	   StadiumVO svo = userRentalService.selectStadiumImg(s_no);
+
+	   try {
+		   svo.toString();
+	   }catch(NullPointerException e) {
+		   result.append("Empty");
+		   return result.toString();
+	   }
+	   
+	   result.append(" <li><input type='radio' id='slide1' name='slide' checked><label for='slide1'></label><img src='/resources/img/default_img.jpg' alt='Panel 1'></li>");
+	   
+	   
+	   if(  !(svo.getS_img1() == null)  ) {
+		   result.append("<li><input type='radio' id='slide2' name='slide'><label for='slide2'></label><img src='/uploadStorage/image1/");
+		   result.append(svo.getS_img1());
+		   result.append("' alt='Panel 2'></li>");
+	   }
+			   
+	   if(  !(svo.getS_img2() == null)  ) {
+		   result.append("<li><input type='radio' id='slide3' name='slide'><label for='slide3'></label><img src='/uploadStorage/image2/");
+		   result.append(svo.getS_img2());
+		   result.append("' alt='Panel 3'></li>");
+	   }
+	   
+	   if( !(svo.getS_img3() == null) ) {
+		   result.append("<li><input type='radio' id='slide4' name='slide'><label for='slide4'></label><img src='/uploadStorage/image3/");
+		   result.append(svo.getS_img3());
+		   result.append("' alt='Panel 4'></li>");
+	   }
+	   
+	   System.out.println("경기장 이미지 잘 불러왔누." + result.toString());
+	   return result.toString();
+   }
    
    // 대관일, 경기장일련번호로 예약가능한 시간을 비동기로 조회하는 메소드
    @RequestMapping(value = "/reservationCheck.do", method = RequestMethod.POST, produces= "text/html; charset=UTF-8")
