@@ -11,7 +11,7 @@
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/stadiumForm.js"></script>
 <script>
-$(document).ready(function() {
+$(document).ready(function(){
 	$("#stadiumForm").submit(function() {
 		return stadiumCheck();
 	});

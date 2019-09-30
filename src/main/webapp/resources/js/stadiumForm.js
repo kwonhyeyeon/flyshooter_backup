@@ -7,7 +7,7 @@
 function stadiumCheck() {
 	// 체크여부
 	if (s_d_fee.value == "") {
-		alert("평일 주간 요금을 입력해주세요!");
+		alert("평일 주간 요금을 입력해주세요");
 		s_d_fee.focus();
 		return false;
 	}
