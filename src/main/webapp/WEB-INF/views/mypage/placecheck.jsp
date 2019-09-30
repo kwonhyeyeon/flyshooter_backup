@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
-<script type="text/javascript" src="/resources/js/placeList.js"></script>
+<script type="text/javascript" src="/resources/js/placeCheck.js"></script>
 </head>
 <body>
 

@@ -84,11 +84,35 @@ function placeCheck(){
 		return false;
 	}
 	
+	var a = document.p_placeForm;
+	if(a.p_bank.value == ''){
+		alert('은행을 선택해주세요.');
+		a.p_bank.focus();
+		return false;
+	}
+	
 	if(p_account.value == ""){
 		alert("예금주명을 입력해주세요");
 		p_account.focus();
 		return false;
 	}
+	
+	if(a.p_holiday.value == ''){
+		alert('정기휴일을 선택해주세요.');
+		a.p_holiday.focus();
+		return false;
+	}
+	if(a.p_open.value == ''){
+		alert('오픈시간을 선택해주세요.');
+		a.p_open.focus();
+		return false;
+	}
+	if(a.p_close.value == ''){
+		alert('마감시간을 선택해주세요.');
+		a.p_close.focus();
+		return false;
+	}
+	
 	if(p_account_num.value == ""){
 		alert("입금계좌번호를 입력해주세요");
 		p_account_num.focus();

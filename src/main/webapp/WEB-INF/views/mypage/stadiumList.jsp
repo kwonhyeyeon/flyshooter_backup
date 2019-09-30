@@ -53,7 +53,7 @@
 				<p>구장을 선택해주세요</p>
 			</div>
 		</div>
-		<div id="dialog" title="결제창" style="display: none">
+		<div id="dialog" title="용품등록창" style="display: none">
 	      <form id="itemInsertForm">
 	      	<input type="hidden" id="modalP_num" name="p_num"/>
 	        <label>용품 명<input type="text" id="modalI_name" name="i_name" /></label><br />

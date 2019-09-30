@@ -1,14 +1,13 @@
 /**
-
  * 
  */
+
 $(document).ready(function(){
 	$(document).on("click",".detailPage",function(){
 		var s_no =  $(this).parents("tr").attr("data-num");
 		$("#s_no").val(s_no);
 		$("#datailForm").submit(); 
 	});
-	
 	//페이지 로드..
 	$(".tab_content").hide();//content 모두 숨김
 	$("ul.tabs li:first").addClass("active").show();
@@ -80,6 +79,7 @@ $(document).ready(function(){
 		location.href = "/mypage/placecheck.do";
 	});
 });
+
 function itemActive(query) {
 	$.ajax({
 		url : "/mypage/itemActive.do",
@@ -168,6 +168,9 @@ function openDialog(){
             text:'취소',
             click:function(){
                $(this).dialog("close");
+               $( "#itemInsertForm" ).each( function () {
+                   this.reset();
+               });
             }
          },
          {
@@ -175,11 +178,24 @@ function openDialog(){
             click:function(){
                //$(this).dialog("close");
                if(confirm("용품 등록 하시겠습니까?")){
-            	  $(this).dialog("close"); 
-                  var P_num =  $('#modalP_num').val();
-                  var I_name =  $('#modalI_name').val();
-                  var I_rental_fee =  $('#modalI_rental_fee').val();
-                  $("#itemInsertForm").find("input[type='text']").val("");
+            	 //입력여부
+               	if($('#modalI_name').val() == ""){
+               		  alert("용품 이름을 입력하세요");
+               		  return false;
+               	}
+               		
+               	if($('#modalI_rental_fee').val() == ""){
+               		alert("용품가격을 입력하세요");
+               		return false;
+               	}  
+            	$(this).dialog("close");
+            	
+                var P_num =  $('#modalP_num').val();
+                var I_name =  $('#modalI_name').val();
+                var I_rental_fee =  $('#modalI_rental_fee').val();
+                $("#itemInsertForm").find("input[type='text']").val("");
+                alert("안녕하세요");
+          		
                   query = {p_num : P_num,
                 		  i_name : I_name,
                 		  i_rental_fee : I_rental_fee}

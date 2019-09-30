@@ -60,6 +60,7 @@ $(document).ready(function() {
 						<c:forEach var="place" items="${placeList}" varStatus="status">
 							<tr class="placeList" data-num="${place.p_num}">
 								<td>${place.p_num}</td>
+								<!-- p_name 클릭시 상세보기(수정) -->
 								<td class="detailPage">${place.p_name}</td>
 								<td>${place.p_ceo}</td>
 								<td>${place.p_address}</td>
@@ -70,6 +71,7 @@ $(document).ready(function() {
 					</c:when>
 					<c:otherwise>
 						<tr>
+							<!-- 등록된 구장이 존재하지 않을때 표시되는 글-->
 							<td colspan="1" class="tac">등록된 구장이 존재하지 않습니다.</td>
 						</tr>
 					</c:otherwise>
