@@ -7,7 +7,7 @@
 function stadiumCheck() {
 	// 체크여부
 	if (s_d_fee.value == "") {
-		alert("평일 주간 요금을 입력해주세요");
+		alert("평일 주간 요금을 입력해주세요!");
 		s_d_fee.focus();
 		return false;
 	}
@@ -45,6 +45,21 @@ function stadiumCheck() {
 	}
 	if (s_in_out.value == "") {
 		alert("실내/외 선택해주세요");
+		return false;
+	}
+	var chk1 = document.getElementById('s_img1');
+	if(!chk1.value){
+		alert('이미지1을 선택해주세요');
+		return false;
+	}
+	var chk2 = document.getElementById('s_img2');
+	if(!chk2.value){
+		alert('이미지2을 선택해주세요');
+		return false;
+	}
+	var chk3 = document.getElementById('s_img3');
+	if(!chk3.value){
+		alert('이미지3을 선택해주세요');
 		return false;
 	}
 
