@@ -152,7 +152,6 @@ public class UserRentalController {
 		   result.append("' alt='Panel 4'></li>");
 	   }
 	   
-	   System.out.println("경기장 이미지 잘 불러왔누." + result.toString());
 	   return result.toString();
    }
    

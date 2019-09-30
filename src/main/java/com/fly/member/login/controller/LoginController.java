@@ -112,6 +112,11 @@ public class LoginController {
 				System.out.println("타입 일치");
 				if (DBmvo.getEmail_confirm().equals("Y")) {
 					System.out.println("이메일 인증된 아이디");
+					String Session_id = DBmvo.getM_id();
+					int Session_type = DBmvo.getM_type();
+					System.out.println(Session_id);
+					System.out.println(Session_type);
+					session.setAttribute("mvo", new MemberVO(Session_id, Session_type));
 					if (DBmvo.getM_status() == 0) {
 						System.out.println("비활성화 로그인");
 						mav.addObject("errCode", 4);
@@ -123,11 +128,6 @@ public class LoginController {
 						lvoHistory.setLastPass(new Date().getTime());
 						lvoHistory.setClientIp(request.getRemoteAddr());
 						loginService.loginHistoryUpdate(lvoHistory);
-						String Session_id = DBmvo.getM_id();
-						int Session_type = DBmvo.getM_type();
-						System.out.println(Session_id);
-						System.out.println(Session_type);
-						session.setAttribute("mvo", new MemberVO(Session_id, Session_type));
 						mav.setViewName("/index");
 						return mav;
 					}
@@ -151,11 +151,9 @@ public class LoginController {
 			HttpServletRequest request) throws Exception {
 		log.info("active.do post 호출 성공");
 		ModelAndView mav = new ModelAndView();
-		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
-		String m_id = sessionMvo.getM_id();
+		MemberVO mvo = (MemberVO)session.getAttribute("mvo");
 		
-		System.out.println(m_id);
-		LoginVO lvoHistory = loginService.loginHistorySelect(m_id);
+		LoginVO lvoHistory = loginService.loginHistorySelect(mvo.getM_id());
 		System.out.println(new Date().getTime());
 		System.out.println(lvoHistory.getLastPass());
 		if (new Date().getTime() - lvoHistory.getLastPass() > 30000*87) {
@@ -167,7 +165,7 @@ public class LoginController {
 			lvoHistory.setLastPass(new Date().getTime());
 			lvoHistory.setClientIp(request.getRemoteAddr());
 			loginService.loginHistoryUpdate(lvoHistory);
-			memberService.memberActive(m_id);
+			memberService.memberActive(mvo.getM_id());
 			mav.setViewName("/index");
 			return mav;
 		}

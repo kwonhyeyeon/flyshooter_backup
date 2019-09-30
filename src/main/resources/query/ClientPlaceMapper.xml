@@ -103,12 +103,21 @@
 	
 	<select id="placeChoice" resultType="place">
 		SELECT p_num, p_name FROM place
-		where m_id = #{m_id}
+		where m_id = #{m_id} and p_ok = 1
+	</select>
+	
+	<select id="selectYear" parameterType="place" resultType="place">
+	select min(to_char(r_reserve_date, 'yyyy')) p_holiday_start , max(to_char(r_reserve_date, 'yyyy')) p_holiday_end
+	from rental
+	where s_no in(select s_no from place where p_num  
+	<if test="p_num != null">
+	= #{p_num}
+	</if>
+	<if test="m_id != null">
+	in(select p_num from place where m_id = #{m_id})
+	</if>
+	) and r_pay_status = 1
 	</select>
 
-	<!-- <select id="searchRentalList" parameterType="String" resultType="place"> 
-		select m.m_name, m.m_phone, (r.r_reserve_date + r.r_start + r.r_end), ir.r_no 
-		from member m, rental r, items_rental ir where m.m_id = r.m_id and r.r_no 
-		= ir.r_no; </select> -->
 
 </mapper>

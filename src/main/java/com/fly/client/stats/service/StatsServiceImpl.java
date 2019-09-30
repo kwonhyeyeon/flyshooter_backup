@@ -10,17 +10,16 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fly.client.stats.dao.StatsDao;
 import com.fly.client.stats.vo.StatsVO;
 @Service("StatsService")	
-@Transactional
 public class StatsServiceImpl implements StatsService{
+	
 	@Autowired
 	@Qualifier("StatsDao")
 	private StatsDao statsDao;
 
 	//통계
 	@Override
-	public List<StatsVO> stadiumstats(StatsVO stvo) {
-		List<StatsVO> stlist = statsDao.stadiumstats(stvo);
-		return stlist;
+	public String placeStatus(StatsVO stvo) {
+		return statsDao.placeStatus(stvo);
 	}
 
 }

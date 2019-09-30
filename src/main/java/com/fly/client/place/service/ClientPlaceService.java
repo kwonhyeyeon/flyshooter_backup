@@ -28,5 +28,7 @@ public interface ClientPlaceService {
 	public int pnumConfirm(String p_num);
 
 	public List<PlaceVO> placeChoice(String m_id);
+	
+	public PlaceVO selectYear(PlaceVO pvo);
 
 }

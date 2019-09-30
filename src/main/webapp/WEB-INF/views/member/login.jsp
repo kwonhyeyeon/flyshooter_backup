@@ -53,6 +53,7 @@
 				return false;
 			case 4:
 				if (confirm("회원 탈퇴가 비활성화된 회원입니다. \n활성화 하시겠습니까?")) {
+					
 					location.href = "/member/active.do";
 					return false;
 				}else{

@@ -10,5 +10,5 @@ import com.fly.client.stats.vo.StatsVO;
 
 public interface StatsService {
 	//통계
-		public List<StatsVO>stadiumstats(StatsVO stvo);
+	public String placeStatus(StatsVO stvo);
 }

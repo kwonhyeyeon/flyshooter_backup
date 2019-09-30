@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fly.client.stats.dao.StatsDao">
+
+<select id= "placeStatic" resultType="String" parameterType="clientstats" >
+<![CDATA[
+SELECT (select p_name from place where p_num = #{p_num}) || '!!' || a || '!!' || b || '!!' || c || '!!' || d || '!!' || e || '!!' || f || '!!' || g || '!!' || h || '!!' || i || '!!' || j || '!!' || k || '!!' || l status
+FROM dual, (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/1' and s_no in(select s_no from stadium where p_num = #{p_num})), 0) a from dual ) a, 
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/2' and s_no in(select s_no from stadium where p_num = #{p_num})), 0) b from dual ) b,
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/3' and s_no in(select s_no from stadium where p_num = #{p_num})), 0) c from dual ) c, 
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/4' and s_no in(select s_no from stadium where p_num = #{p_num})), 0) d from dual ) d,
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/5' and s_no in(select s_no from stadium where p_num = #{p_num})), 0) e from dual ) e, 
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/6' and s_no in(select s_no from stadium where p_num = #{p_num})), 0) f from dual ) f,
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/7' and s_no in(select s_no from stadium where p_num = #{p_num})), 0) g from dual ) g, 
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/8' and s_no in(select s_no from stadium where p_num = #{p_num})), 0) h from dual ) h,
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/9' and s_no in(select s_no from stadium where p_num = #{p_num})), 0) i from dual ) i, 
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/10' and s_no in(select s_no from stadium where p_num = #{p_num})), 0) j from dual ) j,
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/11' and s_no in(select s_no from stadium where p_num = #{p_num})), 0) k from dual ) k, 
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/12' and s_no in(select s_no from stadium where p_num = #{p_num})), 0) l from dual ) l
+]]>
+</select>
+
+<select id="stadiumStatic" resultType="String" parameterType="clientstats">
+<![CDATA[
+SELECT (select s_name from stadium where s_no = #{s_no}) || '!!' || a || '!!' || b || '!!' || c || '!!' || d || '!!' || e || '!!' || f || '!!' || g || '!!' || h || '!!' || i || '!!' || j || '!!' || k || '!!' || l status
+FROM dual, (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/1' and s_no in(select s_no from stadium where p_num = #{p_num})), 0) a from dual ) a, 
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/2' and s_no = #{s_no}), 0) b from dual ) b,
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/3' and s_no = #{s_no}), 0) c from dual ) c, 
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/4' and s_no = #{s_no}), 0) d from dual ) d,
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/5' and s_no = #{s_no}), 0) e from dual ) e, 
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/6' and s_no = #{s_no}), 0) f from dual ) f,
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/7' and s_no  = #{s_no}), 0) g from dual ) g, 
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/8' and s_no  = #{s_no}), 0) h from dual ) h,
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/9' and s_no  = #{s_no}), 0) i from dual ) i, 
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/10' and s_no  = #{s_no}), 0) j from dual ) j,
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/11' and s_no  = #{s_no}), 0) k from dual ) k, 
+           (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/12' and s_no  = #{s_no}), 0) l from dual ) l
+]]>
+</select>
+	
+</mapper>

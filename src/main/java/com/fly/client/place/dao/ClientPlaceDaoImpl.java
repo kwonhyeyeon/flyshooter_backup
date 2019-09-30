@@ -60,4 +60,10 @@ public class ClientPlaceDaoImpl implements ClientPlaceDao {
 		return sqlSession.selectList(NAME_SPACE + ".placeChoice", m_id);
 	}
 
+	@Override
+	public PlaceVO selectYear(PlaceVO pvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAME_SPACE + ".selectYear", pvo);
+	}
+
 }

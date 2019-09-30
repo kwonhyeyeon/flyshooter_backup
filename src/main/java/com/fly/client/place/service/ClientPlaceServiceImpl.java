@@ -99,5 +99,11 @@ public class ClientPlaceServiceImpl implements ClientPlaceService {
 		return placeChoice;
 	}
 
+	@Override
+	public PlaceVO selectYear(PlaceVO pvo) {
+		// TODO Auto-generated method stub
+		return clientPlaceDao.selectYear(pvo);
+	}
+
 
 }

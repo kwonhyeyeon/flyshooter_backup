@@ -1,36 +1,47 @@
 package com.fly.client.stats.vo;
 
 public class StatsVO {
-	private String s_name;// 경기장 이름
-	private String r_reserve_date;//대관 결제 날짜
-	private int count;//
-	private int r_no;//결제 일렬번호
+	private String p_num;
+	private String p_name;
+	private String status;
+	private String year;
+	private int s_no;
 	
 	
-	public String getS_name() {
-		return s_name;
+	public int getS_no() {
+		return s_no;
 	}
-	public void setS_name(String s_name) {
-		this.s_name = s_name;
+	public void setS_no(int s_no) {
+		this.s_no = s_no;
 	}
-	public String getR_reserve_date() {
-		return r_reserve_date;
+	public String getP_num() {
+		return p_num;
 	}
-	public void setR_reserve_date(String r_reserve_date) {
-		this.r_reserve_date = r_reserve_date;
+	public void setP_num(String p_num) {
+		this.p_num = p_num;
 	}
-	public int getCount() {
-		return count;
+	public String getP_name() {
+		return p_name;
 	}
-	public void setCount(int count) {
-		this.count = count;
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
 	}
-	public int getR_no() {
-		return r_no;
+	public String getStatus() {
+		return status;
 	}
-	public void setR_no(int r_no) {
-		this.r_no = r_no;
+	public void setStatus(String status) {
+		this.status = status;
 	}
-	
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
+	@Override
+	public String toString() {
+		return "StatisticsVO [getP_num()=" + getP_num() + ", getP_name()=" + getP_name() + ", getStatus()="
+				+ getStatus() + ", getYear()=" + getYear() + "]";
+	}
 	
 }

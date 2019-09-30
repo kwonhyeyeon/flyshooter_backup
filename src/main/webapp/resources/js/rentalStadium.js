@@ -146,6 +146,10 @@ $(document).ready(function(){
 						success:function(result){
 							
 							if( result == "Empty"){
+								$(".slider").html("");
+								$(".slider").html("<li><input type='radio' id='slide1' " +
+										"name='slide' checked><label for='slide1'></label>" +
+										"<img src='/resources/img/default_img.jpg' alt='Panel 1'></li>");
 								return;
 							}
 							
