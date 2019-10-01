@@ -24,7 +24,7 @@ FROM dual, (select nvl((select count(*) from rental where r_pay_Status = 1 and t
 <select id="stadiumStatic" resultType="String" parameterType="clientstats">
 <![CDATA[
 SELECT (select s_name from stadium where s_no = #{s_no}) || '!!' || a || '!!' || b || '!!' || c || '!!' || d || '!!' || e || '!!' || f || '!!' || g || '!!' || h || '!!' || i || '!!' || j || '!!' || k || '!!' || l status
-FROM dual, (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/1' and s_no in(select s_no from stadium where p_num = #{p_num})), 0) a from dual ) a, 
+FROM dual, (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/1' and s_no  = #{s_no}), 0) a from dual ) a, 
            (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/2' and s_no = #{s_no}), 0) b from dual ) b,
            (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/3' and s_no = #{s_no}), 0) c from dual ) c, 
            (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/4' and s_no = #{s_no}), 0) d from dual ) d,
@@ -37,6 +37,14 @@ FROM dual, (select nvl((select count(*) from rental where r_pay_Status = 1 and t
            (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/11' and s_no  = #{s_no}), 0) k from dual ) k, 
            (select nvl((select count(*) from rental where r_pay_Status = 1 and to_char(r_Reserve_Date, 'yyyy/fmMM') = #{year}||'/12' and s_no  = #{s_no}), 0) l from dual ) l
 ]]>
+</select>
+
+<select id="selectStadiumNo" parameterType="clientstats" resultType="int">
+
+SELECT s_no
+FROM stadium
+WHERE s_status != 0 and p_num = #{p_num}
+
 </select>
 	
 </mapper>

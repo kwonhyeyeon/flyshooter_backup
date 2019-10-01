@@ -23,7 +23,7 @@ import com.fly.client.rental.service.ClientRentalService;
 import com.fly.member.join.vo.MemberVO;
 import com.fly.member.place.vo.PlaceVO;
 import com.fly.paging.util.Paging;
-import com.fly.paging.util.Util;
+import com.fly.paging.util.PageUtils;
 
 @Controller
 @RequestMapping(value = "/mypage")
@@ -49,7 +49,7 @@ public class ClientCalculateController {
 		// 전체 레코드수
 		int total = calculateService.pageingSize(cvo);
 		// 글번호 재설정
-		int count = total - (Util.nvl(cvo.getPage()) - 1) * Util.nvl(cvo.getPageSize());
+		int count = total - (PageUtils.nvl(cvo.getPage()) - 1) * PageUtils.nvl(cvo.getPageSize());
 		
 		List<CalculateVO> calculateIList = calculateService.calculateIList(cvo);
 		List<CalculateVO> calculateList = calculateService.calculateList(cvo);
@@ -64,7 +64,7 @@ public class ClientCalculateController {
 
 	// 정산 신청 구현하기
 	@RequestMapping(value = "/calculateInsert.do", method = RequestMethod.POST)
-	public String CalculateInsert_ClientChk(Model model, @ModelAttribute CalculateVO cvo, HttpServletRequest request) {
+	public String calculateInsert_ClientChk(Model model, @ModelAttribute CalculateVO cvo, HttpServletRequest request) {
 		System.out.println("calculateInsert 호출 성공");
 		int result = calculateService.calculateInsert(cvo);
 		System.out.println("pRentalUpdae 호출 성공");

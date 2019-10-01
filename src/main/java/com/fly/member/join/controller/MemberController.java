@@ -7,13 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -97,7 +95,7 @@ public class MemberController {
 
 	// e-mail 인증 컨트롤러
 	@RequestMapping(value = "join_success", method = RequestMethod.GET)
-	public String key_alterConfirm(@ModelAttribute("mvo") MemberVO mvo) throws Exception {
+	public String keyAlterConfirm(@ModelAttribute("mvo") MemberVO mvo) throws Exception {
 		mvo.setM_id(request.getParameter("m_id"));
 		mvo.setEmail_confirm(request.getParameter("email_confirm"));
 
@@ -155,7 +153,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/pwmodify.do", method = RequestMethod.POST)
-	public ModelAndView pwmodify_success(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) throws Exception {
+	public ModelAndView pwmodifySuccess(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) throws Exception {
 		System.out.println("pwmodify.do post 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
 		
@@ -172,7 +170,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/mypage/modifyLogin.do", method = RequestMethod.GET)
-	public ModelAndView ModifyLogin(@ModelAttribute("MemberVO") MemberVO mvo
+	public ModelAndView modifyLogin(@ModelAttribute("MemberVO") MemberVO mvo
 			, HttpSession session,HttpServletRequest request) {
 		System.out.println("modifyLogin.do get 방식에 의한 메서드 호출 성공");
 		String m_id = "";
@@ -192,7 +190,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/mypage/modify.do", method = RequestMethod.POST)
-	public ModelAndView MemberModify_LoginChk(@ModelAttribute("MemberVO") MemberVO mvo
+	public ModelAndView memberModify_LoginChk(@ModelAttribute("MemberVO") MemberVO mvo
 			,HttpSession session, HttpServletRequest request) throws Exception {
 		System.out.println("modify.do POST 방식에 의한 메서드 호출 성공");
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");

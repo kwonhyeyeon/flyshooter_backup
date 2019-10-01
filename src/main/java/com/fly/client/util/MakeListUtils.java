@@ -5,7 +5,7 @@ import java.util.List;
 import com.fly.client.items.vo.ItemsVO;
 import com.fly.member.stadium.vo.StadiumVO;
 
-public class MakeList {
+public class MakeListUtils {
 
 	public static String makeList(List<StadiumVO> Slist, List<ItemsVO> Ilist, String p_num) {
 		String result = "";

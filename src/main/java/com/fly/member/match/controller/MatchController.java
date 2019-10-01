@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fly.common.util.Util;
-import com.fly.member.common.page.Paging;
+import com.fly.member.common.page.BoardPagingUtils;
 import com.fly.member.common.vo.CommonVO;
 import com.fly.member.join.service.MemberService;
 import com.fly.member.join.vo.MemberVO;
@@ -50,7 +50,7 @@ public class MatchController {
 		model.addAttribute("updateMbdate", mavo);
 		
 		// 페이징 세팅
-		Paging.setPage(mavo);
+		BoardPagingUtils.setPage(mavo);
 		
 		// 전체 레코드 수 구현 하기
 		System.out.println(mavo.getKeyword());

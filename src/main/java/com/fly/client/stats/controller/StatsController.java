@@ -9,9 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fly.client.place.service.ClientPlaceService;
 import com.fly.client.stats.service.StatsService;
@@ -81,5 +83,37 @@ public class StatsController {
 		
 		return "mypage/stats";
 	}
+	
+	// 온라인대관 환불요청
+	@RequestMapping(value = "/stadiumStats.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+	@ResponseBody
+	public String stadiumStats(@ModelAttribute StatsVO stvo) {
+
+		StringBuffer result = new StringBuffer();
+		
+		List<Integer> s_noList = new ArrayList();
+		
+		s_noList = statsService.selectStadiumNo(stvo);
+		
+		// 경기장이 없을경우
+		if( s_noList.isEmpty() ) {
+			result.append("Empty");
+			return result.toString();
+		}
+		for( int s_no : s_noList ) {
+			
+			stvo.setS_no(s_no);
+			
+			result.append(statsService.stadiumStatus(stvo));
+			// 구분자로 사용
+			result.append("@@");
+		}
+		
+		
+		return result.toString();
+	}
+
+	
+	
 	
 }

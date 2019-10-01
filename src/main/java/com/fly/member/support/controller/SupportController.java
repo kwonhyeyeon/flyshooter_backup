@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fly.common.util.Util;
-import com.fly.member.common.page.Paging;
+import com.fly.member.common.page.BoardPagingUtils;
 import com.fly.member.common.vo.CommonVO;
 import com.fly.member.join.service.MemberService;
 import com.fly.member.join.vo.MemberVO;
@@ -44,7 +44,7 @@ public class SupportController {
 		model.addAttribute("supportMbdate", svo);
 		
 		// 페이징 세팅
-		Paging.setPage(svo);
+		BoardPagingUtils.setPage(svo);
 		
 		// 전체 레코드 수 구현하기
 		System.out.println(svo.getKeyword());

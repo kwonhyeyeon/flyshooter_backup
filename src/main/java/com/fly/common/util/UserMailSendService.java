@@ -60,7 +60,7 @@ public class UserMailSendService {
 		mvo.setEmail_confirm(getKey(false, 20));
 		memberDao = sqlSession.getMapper(MemberDao.class);
 		System.out.println("난수 값 넣기");
-		memberDao.GetKey(mvo);
+		memberDao.getKey(mvo);
 		System.out.println("이메일 보내기");
 
 		// mail 작성 관련
@@ -109,7 +109,7 @@ public class UserMailSendService {
 		int resultCnt = 0;
 
 		memberDao = sqlSession.getMapper(MemberDao.class);
-		resultCnt = memberDao.alter_userKey(mvo);
+		resultCnt = memberDao.alterUserKey(mvo);
 
 		return resultCnt;
 	}

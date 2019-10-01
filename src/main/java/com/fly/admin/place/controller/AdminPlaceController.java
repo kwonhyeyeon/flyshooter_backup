@@ -24,7 +24,7 @@ import com.fly.member.place.vo.PlaceVO;
 import com.fly.member.rental.vo.RentalVO;
 import com.fly.member.stadium.vo.StadiumVO;
 import com.fly.paging.util.Paging;
-import com.fly.paging.util.Util;
+import com.fly.paging.util.PageUtils;
 
 @Controller
 @RequestMapping(value = "/admin/place")
@@ -49,7 +49,7 @@ public class AdminPlaceController {
 		
 		Paging.setPage(pvo, 15);
 		int total = adminPlaceService.adminPlaceListCnt(pvo);
-		int count = total - (Util.nvl(pvo.getPage()) -1 ) * Util.nvl(pvo.getPageSize());
+		int count = total - (PageUtils.nvl(pvo.getPage()) -1 ) * PageUtils.nvl(pvo.getPageSize());
 		System.out.println("adminPlaceList 호출 성공");
 		
 		// 폐업 -2, 임시휴업 -1, 운영전 0, 운영중 1, 전체 2
@@ -147,7 +147,7 @@ public class AdminPlaceController {
 		Paging.setPage(rvo, 15);
 		String pageSize = rvo.getPageSize();
 		int total = adminPlaceService.clientRefundCnt(rvo);
-		int count = total - (Util.nvl(rvo.getPage()) - 1) * Util.nvl(rvo.getPageSize());
+		int count = total - (PageUtils.nvl(rvo.getPage()) - 1) * PageUtils.nvl(rvo.getPageSize());
 		
 		model.addAttribute("count", count);
 	    model.addAttribute("total", total);
