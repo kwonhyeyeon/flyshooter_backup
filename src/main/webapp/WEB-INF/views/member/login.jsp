@@ -15,7 +15,7 @@
 	<div id="wrapper">
 	
 		<header id="account-header">
-			<h1>FLY SHOOTER</h1>
+			<h1><a href="/">FLY SHOOTER</a></h1>
 		</header>
 		
 		<article id="account-contents">
