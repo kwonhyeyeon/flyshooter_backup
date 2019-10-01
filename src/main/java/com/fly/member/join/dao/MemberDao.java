@@ -19,9 +19,9 @@ public interface MemberDao {
 
 	public int memberUpdatePN(MemberVO mvo);
 
-	public int GetKey(MemberVO mvo);
+	public int getKey(MemberVO mvo);
 
-	public int alter_userKey(MemberVO mvo);
+	public int alterUserKey(MemberVO mvo);
 
 	public List<MemberVO> memberidserchC(MemberVO mvo);
 

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fly.member.common.page.Paging;
+import com.fly.member.common.page.BoardPagingUtils;
 import com.fly.member.recruit.dao.RecruitDao;
 import com.fly.member.recruit.vo.RecruitVO;
 
@@ -22,7 +22,7 @@ public class AdminRecruitServiceImpl implements AdminRecruitService {
 		List<RecruitVO> arecruitList = null;
 		
 		// 페이징 세팅
-		Paging.setPage(revo);
+		BoardPagingUtils.setPage(revo);
 		
 		arecruitList = recruitDao.adminRecruitList(revo);
 		return arecruitList;

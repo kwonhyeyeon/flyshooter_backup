@@ -52,13 +52,13 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int GetKey(MemberVO mvo) {
+	public int getKey(MemberVO mvo) {
 		// TODO Auto-generated method stub
 		return session.update(NAME_SPACE + ".GetKey", mvo);
 	}
 
 	@Override
-	public int alter_userKey(MemberVO mvo) {
+	public int alterUserKey(MemberVO mvo) {
 		// TODO Auto-generated method stub
 		return session.update(NAME_SPACE + ".alter_userKey", mvo);
 	}

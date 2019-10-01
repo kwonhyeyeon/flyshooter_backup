@@ -5,7 +5,7 @@ import com.fly.common.util.Util;
 import com.fly.member.common.vo.CommonVO;
 
 
-public class Paging {
+public class BoardPagingUtils {
 	
 	// 페이징을 위한 설정 작업
 	// @param cvo

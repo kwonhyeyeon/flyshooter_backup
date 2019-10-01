@@ -112,13 +112,25 @@ function joinCheck() {
       return false;
    }
     
-   if (memberForm.m_phone.value == "") {
-      alert("핸드폰번호 입력해 주세요");
-      memberForm.m_phone.focus();
+   if (memberForm.m_phone1.value == "") {
+      alert("핸드폰번호 입력해 주세요1");
+      memberForm.m_phone1.focus();
       return false;
    }
+   if (memberForm.m_phone2.value == "") {
+	      alert("핸드폰번호 입력해 주세요2");
+	      memberForm.m_phone2.focus();
+	      return false;
+	   }
+   if (memberForm.m_phone3.value == "") {
+	      alert("핸드폰번호 입력해 주세요3");
+	      memberForm.m_phone3.focus();
+	      return false;
+	   }
+   
    idPwdCheck();
-   alert("회원가입이 완료되었습니다.");
+   $("#m_phone").val($("#m_phone1").val()+'-'+$("#m_phone2").val()+'-'+$("#m_phone3").val());
+   alert($("#m_phone").val());
    
 }
 function check(re, what, message) {

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fly.common.util.Util;
-import com.fly.member.common.page.Paging;
+import com.fly.member.common.page.BoardPagingUtils;
 import com.fly.member.common.vo.CommonVO;
 import com.fly.member.join.service.MemberService;
 import com.fly.member.join.vo.MemberVO;
@@ -44,7 +44,7 @@ public class RecruitController {
 		model.addAttribute("recruitMbdate", revo);
 		
 		// 페이징 세팅
-		Paging.setPage(revo);
+		BoardPagingUtils.setPage(revo);
 		
 		// 전체 레코드 수 구현하기
 		System.out.println(revo.getKeyword());

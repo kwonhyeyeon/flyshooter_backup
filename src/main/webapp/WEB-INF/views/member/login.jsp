@@ -28,7 +28,7 @@
 			}
 		});
 		$("#join").click(function() {
-			location.href = "/member/join.do";
+			location.href = "/member/terms.do";
 		});
 		$("#serchId").click(function() {
 			location.href = "/member/serchMember.do";

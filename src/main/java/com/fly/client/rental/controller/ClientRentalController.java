@@ -24,7 +24,7 @@ import com.fly.member.place.vo.PlaceVO;
 import com.fly.member.rental.vo.RentalVO;
 import com.fly.member.stadium.vo.StadiumVO;
 import com.fly.paging.util.Paging;
-import com.fly.paging.util.Util;
+import com.fly.paging.util.PageUtils;
 import com.fly.user.rental.service.UserRentalService;
 import com.fly.user.stadium.service.UserStadiumService;
 
@@ -35,7 +35,7 @@ public class ClientRentalController {
 	@Resource(name = "clientRentalService")
 	private ClientRentalService clientRentalService;
 	@Resource(name = "itemsRentalService")
-	private ItemsRentalService ItemsRentalService;
+	private ItemsRentalService itemsRentalService;
 	@Resource(name = "userStadiumService")
 	private UserStadiumService userStadiumService;
 	@Resource(name = "userRentalService")
@@ -164,7 +164,7 @@ public class ClientRentalController {
 	@ResponseBody
 	public String showDetail(@ModelAttribute RentalVO rvo, @RequestParam(value = "index") int index) {
 
-		List<ItemsRentalVO> itemsList = ItemsRentalService.getItemsRentalList(rvo.getR_no());
+		List<ItemsRentalVO> itemsList = itemsRentalService.getItemsRentalList(rvo.getR_no());
 		StringBuffer result = new StringBuffer();
 		result.append("<input type='hidden' id='list-index' value='");
 		result.append(index);
@@ -230,7 +230,7 @@ public class ClientRentalController {
 		Paging.setPage(rvo, 15);
 		String pageSize = rvo.getPageSize();
 		int total = clientRentalService.refundListCnt();
-		int count = total - (Util.nvl(rvo.getPage()) - 1) * Util.nvl(rvo.getPageSize());
+		int count = total - (PageUtils.nvl(rvo.getPage()) - 1) * PageUtils.nvl(rvo.getPageSize());
 
 		model.addAttribute("count", count);
 		model.addAttribute("total", total);
@@ -274,7 +274,7 @@ public class ClientRentalController {
 		System.out.println(irvo.toString());
 		try {
 			// 상태변경 ㄱ
-			result = ItemsRentalService.updateStatus(irvo);
+			result = itemsRentalService.updateStatus(irvo);
 
 		} catch (Exception e) {
 			e.printStackTrace();
