@@ -23,12 +23,9 @@
 <body>
 	<div id="wrapper">
 
-		<div id="header-wrap">
-			<jsp:include page="../templates/header.jsp" flush="true" />
-		</div>
 		
-		<div class="sub-v"></div>
-		
+		<jsp:include page="../templates/header.jsp" flush="true" />
+		<article id="contents">
 		<!-- 경기장 예약 -->
 		<div class="stadiumRental">
 			<div class="stadiumInfo">
@@ -156,7 +153,6 @@
 		</div>
 		<!-- 경기장 예약 -->
 		
-	</div>
 	
 	<div id="dialog" title="결제창" style="display: none">
 		<form id="insertRentalForm" >
@@ -239,5 +235,9 @@
 		</div>
 	</div>
 	
+		</article>
+	<jsp:include page="../templates/footer.jsp" flush="true" />
+		
+	</div>
 </body>
 </html>

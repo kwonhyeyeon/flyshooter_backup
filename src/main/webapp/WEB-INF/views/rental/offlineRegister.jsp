@@ -23,13 +23,11 @@
 <body>
 	<div id="wrapper">
 
-		<div id="header-wrap">
-			<jsp:include page="../templates/header.jsp" flush="true" />
-		</div>
+		<jsp:include page="../templates/header.jsp" flush="true" />
 		
-		<div class="sub-v"></div>
 		
-		<article class="offlineRental">
+		
+		<article id="contents">
 			
 			<section class="offlineCal">
 				<h1>오프라인 대관 등록</h1>
@@ -76,6 +74,8 @@
 				</section>
 			</section>
 		</article>
+		
+		<jsp:include page="../templates/footer.jsp" flush="true" />
 		
 	</div>
 		
