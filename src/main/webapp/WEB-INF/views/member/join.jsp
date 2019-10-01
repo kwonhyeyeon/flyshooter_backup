@@ -48,8 +48,19 @@
 			<div>
 				<label for="phone">핸드폰번호 </label>
 				<div>
-					<input type="text" id="m_phone" name="m_phone" maxlength="15"
+					<select name="m_phone1" id="m_phone1">
+						<option value="010" selected>010</option>
+						<option value="012">012</option>
+						<option value="013">013</option>
+						<option value="019">019</option>
+					</select>
+						 - 
+					<input type="text" id="m_phone2" name="m_phone2" maxlength="4"
 						placeholder="Phone Number">
+						 - 
+					<input type="text" id="m_phone3" name="m_phone3" maxlength="4"
+						placeholder="Phone Number">
+					<input type="hidden" name="m_phone" id="m_phone"/>
 				</div>
 			</div>
 			<div>
