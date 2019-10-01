@@ -33,7 +33,7 @@ $(document).ready(function() {
 
 	<div class="sub-v"></div>
 
-	<div id="contents">
+	<article id="contents">
 		<div class="contentTit">
 			<h3>구장 리스트</h3>
 		</div>
@@ -86,6 +86,9 @@ $(document).ready(function() {
 			<input type="button" value="구장 등록" id="insertPlaceBtn">
 		</div>
 		<%--== 구장등록 버튼 출력 종료== --%>
-	</div>
+	</article>
+		
+	<jsp:include page="../templates/footer.jsp" flush="true" />
+	
 </body>
 </html>

@@ -23,7 +23,7 @@
 
 	<div class="sub-v"></div>
 
-	<div id="contents">
+	<article id="contents">
 		<ul class="tabs">
 			<li><a href="#tab1">경기장</a></li>
 			<li><a href="#tab2">용품</a></li>
@@ -61,6 +61,9 @@
 	        <label>가 격<input type="text" id="modalI_rental_fee" name="i_rental_fee" /></label>
 	      </form>   
 		</div>
-	</div>
+	</article>
+	
+	<jsp:include page="../templates/footer.jsp" flush="true" />
+		
 </body>
 </html>

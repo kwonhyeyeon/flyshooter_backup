@@ -28,7 +28,7 @@
 		<form id="rentalInsertForm">
 		      <input type="hidden" name="p_num" id="p_num">
 		</form>
-		
+			
 		<article id="contents">
 			
 			<h2>대관 가능한 구장</h2>

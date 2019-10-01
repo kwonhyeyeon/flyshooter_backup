@@ -45,7 +45,7 @@ google.charts.setOnLoadCallback(drawChart);
 		</div>
 
 		<div class="sub-v"></div>
-		<div id="contents">
+		<article id="contents">
 		
 			<article id="selectPlace">
 				<select id="placeBox" name="placeBox" >
@@ -72,15 +72,14 @@ google.charts.setOnLoadCallback(drawChart);
 			
 			<div id="line_top_x"></div>	
 		
-		</div>
+		</article>
 
 		<form id="search">
 			<input type="text" name="year" id="selectedYear"/>
 		</form>
 
+		<jsp:include page="../templates/footer.jsp" flush="true" />
+		
 	</div>
 </body>
-
-
-
 </html>

@@ -56,7 +56,7 @@ $(document).ready(function() {
 
 <div class="sub-v"></div>
 
-	<div id="contents">
+	<article id="contents">
 	<h3>${s_no}</h3>
 		<div class="contentTB">
 			<form id="s_stadiumModifyForm" action="/mypage/stadiumModify.do" method="post" enctype="multipart/form-data">
@@ -133,7 +133,10 @@ $(document).ready(function() {
 				</div>
 			</form>
 		</div>
-	</div>
+	</article>
+	
+	<jsp:include page="../templates/footer.jsp" flush="true" />
+		
 </body>
 <script>
 $("#s_img1").change(function(){

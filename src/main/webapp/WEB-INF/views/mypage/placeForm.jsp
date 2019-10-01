@@ -23,7 +23,7 @@
 
 	<div class="sub-v"></div>
 
-	<div id="contents">
+	<article id="contents">
 		<h3> 구장 등록</h3>
 		<div class="placeForm">
 			<form name="p_placeForm" id="p_placeForm" action="/mypage/placeInsert.do" method="post">
@@ -127,6 +127,9 @@
 					 	<input type="button" id="placeListBtn" value="목록"></div>
 			</form>
 		</div>
-	</div>
+	</article>
+		
+	<jsp:include page="../templates/footer.jsp" flush="true" />
+	
 </body>
 </html>

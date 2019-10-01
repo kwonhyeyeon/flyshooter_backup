@@ -44,7 +44,7 @@
 
 		<div class="sub-v"></div>
 
-		<div id="contents">
+		<article id="contents">
 			<form id="modifyForm" action="/member/mypage/modify.do" method="post">
 				<div>
 					<label for="pw">비밀 번호</label>
@@ -58,7 +58,10 @@
 						type="button" value="홈으로" id="home" />
 				</div>
 			</form>
-		</div>
+		</article>
+			
+		<jsp:include page="../templates/footer.jsp" flush="true" />
+		
 	</div>
 </body>
 </html>

@@ -46,7 +46,7 @@ function errCodeCheck() {
 	</div>
 	
 	<div class="sub-v"></div>
-	<div id="contents">
+	<article id="contents">
 		<form id="stadiumForm" action="/mypage/stadiumInsert.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="p_num" value="${p_num}"/>
 		<input type="hidden" name="select" id="select" value="0"/>
@@ -115,7 +115,10 @@ function errCodeCheck() {
 				<a href="/">Home</a>
 		</div>
 		</form>
-	</div>
+	</article>
+	
+	<jsp:include page="../templates/footer.jsp" flush="true" />
+		
 </body>
 <script>
 $("#s_img1").change(function(){

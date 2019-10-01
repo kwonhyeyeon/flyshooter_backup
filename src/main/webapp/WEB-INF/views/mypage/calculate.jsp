@@ -20,8 +20,8 @@
 	</div>
 
 	<div class="sub-v"></div>
-
-	<div id="contents">
+	
+	<article id="contents">
 		<div>
 		<p>
 		Fly Shooter은 예약일자가 15일 지난 예약을 기준으로 매출을 인식합니다. <br />
@@ -117,6 +117,9 @@
 	    <div class="pagination">
         	<tag:paging page="${data.page }" total="${total }" list_size="${data.pageSize }" />
         </div> 
-	</div>
+	</article>
+		
+	<jsp:include page="../templates/footer.jsp" flush="true" />
+	
 </body>
 </html>

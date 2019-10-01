@@ -35,7 +35,7 @@
 
 	<div class="sub-v"></div>
 
-	<div id="contents">
+	<article id="contents">
 		<h3>${pvo.p_name}</h3>
 		<div class="contentTB">
 			<form id="p_placeModifyForm" action="/mypage/placeModify.do"
@@ -162,6 +162,9 @@
 				</div>
 			</form>
 		</div>
-	</div>
+	</article>
+		
+	<jsp:include page="../templates/footer.jsp" flush="true" />
+	
 </body>
 </html>

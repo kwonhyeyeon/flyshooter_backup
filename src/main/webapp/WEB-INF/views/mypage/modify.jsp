@@ -26,7 +26,7 @@
 
 		<div class="sub-v"></div>
 
-		<div id="contents">
+		<article id="contents">
 			<form id="modifyForm" action="/member/mypage/modify_success.do" method="post">
 				<div>
 					<c:if test="${mvo.m_type=='1'}">
@@ -79,7 +79,10 @@
 					</div>
 				</div>
 			</form>
-		</div>
+		</article>
+			
+		<jsp:include page="../templates/footer.jsp" flush="true" />
+		
 	</div>
 </body>
 </html>
