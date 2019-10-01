@@ -19,12 +19,35 @@ $(document).ready(function() {
 	}
 	
 	$("#month").empty();
-	for(var j = 1; j <= month; j++) {
-		if(j < 10) {
-			j = "0" + j;
+	var sYear = $("#year").val();
+	var sMonth = $("#month").val();
+	if(sYear == registerYear) { // 가입한 해이면
+		
+		for(var j = registerMonth; j <= 12; j++) { // 가입한 달부터 출력
+			if(j == registerMonth) {
+				j = "" + j;
+			} else if(j < 10) {
+				j = "0" + j;
+			}
+			
+			$("#month").append("<option value='" + j + "'>" + j + "월</option>");
 		}
-		$("#month").append("<option value='" + j + "'>" + j + "월</option>");
-		$("#month").val(month);
+		
+	} else if(sYear == year) { // 해당 년도
+		for(var j = 1; j <= month; j++) {
+			if(j < 10) {
+				j = "0" + j;
+			}
+			$("#month").append("<option value='" + j + "'>" + j + "월</option>");
+		}
+	} else {
+		for(var j = 1; j <= 12; j++) {
+			if (j < 10) {
+				j = "0" + j;
+			}
+			
+			$("#month").append("<option value='" + j + "'>" + j + "월</option>");
+		}
 	}
 	
 	$("#p_ok").val("1");
@@ -37,8 +60,8 @@ $(document).ready(function() {
 		$("#month").empty();
 		$("#month").append("<option value=''>월 선택</option>");
 		
-		var sYear = $("#year").val();
-		var sMonth = $("#month").val();
+		var sYear = $("#year").val(); // 선택한 년도
+		var sMonth = $("#month").val(); // 선택한 월
 		
 		if(sYear == registerYear) { // 가입한 해이면
 			
@@ -117,11 +140,11 @@ $(document).ready(function() {
 		});
 		
 		$("#refundListForm").submit();
-		
+
 	});
 	
 	// 상세 페이지 이동 폼
-	$("#getR_no").click(function() {
+	$(".goDetail").click(function() {
 		
 		var num = $("#getR_no").attr("data-num");
 		$("#r_no").val(num);

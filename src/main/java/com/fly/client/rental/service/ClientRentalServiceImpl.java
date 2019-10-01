@@ -54,7 +54,7 @@ public class ClientRentalServiceImpl implements ClientRentalService {
 			
 			System.out.println(p_open);
 			System.out.println(p_close);
-			if(p_open == null || p_close == null) {
+			if(p_open == null && p_close == null) {
 				pvo.setP_ok(1);
 			} else if(p_close == null || p_close.equals("")) {
 				p_open = year + "";

@@ -22,15 +22,13 @@
 <body>
 	<div id="wrapper">
 
-		<div id="header-wrap">
-			<jsp:include page="../templates/header.jsp" flush="true" />
-		</div>
-		
-		<div class="sub-v"></div>
+		<jsp:include page="../templates/header.jsp" flush="true" />
 		
 		<article id="contents">
+			<h2 class="articleTit">예약 현황</h2>
+			
 			<!-- 구장명, 날짜 선택 -->
-			<div class="placeList">
+			<div class="selectArea">
 				<c:choose>
 					<c:when test="${not empty placeList}">
 						<select name="placeName" class="placeName" id="placeName">
@@ -62,6 +60,8 @@
 			</div>
 			<!-- 대관 상세페이지 (모달창) -->
 		</article>
+		
+		<jsp:include page="../templates/footer.jsp" flush="true" />
 		
 	</div>
 		

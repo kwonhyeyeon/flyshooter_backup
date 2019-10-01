@@ -222,10 +222,17 @@ public class ClientRentalController {
 
 	// 환불 현황 리스트
 	@RequestMapping(value = "/refundList.do", method = RequestMethod.GET)
-	public String getRefundList_ClientChk(@ModelAttribute RentalVO rvo, @ModelAttribute MemberVO mvo, @ModelAttribute PlaceVO pvo,
+	public String getRefundList_ClientChk(
+			@ModelAttribute RentalVO rvo, 
+			@ModelAttribute MemberVO mvo, 
+			@ModelAttribute PlaceVO pvo,
+			HttpSession session,
 			Model model) {
 
 		System.out.println("getRefundList 호출 성공");
+		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
+		String m_id = sessionMvo.getM_id();
+		pvo.setM_id(m_id);
 
 		Paging.setPage(rvo, 15);
 		String pageSize = rvo.getPageSize();
@@ -240,7 +247,7 @@ public class ClientRentalController {
 		model.addAttribute("refundList", refundList);
 		System.out.println(refundList);
 
-		String register = clientRentalService.getRegdate(mvo.getM_id());
+		String register = clientRentalService.getRegdate(m_id);
 		model.addAttribute("register", register);
 
 		return "/rental/refundList";
