@@ -5,8 +5,8 @@ import com.fly.paging.vo.PagingVO;
 public class Paging {
 	
 	public static void setPage(PagingVO pvo, int size) {
-		int page = Util.nvl(pvo.getPage(), 1);
-		int pageSize = Util.nvl(pvo.getPageSize(), size);
+		int page = PageUtils.nvl(pvo.getPage(), 1);
+		int pageSize = PageUtils.nvl(pvo.getPageSize(), size);
 		
 		if(pvo.getPage() == null) pvo.setPage(page+"");
 		if(pvo.getPageSize() == null) pvo.setPageSize(pageSize + "");

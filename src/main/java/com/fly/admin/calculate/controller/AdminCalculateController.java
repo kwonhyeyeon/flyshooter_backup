@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fly.admin.calculate.service.AdminCalculateService;
 import com.fly.client.calculate.vo.CalculateVO;
 import com.fly.paging.util.Paging;
-import com.fly.paging.util.Util;
+import com.fly.paging.util.PageUtils;
 
 @Controller
 @RequestMapping(value = "/admin/place")
@@ -33,7 +33,7 @@ public class AdminCalculateController {
 		// 전체 레코드수
 		int total = adminCalculateService.pageingSize(cvo);
 		// 글번호 재설정
-		int count = total - (Util.nvl(cvo.getPage()) - 1) * Util.nvl(cvo.getPageSize());
+		int count = total - (PageUtils.nvl(cvo.getPage()) - 1) * PageUtils.nvl(cvo.getPageSize());
 		List<CalculateVO> list = adminCalculateService.adminCalculateList(cvo);
 		model.addAttribute("count", count);
 		model.addAttribute("total", total);

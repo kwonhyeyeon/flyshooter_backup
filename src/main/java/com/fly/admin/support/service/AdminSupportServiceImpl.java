@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fly.member.common.page.Paging;
+import com.fly.member.common.page.BoardPagingUtils;
 import com.fly.member.support.dao.SupportDao;
 import com.fly.member.support.vo.SupportVO;
 
@@ -23,7 +23,7 @@ public class AdminSupportServiceImpl implements AdminSupportService {
 		List<SupportVO> asupportList = null;
 		
 		// 페이징 세팅
-		Paging.setPage(svo);
+		BoardPagingUtils.setPage(svo);
 		
 		asupportList = supportDao.adminSupportList(svo);
 		return asupportList;

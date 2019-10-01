@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fly.admin.member.service.AdminMemberService;
 import com.fly.member.join.vo.MemberVO;
 import com.fly.paging.util.Paging;
-import com.fly.paging.util.Util;
+import com.fly.paging.util.PageUtils;
 
 @Controller
 @RequestMapping(value = "/admin/member")
@@ -34,7 +34,7 @@ public class AdminMemberController {
 		// 전체 레코드수
 		int total = adminMemberService.getTotalSize(mvo);
 		// 글번호 재설정
-		int count = total - (Util.nvl(mvo.getPage()) -1 ) * Util.nvl(mvo.getPageSize());
+		int count = total - (PageUtils.nvl(mvo.getPage()) -1 ) * PageUtils.nvl(mvo.getPageSize());
 		
 		List<MemberVO> m_list = adminMemberService.getMemberList(mvo);
 		
