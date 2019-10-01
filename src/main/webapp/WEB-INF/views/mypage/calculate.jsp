@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/calculate.js"></script>
+<script type="text/javascript" src="/resources/js/common.js"></script>
 </head>
 <body>
 

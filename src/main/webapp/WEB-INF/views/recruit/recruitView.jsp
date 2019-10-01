@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 <link rel="stylesheet" href="/resources/css/board.css">
 <script src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/js/common.js"></script>
 <script type="text/javascript">
 	// 수정 페이지 이동  스크립트
 	// 버튼 클릭 시 등록된 글의 내용을 DB에서 불러옴

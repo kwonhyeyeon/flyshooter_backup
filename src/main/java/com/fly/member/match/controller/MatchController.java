@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fly.common.util.Util;
 import com.fly.member.common.page.BoardPagingUtils;
 import com.fly.member.common.vo.CommonVO;
 import com.fly.member.join.service.MemberService;
 import com.fly.member.join.vo.MemberVO;
 import com.fly.member.match.service.MatchService;
 import com.fly.member.match.vo.MatchVO;
+import com.fly.paging.util.PageUtils;
 
 @Controller
 @RequestMapping(value = "/match")
@@ -60,7 +60,7 @@ public class MatchController {
 		log.info("total = "+ total);
 
 		// 글 번호 재설정
-		int count = total - (Util.nvl(mavo.getPage())-1) * Util.nvl(mavo.getPageSize());
+		int count = total - (PageUtils.nvl(mavo.getPage())-1) * PageUtils.nvl(mavo.getPageSize());
 		log.info("count = " + count);
 		
 		List<MatchVO> matchList = matchService.matchList(mavo);

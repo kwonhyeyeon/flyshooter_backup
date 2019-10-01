@@ -13,6 +13,19 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
+<script>
+$(document).ready(function(){ 
+	
+	
+	if("${rental_message}"){
+		alert("${rental_message}");
+		location.href = "/user/rental/location.do";
+}
+
+	
+});
+
+</script>
 </head>
 <body>
 	<div id="wrapper">

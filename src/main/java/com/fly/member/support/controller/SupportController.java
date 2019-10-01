@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.fly.common.util.Util;
 import com.fly.member.common.page.BoardPagingUtils;
 import com.fly.member.common.vo.CommonVO;
 import com.fly.member.join.service.MemberService;
 import com.fly.member.join.vo.MemberVO;
 import com.fly.member.support.vo.SupportVO;
+import com.fly.paging.util.PageUtils;
 import com.fly.member.support.service.SupportService;
 
 @Controller
@@ -52,7 +52,7 @@ public class SupportController {
 		
 		System.out.println(total);
 		
-		int count = total - (Util.nvl(svo.getPage()) - 1) * Util.nvl(svo.getPageSize());
+		int count = total - (PageUtils.nvl(svo.getPage()) - 1) * PageUtils.nvl(svo.getPageSize());
 		
 		List<SupportVO> supportList = supportService.supportList(svo);
 		model.addAttribute("supportList", supportList);

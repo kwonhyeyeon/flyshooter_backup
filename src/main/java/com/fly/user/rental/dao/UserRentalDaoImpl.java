@@ -41,7 +41,6 @@ public class UserRentalDaoImpl implements UserRentalDao {
 	public int insertRental(RentalVO rvo) {
 		// TODO Auto-generated method stub
 		
-		System.out.println(rvo.toString());
 		return (int)sqlSession.insert(NAME_SPACE + ".insertRental", rvo);
 	}
 

@@ -217,12 +217,11 @@ public class UserRentalController {
 	   try {
 	   // 대관정보 (retnal) insert
 	   result = userRentalService.insertRental(rvo, items_no, items_ea);
+	   model.addAttribute("rental_message", "대관에 정상적으로 완료되었습니다.");
 	   }catch(Exception e) {
 		   e.toString();
-		   e.printStackTrace();
-		   System.out.println("대관실패.. 관리자한테 문의하십시오");
+		   model.addAttribute("rental_message", "대관이 실패하였습니다.\n잠시후 다시 시도해주십시오.");
 	   }
-	   System.out.println(result);
 	   return "rental/location";
    }
    

@@ -11,7 +11,7 @@
 	<short-name>customTag</short-name>
 	<tag>
 		<name>paging</name>
-		<tag-class>com.fly.member.common.page.PagingTag</tag-class>
+		<tag-class>com.fly.paging.util.PagingTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
 			<name>page</name>
