@@ -2,6 +2,7 @@ package com.fly.client.place.controller;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fly.admin.terms.service.AdminTermsService;
+import com.fly.admin.terms.vo.TermsVO;
 import com.fly.client.place.service.ClientPlaceService;
 import com.fly.member.join.vo.MemberVO;
 import com.fly.member.place.vo.PlaceVO;
@@ -26,6 +29,9 @@ public class ClientPlaceController {
 
 	@Autowired
 	private ClientPlaceService clientPlaceService;
+	
+	@Resource(name ="adminTermsService")
+	private AdminTermsService adminTermsService;
 
 	// 구장 목록 구현하기
 	@RequestMapping(value = "/placeList.do", method = RequestMethod.GET)
@@ -48,8 +54,16 @@ public class ClientPlaceController {
 
 	// 구장 약관 동의 페이지 출력하기
 	@RequestMapping(value = "/placecheck.do")
-	public String checkForm_ClientChk(HttpServletRequest request) {
+	public String checkForm_ClientChk(
+			HttpServletRequest request,
+			Model model
+			) {
 		System.out.println("placeCheck 호출 성공");
+		
+		List<TermsVO> data = adminTermsService.listTerms();
+		model.addAttribute("data", data);
+		System.out.println(data);
+		
 		return "mypage/placecheck";
 
 	}

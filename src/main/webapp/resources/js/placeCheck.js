@@ -15,14 +15,14 @@ $(document).ready(function(){
 			alert("개인정보 수집에 동의하지 않았습니다.");
 			return false;
 		}
-		location.href= "/mypage/placeForm.do";
 	});
 });	
-	//약관 동의 한번에 2개 모두 체크 
-	function cAll(){
-		if($("#checkAll").is(':checked')){
-			$("input[type=checkbox]").prop("checked", true);
-		}else {
-			$("input[type=checkbox]").prop("checked", false);
-		}
+
+//약관 동의 한번에 2개 모두 체크 
+function cAll(){
+	if($("#checkAll").is(':checked')){
+		$("input[type=checkbox]").prop("checked", true);
+	}else {
+		$("input[type=checkbox]").prop("checked", false);
 	}
+}

@@ -6,7 +6,61 @@
 <head>
 <meta charset="UTF-8">
 <title>login</title>
+<link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
+</head>
+<body>
+
+	<div id="wrapper">
+	
+		<header id="account-header">
+			<h1>FLY SHOOTER</h1>
+		</header>
+		
+		<article id="account-contents">
+			
+			<form id="loginForm" action="/member/login.do" method="post">
+				<div class="input-custom">
+					<div class="radio-box">
+						<input type="radio" name="m_type" value="1" id="user" required />
+						<label for="user">일반</label>
+						<span class="radio-check"></span>
+					</div>
+					
+					<div class="radio-box">
+						<input type="radio" name="m_type" value="0" id="client" required />
+						<label for="client">사업자</label>
+						<span class="radio-check"></span>
+					</div>
+				</div>
+				
+				<div class="login-box">
+					<input type="email" id="m_id" name="m_id" placeholder="아이디" />
+					<input type="password" id="m_pw" name="m_pw" placeholder="비밀번호">
+				</div>
+				
+				<input type="submit" value="로그인" id="loginbutton" name="loginbutton" />
+				
+				<div class="find-info">
+					<a href="/member/join.do">회원가입</a>
+					<a href="/member/serchMember.do">아이디/비밀번호 찾기</a>
+				</div>
+			</form>
+		
+		</article>
+		
+		<footer id="account-footer">
+			<div class="footer-link">
+				<a href="">이용약관</a>
+				<a href="">개인정보취급방침</a>
+			</div>
+			<p class="copyright">Copyright © <a class="link-home" href="/">FLYSHOOTER.</a> All rights reserved.</p>
+		</footer>
+	
+	</div>
+	
+</body>
 <script>
 	$(document).ready(function() {
 		
@@ -27,12 +81,7 @@
 				return false;
 			}
 		});
-		$("#join").click(function() {
-			location.href = "/member/join.do";
-		});
-		$("#serchId").click(function() {
-			location.href = "/member/serchMember.do";
-		});
+		
 		errCodeCheck();
 	});
 	function errCodeCheck() {
@@ -80,29 +129,4 @@
 	function noBack(){window.history.forward();}
 
 </script>
-</head>
-<body>
-	<form id="loginForm" action="/member/login.do" method="post">
-		<div>
-			<input type="radio" name="m_type" value="1" id="m_type" required />일반
-			<input type="radio" name="m_type" value="0" id="m_type" required />사업자
-		</div>
-		<div>
-			<label for="id">ID</label>
-			<div>
-				<input type="email" id="m_id" name="m_id" placeholder="User ID" />
-			</div>
-		</div>
-		<div>
-			<label for="pw">비밀 번호</label>
-			<div>
-				<input type="password" id="m_pw" name="m_pw" placeholder="Password">
-			</div>
-			<p class="form-control-static error"></p>
-		</div>
-		<input type="submit" value="login" id="loginbutton" name="loginbutton" />
-		<input type="button" value="아이디/비밀번호 찾기" id="serchId" name="serchId" />
-		<input type="button" value="회원가입" id="join" name="join" />
-	</form>
-</body>
 </html>
