@@ -40,14 +40,11 @@
 		ORDER BY to_number(r.r_start) asc
 	</select>
 	
-	<select id="detailRental">
-	
-	</select>
-	
 	<!-- 환불 리스트 -->
 	<select id="getRefundList" parameterType="place" resultMap="getRefundList">
 		select r.m_id, m.m_name, p.p_name, r.r_total_pay, r.refund, 
-		to_char(r.r_recall_time, 'yyyy/MM/dd') r_recall_time, r.r_no, to_char(m.m_regdate, 'yyyy/MM/dd') m_regdate
+		to_char(r.r_recall_time, 'yyyy/MM/dd') r_recall_time, r.r_no, to_char(m.m_regdate, 'yyyy/MM/dd') m_regdate,
+		p.p_open, p.p_close
 		from (SELECT ROWNUM RNUM , rn.* 
 			   FROM (SELECT * 
 			      	 FROM rental 
@@ -55,7 +52,7 @@
 			         ) r, member m, place p 
 		<where>
 			r.m_id = m.m_id and p.p_num = (select p_num from stadium where s_no = r.s_no) 
-			and p.m_id = 'esub17@naver.com'
+			and p.m_id = #{m_id}
 			and r.r_pay_status in (-1, 2)
 			
 			<if test='p_ok == 1'>
@@ -86,6 +83,8 @@
         <result column="refund" property="refund"/>
         <result column="r_recall_time" property="r_recall_time"/>
         <result column="m_regdate" property="register"/>
+        <result column="p_open" property="p_open"/>
+        <result column="p_close" property="p_close"/>
     </resultMap>
 	
 	
@@ -111,7 +110,7 @@
 	<select id="getRegdate" resultType="String">
 		select to_char(m_regdate, 'yyyy/MM/dd') register 
 		from member 
-		where m_id = 'esub17@naver.com'
+		where m_id = #{m_id}
 	</select>
 	
 	<!-- 환불 현황 상세 페이지 -->

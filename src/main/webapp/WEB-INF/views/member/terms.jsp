@@ -9,29 +9,35 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/js/placeCheck.js"></script>
 <body>
 	
-	<div id="wrapper" class="account">
+	<div id="wrapper">
 	
 		<header id="account-header">
 			<h1>FLY SHOOTER</h1>
 		</header>
 		
 		<article id="account-contents">
+			<div class="input-custom all">
+				<input type="checkbox" id="checkAll" onclick="cAll();">
+				<label id="checkLabel" for="checkAll">이용약관, 개인정보 취급방침 모두 동의합니다</label>
+			</div>
+			
 			<c:forEach var="term" items="${data}">
 				<c:if test="${term.ctype == 1}">
-					<div class="term_check">
-						<input type="checkbox" id="agree" />
-						<label for="agree">이용약관 동의(필수)</label>
+					<div class="input-custom">
+						<input type="checkbox" id="check1" />
+						<label id="checkLabel" for="check1">이용약관 동의(필수)</label>
 					</div>
 						
 					<div class="embed">${term.content}</div>
 				</c:if>
 				
 				<c:if test="${term.ctype == 2}">
-					<div class="term_check">
-						<input type="checkbox" id="privacy" />
-						<label for="privacy">개인정보 취급방침(필수)</label>
+					<div class="input-custom">
+						<input type="checkbox" id="check2" />
+						<label id="checkLabel" for="check2">개인정보 취급방침 동의(필수)</label>
 					</div>
 						
 					<div class="embed">${term.content}</div>
@@ -39,7 +45,7 @@
 			</c:forEach>
 			
 			<form id="agreeForm" action="/member/join.do" method="get">
-				<input type="reset" value="취소" id="" />
+				<a href="/">취소</a>
 				<input type="submit" value="확인" id="goJoin" /> 
 			</form>	
 		</article>

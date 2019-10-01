@@ -107,7 +107,7 @@
                         </tr>
 					    	
                         <tr class="btn-area">
-		                    <td><a class="cancle" href="javascript:history.back();">취소</a></td>
+		                    <td><a class="cancle" href="/admin/place/placeDetail.do?p_num=${svo.p_num}">취소</a></td>
 		                    <td class="positive">
 		                    	<c:if test="${svo.s_status == 0}">
 		                    		<button id="accept" class="add ml">경기장 승인</button>
