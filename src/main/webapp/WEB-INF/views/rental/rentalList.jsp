@@ -8,14 +8,13 @@
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>FLY SHOOTER</title>
-
-<link rel="stylesheet" href="/resources/css/reset.css" />
-<link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <!-- datepicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- datepicker -->
+<link rel="stylesheet" href="/resources/css/reset.css" />
+<link rel="stylesheet" href="/resources/css/style.css" />
 <script type="text/javascript" src="/resources/js/rentalList.js"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
 </head>
@@ -45,7 +44,7 @@
 					</c:otherwise>
 				</c:choose>
 				
-				<input type="text" id="datepicker" />
+				<input type="text" id="datepicker" class="calendar" />
 			</div>
 			<!-- 구장명, 날짜 선택 -->
 			
