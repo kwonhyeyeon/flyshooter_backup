@@ -18,11 +18,9 @@
 
 	<div id="wrapper">
 	
-		<div id="header-wrap">
-			<jsp:include page="../templates/header.jsp" flush="true" />
-		</div>
+	<jsp:include page="../templates/header.jsp" flush="true" />
 		
-		<div class="sub-v"></div>
+		
 		
 		<!-- 상세 페이지 이동을 위한 form -->
 		<form id="rentalInsertForm">
@@ -67,7 +65,8 @@
 			</table>
 			
 		</article>
-	
+		<jsp:include page="../templates/footer.jsp" flush="true" />
+		
 	</div>
 
 </body>

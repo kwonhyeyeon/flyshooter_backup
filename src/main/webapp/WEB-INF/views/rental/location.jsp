@@ -30,13 +30,11 @@ $(document).ready(function(){
 <body>
 	<div id="wrapper">
 
-		<div id="header-wrap">
-			<jsp:include page="../templates/header.jsp" flush="true" />
-		</div>
+		<jsp:include page="../templates/header.jsp" flush="true" />
 		
-		<div class="sub-v"></div>
 		
-		<div class="location-wrap">
+		
+		<article id="contents">
 			<form action="/user/rental/placeList.do" method="get">
 				<table border="1">
 					<tr>
@@ -58,7 +56,8 @@ $(document).ready(function(){
 					</tr>
 				</table>
 			</form>
-		</div>
+		</article>
+		<jsp:include page="../templates/footer.jsp" flush="true" />
 		
 	</div>
 		

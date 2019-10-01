@@ -34,9 +34,8 @@
 <body>
 	<div id="wrapper">
 
-		<div id="header-wrap">
-			<jsp:include page="../templates/header.jsp" flush="true" />
-		</div>
+		<jsp:include page="../templates/header.jsp" flush="true" />
+		
 		
 		<div class="sub-v"></div>
 		
@@ -125,6 +124,7 @@
 				<input type="hidden" name="page" value="${page }" />
 			</form>
 		</article>
+		<jsp:include page="../templates/footer.jsp" flush="true" />
 		
 	</div>
 		
