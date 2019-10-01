@@ -22,4 +22,16 @@ public class StatsServiceImpl implements StatsService{
 		return statsDao.placeStatus(stvo);
 	}
 
+	@Override
+	public List<Integer> selectStadiumNo(StatsVO stvo) {
+		// TODO Auto-generated method stub
+		return statsDao.selectStadiumNo(stvo);
+	}
+
+	@Override
+	public String stadiumStatus(StatsVO stvo) {
+		// TODO Auto-generated method stub
+		return statsDao.stadiumStatus(stvo);
+	}
+
 }

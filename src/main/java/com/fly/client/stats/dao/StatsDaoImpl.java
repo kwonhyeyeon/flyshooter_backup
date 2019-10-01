@@ -1,6 +1,8 @@
 package com.fly.client.stats.dao;
 
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,6 +21,18 @@ public class StatsDaoImpl implements StatsDao{
 	@Override
 	public String placeStatus(StatsVO stvo) {
 		return sqlSession.selectOne(NAME_SPACE + ".placeStatic", stvo);
+	}
+
+	@Override
+	public List<Integer> selectStadiumNo(StatsVO stvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAME_SPACE + ".selectStadiumNo", stvo);
+	}
+
+	@Override
+	public String stadiumStatus(StatsVO stvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAME_SPACE + ".stadiumStatic", stvo);
 	}
 	
 

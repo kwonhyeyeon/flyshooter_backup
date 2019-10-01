@@ -15,16 +15,7 @@
 </head>
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/modify.js"></script>
-<script>
-	$(function() {
-		$("#gnb").hover(function() {
-			$(".menu-wrap").slideDown(500);
-		});
-		$(".menu-wrap").mouseleave(function() {
-			$(".menu-wrap").slideUp(500);
-		});
-	})
-</script>
+<script type="text/javascript" src="/resources/js/common.js"></script>
 <body>
 	<div>
 	

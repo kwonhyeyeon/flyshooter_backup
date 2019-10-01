@@ -25,7 +25,7 @@ import com.fly.member.place.vo.PlaceVO;
 import com.fly.member.rental.vo.RentalVO;
 import com.fly.member.stadium.vo.StadiumVO;
 import com.fly.paging.util.Paging;
-import com.fly.paging.util.Util;
+import com.fly.paging.util.PageUtils;
 import com.fly.rental.detail.vo.RentalDetailVO;
 import com.fly.user.place.service.UserPlaceService;
 import com.fly.user.rental.service.UserRentalService;
@@ -217,12 +217,11 @@ public class UserRentalController {
 	   try {
 	   // 대관정보 (retnal) insert
 	   result = userRentalService.insertRental(rvo, items_no, items_ea);
+	   model.addAttribute("rental_message", "대관에 정상적으로 완료되었습니다.");
 	   }catch(Exception e) {
 		   e.toString();
-		   e.printStackTrace();
-		   System.out.println("대관실패.. 관리자한테 문의하십시오");
+		   model.addAttribute("rental_message", "대관이 실패하였습니다.\n잠시후 다시 시도해주십시오.");
 	   }
-	   System.out.println(result);
 	   return "rental/location";
    }
    
@@ -236,7 +235,7 @@ public class UserRentalController {
 	   rvo.setM_id(mvo.getM_id());
 	   
 	   int total = userRentalService.myRentalListCnt(rvo.getM_id());
-	   int count = total - (Util.nvl(rvo.getPage()) -1 ) * Util.nvl(rvo.getPageSize());
+	   int count = total - (PageUtils.nvl(rvo.getPage()) -1 ) * PageUtils.nvl(rvo.getPageSize());
 	   model.addAttribute("myList", userRentalService.selectMyRentalList(rvo));
 	   model.addAttribute("count", count);
 	   model.addAttribute("total", total);

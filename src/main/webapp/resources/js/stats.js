@@ -15,8 +15,8 @@ window.onload = function () {
 	var statisics = sendParam().split(",");
 	
 	
-	column = makeColumnList(statisics, index);
-	arr =  makeStatisics(statisics, index);
+	column = makeColumnList(statisics);
+	arr =  makeStatisics(statisics);
 	
 	drawChart(arr, column, "구장별 대관현황", index);
 	
@@ -29,7 +29,11 @@ window.onload = function () {
 		
 		var selected = $("#placeBox").val();
 		
-		if( selected != "구장선택" ) return;
+		if( selected != "구장선택" ) {
+			// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
+			getStadiumStatis();
+			return;
+		}
 		
 		// 연도별 검색
 		$("#selectedYear").val($(this).val());
@@ -41,15 +45,60 @@ window.onload = function () {
 		
 	});
 	
+	// 구장을 선택했을경우 비동기.
+	$("#placeBox").change(function(){
+		
+		// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
+		getStadiumStatis();
+		
+		
+	});
+	
 	
 	
 }
 
+
+function getStadiumStatis(){
+	var stadiumStatis = [];
+	
+	var stvo = {
+			p_num : $("#placeBox").val(),
+			year : $("#year").val()
+			};
+	
+	
+	// 선택된 경기장의 시간조회 비동기 처리
+	$.ajax({
+		type:"post",
+		url:"/mypage/stadiumStats.do",
+		data:stvo,
+		error: function() {
+			 alert($("#placeBox option:selected").text() + "통계조회에 실패하였습니다. \n잠시후 다시 시도해주십시오.");
+		},
+		success:function(result){
+			
+			if(result == "Empty"){
+				alert("등록된 경기장이 없습니다.");
+				return;
+			}
+			var str = result.slice(0,-2);
+			stadiumStatis = str.split("@@");
+			
+			column = makeColumnList(stadiumStatis);
+			arr =  makeStatisics(stadiumStatis);
+			
+			drawChart(arr, column, $("#placeBox option:selected").text(), stadiumStatis.length);
+		}
+		
+	});
+}
+
+
 function drawChart(arr, column, title, index) {
 	
-	
     var data = new google.visualization.DataTable();
-		data.addColumn('number', 'month');
+		data.addColumn('string', '');
 		
 		for(var q = 0; q < index; q++){
 			data.addColumn('number', column[q]);
@@ -70,11 +119,21 @@ function drawChart(arr, column, title, index) {
 	       	eval(arr[10]),
 	       	eval(arr[11]),
 	      ]);
+		
 
     var options = {
       chart: {
         title: title,
         /* subtitle: 'in millions of dollars (USD)' */
+      },
+      vAxis: {
+    	  title:'대관',
+    	  
+          viewWindowMode:'explicit',
+          viewWindow: {
+              min: 0,
+              max: 1000,
+          },
       },
       width: 900,
       height: 500,
@@ -83,6 +142,7 @@ function drawChart(arr, column, title, index) {
           0: {side: 'bottom'}
         }
       }
+
     };
 
     var chart = new google.charts.Line(document.getElementById('line_top_x'));
@@ -109,14 +169,16 @@ function drawChart(arr, column, title, index) {
  		var arg = [];
  		
  		for( var i = 0; i < 12; i++ ){
- 			var param = "["+(i+1);
+ 			var param = "['"+(i+1)+"월'";
  			
  			for( var j = 0; j < statisics.length; j++ ){
  				var value = statisics[j].split("!!");
  				
  				param += ", "+value[i+1];	
  			}
- 				param += "]";
+ 			
+ 					param += "]";
+ 				
  			arg.push(param);
  		}
  		

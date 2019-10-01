@@ -35,11 +35,11 @@
 					<input type="hidden" id="register" value="${register}" />
 					
 					<select name="p_open" id="year">
-						<option selected>연도</option>
+						<option <c:if test="${p_open eq p_open}">selected</c:if>>연도</option>
 					</select>
 					
 					<select name="p_close" id="month">
-						<option selected>월 선택</option>
+						<option <c:if test="${p_close eq p_close}">selected</c:if>>월 선택</option>
 					</select>
 					
 					<input type="submit" id="refundSearch" value="검색" />

@@ -39,9 +39,7 @@ public class MemberAdvice {
 			
 			try {
 				
-				System.out.println("m_id ::::::::::::" + mvo.getM_id());
-				System.out.println("m_type ::::::::::::" + mvo.getM_type());
-				System.out.println("3");
+				mvo.getM_id();
 							
 			}catch(NullPointerException e) {
 				
@@ -91,8 +89,6 @@ public class MemberAdvice {
 			
 			try {
 				
-				System.out.println("m_id ::::::::::::" + mvo.getM_id());
-				System.out.println("m_type ::::::::::::" + mvo.getM_type());
 				
 				int m_type = mvo.getM_type();
 				if( m_type == 2 ) {
@@ -156,9 +152,6 @@ public class MemberAdvice {
 				MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 				
 				try {
-					
-					System.out.println("m_id ::::::::::::" + mvo.getM_id());
-					System.out.println("m_type ::::::::::::" + mvo.getM_type());
 					
 								
 					int m_type = mvo.getM_type();

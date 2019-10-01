@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.fly.common.util.Util;
-import com.fly.member.common.page.Paging;
+import com.fly.member.common.page.BoardPagingUtils;
 import com.fly.member.common.vo.CommonVO;
 import com.fly.member.join.service.MemberService;
 import com.fly.member.join.vo.MemberVO;
 import com.fly.member.recruit.service.RecruitService;
 import com.fly.member.recruit.vo.RecruitVO;
+import com.fly.paging.util.PageUtils;
 
 @Controller
 @RequestMapping(value = "/recruit")
@@ -44,7 +44,7 @@ public class RecruitController {
 		model.addAttribute("recruitMbdate", revo);
 		
 		// 페이징 세팅
-		Paging.setPage(revo);
+		BoardPagingUtils.setPage(revo);
 		
 		// 전체 레코드 수 구현하기
 		System.out.println(revo.getKeyword());
@@ -52,7 +52,7 @@ public class RecruitController {
 		
 		System.out.println(total);
 		
-		int count = total - (Util.nvl(revo.getPage()) - 1) * Util.nvl(revo.getPageSize());
+		int count = total - (PageUtils.nvl(revo.getPage()) - 1) * PageUtils.nvl(revo.getPageSize());
 		
 		List<RecruitVO> recruitList = recruitService.recruitList(revo);
 		model.addAttribute("recruitList", recruitList);

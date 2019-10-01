@@ -23,7 +23,7 @@ import com.fly.client.items.vo.ItemsVO;
 import com.fly.client.place.service.ClientPlaceService;
 import com.fly.client.stadium.service.ClientStadiumService;
 import com.fly.client.util.FileUploadUtil;
-import com.fly.client.util.MakeList;
+import com.fly.client.util.MakeListUtils;
 import com.fly.member.join.vo.MemberVO;
 import com.fly.member.place.vo.PlaceVO;
 import com.fly.member.stadium.vo.StadiumVO;
@@ -66,7 +66,7 @@ public class StadiumController {
 		List<ItemsVO> Ilist = itemsService.itemsList(p_num);
 		
 		
-		return MakeList.makeList(Slist, Ilist, p_num);
+		return MakeListUtils.makeList(Slist, Ilist, p_num);
 
 	}
 

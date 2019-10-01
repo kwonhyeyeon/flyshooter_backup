@@ -73,7 +73,12 @@
 				</tr>
 				<tr>
 					<th>환불 유형</th>
-					<td>${data.r_pay_type}</td>
+					<c:if test="${data.r_pay_type == 2}">
+						<td>환불 대기</td>
+					</c:if>
+					<c:if test="${data.r_pay_type == -1}">
+						<td>환불 완료</td>
+					</c:if>
 					<th>은행명</th>
 					<td>${data.r_bank}</td>
 				</tr>

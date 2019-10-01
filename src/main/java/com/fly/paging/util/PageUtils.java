@@ -1,6 +1,6 @@
 package com.fly.paging.util;
 
-public class Util {
+public class PageUtils {
 	public static int nvl(String text) {
 		return nvl(text, 0);
 	}

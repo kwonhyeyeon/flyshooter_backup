@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/js/jquery-ui.min.css" />
 
 <script src="/resources/js/jquery-ui.min.js"></script>
-
+<script type="text/javascript" src="/resources/js/common.js"></script>
 <script type="text/javascript">
 	// 매칭 게시글 저장 스크립트 Controller자바 /match/matchInsert.do 로 연결-----------------
 	$(function() {
