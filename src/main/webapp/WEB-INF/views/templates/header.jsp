@@ -7,8 +7,8 @@
 	    <nav id="gnb">
 	        <ul>
 	            <li><a href="/">대관</a></li>
-	            <li><a href="/">매치</a></li>
-	            <li><a href="/">용병</a></li>
+	            <li><a href="/match/matchList.do">매치</a></li>
+	            <li><a href="/support/supportList.do">용병</a></li>
 	            <li><a href="/">마이페이지</a></li>
 	        </ul>
 	    </nav>
