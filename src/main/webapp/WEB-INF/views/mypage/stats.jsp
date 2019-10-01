@@ -49,7 +49,7 @@ google.charts.setOnLoadCallback(drawChart);
 		
 			<article id="selectPlace">
 				<select id="placeBox" name="placeBox" >
-					<option>구장선택</option>
+					<option>전체구장</option>
 					<c:forEach var="pvo" items="${place}">
 						<option value="${ pvo.p_num }">${ pvo.p_name }</option>
 					</c:forEach>	
