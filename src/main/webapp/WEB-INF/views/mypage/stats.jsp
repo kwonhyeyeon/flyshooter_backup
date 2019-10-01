@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/js/common.js"></script>
 <script type="text/javascript" src="/resources/js/stats.js"></script>
 <!-- google charts -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

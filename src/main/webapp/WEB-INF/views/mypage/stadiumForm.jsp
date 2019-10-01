@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/stadiumForm.js"></script>
+<script type="text/javascript" src="/resources/js/common.js"></script>
 <script>
 $(document).ready(function(){
 	$("#stadiumForm").submit(function() {

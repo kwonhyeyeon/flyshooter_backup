@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/js/jquery-ui.min.css" />
 
 <script src="/resources/js/jquery-ui.min.js"></script>
-
+<script type="text/javascript" src="/resources/js/common.js"></script>
 <script type="text/javascript">
 	
 	$(function() {

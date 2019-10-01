@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 </head>
 <script src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/js/common.js"></script>
 <script>
 	$(document).ready(function() {
 		$("#home").click(function() {
@@ -32,14 +33,6 @@
 			}
 		}
 	}
-	$(function() {
-		$("#gnb").hover(function() {
-			$(".menu-wrap").slideDown(500);
-		});
-		$(".menu-wrap").mouseleave(function() {
-			$(".menu-wrap").slideUp(500);
-		});
-	})
 </script>
 
 <body>

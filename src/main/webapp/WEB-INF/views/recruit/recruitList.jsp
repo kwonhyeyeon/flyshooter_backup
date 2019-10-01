@@ -18,7 +18,7 @@
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-
+<script type="text/javascript" src="/resources/js/common.js"></script>
 <script type="text/javascript">
 	
 	$(function() {
@@ -109,15 +109,6 @@
 		$("#r_search").submit();
 	}
 
-	// 상단 메뉴 설정 스크립트
-	$(function() {
-		$("#gnb").hover(function() {
-			$(".menu-wrap").slideDown(500);
-		});
-		$(".menu-wrap").mouseleave(function() {
-			$(".menu-wrap").slideUp(500);
-		});
-	})
 </script>
 
 </head>

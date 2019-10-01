@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 
 <script src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/js/common.js"></script>
 <script type="text/javascript" src="/resources/js/placeDetailEdit.js"></script>
 <!-- 다음 우편 주소 api-->
 <script

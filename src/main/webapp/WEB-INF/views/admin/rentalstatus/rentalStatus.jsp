@@ -23,6 +23,7 @@
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/js/common.js"></script>
 <!-- google charts -->
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
