@@ -336,7 +336,124 @@
 	margin-left:10px;
 	cursor:pointer;
 }
+.selectArea input#datepicker {
+	padding:8px 10px !important;
+}
 /* selectArea */
+
+/* datepicker */
+.ui-datepicker-trigger {
+	margin-left:10px;
+	width:24px;
+	height:24px;
+	margin-top:5px;
+	cursor:pointer;
+}
+#ui-datepicker-div {
+	width:343px;
+	background:#fff;
+	padding:0;
+}
+.ui-datepicker-header.ui-widget-header.ui-corner-all {
+  height: 50px !important;
+  line-height: 50px!important;
+  color: #b0aead!important;
+  background:#dedede;
+  border:none;
+  border-radius:none;
+  margin-bottom: 10px!important;
+}
+.ui-datepicker-prev.ui-corner-all,
+.ui-datepicker-next.ui-corner-all {
+  width: 20px;
+  height: 20px;
+  text-indent: 9999px;
+  border: 2px solid #b0aead;
+  border-radius: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.ui-datepicker-prev.ui-corner-all {
+  float: left;
+  margin-left: 12px;
+}
+.ui-datepicker-prev.ui-corner-all:after {
+  transform: rotate(45deg);
+  margin: -43px 0px 0px 8px;
+}
+.ui-datepicker-next.ui-corner-all {
+  float: right;
+  margin-right: 12px;
+}
+.ui-datepicker-next.ui-corner-all:after {
+  transform: rotate(-135deg);
+  margin: -43px 0px 0px 6px;
+}
+.ui-datepicker-prev.ui-corner-all:after,
+.ui-datepicker-next.ui-corner-all:after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+.ui-datepicker-prev.ui-corner-all:hover,
+.ui-datepicker-next.ui-corner-all:hover,
+.ui-datepicker-prev.ui-corner-all:hover:after,
+.ui-datepicker-next.ui-corner-all:hover:after {
+	border-color: #5ed1cc;
+}
+.ui-widget-header .ui-icon {
+	background:none;
+}
+.ui-datepicker .ui-datepicker-title {
+  text-align:center;
+  height:50px;
+  line-heigt:50px !important;
+  display:flex;
+  justify-content:center;
+}
+.ui-datepicker-year,
+.ui-datepicker-month {
+	height:50px;
+  	line-heigt:50px !important;
+}
+.ui-datepicker-calendar {
+  width: 100%;
+  text-align: center;
+}
+.ui-datepicker-calendar thead tr th span {
+  display: block;
+  width: 40px;
+  color: #00a8b2;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+.ui-state-default {
+  display: block;
+  text-decoration: none;
+  color: #b5b5b5;
+  line-height: 40px;
+  font-size: 12px;
+}
+.ui-state-default:hover {
+  background: rgba(0,0,0,0.02);
+}
+.ui-state-highlight {
+  color: #8dd391;
+}
+.ui-state-active {
+  color: #5ed1cc;
+}
+.ui-datepicker-unselectable .ui-state-default {
+  color: #eee;
+  border: 2px solid transparent;
+}
+/* datepicker */
+
 /* btnArea */
 .btnArea {
 	width:100%;

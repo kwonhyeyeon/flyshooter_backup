@@ -54,27 +54,33 @@ $(document).ready(function(){
 
 //우편주소
 function placeCheck(){
+	
+	var re = /^[가-힣]{2,10}$/; // 구장이름, 구장, 예금주명
+	var re2 = /^[0-9]{10,10}$/;// 사업자 번호 
+	var re3 = /^01([0|2|3|9]?)-?([0-9]{4})-?([0-9]{4})$/; //구장 전화번호
+	var re4 = /^[0-9]{11,20}$/;// 계좌번호
+	
+	var pname = document.getElementById("p_name");
+	var pceo =  document.getElementById("p_ceo");
+	var pnum = document.getElementById("p_num");
+	var pphone = document.getElementById("p_phone");
+	var paccount = document.getElementById("p_account");
+	var paccountnum = document.getElementById("p_account_num");
 	//체크여부
-	if(p_name.value == ""){
-		alert("구장명을 입력해주세요");
-		p_name.focus();
+	
+	if(!check(re, pname, "구장명 한글 2~10자 형식에 맞춰주세요")){  
 		return false;
 	}
-	if(p_ceo.value == ""){
-		alert("대표자명 입력해주세요");
-		p_ceo.focus();
+	if(!check(re, pceo, "대표자명 한글 2~10자 맞춰주세요")){
 		return false;
 	}
-	if(p_num.value == ""){
-		alert("사업자 번호를 입력해주세요");
-		p_num.focus();
+	if(!check(re2, pnum, "사업자번호 숫자로 10자로 맞춰주세요")){
 		return false;
 	}
-	if(p_phone.value == ""){
-		alert("구장 전화번호를 입력해주세요");
-		p_phone.focus();
+	if(!check(re3, pphone, "구장 전화번호 010,012,013,019 형식을 맞춰주세요")){
 		return false;
 	}
+	
 	if(sample6_postcode.value == ""){
 		alert("우편번호를 넣어주세요");
 		return false;
@@ -91,12 +97,13 @@ function placeCheck(){
 		return false;
 	}
 	
-	if(p_account.value == ""){
-		alert("예금주명을 입력해주세요");
-		p_account.focus();
+	if(!check(re, paccount, "예금주명 한글 2~10자 맞춰주세요")){
 		return false;
 	}
-	
+	if(!check(re4, paccountnum, "계좌번호 11~20자 형식을 맞춰주세요" )){
+		return false;
+	}
+
 	if(a.p_holiday.value == ''){
 		alert('정기휴일을 선택해주세요.');
 		a.p_holiday.focus();
@@ -188,6 +195,18 @@ $(function(){
 	location.href="/mypage/placeList.do";	
 	});
 });
+
+//check 정규식에 사용
+function check(re, what, message) {
+    if(re.test(what.value)) {
+        return true;
+    }
+    alert(message);
+    what.value = "";
+    what.focus();
+   // return false;
+  
+}
 
 //다음 우편주소 api 복사 붙여넣기
 function sample6_execDaumPostcode() {
