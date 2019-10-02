@@ -59,9 +59,6 @@ public class StatsController {
 			years.add(i);
 		}
 		model.addAttribute("years", years);
-		}catch(NullPointerException e) {
-			model.addAttribute("years", Calendar.getInstance().get(Calendar.YEAR));
-		}
 		
 		if( "0".equals(year) ) {
 			selectYear = ypvo.getP_holiday_end();
@@ -69,6 +66,11 @@ public class StatsController {
 			selectYear = year;
 		}
 		model.addAttribute("selectYear", selectYear);
+		
+		}catch(NullPointerException e) {
+			model.addAttribute("years", Calendar.getInstance().get(Calendar.YEAR));
+		}
+		
 		for( PlaceVO pvo2 : placeChoice ) {
 			svo = new StatsVO();
 			svo.setP_num(pvo2.getP_num());
