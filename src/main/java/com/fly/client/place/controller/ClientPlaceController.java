@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -82,6 +81,7 @@ public class ClientPlaceController {
 		pvo.setM_id(m_id);
 		String p_num = pvo.getP_num();
 		result = clientPlaceService.placeInsert(pvo);
+		
 		if (result == 1) {
 			model.addAttribute("p_num",p_num);
 			return "/mypage/stadiumForm";

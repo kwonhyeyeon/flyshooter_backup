@@ -68,6 +68,7 @@ public class StatsController {
 		model.addAttribute("selectYear", selectYear);
 		
 		}catch(NullPointerException e) {
+			System.out.println("years : "+Calendar.getInstance().get(Calendar.YEAR));
 			model.addAttribute("years", Calendar.getInstance().get(Calendar.YEAR));
 		}
 		
