@@ -44,7 +44,6 @@ public class MemberController {
 	 ******************************/
 	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
 	public String joingForm(Model model) {
-		System.out.println("join.do get 방식에 의한 메서드 호출 성공");
 		return "member/join";
 	}
 
@@ -65,7 +64,6 @@ public class MemberController {
 	 ******************************/
 	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
 	public ModelAndView memberInsert(@ModelAttribute MemberVO mvo) throws Exception {
-		System.out.println("join.do post 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
 
 		int result = 0;
@@ -78,8 +76,6 @@ public class MemberController {
 			break;
 		case 3:
 			mav.addObject("errCode", 3);
-			System.out.println("인증 메일 보내기 메서드");
-			System.out.println("currnent join member: " + mvo.toString());
 			mailsender.mailSendWithUserKey(mvo);
 			mav.setViewName("member/join_email");
 
@@ -106,7 +102,6 @@ public class MemberController {
 
 	@RequestMapping(value = "/searchMember.do", method = RequestMethod.GET)
 	public ModelAndView searchId(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) {
-		System.out.println("searchMember.do get 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/searchMember");
 		return mav;
@@ -114,35 +109,28 @@ public class MemberController {
 
 	@RequestMapping(value = "/searchId.do", method = RequestMethod.POST)
 	public ModelAndView idSearch(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) {
-		System.out.println("searchId.do post 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
-<<<<<<< HEAD
-		List<MemberVO> result = memberService.memberidserch(mvo);
-=======
 		List<MemberVO> result = memberService.memberidsearch(mvo);
-		if (result.get(0).getM_id().equals("")) {
-			mav.addObject("errCode", 1); 
-			mav.setViewName("member/searchMember");
+		try {
+			for (int i = 0; i < result.size(); i++) {
+				mav.addObject("m_id", result.get(i).getM_id());
+			}
+			mav.setViewName("member/searchId");
+		} catch (Exception e) {
+			// TODO: handle exception
+			mav.setViewName("member/searchId");
 		}
->>>>>>> a7dffadc432362059797e37f20626ea93e2a833a
-		for (int i = 0; i < result.size(); i++) {
-			mav.addObject("m_id", result.get(i).getM_id());
-		}
-		mav.setViewName("member/searchId");
 		return mav;
 	}
 	
 	@RequestMapping(value = "/searchPw.do", method = RequestMethod.POST)
 	public ModelAndView pwSearch(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) throws Exception {
-		System.out.println("searchPw.do post 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
 		
-		System.out.println("비밀번호 변경 메일 보내기 메서드");
 		System.out.println("currnent join member: " + mvo.toString());
-<<<<<<< HEAD
 		MemberVO result = memberService.memberSelect(mvo.getM_id());
 		if (result == null) {
-			mav.setViewName("member/serchId");
+			mav.setViewName("member/searchId");
 			return mav;
 		}
 		try {
@@ -151,17 +139,11 @@ public class MemberController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-=======
-		mailsender.pwModify(mvo);
-		mav.addObject("errCode", 3); 
-		mav.setViewName("member/searchMember");
->>>>>>> a7dffadc432362059797e37f20626ea93e2a833a
 		return mav;
 	}
 
 	@RequestMapping(value = "/pwmodify.do", method = RequestMethod.GET)
 	public ModelAndView pwmodifyForm(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) throws Exception {
-		System.out.println("pwmodify.do post 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("errCode", 3); 
@@ -172,7 +154,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "/pwmodify.do", method = RequestMethod.POST)
 	public ModelAndView pwmodifySuccess(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) throws Exception {
-		System.out.println("pwmodify.do post 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
 		
 		int result = 0;
@@ -190,7 +171,6 @@ public class MemberController {
 	@RequestMapping(value = "/mypage/modifyLogin.do", method = RequestMethod.GET)
 	public ModelAndView modifyLogin(@ModelAttribute("MemberVO") MemberVO mvo
 			, HttpSession session,HttpServletRequest request) {
-		System.out.println("modifyLogin.do get 방식에 의한 메서드 호출 성공");
 		String m_id = "";
 		ModelAndView mav = new ModelAndView();
 		try {
@@ -210,7 +190,6 @@ public class MemberController {
 	@RequestMapping(value = "/mypage/modify.do", method = RequestMethod.POST)
 	public ModelAndView memberModify_LoginChk(@ModelAttribute("MemberVO") MemberVO mvo
 			,HttpSession session, HttpServletRequest request) throws Exception {
-		System.out.println("modify.do POST 방식에 의한 메서드 호출 성공");
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
 		String m_id = sessionMvo.getM_id();
 		String m_pw = mvo.getM_pw();
@@ -231,8 +210,6 @@ public class MemberController {
 		// 로그인이 틀리면 , 로그인 시도횟수를 1증가 시키고,
 		// 로그인 실패 시간을 DB에 업데이트 한다.
 		if (!BCrypt.checkpw(shaPass, mvoDB.getM_pw())) {
-			System.out.println("비밀번호 불일치");
-
 			mav.addObject("errCode", 1);
 			mav.setViewName("mypage/modifyLogin");
 			return mav;
@@ -241,9 +218,6 @@ public class MemberController {
 		// 마지막으로 로그인 실패 시간 0으로 reset,
 		// 성공한 클라이언트 IP를 DB에 업데이트,로그인 성공시간 DB에 업데이트
 		else {
-			System.out.println("비밀번호 일치");
-
-			System.out.println("로그인 성공");
 			mav.addObject("m_name", m_name);
 			mav.addObject("m_phone", m_phone);
 			mav.setViewName("/mypage/modify");
@@ -254,7 +228,6 @@ public class MemberController {
 	@RequestMapping(value = "/mypage/modify_success.do", method = RequestMethod.POST)
 	public ModelAndView memberModifyProcess_LoginChk(@ModelAttribute MemberVO mvo, HttpSession session
 			,HttpServletRequest request) {
-		System.out.println("modify_success.do post방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
 
 		int result = 0;
@@ -271,8 +244,6 @@ public class MemberController {
 
 	@RequestMapping("/delete.do")
 	public ModelAndView memberDelete_LoginChk(HttpSession session,HttpServletRequest request) {
-		System.out.println("delete.do get방식에의한 메서드 호출 성공");
-
 		ModelAndView mav = new ModelAndView();
 		
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
@@ -297,8 +268,6 @@ public class MemberController {
 			@ModelAttribute TermsVO tvo,
 			Model model
 			) {
-		System.out.println("terms 호출 성공");
-		
 		List<TermsVO> data = adminTermsService.listTerms();
 		model.addAttribute("data", data);
 		System.out.println(data);

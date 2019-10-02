@@ -21,6 +21,16 @@ $(document).ready(function(){
 	});
 	$("#m_pwCheck, #m_pw").blur(function() {
 		var m_pw = $("#m_pw").val();
+		var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
+		var re3 =  /^[A-Za-z0-9]{6,12}$/;//패스워드 정규식(숫자와 문자 포함 형태의 6~12자리 이내의 암호 정규식
+
+		if (!check(re, pw, "패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+		      return false;
+		}
+		if(!check(re3, pw, "숫자와 문자 포함 형태의 6~12자리 이내")){
+			   return false;
+		}
+		   
 
 		var pwcheck = document.getElementById("pwcheck");
 

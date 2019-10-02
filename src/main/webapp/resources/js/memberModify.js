@@ -61,13 +61,15 @@ function errCodeCheck() {
 }
 function modifyCheck() {
 	var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
-	var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-	// 이메일이 적합한지 검사할 정규식
-
+	var re3 =  /^[A-Za-z0-9]{6,12}$/;//패스워드 정규식(숫자와 문자 포함 형태의 6~12자리 이내의 암호 정규식
+	
 	var pw = document.getElementById("m_pw");
 
 	// ------------ 이메일 까지 -----------
 	if (!check(re, pw, "패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+		return false;
+	}
+	if(!check(re3, pw, "숫자와 문자 포함 형태의 6~12자리 이내")){
 		return false;
 	}
 	if (pwConfirm == 1) {
