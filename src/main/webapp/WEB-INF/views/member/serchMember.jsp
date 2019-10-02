@@ -10,6 +10,8 @@
 <script>
 	$(document).ready(function() {
 		$("#searchFormId").submit(function() {
+			//휴대폰번호 합치기
+			$("#m_phone").val($("#m_phone1").val()+'-'+$("#m_phone2").val()+'-'+$("#m_phone3").val());
 			var m_name = $("#m_name").val();
 			var m_phone = $("#m_phone").val();
 			if (!(m_name)) {
@@ -28,22 +30,7 @@
 				return false;
 			}
 		});
-		errCodeCheck();
 	});
-	function errCodeCheck() {
-		var errCode = '<c:out value = "${errCode}"/>';
-		if (errCode != "") {
-			//명확한 자료형 명시를 위해 errCode의 타입을 정수형으로 변환.
-			switch (parseInt(errCode)) {
-			case 1:
-				alert("일치하는 아이디가 존재하지 않습니다.");
-				return false;
-			case 3:
-				alert("이메일이 발송되었습니다. 이메일을 확인해주세요");
-				return false;
-			}
-		}
-	}
 </script>
 <body>
 	<div>
@@ -60,9 +47,21 @@
 				</div>
 			</div>
 			<div>
-				<label for="pw">전화번호</label>
+				<label for="phone">핸드폰번호 </label>
 				<div>
-					<input type="text" id="m_phone" name="m_phone" placeholder="Phone">
+					<select name="m_phone1" id="m_phone1">
+						<option value="010" selected>010</option>
+						<option value="012">012</option>
+						<option value="013">013</option>
+						<option value="019">019</option>
+					</select>
+						 - 
+					<input type="text" id="m_phone2" name="m_phone2" maxlength="4"
+						placeholder="Phone Number">
+						 - 
+					<input type="text" id="m_phone3" name="m_phone3" maxlength="4"
+						placeholder="Phone Number">
+					<input type="hidden" name="m_phone" id="m_phone"/>
 				</div>
 			</div>
 			<input type="submit" value="아이디 찾기" id="serchId" name="serchId" />
@@ -77,7 +76,7 @@
 					<input type="email" id="m_id" name="m_id" placeholder="User ID" />
 				</div>
 			</div>
-			<input type="submit" value="아이디 찾기" id="serchPw" name="serchPw" />
+			<input type="submit" value="비밀번호 찾기" id="serchPw" name="serchPw" />
 		</form>
 	</div>
 </body>

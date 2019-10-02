@@ -99,7 +99,7 @@ public class MemberController {
 		mvo.setM_id(request.getParameter("m_id"));
 		mvo.setEmail_confirm(request.getParameter("email_confirm"));
 
-		mailsender.alter_userKey_service(mvo); // mailsender의 경우 @Autowired
+		mailsender.alterUserKeyService(mvo); // mailsender의 경우 @Autowired
 
 		return "member/join_success";
 	}
@@ -117,10 +117,6 @@ public class MemberController {
 		System.out.println("serchId.do post 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
 		List<MemberVO> result = memberService.memberidserch(mvo);
-		if (result.get(0).getM_id().equals("")) {
-			mav.addObject("errCode", 1); 
-			mav.setViewName("member/serchMember");
-		}
 		for (int i = 0; i < result.size(); i++) {
 			mav.addObject("m_id", result.get(i).getM_id());
 		}
@@ -135,9 +131,17 @@ public class MemberController {
 		
 		System.out.println("비밀번호 변경 메일 보내기 메서드");
 		System.out.println("currnent join member: " + mvo.toString());
-		mailsender.pwModify(mvo);
-		mav.addObject("errCode", 3); 
-		mav.setViewName("member/serchMember");
+		MemberVO result = memberService.memberSelect(mvo.getM_id());
+		if (result == null) {
+			mav.setViewName("member/serchId");
+			return mav;
+		}
+		try {
+			mailsender.pwModify(mvo);
+			mav.setViewName("member/join_email");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		return mav;
 	}
 

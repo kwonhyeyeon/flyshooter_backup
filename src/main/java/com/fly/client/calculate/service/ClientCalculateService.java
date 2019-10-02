@@ -12,8 +12,6 @@ public interface ClientCalculateService {
 
 	List<CalculateVO> calculateIList(CalculateVO cvo);
 
-	int pRentalUpdae(String p_num);
-
 	int pageingSize(CalculateVO cvo);
 
 }

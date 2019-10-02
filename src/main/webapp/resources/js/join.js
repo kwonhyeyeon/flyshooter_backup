@@ -133,8 +133,6 @@ function joinCheck() {
   
    
    idPwdCheck();
-   alert($("#m_phone").val());
-   
 }
 function check(re, what, message) {
     if(re.test(what.value)) {
