@@ -9,7 +9,35 @@
 <title>구장 등록</title>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
-<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery.min.js">
+$("#p_register").change(function(){
+	if(this.files && this.files[0]) {
+		var reader = new FileReader;
+	    reader.onload = function(data) {
+	    	$(".select_p_register img").attr("src", data.target.result).width(500);        
+	    }
+	reader.readAsDataURL(this.files[0]);
+	}
+});
+$("#p_account_copy").change(function(){
+	if(this.files && this.files[0]) {
+		var reader = new FileReader;
+	    reader.onload = function(data) {
+	    	$(".select_p_account_copy img").attr("src", data.target.result).width(500);        
+	    }
+	reader.readAsDataURL(this.files[0]);
+	}
+});
+$("#p_property").change(function(){
+	if(this.files && this.files[0]) {
+		var reader = new FileReader;
+	    reader.onload = function(data) {
+	    	$(".select_p_property img").attr("src", data.target.result).width(500);        
+	    }
+	reader.readAsDataURL(this.files[0]);
+	}
+});
+</script>
 <script type="text/javascript" src="/resources/js/placeForm.js"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
 <!-- 다음 우편 주소 api-->
@@ -26,7 +54,7 @@
 	<article id="contents">
 		<h3> 구장 등록</h3>
 		<div class="placeForm">
-			<form name="p_placeForm" id="p_placeForm" action="/mypage/placeInsert.do" method="post">
+			<form name="p_placeForm" id="p_placeForm" action="/mypage/placeInsert.do" method="post" enctype="multipart/form-data">
 					 <div>구장명&nbsp;<input type="text" name="p_name" id="p_name"></div>
 					 	<div>대표자명&nbsp;<input type="text" name="p_ceo" id="p_ceo" ></div>
 					 	<label>사업자번호&nbsp;</label><input type="text" name="p_num" id="p_num"/><span id="pncheck"></span>
@@ -102,13 +130,16 @@
 						 	<div id="1" style="display:none">	
 					사업자 등록증<input type="text" size="30" id="txt"/>
 					<img src="" onclick="document.getElementById('file').click();">
-					<input name="p_register" id="p_register" type="file" onchange="document.getElementById('txt').value=this.value;" accept=".gif, .jpg, .png">
+					<input name="file1" id="p_register" type="file" onchange="document.getElementById('txt').value=this.value;" accept=".gif, .jpg, .png">
+					<div class="select_p_register img"><img src="" /></div>
 					<br>통장사본<input type="text" size="30" id="txt1"/>
 					<img src="" onclick="document.getElementById('file').click();">
-					<input name="p_account_copy" id="p_account_copy" type="file" onchange="document.getElementById('txt1').value=this.value;" accept=".gif, .jpg, .png">
+					<input name="file2" id="p_account_copy" type="file" onchange="document.getElementById('txt1').value=this.value;" accept=".gif, .jpg, .png">
+					<div class="select_p_account_copy img"><img src="" /></div>
 					<br>부동산종합공부<input type="text" size="30" id="txt2"/>
 					<img src="" onclick="document.getElementById('file').click();">
-					<input name="p_property" id="p_property" type="file" onchange="document.getElementById('txt2').value=this.value;" accept=".gif, .jpg, .png">
+					<input name="file3" id="p_property" type="file" onchange="document.getElementById('txt2').value=this.value;" accept=".gif, .jpg, .png">
+					 <div class="select_p_property img"><img src="" /></div>
 					 	</div>
 					 		<div id="2" style="display:none">
 					 	팩스는 여기로 보내시면 됩니다!!
