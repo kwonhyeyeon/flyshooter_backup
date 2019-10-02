@@ -5,38 +5,40 @@
 // 유효성 체크
 
 function stadiumCheck() {
+	
+	var re = /^[0-9]{5,6}$/; // 구장요금 정규식
+	var re1 = /^[0-9]{1,2}$/; // 수용인원 정규식
+	var re2 = /^[가-힣]{2,10}$/; // 경기장명
+	
+	var sdfee= document.getElementById("s_d_fee");
+	var snfee= document.getElementById("s_n_fee");
+	var sdfeew= document.getElementById("s_d_fee_w");
+	var snfeew= document.getElementById("s_n_fee_w");
+	var speople= document.getElementById("s_people");
+	var sname= document.getElementById("s_name");
+	
+	
 	// 체크여부
-	if (s_d_fee.value == "") {
-		alert("평일 주간 요금을 입력해주세요");
-		s_d_fee.focus();
+	if(!check(re, sdfee, "평일 주간 요금(5자~6자 이내)을 확인해주세요")){  
 		return false;
 	}
-	if (s_n_fee.value == "") {
-		alert("평일 야간 요금 입력해주세요");
-		s_n_fee.focus();
+	if(!check(re, snfee, "평일 야간 요금(5자~6자 이내)을 확인해주세요")){  
 		return false;
 	}
-	if (s_d_fee_w.value == "") {
-		alert("주말 주간 요금를 입력해주세요");
-		s_d_fee_w.focus();
+	if(!check(re, sdfeew, "주말 주간 요금(5자~6자 이내)을 확인해주세요")){  
 		return false;
 	}
-	if (s_n_fee_w.value == "") {
-		alert("주말 야간 요금를 입력해주세요");
-		s_n_fee_w.focus();
+	if(!check(re, snfeew, "주말 야간 요금(5자~6자 이내)을 확인해주세요")){  
 		return false;
 	}
 	if (s_hours.value == "") {
 		alert("최소 이용 가능 시간을 선택해주세요");
 		return false;
 	}
-	if (s_people.value == "") {
-		alert("수용 인원을 입력해주세요");
-		s_people.focus();
+	if(!check(re1, speople, "수용인원을 확인해주세요(2자리이내)")){  
 		return false;
 	}
-	if (s_name.value == "") {
-		alert("경기장 명을 입력해주세요");
+	if(!check(re2, sname, "경기장 명을 확인해주세요(한글로 2자~10자 이내)")){  
 		return false;
 	}
 	if (s_size.value == "") {
@@ -87,6 +89,19 @@ function stadiumCheck() {
 			return false;
 		}
 	}
+	
+	//check 정규식에 사용
+	function check(re, what, message) {
+	    if(re.test(what.value)) {
+	        return true;
+	    }
+	    alert(message);
+	    what.value = "";
+	    what.focus();
+	   // return false;
+	  
+	}
+	
 	
 	var file_img1= $("#s_img1").val();
 	var file_img2= $("#s_img2").val();
