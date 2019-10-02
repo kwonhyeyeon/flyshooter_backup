@@ -54,6 +54,11 @@
 				<p>구장을 선택해주세요</p>
 			</div>
 		</div>
+		<p>
+		*주의사항red* <br />
+		1. 승인되지 않은 구장은 사용할 수 없습니다. <br />
+		2. 승인이 되더라도 구장 운영 상태를 운영중으로 수정하지 않을 시 사용자가 대관을 할 수 없으니 필히(red) 수정 바랍니다. <br />
+		3. Fly Shooter 에 해가 되는 구장(불법구장) 및 해가 되는 행위는 최대 구장 강제 페쇄 조치까지 이를 수 있습니다.</p>
 		<div id="dialog" title="용품등록창" style="display: none">
 	      <form id="itemInsertForm">
 	      	<input type="hidden" id="modalP_num" name="p_num"/>

@@ -194,8 +194,6 @@ function openDialog(){
                 var I_name =  $('#modalI_name').val();
                 var I_rental_fee =  $('#modalI_rental_fee').val();
                 $("#itemInsertForm").find("input[type='text']").val("");
-                alert("안녕하세요");
-          		
                   query = {p_num : P_num,
                 		  i_name : I_name,
                 		  i_rental_fee : I_rental_fee}

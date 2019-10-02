@@ -46,13 +46,10 @@ public class StadiumController {
 	// 구장 목록 구현하기
 	@RequestMapping(value = "/placeChoice.do", method = RequestMethod.GET)
 	public String placeChoice_ClientChk(Model model, HttpSession session, HttpServletRequest request) {
-		System.out.println("placeChoice 호출 성공");
-
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
 		String m_id = sessionMvo.getM_id();
 		
 		List<PlaceVO> placeChoice = placeService.placeChoice(m_id);
-
 		model.addAttribute("placeChoice", placeChoice);
 		model.addAttribute("data");
 		return "mypage/stadiumList";
@@ -61,28 +58,19 @@ public class StadiumController {
 	@RequestMapping(value = "/stadiumList.do", method = RequestMethod.GET, produces= "text/html; charset=UTF-8")
 	@ResponseBody
 	public String stadiumList(Model model, @RequestParam(value = "p_num") String p_num) {
-		System.out.println("stadiumList 호출 성공");
 		List<StadiumVO> Slist = stadiumService.stadiumList(p_num);
 		List<ItemsVO> Ilist = itemsService.itemsList(p_num);
 		
-		
 		return MakeListUtils.makeList(Slist, Ilist, p_num);
-
 	}
 
 	// 구장 상세보기
 
 	@RequestMapping(value = "/stadiumDetail.do", method = RequestMethod.POST)
 	public ModelAndView stadiumDetail_ClientChk(@ModelAttribute StadiumVO svo, HttpServletRequest request) {
-		System.out.println("stadiumDetail 호출 성공");
-		System.out.println(svo.getS_no()+"zzzz");
 		ModelAndView mav = new ModelAndView();
 		String s_no = svo.getS_no()+"";
 		svo = stadiumService.stadiumDetail(s_no);
-		
-		System.out.println(svo.getS_img1());
-		System.out.println(svo.getS_img2());
-		System.out.println(svo.getS_img3());
 		
 		mav.addObject("s_img1", svo.getS_img1());
 		mav.addObject("s_img2", svo.getS_img2());
@@ -99,8 +87,6 @@ public class StadiumController {
 	@RequestMapping(value = "/stadiumForm.do", method = RequestMethod.GET)
 	public String writeForm_ClientChk(@RequestParam("p_num") String p_num, Model model
 			, HttpServletRequest request) {
-		System.out.println("stadiumForm 호출 성공");
-		System.out.println(p_num);
 		model.addAttribute("p_num", p_num);
 		return "mypage/stadiumForm";
 	}
@@ -109,8 +95,6 @@ public class StadiumController {
 	@RequestMapping(value = "/stadiumInsert.do", method = RequestMethod.POST)
 	public ModelAndView stadiumInsert_ClientChk(@ModelAttribute StadiumVO svo, @RequestParam("select")String select, MultipartHttpServletRequest request
 			, HttpServletRequest request1) throws IOException, Exception{
-		System.out.println("stadiumInsert 호출 성공");
-		
 		ModelAndView mav = new ModelAndView();
 		if(svo.getFile1() != null && !(svo.getFile1().equals(""))){
 	         String pt_image1 = FileUploadUtil.fileUpload(svo.getFile1(), request, "image1");
@@ -129,7 +113,6 @@ public class StadiumController {
 	      }
 		int plus = Integer.parseInt(select);// 추가등록여부 확인을 위한 변수
 		int result = stadiumService.stadiumInsert(svo);
-		System.out.println("결과"+result);
 		if (result == 1) {
 			if (plus == 1) {
 				mav.addObject("p_num", svo.getP_num());
@@ -149,12 +132,8 @@ public class StadiumController {
 	@RequestMapping(value = "/stadiumModify.do", method = RequestMethod.POST)
 	public String stadiumModify_ClientChk(@ModelAttribute StadiumVO svo, Model model, MultipartHttpServletRequest session, MultipartHttpServletRequest request
 			, RedirectAttributes redirectAttr, HttpServletRequest request1) throws IOException {
-		System.out.println("stadiumModify 호출 성공");
-
 		int result = 0;
 		String url = "";
-		System.out.println(svo.toString());
-		System.out.println(svo.getFile1().toString());
 		if(svo.getFile1() != null && !(svo.getFile1().equals(""))){
 	         String pt_image1 = FileUploadUtil.fileUpload(svo.getFile1(), request, "image1");
 	         svo.setS_img1(pt_image1);
@@ -170,7 +149,6 @@ public class StadiumController {
 	         svo.setS_img3(pt_image3);
 	         
 	      }
-	      System.out.println(svo.toString());
 		result = stadiumService.stadiumModify(svo);
 	
 		if (result >= 1) {
@@ -187,7 +165,6 @@ public class StadiumController {
 	@RequestMapping(value = "/closeStadium.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String closeStadium(@RequestParam(value = "s_no", required = false, defaultValue = "0") String s_no) {
-		System.out.println("closeStadium 호출 성공");
 		int result = stadiumService.closeStadium(s_no);
 		return result + "";
 	}

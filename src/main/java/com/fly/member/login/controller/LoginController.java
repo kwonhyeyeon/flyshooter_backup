@@ -84,7 +84,6 @@ public class LoginController {
 			}
 		}
 		MemberVO DBmvo = memberService.memberSelect(m_id);
-		System.out.println("1111111111");
 		// SHA-256를 사용하는 SHA256클래스의 객체를 얻어낸다
 		SHA256 sha = SHA256.getInsatnce();
 
@@ -94,7 +93,6 @@ public class LoginController {
 		// 로그인이 틀리면 , 로그인 시도횟수를 1증가 시키고,
 		// 로그인 실패 시간을 DB에 업데이트 한다.
 		if (!BCrypt.checkpw(shaPass, DBmvo.getM_pw())) {
-			System.out.println("비밀번호 불일치");
 			lvoHistory.setRetry(lvoHistory.getRetry() + 1);
 			lvoHistory.setLastFail(new Date().getTime());
 			loginService.loginHistoryUpdate(lvoHistory);
@@ -108,23 +106,16 @@ public class LoginController {
 		// 마지막으로 로그인 실패 시간 0으로 reset,
 		// 성공한 클라이언트 IP를 DB에 업데이트,로그인 성공시간 DB에 업데이트
 		else {
-			System.out.println("비밀번호 일치");
-			if (DBmvo.getM_type() == m_type) {
-				System.out.println("타입 일치");
-				if (DBmvo.getEmail_confirm().equals("Y")) {
-					System.out.println("이메일 인증된 아이디");
+			if (DBmvo.getM_type() == m_type) {//타입 일치
+				if (DBmvo.getEmail_confirm().equals("Y")) {//이메일 인증된 아이디
 					String Session_id = DBmvo.getM_id();
 					int Session_type = DBmvo.getM_type();
-					System.out.println(Session_id);
-					System.out.println(Session_type);
 					session.setAttribute("mvo", new MemberVO(Session_id, Session_type));
-					if (DBmvo.getM_status() == 0) {
-						System.out.println("비활성화 로그인");
+					if (DBmvo.getM_status() == 0) {//비활성화 로그인
 						mav.addObject("errCode", 4);
 						mav.setViewName("member/login");
 						return mav;
-					} else {
-						System.out.println("로그인 성공");
+					} else {//로그인 성공
 						lvoHistory.setRetry(0);
 						lvoHistory.setLastPass(new Date().getTime());
 						lvoHistory.setClientIp(request.getRemoteAddr());
@@ -132,12 +123,12 @@ public class LoginController {
 						mav.setViewName("/index");
 						return mav;
 					}
-				} else {
+				} else {//이메일 인증되지 않은 아이디
 					mav.addObject("errCode", 9);
 					mav.setViewName("member/login");
 					return mav;
 				}
-			} else {
+			} else {//타입이 맞지 않음
 				mav.addObject("errCode", 3);
 				mav.setViewName("member/login");
 				return mav;
@@ -150,13 +141,10 @@ public class LoginController {
 	@RequestMapping(value = "/active.do", method = RequestMethod.GET)
 	public ModelAndView memberActive(@ModelAttribute("LoginVO") LoginVO lvo, HttpSession session,
 			HttpServletRequest request) throws Exception {
-		log.info("active.do post 호출 성공");
 		ModelAndView mav = new ModelAndView();
 		MemberVO mvo = (MemberVO)session.getAttribute("mvo");
 		
 		LoginVO lvoHistory = loginService.loginHistorySelect(mvo.getM_id());
-		System.out.println(new Date().getTime());
-		System.out.println(lvoHistory.getLastPass());
 		if (new Date().getTime() - lvoHistory.getLastPass() > 30000*87) {
 			mav.addObject("errCode", 5); 
 			mav.setViewName("member/login");

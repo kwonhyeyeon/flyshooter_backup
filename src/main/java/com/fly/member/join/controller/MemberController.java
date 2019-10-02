@@ -126,8 +126,6 @@ public class MemberController {
 	@RequestMapping(value = "/searchPw.do", method = RequestMethod.POST)
 	public ModelAndView pwSearch(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		
-		System.out.println("currnent join member: " + mvo.toString());
 		MemberVO result = memberService.memberSelect(mvo.getM_id());
 		if (result == null) {
 			mav.setViewName("member/searchId");
@@ -176,7 +174,6 @@ public class MemberController {
 		try {
 			MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
 			m_id = sessionMvo.getM_id();
-			System.out.println(m_id);
 			m_id.length();
 		} catch (Exception e) {
 			mav.addObject("errCode", 2);
@@ -270,7 +267,6 @@ public class MemberController {
 			) {
 		List<TermsVO> data = adminTermsService.listTerms();
 		model.addAttribute("data", data);
-		System.out.println(data);
 		
 		return "/member/terms";
 

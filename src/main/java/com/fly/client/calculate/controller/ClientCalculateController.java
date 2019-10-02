@@ -39,8 +39,6 @@ public class ClientCalculateController {
 	@RequestMapping(value = "/calculate.do", method = RequestMethod.GET)
 	public String calculate_ClientChk(Model model, HttpSession session, @ModelAttribute CalculateVO cvo,
 			HttpServletRequest request) {
-		System.out.println("calculate 호출 성공");
-
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
 		String m_id = sessionMvo.getM_id();
 		cvo.setM_id(m_id);
@@ -66,8 +64,6 @@ public class ClientCalculateController {
 	@RequestMapping(value = "/calculateInsert.do", method = RequestMethod.POST)
 	public String calculateInsert_ClientChk(Model model, @ModelAttribute CalculateVO cvo, HttpServletRequest request) {
 		int result = calculateService.calculateInsert(cvo);
-
-		System.out.println(result);
 		if (result != 1) {
 			model.addAttribute("errCode", 1);
 		}
