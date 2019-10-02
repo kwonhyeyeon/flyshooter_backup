@@ -93,6 +93,13 @@ function joinCheck() {
    $("#m_phone").val($("#m_phone1").val()+'-'+$("#m_phone2").val()+'-'+$("#m_phone3").val());
    // ------------ 이메일 까지 -----------
 
+   //라디오 버튼(첨부파일 유형) 유효성 검사
+   if ($('input[name="m_type"]:checked').val()) {
+	  m_type = $('input[name="m_type"]:checked').val();
+   }else{
+	  alert("회원 유형을 선택해주세요.");
+	  return false;
+   }
    if (!check(re2, id, "적합하지 않은 ID 형식입니다.")) {
       return false;
    }
@@ -131,8 +138,6 @@ function joinCheck() {
   
    
    idPwdCheck();
-   alert($("#m_phone").val());
-   
 }
 function check(re, what, message) {
     if(re.test(what.value)) {

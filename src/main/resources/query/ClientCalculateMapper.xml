@@ -96,7 +96,7 @@
 		, #{c_return_cnt})
 	</insert>
 
-	<update id="pRentalUpdae" parameterType="String">
+	<update id="pRentalUpdae" parameterType="calculate">
 		update rental
 		set cal_status = -1
 		where s_no in(select s_no from stadium
