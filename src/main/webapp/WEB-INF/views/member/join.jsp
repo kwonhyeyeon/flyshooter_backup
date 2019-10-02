@@ -25,13 +25,13 @@
 			<form id="memberForm" action="/member/join.do" method="post">
 				<div class="input-custom">
 					<div class="radio-box">
-						<input type="radio" name="m_type" value="1" id="user" required />
+						<input type="radio" name="m_type" value="1" id="user" />
 						<label for="user">일반</label>
 						<span class="radio-check"></span>
 					</div>
 					
 					<div class="radio-box">
-						<input type="radio" name="m_type" value="0" id="client" required />
+						<input type="radio" name="m_type" value="0" id="client" />
 						<label for="client">사업자</label>
 						<span class="radio-check"></span>
 					</div>

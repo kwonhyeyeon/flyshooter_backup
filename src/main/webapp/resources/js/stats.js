@@ -48,6 +48,19 @@ window.onload = function () {
 	// 구장을 선택했을경우 비동기.
 	$("#placeBox").change(function(){
 		
+		var selected = $("#placeBox").val();
+		if( selected == "전체구장" ) {
+			$("#selectedYear").val($("#year").val());
+			// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
+			$("#search").attr({
+				"method":"get",
+				"action":"/mypage/stats.do"
+			});
+				$("#search").submit();
+			
+			return;
+		}
+		
 		// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
 		getStadiumStatis();
 		
@@ -132,7 +145,7 @@ function drawChart(arr, column, title, index) {
           viewWindowMode:'explicit',
           viewWindow: {
               min: 0,
-              max: 1000,
+              max: 100
           },
       },
       width: 900,

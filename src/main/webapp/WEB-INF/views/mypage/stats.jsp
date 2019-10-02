@@ -56,17 +56,11 @@ google.charts.setOnLoadCallback(drawChart);
 				</select>
 				
 				<select id="year">
-					<%-- <c:forEach var="year" items="${years }">
-						<option value="${year }">${year }</option>					
-					</c:forEach> --%>
-					<option value="2019">2019</option>
-					<option value="2020">2020</option>
-					<option value="2021">2021</option>
-					<option value="2022">2022</option>
-					<option value="2023">2023</option>
-				
-				
+					<c:forEach var="year" items="${years }">
+						<option value="${year }">${year }</option>
+					</c:forEach>
 				</select>
+				
 				<p style="color: red">※ 등록된 구장중 가장 오래된 대관연도부터 최근 대관연도까지 조회 가능합니다.</p>	
 			</article>
 			
@@ -75,7 +69,7 @@ google.charts.setOnLoadCallback(drawChart);
 		</article>
 
 		<form id="search">
-			<input type="text" name="year" id="selectedYear"/>
+			<input type="hidden" name="year" id="selectedYear"/>
 		</form>
 
 		<jsp:include page="../templates/footer.jsp" flush="true" />

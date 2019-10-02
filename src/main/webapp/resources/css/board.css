@@ -3,7 +3,7 @@
 /*-------------------게시판 리스트 css-------------- */
 
 div #title {
-	margin-left: 900px;
+	margin-left: 500px;
 	margin-top: 100px;
 }
 
@@ -12,7 +12,7 @@ div #title h2 {
 }
 
 div .insertBtn {
-	margin-left: 1350px;
+	margin-left: 1000px;
 	margin-top: 60px;
 }
 
@@ -35,7 +35,7 @@ div .insertBtn #insertButton:hover {
 
 
 div #listStart {
-	margin-left: 360px;
+	margin-left: 5px;
 	margin-top: 30px;
 }
 
@@ -52,7 +52,7 @@ div #listStart {
 
 div #listSearch {
 	margin-top: 30px;
-	margin-left: 630px;
+	margin-left: 300px;
 }
 
 td #keyword {
@@ -108,7 +108,7 @@ td #keyword {
 
 div #npage {
 	margin-top: 50px;
-	margin-left: 800px;
+	margin-left: 500px;
 	margin-bottom: 300px;
 }
 
@@ -266,7 +266,7 @@ div #npage {
 /* ------------------- 게시판 등록 입력칸 위치/크기 설정 css ------------------*/
 
 #insertTitle {
-	margin-left: 900px;
+	margin-left: 500px;
 	margin-top: 100px;
 }
 
@@ -277,7 +277,7 @@ div #npage {
 .insertContent {
 	width: 1200px;
 	margin-top: 50px;
-	margin-left: 600px;
+	margin-left: 200px;
 }
 
 table#insertTable {
@@ -318,7 +318,8 @@ table#insertTable {
 
 .insertData {
 	margin-top: 50px;
-	margin-left: 860px;
+	margin-left: 470px;
+	margin-bottom: 30px;
 }
 
 /* --------매치 신청 등록 페이지 입력칸 css -------------- */
@@ -508,7 +509,7 @@ table#insertTable {
 /* ----------------게시판 수정 입력칸 위치/크기 설정 css ----------------- */
 
 #updateTitle {
-	margin-left: 900px;
+	margin-left: 500px;
 	margin-top: 100px;
 }
 
@@ -520,7 +521,7 @@ table#insertTable {
 	border-spacing: 30px;
 	border-collapse: separate;
 	margin-top: 50px;
-	margin-left: 600px;
+	margin-left: 200px;
 }
 
 .updateTable tr td {
@@ -536,7 +537,7 @@ table#insertTable {
 
 .updateDataButton {
 	margin-top: 30px;
-	margin-left: 890px;
+	margin-left: 500px;
 	margin-bottom: 50px;
 }
 

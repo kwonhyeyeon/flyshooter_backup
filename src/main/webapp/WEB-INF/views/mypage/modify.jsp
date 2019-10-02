@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 </head>
 <script src="http://code.jquery.com/jquery.min.js"></script>
-<script type="text/javascript" src="/resources/js/modify.js"></script>
+<script type="text/javascript" src="/resources/js/memberModify.js"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
 <body>
 	<div>

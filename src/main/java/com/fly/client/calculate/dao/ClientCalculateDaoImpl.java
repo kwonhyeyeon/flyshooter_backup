@@ -35,9 +35,9 @@ public class ClientCalculateDaoImpl implements ClientCalculateDao {
 	}
 
 	@Override
-	public int pRentalUpdae(String p_num) {
+	public int pRentalUpdae(CalculateVO cvo) {
 		// TODO Auto-generated method stub
-		return sqlSession.update(NAME_SPACE + ".pRentalUpdae", p_num);
+		return sqlSession.update(NAME_SPACE + ".pRentalUpdae", cvo);
 	}
 
 	@Override

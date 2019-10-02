@@ -23,6 +23,10 @@
 			alert("${log_message}");
 			location.href = "/admin/login.do";
 	}
+		
+		if("${adminId}"){
+			location.href = "/admin/main.do";
+	}
 
 </script>
 </head>

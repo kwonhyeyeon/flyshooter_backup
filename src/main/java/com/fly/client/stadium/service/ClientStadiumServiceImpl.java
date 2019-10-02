@@ -53,8 +53,6 @@ public class ClientStadiumServiceImpl implements ClientStadiumService {
 		
 		try {
 			result = clientStadiumDao.stadiumModify(svo);
-			System.out.println(result+"결과");
-			System.out.println(svo.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = 0;

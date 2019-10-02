@@ -70,8 +70,6 @@ public class ClientPlaceServiceImpl implements ClientPlaceService {
 		// TODO Auto-generated method stub
 		int result = 0;
 		result = clientPlaceDao.closePlace(p_num);
-		
-		System.out.println(result);
 		if (result > 0) {
 			result = 1;
 		}else {

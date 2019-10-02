@@ -238,7 +238,6 @@ public class ClientRentalController {
 
 		List<Map<String, String>> refundList = clientRentalService.getRefundList(pvo);
 		model.addAttribute("refundList", refundList);
-		System.out.println(refundList);
 
 		String register = clientRentalService.getRegdate(m_id);
 		model.addAttribute("register", register);

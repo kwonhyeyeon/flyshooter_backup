@@ -30,7 +30,6 @@ public class ItemsController {
 	@RequestMapping(value = "/itemInsert.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
 	@ResponseBody
 	public String itemInsert(@ModelAttribute ItemsVO ivo) {
-		System.out.println("itemInsert.do get방식에의한 메서드 호출 성공");
 		String result = "";
 		try {
 			itemsService.itemInsert(ivo);
@@ -46,33 +45,24 @@ public class ItemsController {
 	@RequestMapping(value = "/itemActive.do", method = RequestMethod.GET, produces = "text/html; charset=UTF-8")
 	@ResponseBody
 	public String itemActive(@RequestParam(value = "i_no") String i_no) {
-		System.out.println("itemActive.do get방식에의한 메서드 호출 성공");
 		String result = "2";
-		System.out.println(i_no);
 		result = itemsService.itemActive(i_no) + "";
-		System.out.println(result);
 		return result;
 	}
 
 	@RequestMapping(value = "/itemUnActive.do", method = RequestMethod.GET, produces = "text/html; charset=UTF-8")
 	@ResponseBody
 	public String itemUnActive(@RequestParam(value = "i_no") String i_no) {
-		System.out.println("itemUnActive.do get방식에의한 메서드 호출 성공");
 		String result = "2";
-		System.out.println(i_no);
 		result = itemsService.itemUnActive(i_no) + "";
-		System.out.println(result);
 		return result;
 	}
 
 	@RequestMapping(value = "/itemDelete.do", method = RequestMethod.GET, produces = "text/html; charset=UTF-8")
 	@ResponseBody
 	public String memberDelete(@RequestParam(value = "i_no") String i_no) {
-		System.out.println("itemDelete.do get방식에의한 메서드 호출 성공");
 		String result = "2";
-		System.out.println(i_no);
 		result = itemsService.itemDelete(i_no) + "";
-		System.out.println(result);
 		return result;
 	}
 

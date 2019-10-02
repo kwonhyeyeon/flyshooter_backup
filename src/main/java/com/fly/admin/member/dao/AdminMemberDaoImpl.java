@@ -1,6 +1,5 @@
 package com.fly.admin.member.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;

@@ -52,6 +52,7 @@ function errCodeCheck() {
 		<input type="hidden" name="select" id="select" value="0"/>
 		<ul>
 			<li><label>날짜 별 요금</label>
+			<p>입력된 요금은 1시간 기준 요금이며 최소시간을 2시간 선택하여도 변하지 않습니다.</p>
 					<label>평일 주간 요금</label> <input type="text" name="s_d_fee" id="s_d_fee"/>
 					<label>평일 야간 요금</label> <input type="text" name="s_n_fee" id="s_n_fee"/></li>
 			<li>

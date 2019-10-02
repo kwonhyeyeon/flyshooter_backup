@@ -48,7 +48,7 @@ public class UserRentalController {
    
 	private static final Logger log = LoggerFactory.getLogger(UserRentalController.class);   
    
-    @RequestMapping(value = "/location.do")
+	@RequestMapping(value = "/location.do")
     public String searchLocation_UserChk(Model model,HttpServletRequest request) {
 	    
        return "rental/location";

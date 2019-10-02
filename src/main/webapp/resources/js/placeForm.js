@@ -56,9 +56,8 @@ $(document).ready(function(){
 function placeCheck(){
 	
 	var re = /^[가-힣]{2,10}$/; // 구장이름, 구장, 예금주명
-	var re2 = /^[0-9]{10,10}$/;// 사업자 번호 
-	var re3 = /^01([0|2|3|9]?)-?([0-9]{4})-?([0-9]{4})$/; //구장 전화번호
-	var re4 = /^[0-9]{11,20}$/;// 계좌번호
+	var re2 = /^[0-9]{1,20}$/;// 계좌번호, 사업자 번호
+	
 	
 	var pname = document.getElementById("p_name");
 	var pceo =  document.getElementById("p_ceo");
@@ -74,13 +73,12 @@ function placeCheck(){
 	if(!check(re, pceo, "대표자명 한글 2~10자 맞춰주세요")){
 		return false;
 	}
-	if(!check(re2, pnum, "사업자번호 숫자로 10자로 맞춰주세요")){
+	if(!check(re2, pphone, "핸드폰 번호를 형식에 맞춰주세요")){
 		return false;
 	}
-	if(!check(re3, pphone, "구장 전화번호 010,012,013,019 형식을 맞춰주세요")){
+	if(!check(re2, pnum, "사업자번호 형식에 맞춰주세요")){
 		return false;
 	}
-	
 	if(sample6_postcode.value == ""){
 		alert("우편번호를 넣어주세요");
 		return false;
@@ -100,7 +98,7 @@ function placeCheck(){
 	if(!check(re, paccount, "예금주명 한글 2~10자 맞춰주세요")){
 		return false;
 	}
-	if(!check(re4, paccountnum, "계좌번호 11~20자 형식을 맞춰주세요" )){
+	if(!check(re2, paccountnum, "계좌번호 형식을 맞춰주세요" )){
 		return false;
 	}
 
@@ -185,7 +183,7 @@ function placeCheck(){
 		}
 	}
 	
-	
+	alert('관리자의 승인이 있을 시까지 사용이 불가능하며 승인 시 \n[MY PAGE] -> [구장] 에서 해당 구장의 상태를 운영중으로 수정 바랍니다.');
 	checking();
 }
 
@@ -208,7 +206,7 @@ function check(re, what, message) {
   
 }
 
-//다음 우편주소 api 복사 붙여넣기
+//다음 우편주소 api 복사
 function sample6_execDaumPostcode() {
 	 new daum.Postcode({
            oncomplete: function(data) {
@@ -276,7 +274,6 @@ function checking(){
 	var ad3 = $("#sample6_detailAddress").val();
 	var ad4 = $("#sample6_extraAddress").val();
 	var address = ad1+"*"+ad2+"*"+ad3+"*"+ad4;
-	alert(address);
 	$("#p_address").val(address);
 	return true;
 }
