@@ -1,19 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>FLY SHOOTER</title>
+<script src="http://code.jquery.com/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
-<script src="http://code.jquery.com/jquery.min.js"></script>
-<script type="text/javascript" src="/resources/js/join.js"></script>
 </head>
 
 <body>
-
 	<div id="wrapper">
 	
 		<header id="account-header">
@@ -21,8 +18,9 @@
 		</header>
 		
 		<article id="account-contents">
-		
-			<form id="memberForm" action="/member/join.do" method="post">
+			
+			<h2 class="account-title">아이디 찾기</h2>
+			<form id="searchFormId" action="/member/searchId.do" method="post">
 				<div class="input-custom">
 					<div class="radio-box">
 						<input type="radio" name="m_type" value="1" id="user" required />
@@ -35,16 +33,6 @@
 						<label for="client">사업자</label>
 						<span class="radio-check"></span>
 					</div>
-				</div>
-				
-				<div class="login-box">
-					<input type="email" id="m_id" name="m_id" placeholder="아이디" />
-					<p id="idcheck" class="error"></p>
-					
-					<input type="password" id="m_pw" name="m_pw" placeholder="비밀번호">
-					
-					<input type="password" id="m_pwCheck" name="m_pwCheck" placeholder="비밀번호 확인">
-					<p id="pwcheck" class="error"></p>
 				</div>
 				
 				<div class="login-box">
@@ -66,9 +54,18 @@
 					</div>
 				</div>
 				
-				<input type="submit" value="가입하기" id="joinInsert" class="activeBtn" /> 
+				<input type="submit" value="아이디 찾기" id="searchId" class="activeBtn" /> 
 			</form>
 			
+			<h2 class="account-title">비밀번호 찾기</h2>
+			<form id="searchFormPw" action="/member/searchPw.do" method="post">
+				<div class="login-box">
+					<input type="email" id="m_id" name="m_id" placeholder="아이디" />
+					<p id="idcheck" class="error"></p>
+				</div>
+				
+				<input type="submit" value="비밀번호 찾기" id="searchPw" class="activeBtn" /> 
+			</form>
 		</article>
 		
 		<footer id="account-footer">
@@ -78,7 +75,44 @@
 			</div>
 			<p class="copyright">Copyright © <a class="link-home" href="/">FLYSHOOTER.</a> All rights reserved.</p>
 		</footer>
-		
 	</div>
 </body>
+<script>
+	$(document).ready(function() {
+		$("#searchFormId").submit(function() {
+			var m_name = $("#m_name").val();
+			var m_phone = $("#m_phone").val();
+			if (!(m_name)) {
+				alert("이름을 입력하세요");
+				return false;
+			}
+			if (!(m_phone)) {
+				alert("핸드폰번호를 입력하세요");
+				return false;
+			}
+		});
+		$("#searchFormPw").submit(function() {
+			var m_id = $("#m_id").val();
+			if (!(m_id)) {
+				alert("아이디를 입력하세요");
+				return false;
+			}
+		});
+		errCodeCheck();
+	});
+	function errCodeCheck() {
+		var errCode = '<c:out value = "${errCode}"/>';
+		if (errCode != "") {
+			//명확한 자료형 명시를 위해 errCode의 타입을 정수형으로 변환.
+			switch (parseInt(errCode)) {
+			case 1:
+				alert("일치하는 아이디가 존재하지 않습니다.");
+				return false;
+			case 3:
+				alert("이메일이 발송되었습니다. 이메일을 확인해주세요");
+				return false;
+			}
+		}
+	}
+</script>
 </html>

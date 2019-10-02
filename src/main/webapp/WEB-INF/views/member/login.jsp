@@ -40,11 +40,11 @@
 					<input type="password" id="m_pw" name="m_pw" placeholder="비밀번호">
 				</div>
 				
-				<input type="submit" value="로그인" id="loginbutton" name="loginbutton" />
+				<input type="submit" value="로그인" id="loginbutton" name="loginbutton" class="activeBtn" />
 				
 				<div class="find-info">
 					<a href="/member/join.do">회원가입</a>
-					<a href="/member/serchMember.do">아이디/비밀번호 찾기</a>
+					<a href="/member/searchMember.do">아이디/비밀번호 찾기</a>
 				</div>
 			</form>
 		

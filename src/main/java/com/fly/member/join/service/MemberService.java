@@ -17,7 +17,7 @@ public interface MemberService {
 
 	public int userIdConfirm(String userId);
 
-	public List<MemberVO> memberidserch(MemberVO mvo);
+	public List<MemberVO> memberidsearch(MemberVO mvo);
 
 	public int pwUpdate(MemberVO mvo);
 

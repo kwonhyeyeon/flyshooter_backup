@@ -16,14 +16,14 @@
 		where m_id = #{m_id}
 	</select>
 	
-	<select id="memberidserchC" parameterType="String"
+	<select id="memberidsearchC" parameterType="String"
 		resultType="member">
 		select replace(m_id , substr(m_id,2,4) , '***') "m_id" 
 		from member
 		where m_name = #{m_name} and m_phone = #{m_phone} and m_type = 0  
 	</select>
 	
-	<select id="memberidserchU" parameterType="String"
+	<select id="memberidsearchU" parameterType="String"
 		resultType="member">
 		select replace(m_id , substr(m_id,2,4) , '***') "m_id" 
 		from member
