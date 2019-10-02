@@ -75,7 +75,7 @@ google.charts.setOnLoadCallback(drawChart);
 		</article>
 
 		<form id="search">
-			<input type="text" name="year" id="selectedYear"/>
+			<input type="hidden" name="year" id="selectedYear"/>
 		</form>
 
 		<jsp:include page="../templates/footer.jsp" flush="true" />
