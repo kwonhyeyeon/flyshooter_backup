@@ -208,7 +208,7 @@ function check(re, what, message) {
   
 }
 
-//다음 우편주소 api 복사 붙여넣기
+//다음 우편주소 api 복사
 function sample6_execDaumPostcode() {
 	 new daum.Postcode({
            oncomplete: function(data) {
