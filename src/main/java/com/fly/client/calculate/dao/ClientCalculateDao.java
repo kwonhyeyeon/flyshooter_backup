@@ -12,7 +12,7 @@ public interface ClientCalculateDao {
 
 	List<CalculateVO> calculateIList(CalculateVO cvo);
 
-	int pRentalUpdae(String p_num);
+	int pRentalUpdae(CalculateVO cvo);
 
 	int pageingSize(CalculateVO cvo);
 

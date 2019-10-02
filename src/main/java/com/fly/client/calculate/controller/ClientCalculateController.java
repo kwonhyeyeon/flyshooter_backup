@@ -65,16 +65,11 @@ public class ClientCalculateController {
 	// 정산 신청 구현하기
 	@RequestMapping(value = "/calculateInsert.do", method = RequestMethod.POST)
 	public String calculateInsert_ClientChk(Model model, @ModelAttribute CalculateVO cvo, HttpServletRequest request) {
-		System.out.println("calculateInsert 호출 성공");
 		int result = calculateService.calculateInsert(cvo);
-		System.out.println("pRentalUpdae 호출 성공");
-		int pRentalResult = calculateService.pRentalUpdae(cvo.getP_num());
 
 		System.out.println(result);
 		if (result != 1) {
 			model.addAttribute("errCode", 1);
-		} else if (pRentalResult != 1) {
-			model.addAttribute("errCode", 2);
 		}
 		return "redirect:/mypage/calculate.do";
 	}

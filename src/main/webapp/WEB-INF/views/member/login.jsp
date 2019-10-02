@@ -23,13 +23,13 @@
 			<form id="loginForm" action="/member/login.do" method="post">
 				<div class="input-custom">
 					<div class="radio-box">
-						<input type="radio" name="m_type" value="1" id="user" required />
+						<input type="radio" name="m_type" value="1" id="user"/>
 						<label for="user">일반</label>
 						<span class="radio-check"></span>
 					</div>
 					
 					<div class="radio-box">
-						<input type="radio" name="m_type" value="0" id="client" required />
+						<input type="radio" name="m_type" value="0" id="client"/>
 						<label for="client">사업자</label>
 						<span class="radio-check"></span>
 					</div>
@@ -78,6 +78,13 @@
 			}
 			if (!(pw)) {
 				alert("비밀번호를 입력하세요");
+				return false;
+			}
+			//라디오 버튼(첨부파일 유형) 유효성 검사
+			if ($('input[name="m_type"]:checked').val()) {
+				m_type = $('input[name="m_type"]:checked').val();
+			}else{
+				alert("회원 유형을 선택해주세요.");
 				return false;
 			}
 		});

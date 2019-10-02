@@ -38,14 +38,14 @@
 		#{m_type}, #{m_name}, 0)
 	</insert>
 	
-	<update id="GetKey" parameterType="Map">
+	<update id="getKey" parameterType="Map">
 		UPDATE member set
 		email_confirm = #{email_confirm}
 		where m_id = #{m_id}
 	</update>
 	
 	
-	<update id="alter_userKey" parameterType="Map">
+	<update id="alterUserKey" parameterType="Map">
 		UPDATE member set
 		email_confirm = 'Y'
 		where m_id = #{m_id}

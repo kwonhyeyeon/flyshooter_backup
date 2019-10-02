@@ -84,6 +84,7 @@ public class LoginController {
 			}
 		}
 		MemberVO DBmvo = memberService.memberSelect(m_id);
+		System.out.println("1111111111");
 		// SHA-256를 사용하는 SHA256클래스의 객체를 얻어낸다
 		SHA256 sha = SHA256.getInsatnce();
 
