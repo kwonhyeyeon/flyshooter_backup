@@ -29,12 +29,9 @@ public class AdminSupportController {
 	
 	@RequestMapping(value = "/support/supportList.do", method = RequestMethod.GET)
 	public String supportListChk(@ModelAttribute SupportVO svo, CommonVO cvo, Model  model, HttpServletRequest request) {
-		System.out.println("admin supportList 호출 성공");
 		
 		// 전체 레코드 수 구현 하기
-		System.out.println(svo.getKeyword());
 		int total = adminSupportService.adminSupportListCnt(svo);
-		System.out.println("total : " + total);
 		
 		List<SupportVO> adminSupportList = adminSupportService.adminSupportList(svo);
 		
@@ -51,7 +48,6 @@ public class AdminSupportController {
 
 	@RequestMapping(value = "/support/supportView.do", method = RequestMethod.GET)
 	public String supportViewChk(@ModelAttribute SupportVO svo, Model model, HttpServletRequest request) throws Exception {
-		System.out.println("admin supportview 호출 성공");
 		
 		String result = "";
 		
@@ -68,7 +64,6 @@ public class AdminSupportController {
 	 *************************************************************/
 	@RequestMapping(value = "/support/supportDelete.do", method = RequestMethod.GET)
 	public String supportStatusUpdateChk(@ModelAttribute SupportVO svo, Model model, HttpServletRequest request) throws Exception {
-		System.out.println("admin supportDelete 호출 성공");
 		int result = 0;
 		String url = "";
 		result = adminSupportService.supportStatusUpdate(svo);

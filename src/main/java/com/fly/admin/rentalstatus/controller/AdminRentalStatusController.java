@@ -24,8 +24,6 @@ public class AdminRentalStatusController {
 	@RequestMapping(value = "/rentalStatus.do", method = RequestMethod.GET)
 	public String selectRentalChk(@ModelAttribute AdminRentalStatusVO rvo, HttpServletRequest request, Model model) {
 		
-		System.out.println("rentalStatus 호출");
-		
 		String result = "";
 		
 		List<AdminRentalStatusVO> selectRental = adminRentalStatusService.selectRental(rvo);

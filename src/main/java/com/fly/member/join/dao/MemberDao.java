@@ -23,9 +23,9 @@ public interface MemberDao {
 
 	public int alterUserKey(MemberVO mvo);
 
-	public List<MemberVO> memberidserchC(MemberVO mvo);
+	public List<MemberVO> memberidsearchC(MemberVO mvo);
 
-	public List<MemberVO> memberidserchU(MemberVO mvo);
+	public List<MemberVO> memberidsearchU(MemberVO mvo);
 
 	public int pwUpdate(MemberVO mvo);
 

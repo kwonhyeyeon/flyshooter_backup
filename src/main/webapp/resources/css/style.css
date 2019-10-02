@@ -220,7 +220,7 @@
 	width:100%;
 	height:320px;
 	position:absolute;
-	background:green;
+	background:url(/resources/img/s-visual.png) no-repeat center;
 	top:0;
 	z-index:-1;
 }
@@ -237,6 +237,7 @@
 #contents {
 	clear:both;
 	width:1180px;
+	min-height:calc(100vh - 200px);
 	margin:235px auto 0;
 	padding:10px;
 }
@@ -655,7 +656,12 @@
 }
 #account-contents {
 	width:520px;
+	min-height:calc(100vh - 100px);
 	margin:0 auto;
+}
+.account-title {
+	font-size:20px;
+	margin-bottom:20px;
 }
 .embed {
 	margin:10px 0 25px;
@@ -665,11 +671,14 @@
 	overflow-y:scroll;
 	padding:10px;
 }
+#searchFormId {
+	margin-bottom:40px;
+}
 #agreeForm {
 	width:100%;
 	display:flex;
 	justify-content:space-between;
-	margin-top:50px;
+	margin:50px 0;
 }
 #agreeForm a,
 #agreeForm input {
@@ -804,11 +813,33 @@
 	height:30px;
 	line-height:30px;
 	padding:10px;
-}
-.login-box input:first-child {
 	margin-bottom:15px;
 }
-#loginbutton {
+.login-box input:last-child {
+	margin-bottom:none;
+}
+.phoneArea {
+	display: flex; 
+	justify-content:space-between;
+}
+.phoneArea select#m_phone1 {
+	outline:none;
+	appearance:none;
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	-ms-appearance:none;
+	border-radius:0px; 
+	cursor:pointer;
+	padding-left:10px;
+	background:url(/resources/img/select-arrow.png) no-repeat 90%;
+	height:54px;
+	line-heihgt:54px;
+	width:150px;
+}
+.phoneArea input {
+	width:150px;
+}
+.activeBtn {
 	width:100%;
 	height:50px;
 	line-height:50px;
@@ -831,9 +862,7 @@
 
 #account-footer {
 	width:100%;
-	position:relative;
-	bottom:0;
-	margin-top:250px;
+	height:100px;
 }
 .footer-link {
 	width:520px;
@@ -850,25 +879,53 @@
 .link-home {
 	font-weight:bold;
 }
+
+.error {
+	color:#f00;
+	margin-bottom:15px;
+}
 /* account */
 
 /* footer */
 #footer-wrap {
+	clear:both;
 	width:100%;
 	height:200px;
 	border-top:1px solid #dedede;
-	margin-top:200px;
+	background:#232323;
 }
 #footer {
 	width:1200px;
 	margin:0 auto;
 }
 #footer h3 {
-	font-size:20px;
-	font-weight:bold;
-	text-align:center;
 	padding:40px 0 20px;
 }
+#footer h3 a {
+	font-size:30px;
+	font-weight:bold;
+	color:#ddd;
+}
+#footer .link {
+	border-bottom:1px solid #454545;
+	padding:20px 0 15px 0;
+}
+#footer .link a {
+	color:#ddd;
+	margin-right:10px;
+	font-weight:bold;
+}
+
+#footer .copyright {
+	color:#ddd;
+	padding-top:15px;
+	display:flex;
+	justify-content:space-between;
+}
+#footer .copyright a {
+	color:#fff;
+}
+
 /* footer */
 
 /* slider */

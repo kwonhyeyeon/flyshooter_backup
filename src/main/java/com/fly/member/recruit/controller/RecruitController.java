@@ -35,7 +35,6 @@ public class RecruitController {
 	
 	@RequestMapping(value = "/recruitList.do", method = RequestMethod.GET)
 	public String recruitList(@ModelAttribute RecruitVO revo, CommonVO cvo, Model model) {
-		System.out.println("recruitList 호출 성공");
 		
 		String result = "";
 		
@@ -47,10 +46,7 @@ public class RecruitController {
 		BoardPagingUtils.setPage(revo);
 		
 		// 전체 레코드 수 구현하기
-		System.out.println(revo.getKeyword());
 		int total = recruitService.recruitListCnt(revo);
-		
-		System.out.println(total);
 		
 		int count = total - (PageUtils.nvl(revo.getPage()) - 1) * PageUtils.nvl(revo.getPageSize());
 		
@@ -69,7 +65,6 @@ public class RecruitController {
 	
 	@RequestMapping(value = "/recruitView.do", method = RequestMethod.GET)
 	public String recruitView(@ModelAttribute RecruitVO revo, Model model) throws Exception {
-		System.out.println("recruitView 호출 성공");
 		RecruitVO recruitview = new RecruitVO();
 		recruitview = recruitService.recruitView(revo);
 		
@@ -84,13 +79,9 @@ public class RecruitController {
 
 	@RequestMapping(value = "/recruitInsertForm.do", method = RequestMethod.GET)
 	public String recruitInsertForm_LoginChk(@ModelAttribute MemberVO mvo, Model model, HttpSession session, HttpServletRequest request) throws Exception {
-		System.out.println("recruitInsertForm 호출 성공");
 		
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
 		String m_id = sessionMvo.getM_id();
-		
-		
-		System.out.println(m_id);
 	
 		model.addAttribute("member", memberService.memberSelect(m_id));
 		
@@ -104,7 +95,6 @@ public class RecruitController {
 
 	@RequestMapping(value = "/recruitInsert.do")
 	public String recruitInsert_LoginChk(@ModelAttribute RecruitVO revo, HttpServletRequest request) throws Exception {
-		System.out.println("recruitInsert 호출 성공");
 		int result = 0;
 		String url = "";
 		result = recruitService.recruitInsert(revo);
@@ -123,7 +113,6 @@ public class RecruitController {
 
 	@RequestMapping(value = "/recruitUpdateForm.do")
 	public String recruitUpdateForm_LoginChk(@ModelAttribute RecruitVO revo, Model model, HttpServletRequest request) throws Exception {
-		System.out.println("recruitUpdateForm 호출 성공");
 
 		RecruitVO updateRecruitData = new RecruitVO();
 		updateRecruitData = recruitService.recruitView(revo);
@@ -139,11 +128,9 @@ public class RecruitController {
 	@RequestMapping(value = "/recruitUpdate.do", method = RequestMethod.POST)
 	public String recruitUpdate_LoginChk(@ModelAttribute RecruitVO revo, HttpServletRequest request) throws Exception {
 
-		System.out.println("recruitUpdate 호출 성공");
 
 		int result = 0;
 		String url = "";
-		System.out.println(revo.getHr_no());
 		result = recruitService.recruitUpdate(revo);
 
 		if (result == 1) {

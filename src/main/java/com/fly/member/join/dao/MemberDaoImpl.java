@@ -64,15 +64,15 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public List<MemberVO> memberidserchC(MemberVO mvo) {
+	public List<MemberVO> memberidsearchC(MemberVO mvo) {
 		// TODO Auto-generated method stub
-		return session.selectList(NAME_SPACE + ".memberidserchC", mvo);
+		return session.selectList(NAME_SPACE + ".memberidsearchC", mvo);
 	}
 
 	@Override
-	public List<MemberVO> memberidserchU(MemberVO mvo) {
+	public List<MemberVO> memberidsearchU(MemberVO mvo) {
 		// TODO Auto-generated method stub
-		return session.selectList(NAME_SPACE + ".memberidserchU", mvo);
+		return session.selectList(NAME_SPACE + ".memberidsearchU", mvo);
 	}
 
 	@Override

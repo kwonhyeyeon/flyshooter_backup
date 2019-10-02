@@ -47,7 +47,7 @@
 			
 			<div class="btnArea">
 				<a class="cancle" href="/mypage/placeList.do">취소</a>
-				<a class="active" href="insertPlaceBtns">동의</a>
+				<a class="active" href="/mypage/placeForm.do">동의</a>
 			</div>
 			
 		</article>

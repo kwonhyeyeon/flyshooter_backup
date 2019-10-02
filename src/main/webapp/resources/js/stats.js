@@ -29,7 +29,7 @@ window.onload = function () {
 		
 		var selected = $("#placeBox").val();
 		
-		if( selected != "구장선택" ) {
+		if( selected != "전체구장" ) {
 			// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
 			getStadiumStatis();
 			return;

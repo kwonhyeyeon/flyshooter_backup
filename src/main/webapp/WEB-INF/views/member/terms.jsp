@@ -5,17 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>FLY SHOOTER</title>
-</head>
 <link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/placeCheck.js"></script>
+</head>
+
 <body>
 	
 	<div id="wrapper">
 	
 		<header id="account-header">
-			<h1>FLY SHOOTER</h1>
+			<h1><a href="/">FLY SHOOTER</a></h1>
 		</header>
 		
 		<article id="account-contents">
@@ -49,6 +50,14 @@
 				<input type="submit" value="확인" id="goJoin" /> 
 			</form>	
 		</article>
+		
+		<footer id="account-footer">
+			<div class="footer-link">
+				<a href="">이용약관</a>
+				<a href="">개인정보취급방침</a>
+			</div>
+			<p class="copyright">Copyright © <a class="link-home" href="/">FLYSHOOTER.</a> All rights reserved.</p>
+		</footer>
 		
 	</div>
 
