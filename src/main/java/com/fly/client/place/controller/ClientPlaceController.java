@@ -1,6 +1,5 @@
 package com.fly.client.place.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,13 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fly.admin.terms.service.AdminTermsService;
 import com.fly.admin.terms.vo.TermsVO;
 import com.fly.client.place.service.ClientPlaceService;
-import com.fly.client.util.FileUploadUtil;
 import com.fly.member.join.vo.MemberVO;
 import com.fly.member.place.vo.PlaceVO;
 
@@ -32,22 +28,22 @@ public class ClientPlaceController {
 
 	@Autowired
 	private ClientPlaceService clientPlaceService;
-
-	@Resource(name = "adminTermsService")
+	
+	@Resource(name ="adminTermsService")
 	private AdminTermsService adminTermsService;
 
 	// 구장 목록 구현하기
 	@RequestMapping(value = "/placeList.do", method = RequestMethod.GET)
-	public String placeList_ClientChk(Model model, HttpServletRequest request,
-			@RequestParam(value = "errCode", required = false, defaultValue = "0") String errCode, HttpSession session,
-			@ModelAttribute PlaceVO pvo) {
+	public String placeList_ClientChk(Model model,HttpServletRequest request,
+			@RequestParam(value = "errCode", required = false, defaultValue = "0") String errCode, 
+			HttpSession session, @ModelAttribute PlaceVO pvo) {
 		System.out.println("placeList 호출 성공");
-
+		
 		// session에서 가져오기
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
 		String m_id = sessionMvo.getM_id();
 		pvo.setM_id(m_id);
-
+		
 		List<PlaceVO> placeList = clientPlaceService.placeList(pvo);
 		model.addAttribute("placeList", placeList);
 		model.addAttribute("data");
@@ -57,13 +53,16 @@ public class ClientPlaceController {
 
 	// 구장 약관 동의 페이지 출력하기
 	@RequestMapping(value = "/placecheck.do")
-	public String checkForm_ClientChk(HttpServletRequest request, Model model) {
+	public String checkForm_ClientChk(
+			HttpServletRequest request,
+			Model model
+			) {
 		System.out.println("placeCheck 호출 성공");
-
+		
 		List<TermsVO> data = adminTermsService.listTerms();
 		model.addAttribute("data", data);
 		System.out.println(data);
-
+		
 		return "mypage/placecheck";
 
 	}
@@ -78,8 +77,8 @@ public class ClientPlaceController {
 	// 글 쓰기 구현하기
 
 	@RequestMapping(value = "/placeInsert.do", method = RequestMethod.POST)
-	public String placeInsert_ClientChk(@ModelAttribute PlaceVO pvo, Model model, HttpSession session,
-			HttpServletRequest request1, MultipartHttpServletRequest request) throws IOException, Exception {
+	public String placeInsert_ClientChk(@ModelAttribute PlaceVO pvo, Model model, HttpSession session
+			,HttpServletRequest request){
 
 		System.out.println("placeInsert 호출 성공");
 		int result = 0;
@@ -87,50 +86,36 @@ public class ClientPlaceController {
 		// session에서 가져오기
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
 		String m_id = sessionMvo.getM_id();
-
+		
 		pvo.setM_id(m_id);
 		String p_num = pvo.getP_num();
 		System.out.println(pvo.getP_bank());
 		result = clientPlaceService.placeInsert(pvo);
-
-		ModelAndView mav = new ModelAndView();
-		/*
-		 * if(pvo.getFile1() != null && !(pvo.getFile1().equals(""))){ String pt_image1
-		 * = FileUploadUtil.fileUpload(pvo.getFile1(), request, "image1");
-		 * pvo.setS_img1(pt_image1);
-		 * 
-		 * } if(svo.getFile2() != null && !(svo.getFile2().equals(""))){ String
-		 * pt_image2 = FileUploadUtil.fileUpload(svo.getFile2(), request, "image2");
-		 * svo.setS_img2(pt_image2);
-		 * 
-		 * } if(svo.getFile3() != null && !(svo.getFile3().equals(""))){ String
-		 * pt_image3 = FileUploadUtil.fileUpload(svo.getFile3(), request, "image3");
-		 * svo.setS_img3(pt_image3);
-		 * 
-		 * }
-		 */
+		
 		if (result == 1) {
-			model.addAttribute("p_num", p_num);
+			model.addAttribute("p_num",p_num);
 			return "/mypage/stadiumForm";
-		}
-		model.addAttribute("code", 1);
-		return "/mypage/placeForm";
+		} 
+			model.addAttribute("code", 1);
+			return "/mypage/placeForm";
+		
 
 	}
-
-	// 구장 사업자번호 중복 체크 메서드
+	
+	//구장 사업자번호  중복 체크 메서드
 	@ResponseBody
-	@RequestMapping(value = "/pnumConfirm.do", method = RequestMethod.POST)
-	public String pnumConfirm(@RequestParam("p_num") String p_num) {
+	@RequestMapping(value= "/pnumConfirm.do", method = RequestMethod.POST)
+	public String pnumConfirm(@RequestParam ("p_num")String p_num) {
 		System.out.println("pnumConfirm 호출 성공");
 		int result = clientPlaceService.pnumConfirm(p_num);
 		return result + "";
 	}
-
+	
+	
 	// 구장 상세보기
 	@RequestMapping(value = "/placeDetail.do", method = RequestMethod.POST)
-	public ModelAndView placeDetail_ClientChk(@ModelAttribute PlaceVO pvo, Model model, HttpSession session,
-			HttpServletRequest request) {
+	public ModelAndView placeDetail_ClientChk(@ModelAttribute PlaceVO pvo, Model model
+			, HttpSession session,HttpServletRequest request) {
 		System.out.println("placeDetail 호출 성공");
 
 		ModelAndView mav = new ModelAndView();
@@ -142,9 +127,9 @@ public class ClientPlaceController {
 		mav.addObject("sample6_postcode", address[0]);
 		mav.addObject("sample6_address", address[1]);
 		try {
-			mav.addObject("sample6_detailAddress", address[2]);
-			mav.addObject("sample6_extraAddress", address[3]);
-		} catch (Exception e) {
+		mav.addObject("sample6_detailAddress", address[2]);
+		mav.addObject("sample6_extraAddress", address[3]);
+		}catch(Exception e) {
 			mav.addObject("sample6_detailAddress", "");
 			mav.addObject("sample6_extraAddress", "");
 		}
@@ -155,8 +140,8 @@ public class ClientPlaceController {
 	}
 
 	@RequestMapping(value = "/placeModify.do", method = RequestMethod.POST)
-	public String placeModify_ClientChk(@ModelAttribute PlaceVO pvo, Model model, HttpSession session,
-			HttpServletRequest request) {
+	public String placeModify_ClientChk(@ModelAttribute PlaceVO pvo, Model model
+			, HttpSession session,HttpServletRequest request) {
 		System.out.println("placeModify 호출 성공");
 
 		int result = 0;
