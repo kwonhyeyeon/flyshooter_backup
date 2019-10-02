@@ -5,12 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Join Member!</title>
-</head>
+<title>FLY SHOOTER</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/join.js"></script>
+</head>
+
 <body>
 
 	<div id="wrapper">
@@ -20,6 +21,7 @@
 		</header>
 		
 		<article id="account-contents">
+		
 			<form id="memberForm" action="/member/join.do" method="post">
 				<div class="input-custom">
 					<div class="radio-box">
@@ -49,6 +51,8 @@
 					<input type="text" id="m_name" name="m_name" placeholder="이름">
 					
 					<div class="phoneArea">
+						<input type="hidden" name="m_phone" id="m_phone"/>
+						
 						<select name="m_phone1" id="m_phone1">
 							<option value="010" selected>010</option>
 							<option value="011">011</option>
@@ -56,23 +60,24 @@
 							<option value="019">019</option>
 						</select>
 						
-						<input type="text" id="m_phone2" name="m_phone2" maxlength="4"
-							placeholder="Phone Number">
+						<input type="text" id="m_phone2" name="m_phone2" placeholder="전화번호">
 							
-						<input type="text" id="m_phone3" name="m_phone3" maxlength="4"
-							placeholder="Phone Number">
-							
-						<input type="hidden" name="m_phone" id="m_phone"/>
+						<input type="text" id="m_phone3" name="m_phone3" placeholder="전화번호">
 					</div>
 				</div>
 				
-				<div class="btnArea">
-					<input type="submit" value="확인" id="joinInsert" /> 
-					<input type="reset" value="재작성" id="joinReset" /> 
-					<input type="button" value="홈으로" id="home" />
-				</div>
+				<input type="submit" value="가입하기" id="joinInsert" class="activeBtn" /> 
 			</form>
+			
 		</article>
+		
+		<footer id="account-footer">
+			<div class="footer-link">
+				<a href="">이용약관</a>
+				<a href="">개인정보취급방침</a>
+			</div>
+			<p class="copyright">Copyright © <a class="link-home" href="/">FLYSHOOTER.</a> All rights reserved.</p>
+		</footer>
 		
 	</div>
 </body>

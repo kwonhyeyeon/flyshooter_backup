@@ -41,7 +41,6 @@ public class MatchController {
 	@RequestMapping(value = "/matchList.do", method = RequestMethod.GET)
 	public String matchList(@ModelAttribute MatchVO mavo, CommonVO cvo, Model  model) {
 		log.info("matchList 호출 성공");
-		System.out.println("matchList 호출 성공");
 		
 		String result = "";
 		
@@ -53,15 +52,10 @@ public class MatchController {
 		BoardPagingUtils.setPage(mavo);
 		
 		// 전체 레코드 수 구현 하기
-		System.out.println(mavo.getKeyword());
 		int total = matchService.matchListCnt(mavo);
 		
-		System.out.println(total);
-		log.info("total = "+ total);
-
 		// 글 번호 재설정
 		int count = total - (PageUtils.nvl(mavo.getPage())-1) * PageUtils.nvl(mavo.getPageSize());
-		log.info("count = " + count);
 		
 		List<MatchVO> matchList = matchService.matchList(mavo);
 		model.addAttribute("matchList", matchList);
@@ -78,7 +72,6 @@ public class MatchController {
 	@RequestMapping(value = "/matchView.do", method = RequestMethod.GET)
 	public String matchView(@ModelAttribute MatchVO mavo, Model model) throws Exception {
 		log.info("matchview 호출 성공");
-		System.out.println("matchview 호출 성공");
 		MatchVO matchview = new MatchVO();
 		matchview = matchService.matchView(mavo);
 
@@ -94,12 +87,9 @@ public class MatchController {
 	@RequestMapping(value = "/matchInsertForm.do", method = RequestMethod.GET)
 	public String matchInsertForm_LoginChk(@ModelAttribute MemberVO mvo, Model model, HttpSession session, HttpServletRequest request) throws Exception {
 		log.info("matchInsertForm 호출 성공");
-		System.out.println("matchInsertForm 호출 성공");
 		
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
 		String m_id = sessionMvo.getM_id();
-		
-		System.out.println(m_id);
 	
 		model.addAttribute("member", memberService.memberSelect(m_id));
 		
@@ -113,7 +103,6 @@ public class MatchController {
 	@RequestMapping(value = "/matchInsert.do")
 	public String matchInsert_LoginChk(@ModelAttribute MatchVO mavo, HttpServletRequest request) throws Exception {
 		log.info("matchInsert 호출 성공");
-		System.out.println("matchInsert 호출 성공");
 		int result = 0;
 		String url = "";
 		result = matchService.matchInsert(mavo);
@@ -134,8 +123,6 @@ public class MatchController {
 	public String matchUpdateForm_LoginChk(@ModelAttribute MatchVO mavo, Model model, HttpServletRequest request) throws Exception {
 		log.info("matchUpdateForm 호출 성공");
 
-		System.out.println("matchUpdateForm 호출 성공");
-
 		MatchVO updatematchdata = new MatchVO();
 		updatematchdata = matchService.matchView(mavo);
 
@@ -151,11 +138,9 @@ public class MatchController {
 	public String matchUpdate_LoginChk(@ModelAttribute MatchVO mavo, HttpServletRequest request) throws Exception {
 
 		log.info("matchUpdate 호출 성공");
-		System.out.println("matchUpdate 호출 성공");
 
 		int result = 0;
 		String url = "";
-		System.out.println(mavo.getMb_no());
 		result = matchService.matchUpdate(mavo);
 
 		if (result == 1) {

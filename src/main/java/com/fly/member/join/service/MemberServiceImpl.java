@@ -132,16 +132,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberVO> memberidserch(MemberVO mvo) {
+	public List<MemberVO> memberidsearch(MemberVO mvo) {
 		// TODO Auto-generated method stub
-		List<MemberVO> idserch = null;
+		List<MemberVO> idsearch = null;
 		if (mvo.getM_type() == 1) {
-			idserch = memberDao.memberidserchU(mvo);
+			idsearch = memberDao.memberidsearchU(mvo);
 		} else {
-			idserch = memberDao.memberidserchC(mvo);
+			idsearch = memberDao.memberidsearchC(mvo);
 		}
 
-		return idserch;
+		return idsearch;
 	}
 
 	@Override

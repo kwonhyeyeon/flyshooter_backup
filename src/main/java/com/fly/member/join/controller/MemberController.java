@@ -104,40 +104,40 @@ public class MemberController {
 		return "member/join_success";
 	}
 
-	@RequestMapping(value = "/serchMember.do", method = RequestMethod.GET)
-	public ModelAndView serchId(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) {
-		System.out.println("serchMember.do get 방식에 의한 메서드 호출 성공");
+	@RequestMapping(value = "/searchMember.do", method = RequestMethod.GET)
+	public ModelAndView searchId(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) {
+		System.out.println("searchMember.do get 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/serchMember");
+		mav.setViewName("member/searchMember");
 		return mav;
 	}
 
-	@RequestMapping(value = "/serchId.do", method = RequestMethod.POST)
-	public ModelAndView idSerch(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) {
-		System.out.println("serchId.do post 방식에 의한 메서드 호출 성공");
+	@RequestMapping(value = "/searchId.do", method = RequestMethod.POST)
+	public ModelAndView idSearch(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) {
+		System.out.println("searchId.do post 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
-		List<MemberVO> result = memberService.memberidserch(mvo);
+		List<MemberVO> result = memberService.memberidsearch(mvo);
 		if (result.get(0).getM_id().equals("")) {
 			mav.addObject("errCode", 1); 
-			mav.setViewName("member/serchMember");
+			mav.setViewName("member/searchMember");
 		}
 		for (int i = 0; i < result.size(); i++) {
 			mav.addObject("m_id", result.get(i).getM_id());
 		}
-		mav.setViewName("member/serchId");
+		mav.setViewName("member/searchId");
 		return mav;
 	}
 	
-	@RequestMapping(value = "/serchPw.do", method = RequestMethod.POST)
-	public ModelAndView pwSerch(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) throws Exception {
-		System.out.println("serchPw.do post 방식에 의한 메서드 호출 성공");
+	@RequestMapping(value = "/searchPw.do", method = RequestMethod.POST)
+	public ModelAndView pwSearch(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) throws Exception {
+		System.out.println("searchPw.do post 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
 		
 		System.out.println("비밀번호 변경 메일 보내기 메서드");
 		System.out.println("currnent join member: " + mvo.toString());
 		mailsender.pwModify(mvo);
 		mav.addObject("errCode", 3); 
-		mav.setViewName("member/serchMember");
+		mav.setViewName("member/searchMember");
 		return mav;
 	}
 
