@@ -28,12 +28,9 @@ public class AdminMatchController {
 	
 	@RequestMapping(value = "/match/matchList.do", method = RequestMethod.GET)
 	public String matchListChk(@ModelAttribute MatchVO mavo, CommonVO cvo, Model model, HttpServletRequest request) {
-		System.out.println("admin matchList 호출 성공");
 		
 		// 전체 레코드 수 구현 하기
-		System.out.println(mavo.getKeyword());
 		int total = adminMatchService.adminMatchListCnt(mavo);
-		System.out.println("total : " + total);
 		
 		List<MatchVO> adminMatchList = adminMatchService.adminMatchList(mavo);
 		
@@ -50,7 +47,6 @@ public class AdminMatchController {
 
 	@RequestMapping(value = "/match/matchView.do", method = RequestMethod.GET)
 	public String matchViewChk(@ModelAttribute MatchVO mavo, Model model, HttpServletRequest request) throws Exception {
-		System.out.println("admin matchview 호출 성공");
 		
 		String result = "";
 		
@@ -67,7 +63,6 @@ public class AdminMatchController {
 	 *************************************************************/
 	@RequestMapping(value = "/match/matchDelete.do", method = RequestMethod.GET)
 	public String matchStatusUpdateChk(@ModelAttribute MatchVO mavo, Model model, HttpServletRequest request) throws Exception {
-		System.out.println("admin matchDelete 호출 성공");
 		int result = 0;
 		String url = "";
 		result = adminMatchService.matchStatusUpdate(mavo);

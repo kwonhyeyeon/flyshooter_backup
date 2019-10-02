@@ -35,7 +35,6 @@ public class SupportController {
 	
 	@RequestMapping(value = "/supportList.do", method = RequestMethod.GET)
 	public String supportList(@ModelAttribute SupportVO svo, CommonVO cvo, Model model) {
-		System.out.println("supportList 호출 성공");
 		
 		String result = "";
 		
@@ -47,10 +46,7 @@ public class SupportController {
 		BoardPagingUtils.setPage(svo);
 		
 		// 전체 레코드 수 구현하기
-		System.out.println(svo.getKeyword());
 		int total = supportService.supportListCnt(svo);
-		
-		System.out.println(total);
 		
 		int count = total - (PageUtils.nvl(svo.getPage()) - 1) * PageUtils.nvl(svo.getPageSize());
 		
@@ -69,7 +65,6 @@ public class SupportController {
 	
 	@RequestMapping(value = "/supportView.do", method = RequestMethod.GET)
 	public String supportView(@ModelAttribute SupportVO svo, Model model) throws Exception {
-		System.out.println("supportView 호출 성공");
 		SupportVO supportview = new SupportVO();
 		supportview = supportService.supportView(svo);
 		
@@ -84,13 +79,10 @@ public class SupportController {
 
 	@RequestMapping(value = "/supportInsertForm.do", method = RequestMethod.GET)
 	public String supportInsertForm_LoginChk(@ModelAttribute MemberVO mvo, Model model, HttpSession session, HttpServletRequest request) throws Exception {
-		System.out.println("supportInsertForm 호출 성공");
 		
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
 		String m_id = sessionMvo.getM_id();
 		
-		System.out.println(m_id);
-	
 		model.addAttribute("member", memberService.memberSelect(m_id));
 		
 		return "support/supportInsertForm";
@@ -103,7 +95,6 @@ public class SupportController {
 
 	@RequestMapping(value = "/supportInsert.do")
 	public String supportInsert_LoginChk(@ModelAttribute SupportVO svo, HttpServletRequest request) throws Exception {
-		System.out.println("supportInsert 호출 성공");
 		int result = 0;
 		String url = "";
 		result = supportService.supportInsert(svo);
@@ -122,7 +113,6 @@ public class SupportController {
 
 	@RequestMapping(value = "/supportUpdateForm.do")
 	public String supportUpdateForm_LoginChk(@ModelAttribute SupportVO svo, Model model, HttpServletRequest request) throws Exception {
-		System.out.println("supportUpdateForm 호출 성공");
 
 		SupportVO updateSupportData = new SupportVO();
 		updateSupportData = supportService.supportView(svo);
@@ -138,11 +128,8 @@ public class SupportController {
 	@RequestMapping(value = "/supportUpdate.do", method = RequestMethod.POST)
 	public String supportUpdate_LoginChk(@ModelAttribute SupportVO svo, HttpServletRequest request) throws Exception {
 
-		System.out.println("supportUpdate 호출 성공");
-
 		int result = 0;
 		String url = "";
-		System.out.println(svo.getHs_no());
 		result = supportService.supportUpdate(svo);
 
 		if (result == 1) {
