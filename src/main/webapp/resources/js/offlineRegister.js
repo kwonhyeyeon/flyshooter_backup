@@ -12,7 +12,7 @@ $(document).ready(function(){
         ,changeYear: true 
         ,changeMonth: true              
         ,showOn: "both" 
-        ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" 
+        ,buttonImage: "/resources/img/calendar.png" 
         ,buttonImageOnly: true 
         ,buttonText: "선택"               
         ,yearSuffix: "년" 

@@ -48,16 +48,18 @@
 			</div>
 			<!-- 구장명, 날짜 선택 -->
 			
-			<!-- 경기장 별 대관 예약 리스트 -->
-			<div class="stadiumList">
-			</div>
-			<!-- 경기장 별 대관 예약 리스트 -->
-			
-			<!-- 대관 상세페이지 (모달창) -->
-			<div id="dialog" class="rentalDetail" style="display: none">
-			
-			</div>
-			<!-- 대관 상세페이지 (모달창) -->
+			<section id="itemArea">
+				<p class="infotext">※ 온라인 예약일 경우 환불 요청 / 오프라인 대관일 경우 예약 취소 기능만 이용하실 수 있습니다.</p>
+				<p class="infotext">※ 리스트 클릭 시 상세 정보를 확인할 수 있습니다.</p>
+				
+				<!-- 경기장 별 대관 예약 리스트 -->
+				<div class="stadiumList"></div>
+				<!-- 경기장 별 대관 예약 리스트 -->
+				
+				<!-- 대관 상세페이지 (모달창) -->
+				<div id="dialog" class="rentalDetail"></div>
+				<!-- 대관 상세페이지 (모달창) -->
+			</section>
 		</article>
 		
 		<jsp:include page="../templates/footer.jsp" flush="true" />

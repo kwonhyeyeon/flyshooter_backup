@@ -68,27 +68,23 @@ public class ClientRentalController {
 		List<RentalVO> rentalList = null;
 
 		if (stadiumList.isEmpty()) {
-			result.append("<p class='noStadium'>등록된 경기장이 없습니다.</p>");
+			result.append("<p class='noItem'>등록된 경기장이 없습니다.</p>");
 
 			return result.toString();
 		}
 
-		result.append("<h1 style='color:red'> ※ 온라인 대관일경우 환불요청  / 오프라인 대관일경우 대관취소 기능만 이용하실수 있습니다.</h1>");
-		result.append("<h1 style='color:red'> ※ 리스트 클릭시 상세정보를 확인할수 있습니다.</h1>");
 		for (StadiumVO svo : stadiumList) {
 
-			result.append("<p class='stadiumName'>");
+			result.append("<p class='itemName'>");
 			result.append(svo.getS_name());
 			result.append("</p>");
-			result.append("<hr /><br />");
 			rentalList = clientRentalService.getRentalList(svo.getS_no(), selectDay);
-			result.append("<div class='rentalListArea'>");
 			if (rentalList.isEmpty()) {
-				result.append("<p class='noStadium'>대관 이력이 없습니다.</p>");
+				result.append("<p class='noItem'>대관 이력이 없습니다.</p>");
 			} else {
-				result.append("<table class='rentalListTbl'>");
+				result.append("<table class='listTbl'>");
 				result.append(
-						"<tr><td>예약자명</td><td>전화번호</td><td>예약시간</td><td>용품대여</td><td>대관유형</td><td>환불/취소</td></tr>");
+						"<tr><th>예약자명</th><th>전화번호</th><th>예약시간</th><th>용품대여</th><th>대관유형</th><th>환불/취소</th></tr>");
 				for (RentalVO rvo : rentalList) {
 					result.append("<tr class='rental' data-num='");
 					result.append(rvo.getR_no());
@@ -107,7 +103,7 @@ public class ClientRentalController {
 					result.append(selectDay);
 					result.append(" (");
 					result.append(rvo.getR_start());
-					result.append("-");
+					result.append(" ~ ");
 
 					// 종료시간 계산
 					r_end = Integer.parseInt(rvo.getR_start()) + rvo.getCal_status();
@@ -118,10 +114,10 @@ public class ClientRentalController {
 					if (rvo.getRefund() > 0) {
 						switch (rvo.getR_pay_type()) {
 						case 1:
-							result.append("<td style='color:red'>(미반납)");
+							result.append("<td class='red'>미반납");
 							break;
 						case 2:
-							result.append("<td style='color:blue'>(반납완료)");
+							result.append("<td class='blue'>반납 완료");
 							break;
 						default:
 							result.append("<td>유");
@@ -137,15 +133,15 @@ public class ClientRentalController {
 					if (rvo.getR_pay_status() == 0) {
 						result.append("오프라인");
 						result.append("</td>");
-						result.append("<td><button class='r_cancle'>대관취소</button></td>");
+						result.append("<td><button class='r_cancle btninTbl'>대관 취소</button></td>");
 					} else if (rvo.getR_pay_status() == 1) {
 						result.append("온라인");
 						result.append("</td>");
-						result.append("<td><button class='r_refund'>환불요청</button></td>");
+						result.append("<td><button class='r_refund btninTbl'>환불 요청</button></td>");
 					} else {
 						result.append("환불대기중");
 						result.append("</td>");
-						result.append("<td>..</td>");
+						result.append("<td><button class='r_refund btninTbl' disabled>환불 요청</button></td>");
 					}
 
 					result.append("</tr>");
@@ -153,7 +149,6 @@ public class ClientRentalController {
 				}
 				result.append("</table>");
 			}
-			result.append("</div>");
 		}
 
 		System.out.println("버퍼크기" + result.capacity());
@@ -170,39 +165,37 @@ public class ClientRentalController {
 		result.append(index);
 		result.append("' />");
 
-		result.append("<table>");
-		result.append("<tr><td>신청자</td><td>");
+		result.append("<table class='detailTbl'>");
+		result.append("<tr><th>신청자</th><td>");
 		result.append(rvo.getM_id());
-		result.append("</td></tr><tr><td>연락처</td><td>");
+		result.append("</td></tr><tr><th>연락처</th><td>");
 		result.append(rvo.getR_account());
 		result.append("</td></tr>");
 
-		result.append("<tr><td>대관 등록일</td><td>");
+		result.append("<tr><th>대관 등록일</th><td>");
 		result.append(rvo.getR_regdate());
-		result.append("</td></tr><tr><td>예약시간</td><td>");
+		result.append("</td></tr><tr><th>예약시간</th><td>");
 		result.append(rvo.getR_reserve_date());
 		result.append("</td></tr>");
 
-		result.append("<tr><td>경기장</td><td>");
+		result.append("<tr><th>경기장</th><td>");
 		result.append(rvo.getR_start());
-		result.append("</td></tr><tr><td>총 결제금액</td><td>");
+		result.append("</td></tr><tr><th>총 결제금액</th><td>");
 		result.append(rvo.getR_total_pay());
 		result.append(" 원</td></tr>");
 		result.append("</table>");
 		if (!itemsList.isEmpty()) {
-			result.append("<div><h2>대여용품</h2>");
-			result.append("<ul>");
+			result.append("<h2 class='modalTit'>대여 용품<span>아래 버튼을 이용해 용품 반납 상태를 변경할 수 있습니다</span></h2>");
+			result.append("<div class='modalToggle'><ul>");
 			for (ItemsRentalVO irvo : itemsList) {
 				result.append("<li data-num='");
 				result.append(irvo.getIr_no());
 				result.append("'>");
-				result.append("<p><span>");
-				result.append(irvo.getI_name());
-				result.append("</span>&nbsp&nbsp");
 				result.append("<span>");
+				result.append(irvo.getI_name());
+				result.append("&nbsp");
 				result.append(irvo.getIr_rental_ea());
-				result.append("개</span>");
-				result.append("</p>");
+				result.append(" 개</span>");
 				result.append("<span class='toggle-wrap'><input type='checkbox' class='toggle'");
 				if (irvo.getIr_return_status() == 2) {
 					result.append(" checked value = '2'");
@@ -387,8 +380,6 @@ public class ClientRentalController {
 			}
 		}
 
-		result.append("<button id='offRegister'>등록</button>");
-		result.append("<button id='goRentalList'>대관현황</button>");
 		return result.toString();
 	}
 

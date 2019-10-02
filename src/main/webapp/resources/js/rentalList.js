@@ -6,7 +6,7 @@ $(document).ready(function(){
 	
 	var p_num = $(".placeName-op:selected").val();	
 	var s_no = $(".s_no").val();
-	
+	var name = '';
 	
 	// datepicker 설정
     $("#datepicker").datepicker({
@@ -25,8 +25,8 @@ $(document).ready(function(){
         ,dayNamesMin: ['일','월','화','수','목','금','토'] // 달력의 요일 부분 텍스트
         ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] // 달력의 요일 부분 Tooltip 텍스트
         ,maxDate: "+1M" // 최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                
-    });                    
-    
+    });
+
     // 초기값을 오늘 날짜로 설정
 	$("#datepicker").datepicker("setDate", "today");
 	//(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
@@ -42,9 +42,8 @@ $(document).ready(function(){
 	
 	$("#datepicker").change(function(){
 		
-		
-		
 		getList();
+		
 	});
 	
 	$(document).on("click",".rental",function(){
@@ -80,10 +79,10 @@ $(document).ready(function(){
 				},
 				success : function(result) {
 					if(result == 0){
-						alert("요청에 실패하였습니다\n다시 시도해주십시오.");
+						alert("요청에 실패했습니다.\n다시 시도해주십시오.");
 					}else{
 						getList();
-						alert("환불요청되었습니다.");
+						alert("환불 요청되었습니다.");
 					}
 				}
 				
@@ -112,7 +111,7 @@ $(document).ready(function(){
 				},
 				success : function(result) {
 					if(result == 0){
-						alert("요청에 실패하였습니다\n다시 시도해주십시오.");
+						alert("요청에 실패했습니다.\n다시 시도해주십시오.");
 					}else{
 						getList();
 						alert("대관이 취소되었습니다.");
@@ -131,7 +130,7 @@ $(document).ready(function(){
 			
 			
 			if( ir_return_status == '1' ){
-				if( confirm("반납완료로 변경하시겠습니까 ?") ){
+				if( confirm("반납 완료로 변경하시겠습니까 ?") ){
 					setItems_status(index, ir_return_status, list_index);
 				}else{
 					var rvo = setRentalVo(list_index);
@@ -140,7 +139,7 @@ $(document).ready(function(){
 			}
 			
 			if( ir_return_status == '2' ){
-				if( confirm("대여중상태로 변경하시겠습니까?") ){
+				if( confirm("대여중 상태로 변경하시겠습니까?") ){
 					setItems_status(index, ir_return_status, list_index);
 				}else{
 					var rvo = setRentalVo(list_index);
@@ -212,14 +211,13 @@ $(document).ready(function(){
 			});
 		}
 		
-		
+		// 객체 가져오는 함수
 		function setRentalVo(index){
 			
 			var r_info = $(".rental:eq("+index+")").attr("data-num");
 			var param = r_info.split(",");
 			
-			
-			var stadiumName = $(".rental:eq("+index+")").parent().parent().parent().prev().prev().prev().text();
+			var stadiumName = $(".rental:eq("+index+")").parents().parents().prev(".itemName").text();
 			var td = $(".rental:eq("+index+")").children();
 			
 			var status = td.eq(4).text();
@@ -240,28 +238,39 @@ $(document).ready(function(){
 				r_recall_time : td.eq(3).text()
 			};
 			
+			name = td.eq(0).text();
+			
 			return rvo;
 		}
 		
 		// 상세페이지 모달창
 		function openDialog(){
+			
 			$("#dialog").dialog({
-				title : '대관 상세페이지',
-				model : true,
-				width : '450',
-				height : 'auto',
-				closeOnEscape:false,
+				title : name + ' 님의 예약 정보',
+				modal : true,
+				width : '900',
+				minHeight : '400',
+				resizable : false,
+				closeOnEscape : false,
+				draggable : false,
+				appendTo : false,
+				dialogClass: 'custom-dialog-style',
 				open:function(event, ui){
 					$(".ui-dialog-titlebar-close", $(this).parent()).hide();
+					
+					// 모달 오버레이 설정
+	                $(".ui-widget-overlay").css({
+	                    opacity: 0.5,
+	                    filter: "Alpha(Opacity=50)",
+	                    backgroundColor: "black"
+	                });
 				},
-				resizeable : false,
 				show : {
-					effect : "blind",
-					duration : 1000
+					duration : 500
 				},
 				hide : {
-					effect : "explode",
-					duration : 1000
+					duration : 500
 				},
 				buttons:[
 					{
