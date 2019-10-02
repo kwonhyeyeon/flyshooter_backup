@@ -1,21 +1,15 @@
 package com.fly.admin.login.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fly.admin.login.service.AdminLoginService;
 
@@ -25,9 +19,8 @@ public class AdminController {
 	
 	@Resource(name = "adminLoginService")
 	private AdminLoginService adminLoginService;
-
-	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
-
+	
+	
 	// 실행시 adminlogin.jsp로 연결시켜주는 맵핑 (test를 위하여 만듬)
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String adminlogin(HttpSession session, HttpServletRequest request) {
@@ -59,7 +52,6 @@ public class AdminController {
 	}
 	
 	private boolean loginCheck(String adminId, String adminPw) {
-		// TODO Auto-generated method stub
 		boolean loginPass = false;
 		if ("admin".equals(adminId) && "admin1234".equals(adminPw)) {
 			loginPass = true;

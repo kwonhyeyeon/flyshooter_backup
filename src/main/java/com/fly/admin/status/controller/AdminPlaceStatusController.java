@@ -24,8 +24,6 @@ public class AdminPlaceStatusController {
 	@RequestMapping(value = "/placeStatus.do", method = RequestMethod.GET)
 	public String selectPlaceChk(@ModelAttribute AdminPlaceStatusVO svo, HttpServletRequest request, Model model) {
 
-		System.out.println("placeStatus 호출");
-		
 		String result = "";
 
 		List<AdminPlaceStatusVO> selectPlace = adminPlaceStatusService.selectPlace(svo);

@@ -5,8 +5,9 @@
 <mapper namespace="com.fly.admin.rentalstatus.dao.AdminRentalStatusDao">
 
 	<select id="selectRental" resultType="adminrental" parameterType="adminrental">
-		select count(r_no) as count, to_char(r_regdate, 'yyyy/MM') as r_regdate from rental 
-		where r_regdate <![CDATA[<=]]> sysdate
+		select count(r_no) as count, to_char(r_regdate, 'yyyy/MM') as r_regdate 
+		from rental 
+		where r_regdate <![CDATA[<=]]> sysdate and r_pay_status = 1
 		group by to_char(r_regdate, 'yyyy/MM')
 		order by r_regdate asc
 	</select>
