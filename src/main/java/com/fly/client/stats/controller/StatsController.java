@@ -1,6 +1,7 @@
 package com.fly.client.stats.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -51,10 +52,9 @@ public class StatsController {
 		List<Integer> years = new ArrayList<Integer>();
 		
 		PlaceVO ypvo = placeService.selectYear(pvo);
-		
+		try {
 		int minYear = Integer.parseInt(ypvo.getP_holiday_start());
 		int maxYear = Integer.parseInt(ypvo.getP_holiday_end());
-		
 		for(int i = minYear; i <= maxYear; i++) {
 			years.add(i);
 		}
@@ -66,6 +66,11 @@ public class StatsController {
 			selectYear = year;
 		}
 		model.addAttribute("selectYear", selectYear);
+		
+		}catch(NullPointerException e) {
+			model.addAttribute("years", Calendar.getInstance().get(Calendar.YEAR));
+		}
+		
 		for( PlaceVO pvo2 : placeChoice ) {
 			svo = new StatsVO();
 			svo.setP_num(pvo2.getP_num());

@@ -8,14 +8,14 @@ function stadiumCheck() {
 	
 	var re = /^[0-9]{5,6}$/; // 구장요금 정규식
 	var re1 = /^[0-9]{1,2}$/; // 수용인원 정규식
-	var re2 = /^[가-힣]{2,10}$/; // 경기장명
+	
 	
 	var sdfee= document.getElementById("s_d_fee");
 	var snfee= document.getElementById("s_n_fee");
 	var sdfeew= document.getElementById("s_d_fee_w");
 	var snfeew= document.getElementById("s_n_fee_w");
 	var speople= document.getElementById("s_people");
-	var sname= document.getElementById("s_name");
+	
 	
 	
 	// 체크여부
@@ -38,9 +38,11 @@ function stadiumCheck() {
 	if(!check(re1, speople, "수용인원을 확인해주세요(2자리이내)")){  
 		return false;
 	}
-	if(!check(re2, sname, "경기장 명을 확인해주세요(한글로 2자~10자 이내)")){  
+	if (s_name.value == "") {
+		alert("경기장 이름을 넣어주세요");
 		return false;
 	}
+	
 	if (s_size.value == "") {
 		alert("경기장 사이즈 선택해주세요");
 		return false;
