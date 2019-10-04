@@ -19,7 +19,7 @@ function drawChart(arr, column, title) {
 		data.addColumn('string', '');
 		
 		for(var q = 0; q < 1; q++){
-			data.addColumn('number', column[q]);
+			data.addColumn('number', '값');
 		}
 		
 	    data.addRows([
