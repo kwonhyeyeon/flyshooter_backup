@@ -107,6 +107,14 @@ public class LoginController {
 		// 성공한 클라이언트 IP를 DB에 업데이트,로그인 성공시간 DB에 업데이트
 		else {
 			if (DBmvo.getM_type() == m_type) {//타입 일치
+				if (DBmvo.getM_type() == 0) {
+					int todayRental = loginService.todayRental(m_id);
+					int passibleCal = loginService.passibleCal(m_id);
+					int unpaidCal = loginService.unpaidCal(m_id);
+					session.setAttribute("todayRental", todayRental);
+					session.setAttribute("passibleCal", passibleCal);
+					session.setAttribute("unpaidCal", unpaidCal);
+				}
 				if (DBmvo.getEmail_confirm().equals("Y")) {//이메일 인증된 아이디
 					String Session_id = DBmvo.getM_id();
 					int Session_type = DBmvo.getM_type();

@@ -8,6 +8,7 @@
 <title>경기장/구장 페이지</title>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
+
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
@@ -18,6 +19,9 @@
 google.charts.load('current', {'packages':['line']});
 google.charts.setOnLoadCallback(drawChart);
 
+
+google.charts.load('current', {'packages':['bar']});
+google.charts.setOnLoadCallback(drawChart);
 
 	function sendParam(){
 		var param = "${statisics}";
@@ -64,9 +68,26 @@ google.charts.setOnLoadCallback(drawChart);
 				<p style="color: red">※ 등록된 구장중 가장 오래된 대관연도부터 최근 대관연도까지 조회 가능합니다.</p>	
 			</article>
 			
-			<div id="line_top_x"></div>	
+			
+			<div class="worko-tabs">
+		  
+			    <label for="tab-one"><input type="radio" title="tab-one" name="tabs-statis"  value="rental_statis" checked />대관건수</label>
+			    <label for="tab-two"><input type="radio" title="tab-two" name="tabs-statis" value="sales_statis"/>매출</label>
+			
+			    <div class="tabs">
+			        <div id="rental_statis" class="panel active">
+			       		 <div id="line_top_x"></div>	
+			        </div>
+			        <div id="sales_statis" class="panel">
+			           	<div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+			        </div>
+			    </div>
+		
+			</div>
+			
 		
 		</article>
+
 
 		<form id="search">
 			<input type="hidden" name="year" id="selectedYear"/>

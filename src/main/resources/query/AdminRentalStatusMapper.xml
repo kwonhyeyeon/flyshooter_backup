@@ -4,12 +4,20 @@
 
 <mapper namespace="com.fly.admin.rentalstatus.dao.AdminRentalStatusDao">
 
-	<select id="selectRental" resultType="adminrental" parameterType="adminrental">
-		select count(r_no) as count, to_char(r_regdate, 'yyyy/MM') as r_regdate 
-		from rental 
-		where r_regdate <![CDATA[<=]]> sysdate and r_pay_status = 1
-		group by to_char(r_regdate, 'yyyy/MM')
-		order by r_regdate asc
+	<select id="selectRental" resultType="String" parameterType="adminrental">
+		<![CDATA[SELECT (select count(r_no) from rental)|| '!!' || a || '!!' || b || '!!' || c || '!!' || d || '!!' || e || '!!' || f || '!!' || g || '!!' || h || '!!' || i || '!!' || j || '!!' || k || '!!' || l status FROM dual,
+(select nvl((select count(r_no) from rental where to_char(r_regdate, 'yyyy/fmMM') = '2019/1'),0) a from dual) a,
+(select nvl((select count(r_no) from rental where to_char(r_regdate, 'yyyy/fmMM') = '2019/2'),0) b from dual) b,        
+(select nvl((select count(r_no) from rental where to_char(r_regdate, 'yyyy/fmMM') = '2019/3'),0) c from dual) c,    
+(select nvl((select count(r_no) from rental where to_char(r_regdate, 'yyyy/fmMM') = '2019/4'),0) d from dual) d,
+(select nvl((select count(r_no) from rental where to_char(r_regdate, 'yyyy/fmMM') = '2019/5'),0) e from dual) e,   
+(select nvl((select count(r_no) from rental where to_char(r_regdate, 'yyyy/fmMM') = '2019/6'),0) f from dual) f,    
+(select nvl((select count(r_no) from rental where to_char(r_regdate, 'yyyy/fmMM') = '2019/7'),0) g from dual) g,
+(select nvl((select count(r_no) from rental where to_char(r_regdate, 'yyyy/fmMM') = '2019/8'),0) h from dual) h,
+(select nvl((select count(r_no) from rental where to_char(r_regdate, 'yyyy/fmMM') = '2019/9'),0) i from dual) i,   
+(select nvl((select count(r_no) from rental where to_char(r_regdate, 'yyyy/fmMM') = '2019/10'),0) j from dual) j,
+(select nvl((select count(r_no) from rental where to_char(r_regdate, 'yyyy/fmMM') = '2019/11'),0) k from dual) k,
+(select nvl((select count(r_no) from rental where to_char(r_regdate, 'yyyy/fmMM') = '2019/12'),0) l from dual) l]]>
 	</select>
 	
 </mapper>
