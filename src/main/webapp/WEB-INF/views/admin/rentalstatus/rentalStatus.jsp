@@ -27,50 +27,22 @@
 <!-- google charts -->
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="/resources/js/adminplacestatus.js"></script>
 
 <script type="text/javascript">
-	google.charts.load('current', {
-		'packages' : [ 'line' ]
-	});
-	google.charts.setOnLoadCallback(drawChart);
+google.charts.load('current', {'packages':['line']});
+google.charts.setOnLoadCallback(drawChart);
 
-	function drawChart() {
-		var dateInfo = [];
-		var registerInfo = [];
 
-		<c:forEach var="adminrental" items="${selectRental}">
-		dateInfo.push('${adminrental.r_regdate}');
-		</c:forEach>
+function sendParam(){
+	var param = "${selectRental}";
+	
+	var p_rep1 = param.replace("[","");
+	var p_rep2 = p_rep1.replace("]","");
+	
+	return p_rep2;
+}
 
-		<c:forEach var="adminrental" items="${selectRental}">
-		registerInfo.push('${adminrental.count}');
-		</c:forEach>
-
-		var dataRows = [ [ '날짜', {
-			label : "예약수",
-			type : "number"
-		} ] ];
-
-		for (var i = 0; i < registerInfo.length; i++) {
-			dataRows.push([ dateInfo[i], registerInfo[i] ]);
-		}
-
-		var data = new google.visualization.arrayToDataTable(dataRows);
-
-		var options = {
-			chart : {
-				title : '월별 예약 현황 통계',
-				subtitle : '통계 그래프',
-			},
-			width : 900,
-			height : 500
-		};
-
-		var chart = new google.charts.Line(document
-				.getElementById('linechart_material'));
-
-		chart.draw(data, google.charts.Line.convertOptions(options));
-	}
 </script>
 
 </head>
@@ -99,7 +71,7 @@
 			<div id="container">
 				<article id="contents">
 
-					<div id="linechart_material"></div>
+					<div id="line_top_x"></div>
 				</article>
 				<!-- contents -->
 			</div>

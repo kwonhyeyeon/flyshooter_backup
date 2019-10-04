@@ -14,9 +14,12 @@
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script src="/resources/js/boardCheck.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
-<link rel="stylesheet" type="text/css" href="/resources/css/adminStyle.css" />
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script> <!-- end datepicker -->
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/adminStyle.css" />
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- end datepicker -->
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery.min.js"></script>
@@ -38,6 +41,7 @@ function sendParam(){
 	
 	return p_rep2;
 }
+
 
 </script>
 
@@ -67,7 +71,7 @@ function sendParam(){
 			<div id="container">
 				<article id="contents">
 
-					<div id="linechart_material"></div>
+					<div id="line_top_x"></div>
 
 				</article>
 				<!-- contents -->

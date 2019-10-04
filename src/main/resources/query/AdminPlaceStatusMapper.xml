@@ -5,7 +5,7 @@
 
 <mapper namespace="com.fly.admin.status.dao.AdminPlaceStatusDao">
 
-	<select id="selectPlace" resultType="adminstatus" parameterType="adminstatus">
+	<select id="selectPlace" resultType="String" parameterType="adminstatus">
 		<![CDATA[ SELECT (select count(p_ok) from place)|| '!!' || a || '!!' || b || '!!' || c || '!!' || d || '!!' || e || '!!' || f || '!!' || g || '!!' || h || '!!' || i || '!!' || j || '!!' || k || '!!' || l status FROM dual,
 (select nvl((select count(p_ok) from place where to_char(p_ok_date, 'yyyy/fmMM') = '2019/1'),0) a from dual) a,
 (select nvl((select count(p_ok) from place where to_char(p_ok_date, 'yyyy/fmMM') = '2019/2'),0) b from dual) b,        
@@ -20,5 +20,5 @@
 (select nvl((select count(p_ok) from place where to_char(p_ok_date, 'yyyy/fmMM') = '2019/11'),0) k from dual) k,
 (select nvl((select count(p_ok) from place where to_char(p_ok_date, 'yyyy/fmMM') = '2019/12'),0) l from dual) l ]]>
 	</select>
-
+	
 </mapper>
