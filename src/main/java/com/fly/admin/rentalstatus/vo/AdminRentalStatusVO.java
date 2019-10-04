@@ -5,6 +5,7 @@ public class AdminRentalStatusVO {
 	private int r_no; // 구장 일련번호
 	private String r_regdate; // 대관 신청 시간
 	private int count;
+	private String status;
 
 	public int getR_no() {
 		return r_no;
@@ -30,9 +31,18 @@ public class AdminRentalStatusVO {
 		this.count = count;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
-		return "AdminRentalStatusVO [r_no=" + r_no + ", r_regdate=" + r_regdate + ", count=" + count + "]";
+		return "AdminRentalStatusVO [r_no=" + r_no + ", r_regdate=" + r_regdate + ", count=" + count + ", status="
+				+ status + "]";
 	}
 
 }
