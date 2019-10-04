@@ -9,7 +9,7 @@ window.onload = function () {
 		column = makeColumnList(statisics);
 		arr =  makeStatisics(statisics);
 		
-		drawChart(arr, column, "구장별 대관현황");
+		drawChart(arr, column, "현황 통계 그래프");
 
 }
 
@@ -43,8 +43,6 @@ function drawChart(arr, column, title) {
         /* subtitle: 'in millions of dollars (USD)' */
       },
       vAxis: {
-    	  title:'대관',
-    	  
           viewWindowMode:'explicit',
           viewWindow: {
               min: 0,
