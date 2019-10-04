@@ -362,27 +362,35 @@ public class ClientRentalController {
 		int increase = svo.getS_hours(); // 최소 이용가능시간
 
 		for (int i = start; i + increase <= end; i += increase) {
-			result.append("<label><input type='radio' name='reservationTime' value='");
+			result.append("<input type='radio' name='reservationTime' value='");
 			result.append(i);
 			result.append(",");
 			result.append(i + increase);
 			result.append("'");
+			result.append(" id='");
+			result.append(i);
+			result.append("'");
 
-			if (impossibleTime.contains(i + "")) {
-				result.append(" style='display:none' /></label>");
+			if (impossibleTime.contains(i + "")) { // 대관 불가능
+				result.append(" disabled />");
 			} else {
 				result.append("/>");
-				result.append(i);
-				result.append(" ~ ");
-				result.append(i + increase);
-				result.append("(시)</label>");
 			}
+			
+			result.append("<label for='");
+			result.append(i);
+			result.append("'>");
+			result.append(i);
+			result.append(" ~ ");
+			result.append(i + increase);
+			result.append("</label>");
+			
 		}
 
 		return result.toString();
 	}
 
-	// 오프라인 대관시 경기장 SelectBox설정
+	// 오프라인 대관 등록
 	@RequestMapping(value = "/offlineInsert.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
 	@ResponseBody
 	public String offlineRentalInsert(@ModelAttribute RentalVO rvo, HttpSession session) {

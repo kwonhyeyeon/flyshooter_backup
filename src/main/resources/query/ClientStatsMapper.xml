@@ -46,5 +46,28 @@ FROM stadium
 WHERE s_status != 0 and p_num = #{p_num}
 
 </select>
+
+
+<select id="salesAllPlace" parameterType="clientstats" resultType="String">
+
+<![CDATA[	
+SELECT (select p_name from place where p_num = #{p_num}) || '!!' || a || '!!' || b || '!!' || c || '!!' || d || '!!' || e || '!!' || f || '!!' || g || '!!' || h || '!!' || i || '!!' || j || '!!' || k || '!!' || l status
+FROM dual, 
+	(select nvl(sum(r_total_pay), 0) a from rental where r_pay_status = 1 and to_char(r_reserve_date, 'yyyy/fmMM') = #{year}||'1' and s_no in(select s_no from stadium where p_num = #{p_num}) ), 
+	(select nvl(sum(r_total_pay), 0) b from rental where r_pay_status = 1 and to_char(r_reserve_date, 'yyyy/fmMM') = #{year}||'2' and s_no in(select s_no from stadium where p_num = #{p_num}) ), 
+	(select nvl(sum(r_total_pay), 0) c from rental where r_pay_status = 1 and to_char(r_reserve_date, 'yyyy/fmMM') = #{year}||'3' and s_no in(select s_no from stadium where p_num = #{p_num}) ), 
+	(select nvl(sum(r_total_pay), 0) d from rental where r_pay_status = 1 and to_char(r_reserve_date, 'yyyy/fmMM') = #{year}||'4' and s_no in(select s_no from stadium where p_num = #{p_num}) ), 
+	(select nvl(sum(r_total_pay), 0) e from rental where r_pay_status = 1 and to_char(r_reserve_date, 'yyyy/fmMM') = #{year}||'5' and s_no in(select s_no from stadium where p_num = #{p_num}) ), 
+	(select nvl(sum(r_total_pay), 0) f from rental where r_pay_status = 1 and to_char(r_reserve_date, 'yyyy/fmMM') = #{year}||'6' and s_no in(select s_no from stadium where p_num = #{p_num}) ), 
+	(select nvl(sum(r_total_pay), 0) g from rental where r_pay_status = 1 and to_char(r_reserve_date, 'yyyy/fmMM') = #{year}||'7' and s_no in(select s_no from stadium where p_num = #{p_num}) ), 
+	(select nvl(sum(r_total_pay), 0) h from rental where r_pay_status = 1 and to_char(r_reserve_date, 'yyyy/fmMM') = #{year}||'8' and s_no in(select s_no from stadium where p_num = #{p_num}) ), 
+	(select nvl(sum(r_total_pay), 0) i from rental where r_pay_status = 1 and to_char(r_reserve_date, 'yyyy/fmMM') = #{year}||'9' and s_no in(select s_no from stadium where p_num = #{p_num}) ), 
+	(select nvl(sum(r_total_pay), 0) j from rental where r_pay_status = 1 and to_char(r_reserve_date, 'yyyy/fmMM') = #{year}||'10' and s_no in(select s_no from stadium where p_num = #{p_num}) ), 
+	(select nvl(sum(r_total_pay), 0) k from rental where r_pay_status = 1 and to_char(r_reserve_date, 'yyyy/fmMM') = #{year}||'11' and s_no in(select s_no from stadium where p_num = #{p_num}) ), 
+	(select nvl(sum(r_total_pay), 0) l from rental where r_pay_status = 1 and to_char(r_reserve_date, 'yyyy/fmMM') = #{year}||'12' and s_no in(select s_no from stadium where p_num = #{p_num}) ) 
+]]>
+
+
+</select>
 	
 </mapper>

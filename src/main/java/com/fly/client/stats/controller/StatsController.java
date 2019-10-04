@@ -90,7 +90,7 @@ public class StatsController {
 		return "mypage/stats";
 	}
 	
-	// 온라인대관 환불요청
+	// 구장별 경기장의 통계
 	@RequestMapping(value = "/stadiumStats.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
 	@ResponseBody
 	public String stadiumStats(@ModelAttribute StatsVO stvo) {
@@ -120,6 +120,44 @@ public class StatsController {
 	}
 
 	
+		// 전체 구장의 매출통계
+		@RequestMapping(value = "/allPlaceSalesStatis.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+		@ResponseBody
+		public String allPlaceSalesStatis(HttpSession session, @ModelAttribute StatsVO stvo) {
+
+			StringBuffer result = new StringBuffer();
+			
+			MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
+			try {
+				
+			String m_id = sessionMvo.getM_id();
+			
+			List<PlaceVO> placeChoice = placeService.placeChoice(m_id);
+			
+			for( PlaceVO pvo : placeChoice ) {
+				stvo.setP_num(pvo.getP_num());
+				result.append(statsService.allPlaceSales(stvo));
+				result.append("@@");
+				
+			}
+			
+			// 등록된 구장이 없을경우 오류를 발생시켜 catch로 보낸다.
+			if( placeChoice.isEmpty() ) {
+				placeChoice.get(5);
+			}
+			
+			return result.toString();
+			
+			}catch(Exception e) {
+				e.printStackTrace();
+				result = new StringBuffer();
+				result.append("Empty");
+				return result.toString();
+			}
+			
+			
+		}
+
 	
 	
 }

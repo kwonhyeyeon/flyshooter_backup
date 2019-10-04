@@ -15,32 +15,11 @@
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/myRentalList.js"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
-<script>
-
-	
-	function goPage(page){
-		$("#page").val(page);
-		$("#f_search").attr({
-			"method":"get",
-			"action":"/user/rental/myRentalList.do"
-		});
-		
-		$("#f_search").submit();
-	}
-	
-	if("${massage}"){
-		alert("${massage}");
-	}
-</script>
 </head>
 <body>
 	<div id="wrapper">
 
-		<div id="header-wrap">
-			<jsp:include page="../templates/header.jsp" flush="true" />
-		</div>
-		
-		<div class="sub-v"></div>
+		<jsp:include page="../templates/header.jsp" flush="true" />
 		
 		<article id="contents">
 			<h2>나의 예약정보</h2>
@@ -99,4 +78,21 @@
 	</div>
 		
 </body>
+<script>
+
+	
+	function goPage(page){
+		$("#page").val(page);
+		$("#f_search").attr({
+			"method":"get",
+			"action":"/user/rental/myRentalList.do"
+		});
+		
+		$("#f_search").submit();
+	}
+	
+	if("${massage}"){
+		alert("${massage}");
+	}
+</script>
 </html>

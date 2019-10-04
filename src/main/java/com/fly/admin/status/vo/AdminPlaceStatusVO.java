@@ -5,6 +5,7 @@ public class AdminPlaceStatusVO {
 	private int p_ok; // 구장 승인상태
 	private String p_ok_date; // 구장 승인일
 	private int count;
+	private String status;
 
 	public int getP_ok() {
 		return p_ok;
@@ -30,9 +31,18 @@ public class AdminPlaceStatusVO {
 		this.count = count;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
-		return "AdminStatusVO [p_ok=" + p_ok + ", p_ok_date=" + p_ok_date + ", count=" + count + "]";
+		return "AdminPlaceStatusVO [p_ok=" + p_ok + ", p_ok_date=" + p_ok_date + ", count=" + count + ", status="
+				+ status + "]";
 	}
 
 }
