@@ -2,28 +2,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="header-wrap">
 	<header id="header">
-	    <h1><a href="/">FLY SHOOTER</a></h1>
-	
-	    <nav id="gnb">
+		<nav id="lnb">
 	        <ul>
-	            <li><a href="/">대관</a></li>
-	            <li><a href="/match/matchList.do">매치</a></li>
-	            <li><a href="/support/supportList.do">용병</a></li>
-	            <li><a href="/member/mypage/modifyLogin.do">마이페이지</a></li>
-	        </ul>
-	    </nav>
-	
-	    <nav id="lnb">
-	        <ul>
-	           <%--  <c:if test="${empty m_id}">
-	                <li><a href="/member/join.do">회원가입</a></li>
-	                <li><a href="/">로그인</a></li>
+	           	<c:if test="${empty mvo.m_id}">
+	                <li><a href="/member/terms.do">회원가입</a></li>
+	                <li><a href="/member/login.do">로그인</a></li>
 	            </c:if>
-	            <c:if test="${not empty m_id}">
-	                <li><a href="/">로그아웃</a></li>
-	            </c:if> --%>
+	            <c:if test="${not empty mvo.m_id}">
+	            	<c:if test="${mvo.m_type == 0}">
+		            	<li>오늘의 대관<a href="/client/rental/rentalList.do">${todayRental}</a> 건</li>
+		                <li>정산 가능 금액<a href="/mypage/calculate.do">${passibleCal}</a> 원</li>
+		                <li>미지급 정산 건수<a href="/mypage/calculate.do">${unpaidCal}</a> 건</li>
+	            	</c:if>
+	                <li><a href="/member/logout.do">로그아웃</a></li>
+	            </c:if>
 	        </ul>
 	    </nav>
+		
+		<div id="gnb-wrap">
+		    <h1><a href="/">FLY SHOOTER</a></h1>
+		    <nav id="gnb">
+		        <ul>
+		            <li><a href="/">대관</a></li>
+		            <li><a href="/match/matchList.do">매치</a></li>
+		            <li><a href="/support/supportList.do">용병</a></li>
+		            <li><a href="/member/mypage/modifyLogin.do">마이페이지</a></li>
+		        </ul>
+		    </nav>
+	    </div>
 	</header>
 	
 	<div class="menu-wrap">

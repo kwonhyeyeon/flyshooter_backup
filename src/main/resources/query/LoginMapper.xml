@@ -43,4 +43,45 @@
  		from login_history
  		where m_id = #{m_id}	
  	</select>
+ 	
+ 	<select id="todayRental" parameterType="String" resultType="int">
+ 		select nvl(count(r_no), 0) from rental 
+ 		where s_no in
+		(select s_no from stadium 
+		where p_num 
+		in(select p_num from place where m_id = #{m_id})) and cal_status = 0
+		and r_pay_status = 1 and
+		to_char(r_reserve_date, 'yyyy/MM/dd')  = 
+		to_char(sysdate, 'yyyy/MM/dd')
+		
+ 	</select>
+ 	
+ 	<select id="passibleCal" parameterType="String" resultType="int">
+ 		select sum(nvl((select
+		sum(r_total_pay) from rental where s_no in(select s_no from stadium
+		where p_num = p.p_num) and to_char(r_reserve_date, 'yyyy/MM/dd') <![CDATA[ < ]]>
+		to_char(sysdate - 15, 'yyyy/MM/dd') and cal_status = 0 and
+		r_pay_status in(1, -1)), 0) -
+		nvl((select sum(r_total_pay) from rental
+		where s_no in(select s_no from stadium
+		where p_num = p.p_num) and
+		to_char(r_reserve_date, 'yyyy/MM/dd') <![CDATA[ < ]]>
+		to_char(sysdate - 15, 'yyyy/MM/dd') and cal_status = 0 and
+		r_pay_status = -1), 0) +
+		nvl((select sum(refund) from rental where s_no
+		in(Select s_no from stadium where
+		p_num = p.p_num) and
+		to_char(r_reserve_date, 'yyyy/MM/dd') <![CDATA[ < ]]>
+		to_char(sysdate - 15, 'yyyy/MM/dd') and cal_status = 0 and
+		r_pay_status = -1), 0)) passibleCal 
+		from place p
+		where m_id = #{m_id}
+ 	</select>
+ 	
+ 	<select id="unpaidCal" parameterType="String" resultType="int">
+ 		select nvl(count(c_payment), 0) from calculate
+		where p_num in
+		(select p_num from place where m_id = #{m_id}) 
+		and c_status = -1
+ 	</select>
 </mapper>

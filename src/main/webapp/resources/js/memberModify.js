@@ -3,6 +3,11 @@
  */
 var pwConfirm;
 $(document).ready(function() {
+	$(".m_phone0 option").each(function() {
+		if ($(this).val() == "${mvo.m_phone0}") {
+			$(this).attr("selected", "selected");
+		}
+	});
 	$("#modifyForm").submit(function() {
 		return modifyCheck();
 		errCodeCheck();
@@ -61,8 +66,14 @@ function errCodeCheck() {
 }
 function modifyCheck() {
 	var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
+	var re2 = /^[0-9]*$/; // 숫자 정규식
 	var re3 =  /^[A-Za-z0-9]{6,12}$/;//패스워드 정규식(숫자와 문자 포함 형태의 6~12자리 이내의 암호 정규식
 	
+	//휴대폰번호 합치기
+	$("#m_phone").val($("#m_phone0").val()+'-'+$("#m_phone1").val()+'-'+$("#m_phone2").val());
+	   
+	var m_phone1 = document.getElementById("m_phone1");
+	var m_phone2 = document.getElementById("m_phone2");
 	var pw = document.getElementById("m_pw");
 
 	// ------------ 이메일 까지 -----------
@@ -70,6 +81,12 @@ function modifyCheck() {
 		return false;
 	}
 	if(!check(re3, pw, "숫자와 문자 포함 형태의 6~12자리 이내")){
+		return false;
+	}
+	if (!check(re2, m_phone1, "핸드폰 번호는 숫자로만 입력하세요!")) {
+		return false;
+	}
+	if (!check(re2, m_phone2, "핸드폰 번호는 숫자로만 입력하세요!!")) {
 		return false;
 	}
 	if (pwConfirm == 1) {
@@ -82,22 +99,11 @@ function modifyCheck() {
 		modifyForm.m_name.focus();
 		return false;
 	}
-
-	if (modifyForm.m_phone.value == "") {
-		alert("핸드폰번호 입력해 주세요");
-		modifyForm.m_phone.focus();
-		return false;
-	}
-
-	idPwdCheck();
-	alert("수정이 완료되었습니다.");
 }
 function check(re, what, message) {
 	if (re.test(what.value)) {
 		return true;
 	}
 	alert(message);
-	what.value = "";
-	what.focus();
-	// return false;
+	return false;
 }

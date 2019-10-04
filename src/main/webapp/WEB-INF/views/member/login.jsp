@@ -43,7 +43,7 @@
 				<input type="submit" value="로그인" id="loginbutton" name="loginbutton" class="activeBtn" />
 				
 				<div class="find-info">
-					<a href="/member/join.do">회원가입</a>
+					<a href="/member/terms.do">회원가입</a>
 					<a href="/member/searchMember.do">아이디/비밀번호 찾기</a>
 				</div>
 			</form>

@@ -57,7 +57,7 @@ public class StadiumController {
 
 	@RequestMapping(value = "/stadiumList.do", method = RequestMethod.GET, produces= "text/html; charset=UTF-8")
 	@ResponseBody
-	public String stadiumList(Model model, @RequestParam(value = "p_num") String p_num) {
+	public String stadiumList_ClientChk(Model model, @RequestParam(value = "p_num") String p_num) {
 		List<StadiumVO> Slist = stadiumService.stadiumList(p_num);
 		List<ItemsVO> Ilist = itemsService.itemsList(p_num);
 		
@@ -164,7 +164,7 @@ public class StadiumController {
 	
 	@RequestMapping(value = "/closeStadium.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String closeStadium(@RequestParam(value = "s_no", required = false, defaultValue = "0") String s_no) {
+	public String closeStadium_ClientChk(@RequestParam(value = "s_no", required = false, defaultValue = "0") String s_no) {
 		int result = stadiumService.closeStadium(s_no);
 		return result + "";
 	}

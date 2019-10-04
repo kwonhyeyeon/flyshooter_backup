@@ -51,21 +51,7 @@ function stadiumCheck() {
 		alert("실내/외 선택해주세요");
 		return false;
 	}
-	var chk1 = document.getElementById('s_img1');
-	if(!chk1.value){
-		alert('이미지1을 선택해주세요');
-		return false;
-	}
-	var chk2 = document.getElementById('s_img2');
-	if(!chk2.value){
-		alert('이미지2을 선택해주세요');
-		return false;
-	}
-	var chk3 = document.getElementById('s_img3');
-	if(!chk3.value){
-		alert('이미지3을 선택해주세요');
-		return false;
-	}
+	
 
 	// file(s_register)type(gif, png, jpg) 제어 -> 이미지1
 	if ($("#s_img1").val() != "") {
