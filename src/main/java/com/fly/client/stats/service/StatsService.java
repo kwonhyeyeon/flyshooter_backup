@@ -17,4 +17,7 @@ public interface StatsService {
 	
 	// 경기장 통계
 	public String stadiumStatus(StatsVO stvo);
+	
+	// 전체구장 매출통계
+	public String allPlaceSales(StatsVO stvo);
 }

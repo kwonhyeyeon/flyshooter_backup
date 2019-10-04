@@ -74,6 +74,7 @@ window.onload = function () {
 		 
 		 $(".tabs").children().hide();
 		 if( selectedValue == "rental_statis"){
+			 getStadiumStatis();
 			 $("#rental_statis").show();
 		 }
 		 if( selectedValue == "sales_statis"){
@@ -93,8 +94,92 @@ window.onload = function () {
 	
 }
 
+
+
 function salesChart() {
 	
+	var stvo = {
+			p_num : $("#placeBox").val(),
+			year : $("#year").val()
+			};
+	
+	
+	$.ajax({
+		type:"post",
+		url:"/mypage/allPlaceSalesStatis.do",
+		data:stvo,
+		error: function() {
+			 alert($("#placeBox option:selected").text() + "통계조회에 실패하였습니다. \n잠시후 다시 시도해주십시오.");
+		},
+		success:function(result){
+			
+			if(result == "Empty"){
+				alert("조회된 데이터가 없습니다.\n로그인상태를 확인해 주십시오.");
+				return;
+			}
+			
+			barChart(result);
+		        
+		}
+		
+	});
+	
+	function barChart(salesList){
+		
+		var place = salesList.split("@@");
+		
+		var col = [];
+		var arr2 = [];
+		
+		for(var q = 0; q < place.length-1; q++){
+			var name = place[q].split("!!");
+			col.push(name[0]);
+		}
+		
+		for( var w = 0; w < 11; w++ ){
+			
+			
+			var argument ="'" + eval(w+1) + "'월";
+			var sum = 0;
+			
+			for( var q = 0; q < place.length-1; q++ ){
+				
+				var argu = place[q].split("!!");
+				
+				sum += eval(argu[w+1]);
+				
+				argument += ','+argu[w+1];
+			
+			}
+			argument += ',' + sum;
+			arr2.push(argument);
+		}
+		
+		col.push('합계');
+		
+		alert(col);
+		alert(arr2);
+		
+		 var data = google.visualization.arrayToDataTable([
+	          col,
+	          ['2015', 1170, 460, 250],
+	          ['2016', 660, 1120, 300],
+	          ['2017', 1030, 540, 350]
+	        ]);
+
+	        var options = {
+	          chart: {
+	            title: 'Company Performance',
+	            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+	          }
+	        };
+
+	        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+	        chart.draw(data, google.charts.Bar.convertOptions(options));
+	        
+		
+	}
 	
 	
 }
