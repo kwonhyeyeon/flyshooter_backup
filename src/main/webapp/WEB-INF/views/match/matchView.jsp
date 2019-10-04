@@ -7,41 +7,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>매치신청 상세보기</title>
+<title>FLY SHOOTER</title>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
 <link rel="stylesheet" href="/resources/css/board.css">
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
-<!-- <script type="text/javascript">
-	// 수정 페이지 이동  스크립트
-	// 버튼 클릭 시 등록된 글의 내용을 DB에서 불러옴
-	$(function() {
-		var boardID = "${matchView.m_id}";
-
-		var id = "";
-		id += $("#m_id").val();
-		
-		$(document).on('click', '#updateBtn', function() {
-			if (id != "" && id == boardID) {
-				var url = "${pagecontext.request.contextpath}/match/matchUpdateForm.do";
-				url = url + "?mb_no=" + ${matchView.mb_no};
-				location.href = url;
-			} else if (id == "") {
-				alert("로그인 후 수정 할 수 있습니다.");
-				location.href = "/match/matchList.do";
-			} else if ( id != boardID) {
-				alert("다른 회원의 글은 수정 할 수 없습니다.")
-				location.href = "/match/matchList.do";
-			}
-		});
-		
-		$("#returnBtn").click(function() {
-			location.href = "/match/matchList.do";
-		});
-	});
-</script> -->
 </head>
 <body>
 
@@ -101,22 +73,5 @@
 		</tr>
 	</table>
 
-	<%-- <div id="modaldialog" class="modaldialog" role="dialog">
-		
-		<div>
-			<input type="hidden" name="m_id" id="m_id" value="${mvo.m_id}">
-		</div>
-
-		<div class="contentView">
-			
-
-			<div class="updateButton">
-				<input type="button" value="수정하기" name="updateBtn" id="updateBtn">
-				<input type="button" value="목록" name="returnBtn" id="returnBtn">
-			</div>
-
-		</div>
-
-	</div> --%>
 </body>
 </html>

@@ -422,6 +422,70 @@ p.noItem {
 #selectTime input:disabled + label:hover {
 	border:1px solid #dedede;
 }
+
+.insertMatch {
+	width:960px;
+	margin:0 auto;
+	display:flex;
+	justify-content:space-between;
+}
+.matchField {
+	width:460px;
+}
+#matchData h4 {
+	font-size:18px;
+	font-weight:bold;
+	margin-bottom:15px;
+}
+.matchField label {
+	display:flex;
+	flex-wrap:wrap;
+	flex-direction:column;
+	margin-bottom:30px;
+	align-content:space-between;
+}
+.matchField label input {
+	padding:10px;
+	height:30px;
+	line-height:30px;
+	width:436px;
+}
+.matchField label.justify {
+	flex-direction:row;
+	justify-content:flex-start;
+}
+.matchField label.justify input {
+	margin-right:10px;
+	width:100px;
+}
+.matchField select {
+	margin-bottom:10px;
+	height:54px;
+	line-height:54px;
+	width:460px;
+	outline:none;
+	appearance:none;
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	-ms-appearance:none;
+	cursor:pointer;
+	border-radius:0;
+	background:url(/resources/img/select-arrow.png) no-repeat 95%;
+	padding-left:10px;
+}
+.textArea {
+	width:960px;
+	margin:0 auto;
+	display:flex;
+	flex-direction:column;
+	align-content:space-between;
+}
+.textArea textarea {
+	width:calc(100% - 20px);
+	padding:10px;
+	resize:none;
+	height:150px;
+}
 /* contents section end */
 
 /* dialog start */

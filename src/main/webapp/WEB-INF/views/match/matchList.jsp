@@ -8,13 +8,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>매치신청 게시판</title>
+<title>FLY SHOOTER</title>
 
-<script src="http://code.jquery.com/jquery.min.js"></script>
-<script src="/resources/js/boardCheck.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="/resources/js/boardCheck.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
 <script src="/resources/js/matchList.js"></script>
