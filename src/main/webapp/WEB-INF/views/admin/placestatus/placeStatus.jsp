@@ -23,50 +23,22 @@
 <!-- google charts -->
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="/resources/js/adminplacestatus.js"></script>
 
 <script type="text/javascript">
-	google.charts.load('current', {
-		'packages' : [ 'line' ]
-	});
-	google.charts.setOnLoadCallback(drawChart);
+google.charts.load('current', {'packages':['line']});
+google.charts.setOnLoadCallback(drawChart);
 
-	function drawChart() {
-		var dateInfo = [];
-		var registerInfo = [];
 
-		<c:forEach var="adminstatus" items="${selectPlace}">
-		dateInfo.push('${adminstatus.p_ok_date}');
-		</c:forEach>
+function sendParam(){
+	var param = "${selectPlace}";
+	
+	var p_rep1 = param.replace("[","");
+	var p_rep2 = p_rep1.replace("]","");
+	
+	return p_rep2;
+}
 
-		<c:forEach var="adminstatus" items="${selectPlace}">
-		registerInfo.push('${adminstatus.count}');
-		</c:forEach>
-
-		var dataRows = [ [ '날짜', {
-			label : "등록수",
-			type : "number"
-		} ] ];
-
-		for (var i = 0; i < registerInfo.length; i++) {
-			dataRows.push([ dateInfo[i], registerInfo[i] ]);
-		}
-
-		var data = new google.visualization.arrayToDataTable(dataRows);
-
-		var options = {
-			chart : {
-				title : '구장 등록 현황 통계',
-				subtitle : '통계 그래프',
-			},
-			width : 900,
-			height : 500
-		};
-
-		var chart = new google.charts.Line(document
-				.getElementById('linechart_material'));
-
-		chart.draw(data, google.charts.Line.convertOptions(options));
-	}
 </script>
 
 </head>

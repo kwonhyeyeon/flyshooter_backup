@@ -6,10 +6,19 @@
 <mapper namespace="com.fly.admin.status.dao.AdminPlaceStatusDao">
 
 	<select id="selectPlace" resultType="adminstatus" parameterType="adminstatus">
-		select count(p_ok) as count, to_char(p_ok_date, 'yyyy/MM') as p_ok_date from place 
-		where p_ok_date <![CDATA[ <= ]]> sysdate
-		group by to_char(p_ok_date, 'yyyy/MM')
-		order by p_ok_date asc
+		<![CDATA[ SELECT (select count(p_ok) from place)|| '!!' || a || '!!' || b || '!!' || c || '!!' || d || '!!' || e || '!!' || f || '!!' || g || '!!' || h || '!!' || i || '!!' || j || '!!' || k || '!!' || l status FROM dual,
+(select nvl((select count(p_ok) from place where to_char(p_ok_date, 'yyyy/fmMM') = '2019/1'),0) a from dual) a,
+(select nvl((select count(p_ok) from place where to_char(p_ok_date, 'yyyy/fmMM') = '2019/2'),0) b from dual) b,        
+(select nvl((select count(p_ok) from place where to_char(p_ok_date, 'yyyy/fmMM') = '2019/3'),0) c from dual) c,    
+(select nvl((select count(p_ok) from place where to_char(p_ok_date, 'yyyy/fmMM') = '2019/4'),0) d from dual) d,
+(select nvl((select count(p_ok) from place where to_char(p_ok_date, 'yyyy/fmMM') = '2019/5'),0) e from dual) e,   
+(select nvl((select count(p_ok) from place where to_char(p_ok_date, 'yyyy/fmMM') = '2019/6'),0) f from dual) f,    
+(select nvl((select count(p_ok) from place where to_char(p_ok_date, 'yyyy/fmMM') = '2019/7'),0) g from dual) g,
+(select nvl((select count(p_ok) from place where to_char(p_ok_date, 'yyyy/fmMM') = '2019/8'),0) h from dual) h,
+(select nvl((select count(p_ok) from place where to_char(p_ok_date, 'yyyy/fmMM') = '2019/9'),0) i from dual) i,   
+(select nvl((select count(p_ok) from place where to_char(p_ok_date, 'yyyy/fmMM') = '2019/10'),0) j from dual) j,
+(select nvl((select count(p_ok) from place where to_char(p_ok_date, 'yyyy/fmMM') = '2019/11'),0) k from dual) k,
+(select nvl((select count(p_ok) from place where to_char(p_ok_date, 'yyyy/fmMM') = '2019/12'),0) l from dual) l ]]>
 	</select>
 
 </mapper>
