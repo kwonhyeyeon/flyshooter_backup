@@ -67,10 +67,37 @@ window.onload = function () {
 		
 	});
 	
+	// 탭기능 추가.
+	 $("input:radio[name=tabs-statis]").change(function(){
+		 
+		 var selectedValue = $("input:radio[name=tabs-statis]:checked").val();
+		 
+		 $(".tabs").children().hide();
+		 if( selectedValue == "rental_statis"){
+			 $("#rental_statis").show();
+		 }
+		 if( selectedValue == "sales_statis"){
+			 salesChart();
+			 $("#sales_statis").show();
+		 }
+		 
+		 
+		 
+	 });
+
+
+	
+	
+	
 	
 	
 }
 
+function salesChart() {
+	
+	
+	
+}
 
 function getStadiumStatis(){
 	var stadiumStatis = [];
