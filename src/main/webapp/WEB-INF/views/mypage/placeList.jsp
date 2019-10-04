@@ -39,7 +39,7 @@ $(document).ready(function() {
 		</div>
 
 		<%--==상세 페이지 이동을 위한 FORM --%>
-		<form id="datailForm" action="/mypage/placeDetail.do" method="post">
+		<form id="datailForm">
 			<input type="hidden" name="p_num" id="p_num">
 		</form>
 
@@ -59,10 +59,9 @@ $(document).ready(function() {
 				<c:choose>
 					<c:when test="${not empty placeList}">
 						<c:forEach var="place" items="${placeList}" varStatus="status">
-							<tr class="placeList" data-num="${place.p_num}">
+							<tr class="detailPage" data-num="${place.p_num}">
 								<td>${place.p_num}</td>
-								<!-- p_name 클릭시 상세보기(수정) -->
-								<td class="detailPage">${place.p_name}</td>
+								<td>${place.p_name}</td>
 								<td>${place.p_ceo}</td>
 								<td>${place.p_address}</td>
 								<td>${place.p_phone}</td>

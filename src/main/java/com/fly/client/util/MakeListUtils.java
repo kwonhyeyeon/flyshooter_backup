@@ -115,13 +115,13 @@ public class MakeListUtils {
 		SShtml.append("<table>");
 		SShtml.append("<table>");
 		for (int i = 0; i < Slist.size(); i++) {
-			SShtml.append("<tr class='stadiumList' data-num=");
+			SShtml.append("<tr class='detailPage' data-num=");
 			SShtml.append(Slist.get(i).getS_no());
 			SShtml.append(">");
 			SShtml.append("<td>");
 			SShtml.append(Slist.get(i).getS_no());
 			SShtml.append("</td>");
-			SShtml.append("<td class='detailPage'>");
+			SShtml.append("<td>");
 			SShtml.append(Slist.get(i).getS_name());
 			SShtml.append("</td>");
 			SShtml.append("<td>");

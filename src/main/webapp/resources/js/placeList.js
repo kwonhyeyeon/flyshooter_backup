@@ -22,8 +22,13 @@ $(document).ready(function(){
 	});
 	/* 리스트 클릭시 대관신청페이지로 이동 */
 	$(".detailPage").click(function(){
-		var p_num =  $(this).parents("tr").attr("data-num");
+		var p_num =  $(this).attr("data-num");
 		$("#p_num").val(p_num);
+		
+		$("#datailForm").attr({
+			"method" : "post",
+			"action" : "/mypage/placeDetail.do"
+		});
 		
 		$("#datailForm").submit(); 
 	});
