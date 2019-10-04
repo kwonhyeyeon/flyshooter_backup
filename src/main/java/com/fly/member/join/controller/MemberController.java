@@ -190,14 +190,12 @@ public class MemberController {
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
 		String m_id = sessionMvo.getM_id();
 		String m_pw = mvo.getM_pw();
-		String m_name = null;
-		String m_phone = null;
 		ModelAndView mav = new ModelAndView();
 
 		mvo.setM_id(m_id);
 		MemberVO mvoDB = memberService.memberSelect(mvo.getM_id());
-		m_name = mvoDB.getM_name();
-		m_phone = mvoDB.getM_phone();
+		String[] m_phone = mvoDB.getM_phone().split("-");
+		
 		// SHA-256를 사용하는 SHA256클래스의 객체를 얻어낸다
 		SHA256 sha = SHA256.getInsatnce();
 
@@ -215,8 +213,13 @@ public class MemberController {
 		// 마지막으로 로그인 실패 시간 0으로 reset,
 		// 성공한 클라이언트 IP를 DB에 업데이트,로그인 성공시간 DB에 업데이트
 		else {
-			mav.addObject("m_name", m_name);
-			mav.addObject("m_phone", m_phone);
+			System.out.println(m_phone[0]);
+			System.out.println(m_phone[1]);
+			System.out.println(m_phone[2]);
+			mav.addObject("m_phone0", m_phone[0]);
+			mav.addObject("m_phone1", m_phone[1]);
+			mav.addObject("m_phone2", m_phone[2]);
+			mav.addObject("mvo", mvoDB);
 			mav.setViewName("/mypage/modify");
 			return mav;
 		}

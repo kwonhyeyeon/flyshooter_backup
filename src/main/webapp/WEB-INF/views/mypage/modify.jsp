@@ -61,16 +61,23 @@
 					<label for="userName">회원이름</label>
 					<div>
 						<input type="text" id="m_name" name="m_name" maxlength="10"
-							value="${m_name }">
+							value="${mvo.m_name }">
 					</div>
 				</div>
-				<div>
-					<label for="phone">핸드폰번호 </label>
-					<div>
-						<input type="text" id="m_phone" name="m_phone" maxlength="15"
-							value="${m_phone }">
-					</div>
-				</div>
+				<div class="phoneArea">
+                  <input type="hidden" name="m_phone" id="m_phone"/>
+                  
+                  <select name="m_phone0" id="m_phone0">
+                     <option value="010">010</option>
+                     <option value="011">011</option>
+                     <option value="016">016</option>
+                     <option value="019">019</option>
+                  </select>
+                  
+                  <input type="text" id="m_phone1" name="m_phone1" value="${m_phone1 }" maxlength="4">
+                     
+                  <input type="text" id="m_phone2" name="m_phone2" value="${m_phone2 }" maxlength="4">
+               </div>
 				<div>
 					<div>
 						<input type="submit" value="확인" id="modifyInsert" /> 

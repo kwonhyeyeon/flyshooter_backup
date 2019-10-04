@@ -3,6 +3,11 @@
  */
 var pwConfirm;
 $(document).ready(function() {
+	$(".m_phone0 option").each(function() {
+		if ($(this).val() == "${mvo.m_phone0}") {
+			$(this).attr("selected", "selected");
+		}
+	});
 	$("#modifyForm").submit(function() {
 		return modifyCheck();
 		errCodeCheck();
@@ -63,6 +68,9 @@ function modifyCheck() {
 	var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
 	var re3 =  /^[A-Za-z0-9]{6,12}$/;//패스워드 정규식(숫자와 문자 포함 형태의 6~12자리 이내의 암호 정규식
 	
+	//휴대폰번호 합치기
+	$("#m_phone").val($("#m_phone0").val()+'-'+$("#m_phone1").val()+'-'+$("#m_phone2").val());
+	   
 	var pw = document.getElementById("m_pw");
 
 	// ------------ 이메일 까지 -----------
@@ -83,10 +91,15 @@ function modifyCheck() {
 		return false;
 	}
 
-	if (modifyForm.m_phone.value == "") {
-		alert("핸드폰번호 입력해 주세요");
-		modifyForm.m_phone.focus();
-		return false;
+	if (modifyForm.m_phone1.value == "") {
+	      alert("핸드폰번호 입력해 주세요!");
+	      memberForm.m_phone2.focus();
+	      return false;
+	}
+	if (modifyForm.m_phone2.value == "") {
+	      alert("핸드폰번호 입력해 주세요!!");
+	      memberForm.m_phone3.focus();
+	      return false;
 	}
 
 	idPwdCheck();
