@@ -7,24 +7,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>매치신청 등록</title>
+<title>FLY SHOOTER</title>
 
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script src="/resources/js/boardCheck.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/js/jquery-ui.min.css" />
+<!-- datepicker -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- datepicker -->
+<script type="text/javascript" src="/resources/js/common.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
-<link rel="stylesheet" type="text/css" href="/resources/js/jquery-ui.min.css" />
-
-<script src="/resources/js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="/resources/js/common.js"></script>
 <script type="text/javascript">
 	// 매칭 게시글 저장 스크립트 Controller자바 /match/matchInsert.do 로 연결-----------------
 	$(function() {
 		// 달력으로 날짜 선택할 수 있는 스크립트 ---------------------
 		var mb_m_date = $("#mb_m_date").datepicker({
 			dateFormat : 'yy-mm-dd',
-			button: "/application/db/jquery/images/calendar.gif",
-			buttonImageOnly: false
+			showOtherMonths : true,
+			showMonthAfterYear : true,
+			changeYear: false,
+			changeMonth: false,
+			showOn: "focus",
+			buttonImageOnly: true,
+			yearSuffix: "년",
+			monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+			monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+			dayNamesMin: ['일','월','화','수','목','금','토'],
+			dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
+			maxDate: "+1M"
 		});
 		mb_m_date.datepicker('setDate', new Date());
 		//-------------------------------------------------
@@ -97,12 +109,6 @@
 					}
 
 				});
-
-		// 취소 버튼 클릭시 목록 화면으로 돌아감
-		$("#cancel").click(function() {
-			location.href = "/match/matchList.do";
-		});
-
 		
 	});
 
@@ -120,14 +126,15 @@
 		
 			<h2 class="articleTit">매치 신청</h2>
 			
-			<section class="itemArea">
+			<section id="itemArea">
 			
-				<form id="matchData">
+				<form id="matchData" class="boardForm">
+					<input type="hidden" name="m_id" id="m_id" value="${mvo.m_id}">
 					<input type="hidden" name="mb_progress" id="mb_progress" value="1">
 					<input type="hidden" name="mb_status" id="mb_status" value="1">
 					
-					<div class="insertMatch">
-						<section class="matchField">
+					<div class="boardArea">
+						<section class="boardField">
 							<!-- 신청자명 -->
 							<h4>신청자명</h4>
 							<label>
@@ -138,23 +145,25 @@
 							<h4>연락처</h4>
 							<label class="justify">
 								<input type="text" name="m_phone1" id="m_phone1" disabled />
+								<span>-</span>
 								<input type="text" name="m_phone2" id="m_phone2" disabled />
+								<span>-</span>
 								<input type="text" name="m_phone3" id="m_phone3" disabled />
 							</label>
 							
 							<!-- 매치일자 -->
 							<h4>매치일자</h4>
 							<label class="justify">
-								<input type="text" name="mb_m_date" id="mb_m_date" style="width:150px;" /> 
+								<input type="text" name="mb_m_date" id="mb_m_date" /> 
 								<input type="text" name="mb_time" id="mb_time" placeholder="00시 ~ 00시" />
 							</label>
 							
 							<!-- 매치 형태 -->
 							<h4>매치 형태</h4>
 							<select name="mb_type" id="mb_type">
-								<option value="" selected="selected">매치 형태 선택</option>
-								<option value="5vs5">5vs5</option>
-								<option value="6vs6">6vs6</option>
+								<option selected="selected">매치 형태 선택</option>
+								<option value="5vs5">5 vs 5</option>
+								<option value="6vs6">6 vs 6</option>
 							</select>
 							
 							<!-- 유니폼 -->
@@ -167,7 +176,7 @@
 							</label>
 						</section>
 						
-						<section class="matchField">
+						<section class="boardField">
 							<!-- 구장명 -->
 							<h4>구장명</h4>
 							<label>
@@ -189,11 +198,12 @@
 							<!-- 팀 수준 -->
 							<h4>팀 수준</h4>
 							<select name="mb_level" id="mb_level">
-								<option value="" selected="selected">팀 수준 선택</option>
+								<option selected="selected">팀 수준 선택</option>
 								<option value="2">상</option>
 								<option value="1">중</option>
 								<option value="0">하</option>
 							</select>
+							
 						</section>
 					</div>
 					
@@ -206,74 +216,10 @@
 			
 			</section>
 			
-			<div id="dataInsertPage" style="width: 1200px;">
-		<!-- 매치 신청 작성 -->
-		<div class="insertContent" >
-			<form id="matchData" name="matchData">
-				
-				<table class="insertTable">
-					<!-- 입력칸 크기 설정 -->
-					<!--<colgroup>
-						<col width="50%" />
-						<col width="50%" />
-					</colgroup> -->
-					<!-- 매치 신청 작성 -->
-					<tbody>
-						<tr>
-							<td>신청자명<br /> 
-							 
-							 </td>
-							<td>구장명<br /> </td>
-						</tr>
-
-						<tr>
-							<td>연락처<br /> 
-							
-							</td>
-
-							<td>구장주소 <br />
-								
-							</td>
-						</tr>
-
-						<tr>
-							<td>매치일자<br /> 
-							</td>
-							<td>경기장<br /> 
-							</td>
-						</tr>
-
-						<tr>
-							<td>매치형태<br /> 
-							</td>
-							
-							<td>팀 수준<br /> 
-							</td>
-						</tr>
-
-						<tr>
-							<td>유니폼<br />
-								 
-							</td>
-
-						</tr>
-
-						<tr>
-							<td colspan="2">비고<br />
-								
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</form>
-		</div>
-		
-		<div class="insertData">
-			<input type="button" value="등록하기" name="insertDataBtn"
-				id="insertDataBtn" /> <input type="button" value="취소하기"
-				name="cancel" id="cancel" />
-		</div>
-	</div>
+			<div class="btnArea">
+				<a href="/match/matchList.do" class="cancle">취소</a>
+				<button id="insertDataBtn" class="active">등록</button>
+			</div>
 			
 		</article>
 		
