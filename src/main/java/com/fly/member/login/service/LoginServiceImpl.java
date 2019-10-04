@@ -47,4 +47,22 @@ public class LoginServiceImpl implements LoginService {
 		return loginDao.loginHistorySelect(m_id);
 	}
 
+	@Override
+	public int todayRental(String m_id) {
+		// TODO Auto-generated method stub
+		return loginDao.todayRental(m_id);
+	}
+
+	@Override
+	public int passibleCal(String m_id) {
+		// TODO Auto-generated method stub
+		return loginDao.passibleCal(m_id);
+	}
+
+	@Override
+	public int unpaidCal(String m_id) {
+		// TODO Auto-generated method stub
+		return loginDao.unpaidCal(m_id);
+	}
+
 }

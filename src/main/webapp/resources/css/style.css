@@ -112,23 +112,31 @@
 /* header start */
 #header-wrap {
 	width:100%;
-	height:85px;
+	height:115px;
+	line-height:115px;
 	background:rgba(0,0,0,0.6);
 }
 #header {
 	width:1200px;
-	height:85px;
-	line-height:85px;
+	height:115px;
+	line-height:115px;
 	margin:0 auto;
 	position:relative;
 }
-#header h1 {
+#gnb-wrap {
+	width:100%;
+	height:85px;
+	line-height:85px;
+	position:absolute;
+	top:30px;
+}
+#gnb-wrap h1 {
 	width:270px;
 	font-size:40px;
 	font-weight:bold;
 	float:left;
 }
-#header h1 a {
+#gnb-wrap h1 a {
 	color:#fff;
 }
 #gnb {
@@ -155,26 +163,28 @@
 	font-weight:bold;
 }
 #lnb {
-	width:120px;
-	height:85px;
-	line-height:85px;
-	float:left;
+	width:100%;
+	height:30px;
+	line-height:30px;
 	position:absolute;
 	top:0;
 	right:0;
+	display:flex;
+	justify-content:flex-end;
 }
 #lnb ul li {
-	width:60px;
-	height:85px;
-	line-height:85px;
+	min-width:60px;
+	height:30px;
+	line-height:30px;
 	text-align:center;
 	float:left;
+	margin-left:5px;
 }
 #lnb ul li a {
 	display:inline-block;
-	width:60px;
-	height:85px;
-	line-height:85px;
+	min-width:60px;
+	height:30px;
+	line-height:30px;
 	text-align:center;
 	color:#fff;
 }
