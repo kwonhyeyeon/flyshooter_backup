@@ -14,23 +14,19 @@
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
-<script src="/resources/js/clientRefund.js"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
 </head>
 <body>
 	<div id="wrapper">
 
-		<div id="header-wrap">
-			<jsp:include page="../templates/header.jsp" flush="true" />
-		</div>
-		
-		<div class="sub-v"></div>
+		<jsp:include page="../templates/header.jsp" flush="true" />
 		
 		<article id="contents">
 			
 			<h2 class="articleTit">환불 상세 페이지</h2>
 			
-			<table class="tbl-style2">
+			<input type="hidden" id="address" value="${data.p_address}" />
+			<table class="detailTbl">
 				<tr>
 					<th>구장명</th>
 					<td>${data.p_name}</td>
@@ -39,9 +35,11 @@
 				</tr>
 				<tr>
 					<th>구장 주소</th>
-					<td colspan="3">${data.p_address}</td>
+					<td colspan="3" id="adrs"></td>
 				</tr>
-				
+				<tr>
+					<td colspan="2" class="blank"></td>
+				</tr>
 				<tr>
 					<th>회원 ID</th>
 					<td colspan="3">${data.m_id}</td>
@@ -51,6 +49,9 @@
 					<td>${data.m_name}</td>
 					<th>연락처</th>
 					<td>${data.m_phone}</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="blank"></td>
 				</tr>
 				<tr>
 					<th>예약한 경기장</th>
@@ -90,9 +91,27 @@
 				</tr>
 			</table>
 			
+			<div class="tblBtnArea">
+				<a href="javascript:history.back();" class="active">확인</a>
+			</div>
+			
 		</article>
+		
+		<jsp:include page="../templates/footer.jsp" flush="true" />
 		
 	</div>
 		
 </body>
+<script>
+	var address = $("#address").val();
+	address = address.split("*");
+	console.log(address);
+	
+	var postcode = address[0];
+	var adrs = address[1];
+	var detailadrs = address[2];
+	var extraadrs = address[3];
+	
+	$("#adrs").html("(" + postcode + ")" + "&nbsp;" + adrs + "&nbsp;" + detailadrs + "&nbsp;" + extraadrs);
+</script>
 </html>

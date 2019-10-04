@@ -22,8 +22,6 @@
 
 		<jsp:include page="../templates/header.jsp" flush="true" />
 		
-		<div class="sub-v"></div>
-		
 		<article id="contents">
 			
 			<h2 class="articleTit">환불 현황</h2>
@@ -44,47 +42,52 @@
 				</form>
 			</div>
 			
-			<!-- 상세페이지 이동을 위한 폼 -->
-			<form name="detailRefund" id="detailRefund">
-				<input type="hidden" name="r_no" id="r_no" />
-			</form>
-			<!-- 환불 리스트 -->
-			<table class="tbl-style">
-				<tr>
-					<th>회원 ID</th>
-					<th>회원명</th>
-					<th>구장명</th>
-					<th>결제 금액</th>
-					<th>환불 금액</th>
-					<th>환불 신청일</th>
-				</tr>
-				<c:if test="${not empty refundList}">
-					<c:forEach var="refund" items="${refundList}" varStatus="status">
-						<tr id="getR_no" class="goDetail" data-num="${refund.r_no}">
-							<td>${refund.m_id}</td>
-							<td>${refund.m_name}</td>
-							<td>${refund.p_name}</td>
-							<td><fmt:formatNumber value="${refund.r_total_pay}" pattern="#,###"/> 원</td>
-							<td><fmt:formatNumber value="${refund.refund}" pattern="#,###"/> 원</td>
-							<td>${refund.r_recall_time}</td>
-						</tr>
-					</c:forEach>
-				</c:if>
-				<c:if test="${empty refundList}">
-					<tr>
-						<td colspan="6">환불 신청이 없습니다</td>
+			<section class="itemArea">
+				
+				<!-- 상세페이지 이동을 위한 폼 -->
+				<form name="detailRefund" id="detailRefund">
+					<input type="hidden" name="r_no" id="r_no" />
+				</form>
+				<!-- 환불 리스트 -->
+				<table class="listTbl">
+					<tr class="bgTr">
+						<th>회원 ID</th>
+						<th>회원명</th>
+						<th>구장명</th>
+						<th>결제 금액</th>
+						<th>환불 금액</th>
+						<th>환불 신청일</th>
 					</tr>
-				</c:if>
-			</table>
-			<!-- 환불 리스트 -->
-			
-			<!-- pagination -->
-			<div class="pagination">
-				<tag:paging page="${param.page}" total="${total}" list_size="${pageSize}" />
-			</div>
-			<!-- pagination -->
+					<c:if test="${not empty refundList}">
+						<c:forEach var="refund" items="${refundList}" varStatus="status">
+							<tr id="getR_no" class="goDetail" data-num="${refund.r_no}">
+								<td>${refund.m_id}</td>
+								<td>${refund.m_name}</td>
+								<td>${refund.p_name}</td>
+								<td><fmt:formatNumber value="${refund.r_total_pay}" pattern="#,###"/> 원</td>
+								<td><fmt:formatNumber value="${refund.refund}" pattern="#,###"/> 원</td>
+								<td>${refund.r_recall_time}</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${empty refundList}">
+						<tr>
+							<td colspan="6">환불 신청이 없습니다</td>
+						</tr>
+					</c:if>
+				</table>
+				<!-- 환불 리스트 -->
+				
+				<!-- pagination -->
+				<div class="pagination">
+					<tag:paging page="${param.page}" total="${total}" list_size="${pageSize}" />
+				</div>
+				<!-- pagination -->
+				
+			</section>
 			
 		</article>
+		
 		<jsp:include page="../templates/footer.jsp" flush="true" />
 		
 	</div>

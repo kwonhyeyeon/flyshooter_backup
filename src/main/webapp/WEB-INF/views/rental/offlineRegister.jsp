@@ -25,54 +25,45 @@
 
 		<jsp:include page="../templates/header.jsp" flush="true" />
 		
-		
-		
 		<article id="contents">
 			
-			<section class="offlineCal">
-				<h1>오프라인 대관 등록</h1>
-				<hr />
+			<h2 class="articleTit">오프라인 대관 등록</h2>
+			
+			<div class="selectArea">
+				<input type="text" id="datepicker" class="calendar"/>
+			</div>
+			
+			<section class="selectArea row">
+				<c:choose>
+					<c:when test="${not empty placeList}">
+						<select name="placeName" class="placeName" id="placeName">
+							<c:forEach var="place" items="${placeList}" varStatus="status">
+								<option class="placeName-op" value="${place.p_num}">${place.p_name}</option>
+							</c:forEach>
+						</select>
+					</c:when>
+					<c:otherwise>
+						<select name="placeName" class="placeName">
+							<option class="placeName-op" selected>구장 없음</option>
+						</select>
+					</c:otherwise>
+				</c:choose>
 				
-				<section> 
-				
-					<section class="placeSelectBox">
-					
-						<label><input type="text" id="datepicker" placeholder="예약일자"/></label>
-						
-						<c:choose>
-							<c:when test="${not empty placeList}">
-								<select name="placeName" class="placeName" id="placeName">
-									<c:forEach var="place" items="${placeList}" varStatus="status">
-										<option class="placeName-op" value="${place.p_num}">${place.p_name}</option>
-									</c:forEach>
-								</select>
-							</c:when>
-							<c:otherwise>
-								<select name="placeName" class="placeName">
-									<option class="placeName-op" selected>구장 없음</option>
-								</select>
-							</c:otherwise>
-						</c:choose>
-					</section>
-					
-					<section class="stadiumSelectBox">
-						<p>※경기장을 선택하면 대관가능한 시간대를 보여줍니다.</p>
-					
-						<select id="stadiumSelectBox" name="selectStadium" >
-							<option value="">경기장선택</option>
-							<c:forEach var="stadium" items="${ stadiumList }">
-								<option value="${ stadium.s_no }">${ stadium.s_name }</option>
-							</c:forEach>	
-						</select>	
-					</section>
-					
-				</section>
-				
-				<!-- 대관가능한 시간리스트 비동기로 append예정 -->
-				<section id="selectTime">
-					
-				</section>
+				<select id="stadiumSelectBox" name="selectStadium" >
+					<option value="">경기장선택</option>
+					<c:forEach var="stadium" items="${ stadiumList }">
+						<option value="${ stadium.s_no }">${ stadium.s_name }</option>
+					</c:forEach>	
+				</select>
 			</section>
+				
+			<!-- 대관가능한 시간리스트 비동기로 append예정 -->
+			<section id="selectTime"></section>
+			
+			<button id="offRegister">등록</button>
+			<button id="goRentalList">대관현황</button>
+
+			
 		</article>
 		
 		<jsp:include page="../templates/footer.jsp" flush="true" />
