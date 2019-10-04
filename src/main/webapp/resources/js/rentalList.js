@@ -46,6 +46,7 @@ $(document).ready(function(){
 		
 	});
 	
+	// 리스트 클릭 시 상세페이지 오픈
 	$(document).on("click",".rental",function(){
 		var index = $(".rental").index(this);
 		

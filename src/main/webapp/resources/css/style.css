@@ -364,24 +364,53 @@ p.noItem {
 
 #selectTime {
 	display:flex;
-	flex-direction:column;
+	justify-content:space-between;
+	align-content:flex-start;
+	flex-wrap:wrap;
+	width:100%;
+	margin:40px 0;
 }
-#selectTime label {
-	display:inline-block;
-	width:250px;
-	height:50px;
-	line-height:50px;
+#selectTime p {
+	width:100%;
 	text-align:center;
-	border:1px solid #dedede;
-	margin:0 5px;
-
-	cursor:pointer;
+	font-size:18px;
+	font-weight:bold;
+	padding:50px 0;
 }
 #selectTime input {
-
+	position:absolute;
+	width:0;
+	height:0;
+}
+#selectTime input + label {
+	display:inline-block;
+	min-width:150px;
+	height:80px;
+	line-height:80px;
+	text-align:center;
+	border:1px solid #dedede;
+	cursor:pointer;
+	margin-bottom:15px;
+	font-size:18px;
+	font-weight:bold;
+	align-items:center;
+	position:relative;
+}
+#selectTime input + label:hover {
+	border:1px solid #8FBC94;
+	color:#8FBC94;
 }
 #selectTime input:checked + label {
+	content:'';
 	background:#8FBC94;
+	color:#fff;
+}
+#selectTime input:disabled + label {
+	color:#dedede;
+	cursor:default;
+}
+#selectTime input:disabled + label:hover {
+	border:1px solid #dedede;
 }
 /* contents section end */
 
@@ -426,10 +455,20 @@ p.noItem {
 .ui-widget-content {
 	border:none;
 }
+.ui-dialog-buttonset {
+	display:flex;
+	justify-content:flex-end;
+	flex-direction:row;
+}
+.ui-dialog .ui-dialog-buttonpane button:hover {
+	background:#e6e6e6;
+	border:1px solid #d3d3d3;
+}
 /* dialog end */
 
 /* selectArea */
-.selectArea {
+.selectArea,
+.insertArea {
 	padding:0 10px 20px 10px;
 	display:flex;
 	justify-content:flex-end;
@@ -466,7 +505,44 @@ p.noItem {
 .selectArea input#datepicker {
 	padding:8px 10px !important;
 }
+#insertBtn {
+	padding:8px 25px;
+	border:1px solid #ebebeb;
+	background:#fff;
+	margin-left:10px;
+	cursor:pointer;
+}
+#insertBtn:hover {
+	background:#8FBC94;
+	color:#fff;
+}
 /* selectArea */
+
+/* searchArea */
+#searchArea {
+	text-align:center;	
+	margin-top:100px;
+	display:flex;
+	justify-content:center;
+}
+#searchArea input.search-field {
+	width:250px;
+	height:35px;
+	padding:0 10px;
+	border:1px solid #e3e3e3;
+	margin-right:10px;
+}
+#searchArea button.search-btn {
+	width:60px;
+	height:35px;
+	line-height:35px;
+	background:#FFF;
+	border:1px solid #e3e3e3;
+	text-align:center;
+	vertical-align:middle;
+	cursor:pointer;
+}
+/* searchArea */
 
 /* datepicker */
 .ui-datepicker-trigger {
@@ -549,11 +625,24 @@ p.noItem {
 	font-weight:bold;
 	color:#fff;
 }
-.btnArea a.active {
+.btnArea a.active,
+.btnArea button.active {
 	background:#8FBC94;
 }
-.btnArea a.cancle {
+.btnArea a.cancle,
+.btnArea button.cancle {
 	background:#aaa;
+}
+.btnArea button {
+	width:200px;
+	height:50px;
+	line-height:50px;
+	margin:0 5px;
+	text-align:center;
+	font-size:18px;
+	font-weight:bold;
+	color:#fff;
+	border:none;
 }
 /* btnArea */
 
