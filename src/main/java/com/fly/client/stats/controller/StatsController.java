@@ -44,6 +44,11 @@ public class StatsController {
 
 		String selectYear = "";
 		List<PlaceVO> placeChoice = placeService.placeChoice(m_id);
+		if( placeChoice.isEmpty() ) {
+			
+			model.addAttribute("message", "등록된 구장이 없습니다");
+			return "mypage/placeList";
+		}
 
 		StatsVO svo = null;
 		List<String> statisics = new ArrayList<String>();
@@ -67,7 +72,8 @@ public class StatsController {
 			model.addAttribute("selectYear", selectYear);
 
 		} catch (NullPointerException e) {
-			model.addAttribute("years", Calendar.getInstance().get(Calendar.YEAR));
+			years.add(Calendar.getInstance().get(Calendar.YEAR));
+			model.addAttribute("years", years);
 		}
 
 		for (PlaceVO pvo2 : placeChoice) {
@@ -179,7 +185,6 @@ public class StatsController {
 			e.printStackTrace();
 		}
 		
-		System.out.println(result.toString());
 		return result.toString();
 					
 					

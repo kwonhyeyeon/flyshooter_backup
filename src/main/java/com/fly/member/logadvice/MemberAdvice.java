@@ -131,7 +131,7 @@ public class MemberAdvice {
    }
    
    
-      // 로그인 정보가 일반회원인지 검사
+      // 로그인 정보가 사업자인지 검사
       public Object clientCheck(ProceedingJoinPoint pjp) throws Throwable {
          System.out.println("client type chk");
          HttpServletRequest request = null;
@@ -163,14 +163,19 @@ public class MemberAdvice {
             try {
                
                String m_id = mvo.getM_id();
-                     
-                  int todayRental = loginService.todayRental(m_id);
-                  int passibleCal = loginService.passibleCal(m_id);
-                  int unpaidCal = loginService.unpaidCal(m_id);
-                     
-                     session.setAttribute("todayRental", todayRental);
-                     session.setAttribute("passibleCal", passibleCal);
-                     session.setAttribute("unpaidCal", unpaidCal);
+                    try {
+                    	 int todayRental = loginService.todayRental(m_id);
+                         int passibleCal = loginService.passibleCal(m_id);
+                         int unpaidCal = loginService.unpaidCal(m_id);
+                            
+                         session.setAttribute("todayRental", todayRental);
+                         session.setAttribute("passibleCal", passibleCal);
+                         session.setAttribute("unpaidCal", unpaidCal);
+                    }catch(NullPointerException ex) {
+                    	session.setAttribute("todayRental", 0);
+                        session.setAttribute("passibleCal", 0);
+                        session.setAttribute("unpaidCal", 0);
+                    }
                         
                int m_type = mvo.getM_type();
                if( m_type == 1 ) {

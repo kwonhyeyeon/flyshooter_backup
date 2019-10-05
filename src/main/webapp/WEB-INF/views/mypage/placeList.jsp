@@ -21,6 +21,11 @@ $(document).ready(function() {
 		alert("페이지에 오류가 발생하였습니다. \n잠시 후 다시 시도해 주세요");
 		return false;
 	}
+	
+	if( "${message}" ){
+		alert("${message}");
+		location.href = "./placeList.do";	
+	}
 });
 
 </script>

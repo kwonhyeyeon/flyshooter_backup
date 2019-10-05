@@ -4,6 +4,11 @@
  */
 
 window.onload = function () {
+	
+	
+	var selectedValue = '';
+	
+	
 	var index = sendIndex();
 	if(sendYear()){
 		$("#year").val(sendYear());
@@ -30,46 +35,88 @@ window.onload = function () {
 		var selected = $("#placeBox").val();
 		
 		if( selected != "전체구장" ) {
-			// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
-			getStadiumStatis();
-			return;
+			
+			
+			if( selectedValue == "rental_statis" ){
+				
+				// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
+				getStadiumStatis();
+				return;
+			}
+			
+			if( selectedValue == "sales_statis" ){
+				selectedPlaceChart();
+				return;
+			}
+			
+			
+		}
+		if( selectedValue == "rental_statis" ){
+			
+			// 연도별 검색
+			$("#selectedYear").val($(this).val());
+			
+			$("#search").attr({
+				"method":"get",
+				"action":"/mypage/stats.do"
+			});
+				$("#search").submit();
+				return; 
 		}
 		
-		// 연도별 검색
-		$("#selectedYear").val($(this).val());
-		$("#search").attr({
-			"method":"get",
-			"action":"/mypage/stats.do"
-		});
-			$("#search").submit();
-		
+		if( selectedValue == "sales_statis" ){
+			salesChart();
+			return;
+		}
+			
+			
 	});
 	
 	// 구장을 선택했을경우 비동기.
 	$("#placeBox").change(function(){
 		
 		var selected = $("#placeBox").val();
-		if( selected == "전체구장" ) {
-			$("#selectedYear").val($("#year").val());
-			// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
-			$("#search").attr({
-				"method":"get",
-				"action":"/mypage/stats.do"
-			});
-				$("#search").submit();
+		
+		if( selectedValue == "rental_statis" ){
 			
+			if( selected == "전체구장" ) {
+				$("#selectedYear").val($("#year").val());
+				// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
+				$("#search").attr({
+					"method":"get",
+					"action":"/mypage/stats.do"
+				});
+				$("#search").submit();
+				
+				return;
+			}
+			
+			// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
+			getStadiumStatis();
 			return;
 		}
+		if( selectedValue == "sales_statis" ){
+			
+			
+			if( selected == "전체구장" ) {
+				salesChart();
+				return;
+			}
+			
+			
+			selectedPlaceChart();
+			return;
+			
+		}
 		
-		// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
-		getStadiumStatis();
+		
 		
 	});
 	
 	// 탭기능 추가.
 	 $("input:radio[name=tabs-statis]").change(function(){
 		 
-		 var selectedValue = $("input:radio[name=tabs-statis]:checked").val();
+		 selectedValue = $("input:radio[name=tabs-statis]:checked").val();
 		 
 		 $(".tabs").children().hide();
 		 if( selectedValue == "rental_statis"){
@@ -80,8 +127,8 @@ window.onload = function () {
 		 
 		 
 		 if( selectedValue == "sales_statis"){
-			 //salesChart();
-			 selectedPlaceChart();
+			 $("#placeBox").val("전체구장");
+			 salesChart();
 			 $("#sales_statis").show();
 		 }
 		 
@@ -117,8 +164,7 @@ function selectedPlaceChart(){
 				alert("조회된 데이터가 없습니다.");
 				return;
 			}
-			alert(result);
-			barChart(result, $("#placeBox option:selected").text() + "의 " + $("#year").val() + "년 매출");
+			barChart(result, $("#placeBox option:selected").text() + "의 " + $("#year").val() + "년 <경기장별> 매출");
 		        
 		}
 		
@@ -147,8 +193,8 @@ function salesChart() {
 				return;
 			}
 			
-			barChart(result, $("#year").val()+" 매출");
-		        
+			barChart(result, $("#year").val()+" <전체구장> 매출");
+		         
 		}
 		
 	});
