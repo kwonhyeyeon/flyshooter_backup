@@ -53,7 +53,7 @@
 	            </c:when>
 	
 	            <c:when test="${mvo.m_type eq 0}">
-	                <ul class="member-menu">
+	                <ul>
 	                    <li><a href="/client/rental/rentalList.do">예약 현황</a></li>
 	                    <li><a href="/client/rental/refundList.do">환불 현황</a></li>
 	                    <li><a href="/client/rental/offlineRental.do">오프라인 대관 관리</a></li>
@@ -85,10 +85,6 @@
 	                <ul>
 	                    <li><a href="/support/supportList.do">용병 지원</a></li>
 	                    <li><a href="/recruit/recruitList.do">용병 모집</a></li>
-	                </ul>
-	                <ul>
-	                    <li><a href="/member/login.do">로그인</a></li>
-	                    
 	                </ul>
 				</c:otherwise>
 	

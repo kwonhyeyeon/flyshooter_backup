@@ -203,24 +203,29 @@
 .menu {
 	width:880px;
 	margin:0 auto;
+	min-height:100px;
 	padding-left:320px;
 }
 .menu ul {
 	width:160px;
 	float:left;
-	height:100px;
+	height:auto;
 }
-.menu ul.member-menu {
+/* .menu ul.member-menu {
 	height:250px;
-}
+} */
 .menu ul li {
 	width:160px;
 	height:50px;
+	line-height:50px;
 	text-align:center;
 	color:#fff;
 	font-size:15px;
 }
 .menu ul li a {
+	width:160px;
+	height:50px;
+	line-height:50px;
 	color:#fff;
 }
 /* menu end */
@@ -254,6 +259,7 @@
 /* contents section start */
 #itemArea {
 	width:100%;
+	margin-bottom:50px;
 }
 p.infotext {
 	color:#f00;
@@ -421,6 +427,78 @@ p.noItem {
 }
 #selectTime input:disabled + label:hover {
 	border:1px solid #dedede;
+}
+
+.boardArea {
+	width:960px;
+	margin:0 auto;
+	display:flex;
+	justify-content:space-between;
+}
+.boardField {
+	width:460px;
+}
+.boardForm h4 {
+	font-size:18px;
+	font-weight:bold;
+	margin-bottom:15px;
+}
+.boardField label {
+	display:flex;
+	flex-wrap:wrap;
+	flex-direction:column;
+	margin-bottom:30px;
+	align-content:space-between;
+}
+.boardField label input {
+	padding:10px;
+	height:30px;
+	line-height:30px;
+	width:436px;
+}
+.boardField label.justify {
+	flex-direction:row;
+	justify-content:flex-start;
+	align-items:center;
+}
+.boardField label.justify input {
+	margin-right:10px;
+	width:100px;
+}
+.boardField label.justify span {
+	margin-right:10px;
+}
+.boardField select {
+	margin-bottom:10px;
+	height:54px;
+	line-height:54px;
+	width:460px;
+	outline:none;
+	appearance:none;
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	-ms-appearance:none;
+	cursor:pointer;
+	border-radius:0;
+	background:url(/resources/img/select-arrow.png) no-repeat 95%;
+	padding-left:10px;
+}
+.textArea {
+	width:960px;
+	margin:0 auto;
+	display:flex;
+	flex-direction:column;
+	align-content:space-between;
+}
+.textArea textarea {
+	width:calc(100% - 20px);
+	padding:10px;
+	resize:none;
+	height:150px;
+}
+#mb_m_date {
+	width:150px;
+	cursor:pointer;
 }
 /* contents section end */
 
@@ -623,7 +701,7 @@ p.noItem {
 	width:100%;
 	display:flex;
 	justify-content:center;
-	margin-top:25px;
+	margin:25px 0 50px;
 }
 .btnArea a {
 	width:200px;
