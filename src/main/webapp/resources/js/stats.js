@@ -64,7 +64,6 @@ window.onload = function () {
 		// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
 		getStadiumStatis();
 		
-		
 	});
 	
 	// 탭기능 추가.
@@ -77,8 +76,12 @@ window.onload = function () {
 			 getStadiumStatis();
 			 $("#rental_statis").show();
 		 }
+		 
+		 
+		 
 		 if( selectedValue == "sales_statis"){
-			 salesChart();
+			 //salesChart();
+			 selectedPlaceChart();
 			 $("#sales_statis").show();
 		 }
 		 
@@ -94,7 +97,33 @@ window.onload = function () {
 	
 }
 
-
+function selectedPlaceChart(){
+	var stvo = {
+			p_num : $("#placeBox").val(),
+			year : $("#year").val()
+			};
+	
+	
+	$.ajax({
+		type:"post",
+		url:"/mypage/selectedPlaceSales.do",
+		data:stvo,
+		error: function() {
+			 alert($("#placeBox option:selected").text() + "통계조회에 실패하였습니다. \n잠시후 다시 시도해주십시오.");
+		},
+		success:function(result){
+			
+			if(result == "Empty"){
+				alert("조회된 데이터가 없습니다.");
+				return;
+			}
+			alert(result);
+			barChart(result, $("#placeBox option:selected").text() + "의 " + $("#year").val() + "년 매출");
+		        
+		}
+		
+	});
+}
 
 function salesChart() {
 	
@@ -118,28 +147,29 @@ function salesChart() {
 				return;
 			}
 			
-			barChart(result);
+			barChart(result, $("#year").val()+" 매출");
 		        
 		}
 		
 	});
-	
-	function barChart(salesList){
+}
+
+
+	function barChart(salesList, title){
 		
 		var place = salesList.split("@@");
 		
 		var col = [];
 		var arr2 = [];
-		
+		col.push("");
 		for(var q = 0; q < place.length-1; q++){
 			var name = place[q].split("!!");
 			col.push(name[0]);
 		}
-		
-		for( var w = 0; w < 11; w++ ){
+		for( var w = 0; w <= 11; w++ ){
 			
 			
-			var argument ="'" + eval(w+1) + "'월";
+			var argument ="['" + eval(w+1) + "월'";
 			var sum = 0;
 			
 			for( var q = 0; q < place.length-1; q++ ){
@@ -151,27 +181,45 @@ function salesChart() {
 				argument += ','+argu[w+1];
 			
 			}
-			argument += ',' + sum;
+			argument += ',' + sum + ']';
 			arr2.push(argument);
 		}
 		
 		col.push('합계');
 		
-		alert(col);
-		alert(arr2);
-		
 		 var data = google.visualization.arrayToDataTable([
 	          col,
-	          ['2015', 1170, 460, 250],
-	          ['2016', 660, 1120, 300],
-	          ['2017', 1030, 540, 350]
+	          eval(arr2[0]),
+	          eval(arr2[1]),
+	          eval(arr2[2]),
+	          eval(arr2[3]),
+	          eval(arr2[4]),
+	          eval(arr2[5]),
+	          eval(arr2[6]),
+	          eval(arr2[7]),
+	          eval(arr2[8]),
+	          eval(arr2[9]),
+	          eval(arr2[10]),
+	          eval(arr2[11]),
 	        ]);
 
 	        var options = {
-	          chart: {
-	            title: 'Company Performance',
-	            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-	          }
+	        
+	        chart: {
+	            title: title,
+	            /* subtitle: 'in millions of dollars (USD)' */
+	          },
+	          vAxis: {
+	        	  title:'매출',
+	        	  format: 'decimal',
+	              viewWindowMode:'explicit',
+	              viewWindow: {
+	                  min: 0
+	              }
+	             },
+	             width: 900,
+	             height: 500,
+	          
 	        };
 
 	        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
@@ -179,7 +227,6 @@ function salesChart() {
 	        chart.draw(data, google.charts.Bar.convertOptions(options));
 	        
 		
-	}
 	
 	
 }
@@ -253,11 +300,11 @@ function drawChart(arr, column, title, index) {
       },
       vAxis: {
     	  title:'대관',
-    	  
+    	  format: 'decimal',
           viewWindowMode:'explicit',
           viewWindow: {
               min: 0,
-              max: 100
+              max: 1000
           },
       },
       width: 900,

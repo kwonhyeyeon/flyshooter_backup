@@ -17,4 +17,7 @@ public interface StatsDao {
 	
 	// 전체구장 매출통계
 	public String allPlaceSales(StatsVO stvo);
+	
+	// 선택된 구장의 경기장 매출통계
+	public String selectedStadiumSales(StatsVO stvo);
 }

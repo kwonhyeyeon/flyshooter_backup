@@ -40,6 +40,12 @@ public class StatsDaoImpl implements StatsDao{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAME_SPACE + ".salesAllPlace", stvo);
 	}
+
+	@Override
+	public String selectedStadiumSales(StatsVO stvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAME_SPACE + ".selectedPlaceSales", stvo);
+	}
 	
 
 }

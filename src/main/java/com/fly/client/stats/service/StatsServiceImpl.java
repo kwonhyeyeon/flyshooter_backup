@@ -40,4 +40,10 @@ public class StatsServiceImpl implements StatsService{
 		return statsDao.allPlaceSales(stvo);
 	}
 
+	@Override
+	public String selectedStadiumSales(StatsVO stvo) {
+		// TODO Auto-generated method stub
+		return statsDao.selectedStadiumSales(stvo);
+	}
+
 }
