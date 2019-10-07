@@ -44,11 +44,9 @@ google.charts.setOnLoadCallback(drawChart);
 </head>
 <body>
 	<div id="wrapper">
-		<div id="header-wrap">
-			<jsp:include page="../templates/header.jsp" flush="true" />
-		</div>
-
-		<div class="sub-v"></div>
+	
+		<jsp:include page="../templates/header.jsp" flush="true" />
+	
 		<article id="contents">
 		
 			<article id="selectPlace">

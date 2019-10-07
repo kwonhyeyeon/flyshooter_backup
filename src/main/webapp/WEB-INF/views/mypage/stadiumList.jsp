@@ -17,58 +17,57 @@
 </head>
 <body>
 
-	<div id="header-wrap">
-		<jsp:include page="../templates/header.jsp" flush="true" />
-	</div>
-
-	<div class="sub-v"></div>
-
-	<article id="contents">
-		<ul class="tabs">
-			<li><a href="#tab1">경기장</a></li>
-			<li><a href="#tab2">용품</a></li>
-		</ul>
-		<div>
-			<c:choose>
-				<c:when test="${not empty placeChoice}">
-					<select name="placeChoice" id="placeChoice">
-						<option selected value="선택">구장 선택</option>
-						<c:forEach var="place" items="${placeChoice}">
-							<option value="${place.p_num}">${place.p_name}</option>
-						</c:forEach>
-					</select>
-				</c:when>
-				<c:otherwise>
-					<p>등록된 구장이 존재하지 않습니다.</p>
-						<input type="button" value="구장 등록" id="placeInsert">
-				</c:otherwise>
-			</c:choose>
-		</div>
-		<!-- 탭 콘텐츠 영역 -->
-		<div class="tab_container">
-			<form id="datailForm" action="/mypage/stadiumDetail.do"method="post">
-				<input type="hidden" name="s_no" id="s_no">
-			</form>
-			<div id="List">
-				<!-- Content -->
-				<p>구장을 선택해주세요</p>
-			</div>
-		</div>
-		<p>
-		*주의사항red* <br />
-		1. 승인되지 않은 구장은 사용할 수 없습니다. <br />
-		2. 승인이 되더라도 구장 운영 상태를 운영중으로 수정하지 않을 시 사용자가 대관을 할 수 없으니 필히(red) 수정 바랍니다. <br />
-		3. Fly Shooter 에 해가 되는 구장(불법구장) 및 해가 되는 행위는 최대 구장 강제 페쇄 조치까지 이를 수 있습니다.</p>
-		<div id="dialog" title="용품등록창" style="display: none">
-	      <form id="itemInsertForm">
-	      	<input type="hidden" id="modalP_num" name="p_num"/>
-	        <label>용품 명<input type="text" id="modalI_name" name="i_name" /></label><br />
-	        <label>가 격<input type="text" id="modalI_rental_fee" name="i_rental_fee" /></label>
-	      </form>   
-		</div>
-	</article>
+	<div id="wrapper">
 	
-	<jsp:include page="../templates/footer.jsp" flush="true" />
+		<jsp:include page="../templates/header.jsp" flush="true" />
+	
+		<article id="contents">
+			<ul class="tabs">
+				<li><a href="#tab1">경기장</a></li>
+				<li><a href="#tab2">용품</a></li>
+			</ul>
+			<div>
+				<c:choose>
+					<c:when test="${not empty placeChoice}">
+						<select name="placeChoice" id="placeChoice">
+							<option selected value="선택">구장 선택</option>
+							<c:forEach var="place" items="${placeChoice}">
+								<option value="${place.p_num}">${place.p_name}</option>
+							</c:forEach>
+						</select>
+					</c:when>
+					<c:otherwise>
+						<p>등록된 구장이 존재하지 않습니다.</p>
+							<input type="button" value="구장 등록" id="placeInsert">
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<!-- 탭 콘텐츠 영역 -->
+			<div class="tab_container">
+				<form id="datailForm" action="/mypage/stadiumDetail.do"method="post">
+					<input type="hidden" name="s_no" id="s_no">
+				</form>
+				<div id="List">
+					<!-- Content -->
+					<p>구장을 선택해주세요</p>
+				</div>
+			</div>
+			<p>
+			*주의사항red* <br />
+			1. 승인되지 않은 구장은 사용할 수 없습니다. <br />
+			2. 승인이 되더라도 구장 운영 상태를 운영중으로 수정하지 않을 시 사용자가 대관을 할 수 없으니 필히(red) 수정 바랍니다. <br />
+			3. Fly Shooter 에 해가 되는 구장(불법구장) 및 해가 되는 행위는 최대 구장 강제 페쇄 조치까지 이를 수 있습니다.</p>
+			<div id="dialog" title="용품등록창" style="display: none">
+		      <form id="itemInsertForm">
+		      	<input type="hidden" id="modalP_num" name="p_num"/>
+		        <label>용품 명<input type="text" id="modalI_name" name="i_name" /></label><br />
+		        <label>가 격<input type="text" id="modalI_rental_fee" name="i_rental_fee" /></label>
+		      </form>   
+			</div>
+		</article>
 		
+		<jsp:include page="../templates/footer.jsp" flush="true" />
+	
+	</div>
 </body>
 </html>
