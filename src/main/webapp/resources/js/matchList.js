@@ -17,7 +17,7 @@ $(document).ready(function() {
 	id += $("#m_id").val();
 	
 	// 매치 신청 등록 버튼 클릭 시 등록 페이지로 이동 (미 로그인 시 등록 불가) id 값이 없으면 500 에러
-	$("#insertBtn").click(function() {
+	$("#insertMatch").click(function() {
 		if (id != "") {
 			var url = "/match/matchInsertForm.do";
 			location.href = url;

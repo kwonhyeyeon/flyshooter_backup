@@ -593,14 +593,14 @@ p.noItem {
 .selectArea input#datepicker {
 	padding:8px 10px !important;
 }
-#insertBtn {
+.insertBtn {
 	padding:8px 25px;
 	border:1px solid #ebebeb;
 	background:#fff;
 	margin-left:10px;
 	cursor:pointer;
 }
-#insertBtn:hover {
+.insertBtn:hover {
 	background:#8FBC94;
 	color:#fff;
 }
