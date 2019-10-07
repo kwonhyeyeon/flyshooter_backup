@@ -245,7 +245,7 @@
 #contents {
 	clear:both;
 	width:1180px;
-	min-height:calc(100vh - 300px);
+	min-height:calc(100vh - 200px);
 	margin:235px auto 0;
 	padding:10px;
 }
@@ -346,9 +346,10 @@ p.noItem {
 	color:#fff;
 	font-weight:bold;
 	width:150px;
+	vertical-align:middle;
 }
 .detailTbl td {
-	padding:20px 0 20px 20px;
+	padding:20px;
 	text-align:left;
 	border-bottom:1px solid #ebebeb;
 	color:#555;
@@ -357,13 +358,96 @@ p.noItem {
 	height:5px;
 	padding:0;
 }
+.detailTbl td input {
+	width:250px;
+	height:20px;
+	line-height:20px;
+	padding:10px;
+}
+.detailTbl td input:read-only {
+	background:#eee;
+	cursor:default;
+}
+.detailTbl td select {
+	height:42px;
+	line-height:42px;
+	width:250px;
+	outline:none;
+	appearance:none;
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	-ms-appearance:none;
+	cursor:pointer;
+	border-radius:0;
+	background:url(/resources/img/select-arrow.png) no-repeat 95%;
+	padding-left:10px;
+	border:1px solid #dedede;
+	vertical-align:middle;
+}
+.detailTbl td textarea {
+	border:1px solid #dedede;
+	padding:10px;
+	appearance:none;
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	-ms-appearance:none;
+	resize:none;
+	width:calc(100% - 20px);
+	height:300px;
+}
+.postArea {
+	display:flex;
+	flex-direction:row;
+	justify-content:flex-start;
+	margin-bottom:10px;
+}
+.postArea .post {
+	width:100px;
+	margin-right:10px;
+}
+.postArea .postBtn {
+	width:120px;
+	height:42px;
+	line-height:42px;
+	text-align:center;
+	background:#FFF;
+	border:1px solid #dedede;
+	vertical-align:middle;
+	cursor:pointer;
+	padding:0;
+}
+.postArea .postBtn:hover {
+	background:#8FBC94;
+	color:#fff;
+}
+.adrsArea {
+	display:flex;
+	flex-direction:column;
+	align-content:flex-start;
+}
+.adrsArea input {
+	width:700px !important;
+	margin-bottom:10px;
+}
+.detailTbl tr.file {
+	display:none;
+}
+.detailTbl tr td p.documentText {
+	clear:both;
+	padding-top:20px;
+}
+
 .tblBtnArea {
 	width:100%;
 	margin-top:25px;
 	display:flex;
 	justify-content:flex-end;
 }
-.tblBtnArea a.active {
+.tblBtnArea.space-between {
+	justify-content:space-between;
+}
+.tblBtnArea a.active,
+.tblBtnArea.space-between a {
 	display:inline-block;
 	width:100px;
 	height:40px;
@@ -374,6 +458,22 @@ p.noItem {
 	border:1px solid #dedede;
 }
 .tblBtnArea a.active:hover {
+	background:#8FBC94;
+	color:#fff;
+}
+.tblBtnArea.space-between input.modify {
+	display:inline-block;
+	width:100px;
+	height:40px;
+	line-height:40px;
+	margin:0 10px;
+	text-align:center;
+	font-weight:bold;
+	border:1px solid #dedede;
+	background:#fff;
+	cursor:pointer;
+}
+.tblBtnArea.space-between input.modify:hover {
 	background:#8FBC94;
 	color:#fff;
 }
