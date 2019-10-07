@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>구장 상세 보기 및 수정 페이지</title>
+<title>FLY SHOOTER</title>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
 
@@ -15,17 +15,8 @@
 <script type="text/javascript" src="/resources/js/common.js"></script>
 <script type="text/javascript" src="/resources/js/placeDetailEdit.js"></script>
 <!-- 다음 우편 주소 api-->
-<script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-	$(document).ready(function() {
-		$(".p_holiday").val('${pvo.p_holiday}');
-		$(".p_open").val('${pvo.p_open}');
-		$(".p_close").val('${pvo.p_close}');
-		$(".p_status").val('${pvo.p_status}');
-		$("#p_bank").val('${pvo.p_bank}');
-	});
-</script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 </head>
 <body>
 
@@ -165,4 +156,13 @@
 	<jsp:include page="../templates/footer.jsp" flush="true" />
 	
 </body>
+<script>
+	$(document).ready(function() {
+		$(".p_holiday").val('${pvo.p_holiday}');
+		$(".p_open").val('${pvo.p_open}');
+		$(".p_close").val('${pvo.p_close}');
+		$(".p_status").val('${pvo.p_status}');
+		$("#p_bank").val('${pvo.p_bank}');
+	});
+</script>
 </html>
