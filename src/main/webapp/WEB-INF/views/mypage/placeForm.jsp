@@ -60,8 +60,8 @@
 							<td>
 								<input type="hidden" id="p_address" name="p_address" />
 								<section class="postArea">
-									<input type="text" name="sample6_postcode" id="sample6_postcode" placeholder="우편번호" />
-									<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" />
+									<input type="text" name="sample6_postcode" id="sample6_postcode" class="post" placeholder="우편번호" />
+									<input type="button" onclick="sample6_execDaumPostcode()" class="postBtn" value="우편번호 찾기" />
 								</section>
 								
 								<section class="adrsArea">

@@ -68,7 +68,7 @@ public class UserMailSendService {
 		sendMail.setText(new StringBuffer()
 				.append("<h1>[이메일 인증]</h1>")
 				.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
-				.append("<a href='http://192.168.0.37:8080/member/join_success.do?")
+				.append("<a href='http://localhost/member/join_success.do?")
 				.append("&m_id=")
 				.append(mvo.getM_id())
 				.append("&email_confirm=")
@@ -87,7 +87,8 @@ public class UserMailSendService {
 		sendMail.setText(new StringBuffer()
 				.append("<h1>[이메일 인증]</h1>")
 				.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
-				.append("<a href='http://192.168.0.37:8080/member/pwmodify.do?")
+				// .append("<a href='http://192.168.0.37:8080/member/pwmodify.do?")
+				.append("<a href='http://localhost/member/pwmodify.do?")
 				.append("&m_id=")
 				.append(mvo.getM_id())
 				.append("' target='_blenk'>이메일 인증 확인</a>").toString());

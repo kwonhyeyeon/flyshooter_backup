@@ -6,7 +6,36 @@
 window.onload = function () {
 	
 	
-	var selectedValue = '';
+		/* 탭 관련 스크립트 */
+	    $(".tab-content").hide();
+	    $(".tab-content:first").show();
+	
+	    $("ul.tabs li").click(function () {
+	        $("ul.tabs li").removeClass("active").css("color", "#333");
+	        //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+	        $(this).addClass("active").css("color", "darkred");
+	        
+	        $(".tab-content").hide();
+	        
+	        var activeTab = $(this).attr("rel");
+	        
+			// 대관건수이며 전체구장일경우에만 실행.. (비동기로 했어야 하는데 통계늘릴걸 생각 못했기에 복잡해짐)
+	        if( activeTab == 'tab1'){
+						$("#selectedYear").val($("#year").val());
+						// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
+						$("#search").attr({
+							"method":"get",
+							"action":"/mypage/stats.do"
+						});
+						$("#search").submit();
+						
+						return;
+	        }
+	        $("#" + activeTab).show();
+	    });
+	    /* 탭 관련 스크립트 */
+	    
+	    
 	
 	
 	var index = sendIndex();
@@ -23,8 +52,8 @@ window.onload = function () {
 	column = makeColumnList(statisics);
 	arr =  makeStatisics(statisics);
 	
-	drawChart(arr, column, "구장별 대관현황", index);
-	
+	drawChart(arr, column,  "구장별 대관현황", index);
+	salesChart();
 	}else{
 		alert("조회된 구장이 없습니다.");
 		location.href = "./";
@@ -36,108 +65,69 @@ window.onload = function () {
 		
 		if( selected != "전체구장" ) {
 			
+			getStadiumStatis();
+			selectedPlaceChart();
 			
-			if( selectedValue == "rental_statis" ){
-				
-				// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
-				getStadiumStatis();
-				return;
-			}
-			
-			if( selectedValue == "sales_statis" ){
-				selectedPlaceChart();
-				return;
-			}
-			
-			
-		}
-		if( selectedValue == "rental_statis" ){
-			
-			// 연도별 검색
-			$("#selectedYear").val($(this).val());
-			
-			$("#search").attr({
-				"method":"get",
-				"action":"/mypage/stats.do"
-			});
-				$("#search").submit();
-				return; 
-		}
-		
-		if( selectedValue == "sales_statis" ){
-			salesChart();
 			return;
 		}
-			
+			if( $('#tab1').is(':visible') ){
+				// 연도별 검색
+				$("#selectedYear").val($("#year").val());
+				
+				$("#search").attr({
+					"method":"get",
+					"action":"/mypage/stats.do"
+				});
+					$("#search").submit();
+					return; 
+			}
+		// 전체구장일경우 매출통계
+		salesChart();
+		return;
 			
 	});
 	
 	// 구장을 선택했을경우 비동기.
 	$("#placeBox").change(function(){
 		
+		
 		var selected = $("#placeBox").val();
 		
-		if( selectedValue == "rental_statis" ){
 			
+			// 전체구장이 선택되고 탭1이 show일경우 submit실행.
 			if( selected == "전체구장" ) {
-				$("#selectedYear").val($("#year").val());
-				// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
-				$("#search").attr({
-					"method":"get",
-					"action":"/mypage/stats.do"
-				});
-				$("#search").submit();
-				
-				return;
+				if( $('#tab1').is(':visible') ){
+					
+					$("#selectedYear").val($("#year").val());
+					// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
+					$("#search").attr({
+						"method":"get",
+						"action":"/mypage/stats.do"
+					});
+					$("#search").submit();
+					
+					return;
+				}
 			}
-			
-			// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
-			getStadiumStatis();
-			return;
-		}
-		if( selectedValue == "sales_statis" ){
-			
-			
+
+			// 전체구장일경우 매출통계
 			if( selected == "전체구장" ) {
 				salesChart();
 				return;
 			}
 			
-			
+			// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
+			getStadiumStatis();
 			selectedPlaceChart();
 			return;
 			
-		}
 		
 		
 		
 	});
 	
-	// 탭기능 추가.
-	 $("input:radio[name=tabs-statis]").change(function(){
-		 
-		 selectedValue = $("input:radio[name=tabs-statis]:checked").val();
-		 
-		 $(".tabs").children().hide();
-		 if( selectedValue == "rental_statis"){
-			 getStadiumStatis();
-			 $("#rental_statis").show();
-		 }
-		 
-		 
-		 
-		 if( selectedValue == "sales_statis"){
-			 $("#placeBox").val("전체구장");
-			 salesChart();
-			 $("#sales_statis").show();
-		 }
-		 
-		 
-		 
-	 });
 
 
-	
 	
 	
 	
@@ -193,7 +183,7 @@ function salesChart() {
 				return;
 			}
 			
-			barChart(result, $("#year").val()+" <전체구장> 매출");
+			barChart(result, $("#year").val()+"<전체구장> 매출");
 		         
 		}
 		
@@ -262,8 +252,8 @@ function salesChart() {
 	                  min: 0
 	              }
 	             },
-	             width: 900,
-	             height: 500,
+	             width: 700,
+	             height: 450,
 	          
 	        };
 
@@ -340,11 +330,10 @@ function drawChart(arr, column, title, index) {
 
     var options = {
       chart: {
-        title: title,
+        title:  $("#year").val() + "년 " + title,
         /* subtitle: 'in millions of dollars (USD)' */
       },
       vAxis: {
-    	  title:'대관',
     	  format: 'decimal',
           viewWindowMode:'explicit',
           viewWindow: {
@@ -352,8 +341,8 @@ function drawChart(arr, column, title, index) {
               max: 1000
           },
       },
-      width: 900,
-      height: 500,
+      width: 700,
+      height: 450,
       axes: {
         x: {
           0: {side: 'bottom'}
