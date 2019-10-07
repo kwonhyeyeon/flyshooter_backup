@@ -256,7 +256,6 @@ function salesChart() {
 	            /* subtitle: 'in millions of dollars (USD)' */
 	          },
 	          vAxis: {
-	        	  title:'매출',
 	        	  format: 'decimal',
 	              viewWindowMode:'explicit',
 	              viewWindow: {
