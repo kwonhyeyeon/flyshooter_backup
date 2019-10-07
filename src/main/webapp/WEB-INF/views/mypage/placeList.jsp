@@ -46,7 +46,7 @@
 					<c:choose>
 						<c:when test="${not empty placeList}">
 							<c:forEach var="place" items="${placeList}" varStatus="status">
-								<tr class="detailPage" class="goDetail" data-num="${place.p_num}">
+								<tr class="detailPage goDetail" data-num="${place.p_num}">
 									<td>${place.p_num}</td>
 									<td>${place.p_name}</td>
 									<td>${place.p_ceo}</td>

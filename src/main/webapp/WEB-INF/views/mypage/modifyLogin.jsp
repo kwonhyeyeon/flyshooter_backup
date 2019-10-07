@@ -25,7 +25,7 @@
 		<article id="contents">
 			<h2 class="articleTit">회원 정보 수정</h2>
 		
-			<form id="modifyForm" action="/member/mypage/modify.do" method="post">
+			<form id="modifyLoginForm" action="/member/mypage/modify.do" method="post">
 				<div id="mypage-contents">
 					
 					<div class="login-box">
