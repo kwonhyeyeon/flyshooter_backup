@@ -64,10 +64,16 @@
 			               <td class="total">${stt[3].total }</td>
 			           </tr>
 			           <tr>
-			               <td>용병 게시판 등록 수</td>
+			               <td>용병 지원 게시판 등록 수</td>
 			               <td>${stt[4].today }</td>
 			               <td>${stt[4].month }</td>
 			               <td class="total">${stt[4].total }</td>
+			           </tr>
+			           <tr>
+			               <td>용병 모집 게시판 등록 수</td>
+			               <td>${stt[5].today }</td>
+			               <td>${stt[5].month }</td>
+			               <td class="total">${stt[5].total }</td>
 			           </tr>
 			       </table>
 			   </article><!-- contents -->
