@@ -8,6 +8,7 @@ $(document).ready(function(){
 		$("#s_no").val(s_no);
 		$("#datailForm").submit(); 
 	});
+	
 	//페이지 로드..
 	$(".tab-container").hide();//content 모두 숨김
 	$("ul.tabs li:first").addClass("active").show();
@@ -16,13 +17,15 @@ $(document).ready(function(){
 	$("ul.tabs li").click(function() {
 		$("ul.tabs li").removeClass("active");
 		$(this).addClass("active");
-		$(".tab-container").hide();
+		//$(".noItem").text("구장을 선택해주세요");
+		//$(".tab-container").hide();
 
 		var activeTab = $(this).find("a").attr("href");
 		$(activeTab).fadeIn();
 		return false;
 	});
-	$("#placeChoice").change(function() {
+	
+	$("#placeChoice").change(function() { // 구장 select 변경시
 
 		if ($("#placeChoice").val() != '선택') {
 			var p_num = $("#placeChoice").val();
@@ -32,6 +35,7 @@ $(document).ready(function(){
 			$(".noItem").text("구장을 선택해주세요");
 		}
 	});
+	
 	$(document).on("click", "#IPlus", function() {
 		var test = $("#placeChoice").val();
 		$("#modalP_num").val(test);
