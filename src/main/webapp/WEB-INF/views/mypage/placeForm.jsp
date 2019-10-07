@@ -182,28 +182,28 @@
 						</tr>
 						
 						<!-- 첨부파일 -->
-						<tr class="file">
+						<tr class="file unfile">
 							<th>사업자 등록증</th>
 							<td>
 								<input type="text" size="30" id="txt"/>
 								<!-- <img src="" onclick="document.getElementById('file').click();"> -->
-								<input name="p_register" id="p_register" type="file" onchange="document.getElementById('txt').value=this.value;" accept=".gif, .jpg, .png">
+								<input name="p_register" id="p_register" type="file" onchange="document.getElementById('txt').value=this.value;">
 							</td>
 						</tr>
-						<tr class="file">
+						<tr class="file unfile">
 							<th>통장 사본</th>
 							<td>
 								<input type="text" size="30" id="txt1"/>
 								<!-- <img src="" onclick="document.getElementById('file').click();"> -->
-								<input name="p_account_copy" id="p_account_copy" type="file" onchange="document.getElementById('txt1').value=this.value;" accept=".gif, .jpg, .png">
+								<input name="p_account_copy" id="p_account_copy" type="file" onchange="document.getElementById('txt1').value=this.value;">
 							</td>
 						</tr>
-						<tr class="file">
+						<tr class="file unfile">
 							<th>부동산종합공부</th>
 							<td>
 								<input type="text" size="30" id="txt2"/>
 								<!-- <img src="" onclick="document.getElementById('file').click();"> -->
-								<input name="p_property" id="p_property" type="file" onchange="document.getElementById('txt2').value=this.value;" accept=".gif, .jpg, .png">
+								<input name="p_property" id="p_property" type="file" onchange="document.getElementById('txt2').value=this.value;">
 							</td>
 						</tr>
 						<!-- 첨부파일 -->

@@ -256,17 +256,28 @@ function sample6_execDaumPostcode() {
 }
 //라디오(서류첨부 유형) 클릭 시 클릭에 맞는 div를 밑에 보여줌
 function checkBox(){
-	var check_Box = document.getElementsByName("p_file");//체크박스 name
-	for (j = 0; j < check_Box.length; j++){
-		var disign = document.getElementById([j+1]);//보여줄 내용
-		if(check_Box[j].checked == true){
-			disign.style.display = "block";
+		if(p_file1.checked == true){
+			$('.file').removeClass('file');
 		}else{
-			check_Box[j].checked = false;
-			disign.style.display = "none";
+			$('.unfile').addClass('file');
 		}
+		if(p_file2.checked == true){
+			$('.d-fax').css('display', 'block');
+		}else{
+			$('.d-fax').css('display', 'none');
+		}
+		if(p_file3.checked == true){
+			$('.d-adrs').css('display', 'block');
+		}else{
+			$('.d-adrs').css('display', 'none');
+		}
+		if(p_file4.checked == true){
+			$('.d-mail').css('display', 'block');
+		}else{
+			$('.d-mail').css('display', 'none');
+		}
+		
 	}
-}
 //우편주소
 function checking(){
 	var ad1 = $("#sample6_postcode").val();
@@ -274,6 +285,7 @@ function checking(){
 	var ad3 = $("#sample6_detailAddress").val();
 	var ad4 = $("#sample6_extraAddress").val();
 	var address = ad1+"*"+ad2+"*"+ad3+"*"+ad4;
+	alert(address);
 	$("#p_address").val(address);
 	return true;
 }

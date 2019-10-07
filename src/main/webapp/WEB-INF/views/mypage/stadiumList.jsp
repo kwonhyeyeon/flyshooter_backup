@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>경기장/구장 페이지</title>
+<title>FLY SHOOTER</title>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
 <link rel="stylesheet" href="/resources/css/toggle.css" />
@@ -22,7 +22,7 @@
 		<jsp:include page="../templates/header.jsp" flush="true" />
 	
 		<article id="contents">
-			<h2 class="articleTit">경기장</h2>
+			<h2 class="articleTit">경기장 / 용품</h2>
 			
 			<div class="selectArea">
 				<c:choose>
@@ -56,13 +56,20 @@
 							</form>
 							
 							<p class="noItem">구장을 선택해주세요</p>
+							<div class="notice">
+								<span class="red">* 주의사항 *</span>
+								<p>1. 승인되지 않은 구장은 사용할 수 없습니다</p>
+								<p>2. 승인이 되더라도 구장 운영 상태를 운영중으로 수정하지 않을 시 사용자가 대관을 할 수 없으니 <span class="red">필히</span> 수정 바랍니다</p>
+								<p>3. Fly Shooter에 해가 되는 구장(불법 구장) 및 해가 되는 행위는 최대 구장 강제 페쇄 조치까지 이를 수 있습니다</p>
+							</div>
+							
+							<div id="tab1" class="tab-content"></div>
+						    <!-- #tab1 -->
+						    
+						    <div id="tab2" class="tab-content"></div>
+						    <!-- #tab2 -->
 						</div>
 						
-						<!-- <p>
-						*주의사항red* <br />
-						1. 승인되지 않은 구장은 사용할 수 없습니다. <br />
-						2. 승인이 되더라도 구장 운영 상태를 운영중으로 수정하지 않을 시 사용자가 대관을 할 수 없으니 필히(red) 수정 바랍니다. <br />
-						3. Fly Shooter 에 해가 되는 구장(불법구장) 및 해가 되는 행위는 최대 구장 강제 페쇄 조치까지 이를 수 있습니다.</p> -->
 					</div>
 				</c:when>
 				
@@ -77,13 +84,10 @@
 				</c:otherwise>
 			</c:choose>
 			
-			
-			
-			
 			<div id="dialog" title="용품등록창" style="display: none">
 		      <form id="itemInsertForm">
 		      	<input type="hidden" id="modalP_num" name="p_num"/>
-		        <label>용품 명<input type="text" id="modalI_name" name="i_name" /></label><br />
+		        <label>용품명<input type="text" id="modalI_name" name="i_name" /></label><br />
 		        <label>가 격<input type="text" id="modalI_rental_fee" name="i_rental_fee" /></label>
 		      </form>   
 			</div>
