@@ -9,14 +9,14 @@ $(document).ready(function(){
 		$("#datailForm").submit(); 
 	});
 	//페이지 로드..
-	$(".tab_content").hide();//content 모두 숨김
+	$(".tab-container").hide();//content 모두 숨김
 	$("ul.tabs li:first").addClass("active").show();
-	$(".tab_content:first").show();
+	$(".tab-container:first").show();
 
 	$("ul.tabs li").click(function() {
 		$("ul.tabs li").removeClass("active");
 		$(this).addClass("active");
-		$(".tab_content").hide();
+		$(".tab-container").hide();
 
 		var activeTab = $(this).find("a").attr("href");
 		$(activeTab).fadeIn();
@@ -29,7 +29,7 @@ $(document).ready(function(){
 			var query = {p_num : $("#placeChoice").val()};
 			SIList(query);
 		} else {
-			$("#List").text("구장을 선택해주세요");
+			$(".noItem").text("구장을 선택해주세요");
 		}
 	});
 	$(document).on("click", "#IPlus", function() {
@@ -133,7 +133,7 @@ function SIList(query) {
 			$("#List").text("");
 			$("#List").append(resultData);
 
-			$(".tab_content").hide();
+			$(".tab-container").hide();
 			activeTab = $('.active').find("a").attr("href");
 			$(activeTab).fadeIn();
 			return false;
