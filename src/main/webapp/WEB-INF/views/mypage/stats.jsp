@@ -39,6 +39,7 @@ google.charts.setOnLoadCallback(drawChart);
 	function sendYear(){
 		return "${selectYear}";
 	}
+	
 		
 </script>
 </head>
@@ -60,7 +61,7 @@ google.charts.setOnLoadCallback(drawChart);
 				<select id="year">
 					<c:forEach var="year" items="${years }">
 						<option value="${year }">${year }</option>
-					</c:forEach>
+					</c:forEach> 
 				</select>
 				
 				<p style="color: red">※ 등록된 구장중 가장 오래된 대관연도부터 최근 대관연도까지 조회 가능합니다.</p>	
@@ -68,19 +69,21 @@ google.charts.setOnLoadCallback(drawChart);
 			
 			
 			<div class="worko-tabs">
-		  
-			    <label for="tab-one"><input type="radio" title="tab-one" name="tabs-statis"  value="rental_statis" checked />대관건수</label>
-			    <label for="tab-two"><input type="radio" title="tab-two" name="tabs-statis" value="sales_statis"/>매출</label>
 			
-			    <div class="tabs">
-			        <div id="rental_statis" class="panel active">
-			       		 <div id="line_top_x"></div>	
-			        </div>
-			        <div id="sales_statis" class="panel">
-			           	<div id="columnchart_material" style="width: 800px; height: 500px;"></div>
-			        </div>
-			    </div>
-		
+				<div id="tab-wrapper">
+				    <ul class="tabs">
+				        <li class="active" rel="tab1">대관건수</li>
+				        <li rel="tab2">매출</li>
+				    </ul>
+				    <div class="tab-container">
+				        <div id="tab1" class="tab-content"><div id="line_top_x"></div></div>
+				        <!-- #tab1 -->
+				        <div id="tab2" class="tab-content"><div id="columnchart_material"></div></div>
+				        <!-- #tab2 -->
+				    </div>
+	  				  <!-- .tab_container -->
+				</div>
+			
 			</div>
 			
 		
