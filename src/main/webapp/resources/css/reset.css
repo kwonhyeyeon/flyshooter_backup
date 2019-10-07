@@ -112,6 +112,12 @@ caption {
 }
 input {
 	display:inline-block;
+	outline-style:none;
+	outline:none;
+	-webkit-appearance:none;
+	-moz-appearance:none; 
+	appearance:none;
+	border:1px solid #dedede;
 }
 label {
 	display:block;

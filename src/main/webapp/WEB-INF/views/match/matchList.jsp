@@ -36,7 +36,7 @@
 			
 			<%-- 매치신청 등록--%>
 			<div class="insertArea">
-				<input type="button" value="매치신청 등록" id="insertBtn" />
+				<input type="button" value="매치신청 등록" id="insertMatch" class="insertBtn" />
 			</div>
 			<%-- 매치신청 등록 종료 --%>
 			

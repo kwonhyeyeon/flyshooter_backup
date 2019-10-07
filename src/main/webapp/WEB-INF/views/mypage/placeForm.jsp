@@ -21,8 +21,6 @@
 		<jsp:include page="../templates/header.jsp" flush="true" />
 	</div>
 
-	<div class="sub-v"></div>
-
 	<article id="contents">
 		<h3> 구장 등록</h3>
 		<div class="placeForm">
