@@ -57,6 +57,25 @@
 		});		
 		//-------------------------------------------------
 		
+		//------유니폼 자르기 자바 스크립트--------------------------
+		
+		var uniformData = "${updateMatchData.mb_uniform}";
+		var mb_uniform = uniformData.split(' ');
+		
+		
+		var u1 = mb_uniform[0];
+		var u2 = mb_uniform[1];
+		var u3 = mb_uniform[2];
+		
+		$("#mb_uniformTop").val(u1);
+	
+		$("#mb_uniformBottoms").val(u2);
+	
+		$("#mb_uniformStarking").val(u3);
+
+		//-------------------------------------------------
+		
+		
 		// select box 데이터 가져오는 스크립트------------------------------
 		$("#mb_type").val("${updateMatchData.mb_type}");
 		$("#mb_level").val("${updateMatchData.mb_level}");
@@ -66,6 +85,21 @@
 		// 수정하기 버튼 이벤트 -------------------------------
 		$("#updateDataBtn").click(
 				function() {
+					
+					//------유니폼 저장시 자바 스크립트--------------------------
+					
+					var top = $("#mb_uniformTop").val();
+					
+					var bottoms = $("#mb_uniformBottoms").val();
+
+					var starking = $("#mb_uniformStarking").val();
+					
+					var uniform = top + " " + bottoms + " " + starking;
+				
+					// 합친 내용 #mb_uniform에 입력
+					$("#mb_uniform").val(uniform);
+					
+					//-------------------------------------------------
 					
 					// 입력값 체크
 					if (!chkSubmit($('#mb_name'), "구장명을")) {
@@ -156,11 +190,10 @@
 							<h4>유니폼</h4>
 							<label class="justify">
 								<!-- 유니폼 수정 -->
-								<input type="text" name="mb_uniform" id="mb_uniform" value="${updateMatchData.mb_uniform}">
 								<input type="hidden" name="mb_uniform" id="mb_uniform" />
-								<%-- <input type="text" name="mb_uniformTop" id="mb_uniformTop" value="${updateMatchData.mb_uniformTop}" placeholder="상의" />
-								<input type="text" name="mb_uniformBottoms" id="mb_uniformBottoms" value="${updateMatchData.mb_uniformBottoms}" placeholder="하의" />
-								<input type="text" name="mb_uniformStarking" id="mb_uniformStarking" value="${updateMatchData.mb_uniformStarking}" placeholder="스타킹" /> --%>
+								<input type="text" name="mb_uniformTop" id="mb_uniformTop" placeholder="상의" />
+								<input type="text" name="mb_uniformBottoms" id="mb_uniformBottoms" placeholder="하의" />
+								<input type="text" name="mb_uniformStarking" id="mb_uniformStarking" placeholder="스타킹" />
 							</label>
 						</section>
 						
