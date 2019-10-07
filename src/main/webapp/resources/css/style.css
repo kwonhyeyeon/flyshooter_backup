@@ -271,6 +271,8 @@ p.noItem {
 	justify-content:center;
 	align-content:center;
 	padding:50px 0;
+	font-size:18px;
+	font-weight:bold;
 }
 .itemName {
 	font-size:20px;
@@ -930,6 +932,64 @@ footer#footer-wrap {
 .toggle:checked + .toggle-btn {
   background: #9FD6AE;
 }
+
+/* tab */
+ul.tabs {
+    margin:0;
+    padding:0;
+    float:left;
+    list-style:none;
+    height:50px;
+    border-bottom:1px solid #dedede;
+    border-left:1px solid #dedede;
+    width:100%;
+}
+ul.tabs li {
+    float:left;
+    text-align:center;
+    cursor:pointer;
+    width:150px;
+    height:50px;
+    line-height:50px;
+    border: 1px solid #dedede;
+    border-left:none;
+    font-weight:bold;
+    background:#fafafa;
+    overflow:hidden;
+    position:relative;
+}
+ul.tabs li.active {
+    background:#8FBC94;
+    border-bottom:1px solid #8FBC94;
+}
+ul.tabs li.active a {
+	color:#fff;
+}
+.tab-container {
+    clear:both;
+    float:left;
+    width:100%;
+}
+.tab-content {
+    padding: 5px;
+    font-size: 12px;
+    display: none;
+}
+.tab-container .tab-content ul {
+    width:100%;
+    margin:0px;
+    padding:0px;
+}
+.tab-container .tab-content ul li {
+    padding:5px;
+    list-style:none;
+}
+;
+#tab-wrapper {
+    width:100%;
+    margin:0 auto;
+}
+/* tab */
 
 /* pagination */
 .pagination {
