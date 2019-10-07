@@ -126,10 +126,6 @@ window.onload = function () {
 		
 	});
 	
-
-
-	
-	
 	
 	
 }
