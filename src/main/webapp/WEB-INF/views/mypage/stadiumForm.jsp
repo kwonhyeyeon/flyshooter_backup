@@ -40,86 +40,84 @@ function errCodeCheck() {
 </script>
 </head>
 <body>
-
-	<div id="header-wrap">
-		<jsp:include page="../templates/header.jsp" flush="true" />
-	</div>
+	<div id="wrapper">
 	
-	<div class="sub-v"></div>
-	<article id="contents">
-		<form id="stadiumForm" action="/mypage/stadiumInsert.do" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="p_num" value="${p_num}"/>
-		<input type="hidden" name="select" id="select" value="0"/>
-		<ul>
-			<li><label>날짜 별 요금</label>
-			<p>입력된 요금은 1시간 기준 요금이며 최소시간을 2시간 선택하여도 변하지 않습니다.</p>
-					<label>평일 주간 요금</label> <input type="text" name="s_d_fee" id="s_d_fee"/>
-					<label>평일 야간 요금</label> <input type="text" name="s_n_fee" id="s_n_fee"/></li>
-			<li>
-					<label>주말 주간 요금</label> <input type="text" name="s_d_fee_w" id="s_d_fee_w"/>
-					<label>주말 야간 요금</label> <input type="text" name="s_n_fee_w" id="s_n_fee_w"/></li>
-			<li>
-					<label>최소 이용 가능 시간</label>  
-					<select name="s_hours" id="s_hours" class="s_hours">
-						<option value="" selected disabled hidden>최소 이용 가능 시간 선택</option>
-						<option value="1">1시간</option>
-						<option value="2">2시간</option>
+		<jsp:include page="../templates/header.jsp" flush="true" />
+	
+		<article id="contents">
+			<form id="stadiumForm" action="/mypage/stadiumInsert.do" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="p_num" value="${p_num}"/>
+			<input type="hidden" name="select" id="select" value="0"/>
+			<ul>
+				<li><label>날짜 별 요금</label>
+				<p>입력된 요금은 1시간 기준 요금이며 최소시간을 2시간 선택하여도 변하지 않습니다.</p>
+						<label>평일 주간 요금</label> <input type="text" name="s_d_fee" id="s_d_fee"/>
+						<label>평일 야간 요금</label> <input type="text" name="s_n_fee" id="s_n_fee"/></li>
+				<li>
+						<label>주말 주간 요금</label> <input type="text" name="s_d_fee_w" id="s_d_fee_w"/>
+						<label>주말 야간 요금</label> <input type="text" name="s_n_fee_w" id="s_n_fee_w"/></li>
+				<li>
+						<label>최소 이용 가능 시간</label>  
+						<select name="s_hours" id="s_hours" class="s_hours">
+							<option value="" selected disabled hidden>최소 이용 가능 시간 선택</option>
+							<option value="1">1시간</option>
+							<option value="2">2시간</option>
+						</select>
+					</li>
+				<li>
+					<label>수용 인원</label> <input type="text" name="s_people" id="s_people"/>
+					<label>경기장 명</label> <input type="text" name="s_name" id="s_name"/>
+				</li>
+				<li>
+					<label>경기장 사이즈</label>  
+					<select name="s_size" class="s_size" id="s_size">
+						<option value="" selected disabled hidden>경기장 사이즈 선택</option>
+						<option value="1">40*20</option>
+						<option value="2">33*21</option>
+						<option value="3">15*12</option>
+					</select>
+					<label>경기장 실내/외 선택</label> 
+					<select name="s_in_out" class="s_in_out" id="s_in_out">
+						<option value="" selected disabled hidden>경기장 실내/외 선택</option>
+						<option value="1">실내</option>
+						<option value="2">실외</option>
 					</select>
 				</li>
-			<li>
-				<label>수용 인원</label> <input type="text" name="s_people" id="s_people"/>
-				<label>경기장 명</label> <input type="text" name="s_name" id="s_name"/>
-			</li>
-			<li>
-				<label>경기장 사이즈</label>  
-				<select name="s_size" class="s_size" id="s_size">
-					<option value="" selected disabled hidden>경기장 사이즈 선택</option>
-					<option value="1">40*20</option>
-					<option value="2">33*21</option>
-					<option value="3">15*12</option>
-				</select>
-				<label>경기장 실내/외 선택</label> 
-				<select name="s_in_out" class="s_in_out" id="s_in_out">
-					<option value="" selected disabled hidden>경기장 실내/외 선택</option>
-					<option value="1">실내</option>
-					<option value="2">실외</option>
-				</select>
-			</li>
-			<li>
-				<label>경기장 사진</label>
-			</li>
-			<li>
-			<div class="inputArea">
-		 		<label for="s_img1">이미지1</label>
-		 		<input type="file" id="s_img1" name="file1" />
-		 		<div class="select_img1"><img src="" /></div>
+				<li>
+					<label>경기장 사진</label>
+				</li>
+				<li>
+				<div class="inputArea">
+			 		<label for="s_img1">이미지1</label>
+			 		<input type="file" id="s_img1" name="file1" />
+			 		<div class="select_img1"><img src="" /></div>
+				</div>
+				</li>
+				<li>
+				<div class="inputArea">
+			 		<label for="s_img2">이미지2</label>
+			 		<input type="file" id="s_img2" name="file2" />
+			 		<div class="select_img2"><img src="" /></div>
+				</div>
+				</li>
+				<li>
+				<div class="inputArea">
+			 		<label for="s_img3">이미지3</label>
+			 		<input type="file" id="s_img3" name="file3" />
+			 		<div class="select_img3"><img src="" /></div>
+				</div>
+				</li>
+			</ul>
+			<div>
+					<input type="submit" value="등록완료">
+					<input type="button" id="stadiumPlus" value="추가 등록하기">
+					<a href="/">Home</a>
 			</div>
-			</li>
-			<li>
-			<div class="inputArea">
-		 		<label for="s_img2">이미지2</label>
-		 		<input type="file" id="s_img2" name="file2" />
-		 		<div class="select_img2"><img src="" /></div>
-			</div>
-			</li>
-			<li>
-			<div class="inputArea">
-		 		<label for="s_img3">이미지3</label>
-		 		<input type="file" id="s_img3" name="file3" />
-		 		<div class="select_img3"><img src="" /></div>
-			</div>
-			</li>
-		</ul>
-		<div>
-				<input type="submit" value="등록완료">
-				<input type="button" id="stadiumPlus" value="추가 등록하기">
-				<a href="/">Home</a>
-		</div>
-		</form>
-	</article>
-	
-	<jsp:include page="../templates/footer.jsp" flush="true" />
+			</form>
+		</article>
 		
+		<jsp:include page="../templates/footer.jsp" flush="true" />
+	</div>
 </body>
 <script>
 $("#s_img1").change(function(){

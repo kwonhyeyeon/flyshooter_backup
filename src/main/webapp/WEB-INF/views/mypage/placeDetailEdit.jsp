@@ -33,8 +33,6 @@
 		<jsp:include page="../templates/header.jsp" flush="true" />
 	</div>
 
-	<div class="sub-v"></div>
-
 	<article id="contents">
 		<h3>${pvo.p_name}</h3>
 		<div class="contentTB">
