@@ -75,9 +75,11 @@ window.onload = function () {
 	// 구장을 선택했을경우 비동기.
 	$("#placeBox").change(function(){
 		
+		
 		var selected = $("#placeBox").val();
 		
 		if( selectedValue == "rental_statis" ){
+			
 			
 			if( selected == "전체구장" ) {
 				$("#selectedYear").val($("#year").val());
@@ -137,7 +139,6 @@ window.onload = function () {
 	 });
 
 
-	
 	
 	
 	
