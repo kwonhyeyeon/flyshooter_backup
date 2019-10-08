@@ -23,7 +23,7 @@ public class MakeListUtils {
 
 	public static String setIFhtml(String p_num) {
 		StringBuffer IFhtml = new StringBuffer(); // 빈버퍼생성
-		IFhtml.append("<div id='tab2' class='tab_content' style='display:none;'>");
+		IFhtml.append("<div id='tabI' class='tab-content' style='display:none;'>");
 		IFhtml.append("<table class='table'>");
 		IFhtml.append("<tr>");
 		IFhtml.append("<th>번호</th>");
@@ -43,7 +43,7 @@ public class MakeListUtils {
 
 	public static String setSFhtml(String p_num) {
 		StringBuffer SFhtml = new StringBuffer(); // 빈버퍼생성
-		SFhtml.append("<div id='tab1' class='tab_content'>");
+		SFhtml.append("<div id='tabS' class='tab-content'>");
 		SFhtml.append("<p>선택된 구장에 등록된 경기장이 없습니다</p>");
 		SFhtml.append("<form id='placenum' action='/mypage/stadiumForm.do'>");
 		SFhtml.append("<input type='hidden' name='p_num' value=");
@@ -58,7 +58,7 @@ public class MakeListUtils {
 
 	public static String setIShtml(List<ItemsVO> Ilist, String p_num) {
 		StringBuffer IShtml = new StringBuffer(); // 빈버퍼생성
-		IShtml.append("<div id='tab2' class='tab_content' style='display:none;'>");
+		IShtml.append("<div id='tabI' class='tab-content' style='display:none;'>");
 		IShtml.append("<table class='table'>");
 		IShtml.append("<tr>");
 		IShtml.append("<th>번호</th>");
@@ -104,7 +104,7 @@ public class MakeListUtils {
 
 	public static String setSShtml(List<StadiumVO> Slist, String p_num) {
 		StringBuffer SShtml = new StringBuffer(); // 빈버퍼생성
-		SShtml.append("<div id='tab1' class='tab_content'>"); // 붙이기
+		SShtml.append("<div id='tabS' class='tab-content'>"); // 붙이기
 		SShtml.append("<table>");
 		SShtml.append("<tr>");
 		SShtml.append("<th>번호</th>");

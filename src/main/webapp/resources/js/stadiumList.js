@@ -10,29 +10,42 @@ $(document).ready(function(){
 	});
 	
 	//페이지 로드..
-	$(".tab-container").hide();//content 모두 숨김
+	$(".tab-content").hide(); //content 모두 숨김
 	$("ul.tabs li:first").addClass("active").show();
 	$(".tab-container:first").show();
 
 	$("ul.tabs li").click(function() {
 		$("ul.tabs li").removeClass("active");
 		$(this).addClass("active");
-		//$(".noItem").text("구장을 선택해주세요");
-		//$(".tab-container").hide();
+		$(".tab-content").hide();
 
 		var activeTab = $(this).find("a").attr("href");
+		alert(activeTab);
 		$(activeTab).fadeIn();
 		return false;
 	});
+//	$(".tab-container").hide();//content 모두 숨김
+//	$("ul.tabs li:first").addClass("active").show();
+//	$(".tab-container:first").show();
+//
+//	$("ul.tabs li").click(function() {
+//		$("ul.tabs li").removeClass("active");
+//		$(this).addClass("active");
+//		$(".tab-container").hide();
+//
+//		var activeTab = $(this).find("a").attr("href");
+//		alert(activeTab);
+//		$(activeTab).fadeIn();
+//		return false;
+//	});
 	
 	$("#placeChoice").change(function() { // 구장 select 변경시
-
 		if ($("#placeChoice").val() != '선택') {
 			var p_num = $("#placeChoice").val();
 			var query = {p_num : $("#placeChoice").val()};
 			SIList(query);
 		} else {
-			$(".noItem").text("구장을 선택해주세요");
+			$("#List").text("구장을 선택해주세요");
 		}
 	});
 	
@@ -137,9 +150,11 @@ function SIList(query) {
 			$("#List").text("");
 			$("#List").append(resultData);
 
-			$(".tab-container").hide();
+			$(".tab-content").hide();
 			activeTab = $('.active').find("a").attr("href");
+			alert(activeTab);
 			$(activeTab).fadeIn();
+			alert('리스트 뽑아오기');
 			return false;
 		}
 	});

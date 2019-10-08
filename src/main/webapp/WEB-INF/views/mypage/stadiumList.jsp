@@ -42,32 +42,27 @@
 				</c:choose>
 			</div>
 			
+			<div class="notice">
+				<span class="red">* 주의사항 *</span>
+				<p>1. 승인되지 않은 구장은 사용할 수 없습니다</p>
+				<p>2. 승인이 되더라도 구장 운영 상태를 운영중으로 수정하지 않을 시 사용자가 대관을 할 수 없으니 <span class="red">필히</span> 수정 바랍니다</p>
+				<p>3. Fly Shooter에 해가 되는 구장(불법 구장) 및 해가 되는 행위는 최대 구장 강제 페쇄 조치까지 이를 수 있습니다</p>
+			</div>
+			
 			<c:choose>
 				<c:when test="${not empty placeChoice}">
 					<div id="tab-wrapper">
 						<ul class="tabs">
-							<li><a href="#tab1">경기장</a></li>
-							<li><a href="#tab2">용품</a></li>
+							<li><a href="#tabS">경기장</a></li>
+							<li><a href="#tabI">용품</a></li>
 						</ul>
-						
 						<div class="tab-container">
 							<form id="datailForm" action="/mypage/stadiumDetail.do"method="post">
-								<input type="hidden" name="s_no" id="s_no">
+									<input type="hidden" name="s_no" id="s_no">
 							</form>
-							
-							<p class="noItem">구장을 선택해주세요</p>
-							<div class="notice">
-								<span class="red">* 주의사항 *</span>
-								<p>1. 승인되지 않은 구장은 사용할 수 없습니다</p>
-								<p>2. 승인이 되더라도 구장 운영 상태를 운영중으로 수정하지 않을 시 사용자가 대관을 할 수 없으니 <span class="red">필히</span> 수정 바랍니다</p>
-								<p>3. Fly Shooter에 해가 되는 구장(불법 구장) 및 해가 되는 행위는 최대 구장 강제 페쇄 조치까지 이를 수 있습니다</p>
+							<div id="List">
+								<p class="noItem">구장을 선택해주세요</p>
 							</div>
-							
-							<div id="tab1" class="tab-content"></div>
-						    <!-- #tab1 -->
-						    
-						    <div id="tab2" class="tab-content"></div>
-						    <!-- #tab2 -->
 						</div>
 						
 					</div>
