@@ -128,3 +128,6 @@ button {
 select::-ms-expand {
 	display: none;
 }
+strong {
+	font-weight:bold;
+}

@@ -275,10 +275,8 @@ p.noItem {
 	font-weight:bold;
 }
 div.notice {
-	width:800px;
-	margin:0 auto;
-	margin-top:15px;
-	text-align:center;
+	width:100%;
+	margin:0 auto 80px;
 }
 div.notice p {
 	line-height:30px;
@@ -288,7 +286,7 @@ span.red {
 	font-weight:bold;
 	line-height:30px;
 	display:inline-block;
-	font-size:16px;
+	font-size:15px;
 }
 div.notice p > span.red {
 	color:#f00;
@@ -302,6 +300,16 @@ div.notice p > span.red {
 	margin-top:30px;
 	border-bottom:2px solid #dedede;
 	padding:0 0 10px 10px;
+}
+
+h3.calTit {
+	height:16px;
+	line-height:16px;
+	font-size:15px;
+	font-weight:bold;
+	padding-left:10px;
+	border-left:3px solid #8FBC94;
+	margin-bottom:20px;
 }
 .listTbl {
 	width:100%;
@@ -929,51 +937,51 @@ footer#footer-wrap {
   	line-height:32px;
 }
 .toggle {
-  display:none;
+  	display:none;
 }
 .toggle-btn {
-  outline: 0;
-  display: block;
-  width:4em;
-  height:2em;
-  position: relative;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  top:0%;
-  left:50px;
+  	outline:0;
+  	display:block;
+  	width:4em;
+  	height:2em;
+  	position:relative;
+  	cursor:pointer;
+  	-webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+  	top:0%;
+  	left:0;
 }
 .toggle-btn:after, .toggle-btn:before {
-  position: relative;
-  display: block;
-  content: "";
-  width: 50%;
-  height: 100%;
+  	position:relative;
+  	display:block;
+  	content:"";
+  	width:50%;
+  	height:100%;
 }
 .toggle-btn:after {
-  left: 0;
+  	left:0;
 }
 .toggle-btn:before {
-  display: none;
+  	display:none;
 }
 .toggle:checked + .toggle-btn:after {
-  left: 50%;
+  	left:50%;
 }
 .toggle + .toggle-btn {
-  background: #dedede;
-  border-radius: 2em;
-  padding: 2px;
-  transition: all .4s ease;
+  	background:#dedede;
+  	border-radius:2em;
+  	padding:2px;
+  	transition:all 1s ease;
 }
 .toggle + .toggle-btn:after {
-  border-radius: 50%;
-  background: #fff;
-  transition: all .2s ease;
+  	border-radius:50%;
+  	background:#fff;
+  	transition:all 1s ease;
 }
 .toggle:checked + .toggle-btn {
-  background: #9FD6AE;
+  	background:#9FD6AE;
 }
 
 /* tab */
@@ -1019,18 +1027,8 @@ ul.tabs li.active a {
     width:100%;
 }
 .tab-content {
-    padding: 5px;
-    font-size: 12px;
-    display: none;
-}
-.tab-container .tab-content ul {
-    width:100%;
-    margin:0px;
-    padding:0px;
-}
-.tab-container .tab-content ul li {
-    padding:5px;
-    list-style:none;
+    padding:30px 10px 100px;
+    display:none;
 }
 /* tab */
 

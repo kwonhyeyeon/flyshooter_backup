@@ -90,27 +90,19 @@ function stadiumCheck() {
 	  
 	}
 	
-	// 이건 무엇?
-//	var file_img1= $("#s_img1").val();
-//	var file_img2= $("#s_img2").val();
-//	var file_img3= $("#s_img3").val();
-//	$("#fileupload").submit();
-	
 }
 
 // 이미지 프리뷰
 $(function() {
     function maskImgs() {
-        //$('.img-wrapper img').imagesLoaded({}, function() {
-        $.each($(".img-wrapper img"), function(index, img) {
-            var src = $(img).attr("src");
-            var parent = $(img).parent();
-            parent
-                .css("background", "url(" + src + ") no-repeat center center")
-                .css("background-size", "cover");
-            $(img).remove();
+        $(".img-wrapper img").imagesLoaded({}, function() {
+	        $.each($(".img-wrapper img"), function(index, img) {
+	            var src = $(img).attr("src");
+	            var parent = $(img).parent();
+	            parent.css("background", "url(" + src + ") no-repeat center center").css("background-size", "cover");
+	            $(img).remove();
+	        });
         });
-        //});
     }
 
     var preview = {

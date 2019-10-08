@@ -3,7 +3,7 @@
  */
 
 $(document).ready(function(){
-	$(document).on("click",".detailPage",function(){
+	$(document).on("click",".goDetail",function(){
 		var s_no =  $(this).attr("data-num");
 		$("#s_no").val(s_no);
 		$("#datailForm").submit(); 
@@ -20,24 +20,9 @@ $(document).ready(function(){
 		$(".tab-content").hide();
 
 		var activeTab = $(this).find("a").attr("href");
-		alert(activeTab);
 		$(activeTab).fadeIn();
 		return false;
 	});
-//	$(".tab-container").hide();//content 모두 숨김
-//	$("ul.tabs li:first").addClass("active").show();
-//	$(".tab-container:first").show();
-//
-//	$("ul.tabs li").click(function() {
-//		$("ul.tabs li").removeClass("active");
-//		$(this).addClass("active");
-//		$(".tab-container").hide();
-//
-//		var activeTab = $(this).find("a").attr("href");
-//		alert(activeTab);
-//		$(activeTab).fadeIn();
-//		return false;
-//	});
 	
 	$("#placeChoice").change(function() { // 구장 select 변경시
 		if ($("#placeChoice").val() != '선택') {
@@ -45,7 +30,7 @@ $(document).ready(function(){
 			var query = {p_num : $("#placeChoice").val()};
 			SIList(query);
 		} else {
-			$("#List").text("구장을 선택해주세요");
+			$("#List").html("<p class='noItem'>구장을 선택해주세요</p>");
 		}
 	});
 	
@@ -55,7 +40,7 @@ $(document).ready(function(){
 		openDialog();
 	});
 
-	$(document).on("click", ".IRemove", function() {
+	$(document).on("click", "#IRemove", function() {
 		if (confirm('용품을 삭제 하시겠습니까?')) {
 			var I_no =  $(this).parents("tr").attr("data-num");
 			query = {i_no : I_no}
@@ -68,11 +53,11 @@ $(document).ready(function(){
 				},
 				success : function(resultData) {
 					if (resultData == '1') {
-						alert('삭제 성공');
+						alert('삭제가 완료되었습니다');
 						query = {p_num : $("#placeChoice").val()};
 						SIList(query);
 					}else{
-						alert('삭제 실패');
+						alert('삭제에 실패했습니다');
 					}
 					
 				}
@@ -107,12 +92,12 @@ function itemActive(query) {
 		},
 		success : function(resultData) {
 			if (resultData == '1') {
-				alert('활성화 성공');
+				alert('변경 시 회원에게 용품이 노출됩니다');
 				query = {p_num : $("#placeChoice").val()};
 				SIList(query);
 				return false;
 			}else{
-				alert('활성화 실패');
+				alert('변경에 실패했습니다');
 			}
 			}
 	});
@@ -128,12 +113,12 @@ function itemUnActive(query) {
 		},
 		success : function(resultData) {
 			if (resultData == '1') {
-				alert('비활성화 성공');
+				alert('변경 시 회원에게 용품이 노출되지 않습니다');
 				query = {p_num : $("#placeChoice").val()};
 				SIList(query);
 				return false;
 			}else{
-				alert('비활성화 실패');
+				alert('변경에 실패했습니다');
 			}
 			}
 	});
@@ -152,9 +137,7 @@ function SIList(query) {
 
 			$(".tab-content").hide();
 			activeTab = $('.active').find("a").attr("href");
-			alert(activeTab);
 			$(activeTab).fadeIn();
-			alert('리스트 뽑아오기');
 			return false;
 		}
 	});
