@@ -78,13 +78,14 @@
 					</c:otherwise>
 				</c:choose>
 				
-				<div id="dialog" title="용품등록창" style="display: none">
-			      <form id="itemInsertForm">
-			      	<input type="hidden" id="modalP_num" name="p_num"/>
-			        <label>용품명<input type="text" id="modalI_name" name="i_name" /></label><br />
-			        <label>가 격<input type="text" id="modalI_rental_fee" name="i_rental_fee" /></label>
-			      </form>   
+				<div id="dialog">
+					<form id="itemInsertForm">
+				      	<input type="hidden" id="modalP_num" name="p_num"/>
+				        <label>용품명<input type="text" id="modalI_name" name="i_name" /></label><br />
+				        <label>가 격<input type="text" id="modalI_rental_fee" name="i_rental_fee" /></label>
+				      </form>  
 				</div>
+
 			</section>
 		</article>
 		

@@ -150,9 +150,7 @@ $(document).ready(function(){
 			
 			return;
 		});
-		
-		
-	
+
 });
 	
 		// 대여된 아이템에 관하여 상태변경 함수
