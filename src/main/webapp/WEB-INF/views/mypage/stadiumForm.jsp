@@ -11,33 +11,6 @@
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/stadiumForm.js"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
-<script>
-$(document).ready(function(){
-	$("#stadiumForm").submit(function() {
-		return stadiumCheck();
-	});
-	// 추가 버튼 클릭 시 처리 이벤트
-	$("#stadiumPlus").click(function() {
-		$("#select").attr({
-			"value" : "1"
-		});
-
-		$("#stadiumForm").submit();
-	});
-	errCodeCheck();
-});
-function errCodeCheck() {
-	var errCode = '<c:out value = "${errCode}"/>';
-	if (errCode != "") {
-		//명확한 자료형 명시를 위해 errCode의 타입을 정수형으로 변환.
-		switch (parseInt(errCode)) {
-		case 1:
-			alert("사이트 접속에 문제로 정상 작동하지 못하였습니다. 잠시후 다시 시도 해주세요.");
-			return false;
-		}
-	}
-}
-</script>
 </head>
 <body>
 
@@ -139,7 +112,7 @@ function errCodeCheck() {
 			                	<input type="file" id="s_img1" name="file1" class="file-upload-native" accept="image/*" />
 			                	<input type="text" class="file-upload-text" placeholder="이미지 찾기" disabled />
 			                </div>
-			                <div class="preview img-wrapper"></div>
+			                <div class="preview img-wrapper"><img src="" alt="" /></div>
 						</td>
 					</tr>
 					<tr>
@@ -149,7 +122,7 @@ function errCodeCheck() {
 			                	<input type="file" id="s_img2" name="file2" class="file-upload-native" accept="image/*" />
 			                	<input type="text" class="file-upload-text" placeholder="이미지 찾기" disabled />
 			                </div>
-			                <div class="preview img-wrapper"></div>
+			                <div class="preview img-wrapper"><img src="" alt="" /></div>
 						</td>
 					</tr>	
 					<tr>
@@ -159,7 +132,7 @@ function errCodeCheck() {
 			                	<input type="file" id="s_img3" name="file3" class="file-upload-native" accept="image/*" />
 			                	<input type="text" class="file-upload-text" placeholder="이미지 찾기" disabled />
 			                </div>
-			                <div class="preview img-wrapper"></div>
+			                <div class="preview img-wrapper"><img src="" alt="" /></div>
 						</td>
 					</tr>		
 				</table>
@@ -176,34 +149,31 @@ function errCodeCheck() {
 	</div>
 	
 </body>
-<!-- <script>
-$("#s_img1").change(function(){
-	if(this.files && this.files[0]) {
-		var reader = new FileReader;
-	    reader.onload = function(data) {
-	    	$(".select_img1 img").attr("src", data.target.result).width(500);        
-	    }
-	reader.readAsDataURL(this.files[0]);
-	}
-});
-$("#s_img2").change(function(){
-	if(this.files && this.files[0]) {
-		var reader = new FileReader;
-	    reader.onload = function(data) {
-	    	$(".select_img2 img").attr("src", data.target.result).width(500);        
-	    }
-	reader.readAsDataURL(this.files[0]);
-	}
-});
-$("#s_img3").change(function(){
-	if(this.files && this.files[0]) {
-		var reader = new FileReader;
-	    reader.onload = function(data) {
-	    	$(".select_img3 img").attr("src", data.target.result).width(500);        
-	    }
-	reader.readAsDataURL(this.files[0]);
-	}
-});
+<script>
+$(document).ready(function(){
+	$("#stadiumForm").submit(function() {
+		return stadiumCheck();
+	});
+	// 추가 버튼 클릭 시 처리 이벤트
+	$("#stadiumPlus").click(function() {
+		$("#select").attr({
+			"value" : "1"
+		});
 
-</script> -->
+		$("#stadiumForm").submit();
+	});
+	errCodeCheck();
+});
+function errCodeCheck() {
+	var errCode = '<c:out value = "${errCode}"/>';
+	if (errCode != "") {
+		//명확한 자료형 명시를 위해 errCode의 타입을 정수형으로 변환.
+		switch (parseInt(errCode)) {
+		case 1:
+			alert("사이트 접속에 문제로 정상 작동하지 못하였습니다. 잠시후 다시 시도 해주세요.");
+			return false;
+		}
+	}
+}
+</script>
 </html>

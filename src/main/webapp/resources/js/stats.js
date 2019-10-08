@@ -31,7 +31,7 @@ window.onload = function () {
 						
 						return;
 	        }
-	        $("#" + activeTab).show();
+	        $("#" + activeTab).fadeIn();
 	    });
 	    /* 탭 관련 스크립트 */
 	    
@@ -248,8 +248,8 @@ function salesChart() {
 	                  min: 0
 	              }
 	             },
-	             width: 700,
-	             height: 450,
+	             width: 750,
+	             height: 550,
 	          
 	        };
 
@@ -337,8 +337,8 @@ function drawChart(arr, column, title, index) {
               max: 1000
           },
       },
-      width: 700,
-      height: 450,
+      width: 750,
+      height: 550,
       axes: {
         x: {
           0: {side: 'bottom'}
