@@ -70,6 +70,9 @@ function sendParam(){
 
 			<div id="container">
 				<article id="contents">
+				
+					<input type="hidden" id="statusTitle" name="statusTitle" value="구장 등록 현황 통계">
+					<input type="hidden" id="statusValue" name="statusValue" value="구장 수">
 
 					<div id="line_top_x"></div>
 
