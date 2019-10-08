@@ -93,9 +93,8 @@ public class StadiumController {
 	
 	// 경기장 등록
 	@RequestMapping(value = "/stadiumInsert.do", method = RequestMethod.POST)
-	public ModelAndView stadiumInsert_ClientChk(@ModelAttribute StadiumVO svo, @RequestParam("select")String select, MultipartHttpServletRequest request
+	public String stadiumInsert_ClientChk(Model model, @ModelAttribute StadiumVO svo, @RequestParam("select")String select, MultipartHttpServletRequest request
 			, HttpServletRequest request1) throws IOException, Exception{
-		ModelAndView mav = new ModelAndView();
 		if(svo.getFile1() != null && !(svo.getFile1().equals(""))){
 	         String pt_image1 = FileUploadUtil.fileUpload(svo.getFile1(), request, "image1");
 	         svo.setS_img1(pt_image1);
@@ -113,18 +112,20 @@ public class StadiumController {
 	      }
 		int plus = Integer.parseInt(select);// 추가등록여부 확인을 위한 변수
 		int result = stadiumService.stadiumInsert(svo);
+		String url = null;
 		if (result == 1) {
 			if (plus == 1) {
-				mav.addObject("p_num", svo.getP_num());
-				mav.setViewName("mypage/stadiumForm");
+				model.addAttribute("p_num", svo.getP_num());
+				url = "/mypage/stadiumForm.do";
 			} else {
-				mav.setViewName("mypage/modifyLogin");
+				url = "/mypage/placeChoice.do";
 			}
 		} else {
-			mav.addObject("errCode", 1);
-			mav.setViewName("mypage/stadiumForm");
+			model.addAttribute("errCode", 1);
+			model.addAttribute("p_num", svo.getP_num());
+			url = "/mypage/stadiumForm.do";
 		}
-		return mav;
+		return "redirect:" + url;
 		
 	}
 	
