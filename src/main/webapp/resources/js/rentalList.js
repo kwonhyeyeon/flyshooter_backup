@@ -150,9 +150,7 @@ $(document).ready(function(){
 			
 			return;
 		});
-		
-		
-	
+
 });
 	
 		// 대여된 아이템에 관하여 상태변경 함수
@@ -259,7 +257,6 @@ $(document).ready(function(){
 				dialogClass: 'custom-dialog-style',
 				open:function(event, ui){
 					$(".ui-dialog-titlebar-close", $(this).parent()).hide();
-					
 					// 모달 오버레이 설정
 	                $(".ui-widget-overlay").css({
 	                    opacity: 0.5,
