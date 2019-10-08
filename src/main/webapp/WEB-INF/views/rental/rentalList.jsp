@@ -10,7 +10,7 @@
 <title>FLY SHOOTER</title>
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <!-- datepicker -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- datepicker -->
 <link rel="stylesheet" href="/resources/css/reset.css" />
