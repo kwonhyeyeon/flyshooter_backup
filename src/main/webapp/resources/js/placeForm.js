@@ -57,7 +57,7 @@ function placeCheck(){
 	
 	var re = /^[가-힣]{2,10}$/; // 구장이름, 구장, 예금주명
 	var re2 = /^[0-9]{1,20}$/;// 계좌번호, 사업자 번호
-	
+	var re3 = /^\d{2,3}-\d{3,4}-\d{4}$/;// 구장 전화 번호 정규식
 	
 	var pname = document.getElementById("p_name");
 	var pceo =  document.getElementById("p_ceo");
@@ -65,15 +65,16 @@ function placeCheck(){
 	var pphone = document.getElementById("p_phone");
 	var paccount = document.getElementById("p_account");
 	var paccountnum = document.getElementById("p_account_num");
+	alert('111');
 	//체크여부
-	
 	if(!check(re, pname, "구장명 한글 2~10자 형식에 맞춰주세요")){  
 		return false;
 	}
 	if(!check(re, pceo, "대표자명 한글 2~10자 맞춰주세요")){
 		return false;
 	}
-	if(!check(re2, pphone, "핸드폰 번호를 형식에 맞춰주세요")){
+	if(!check(re3, pphone, "전화 번호를 형식에 맞춰주세요")){
+		alert('222');
 		return false;
 	}
 	if(!check(re2, pnum, "사업자번호 형식에 맞춰주세요")){
@@ -154,31 +155,6 @@ function placeCheck(){
 		if(txt2.value == ""){
 			alert("부동산종합공부 넣어주세요");
 			txt.focus();
-			return false;
-		}
-	}
-	
-	//file(p_register)type(gif, png, jpg) 제어 -> 사업등록증
-	if($("#p_register").val()!= ""){
-		var ext = $('#p_register').val().split('.').pop().toLowerCase();
-		if($.inArray(ext,['gif','png','jpg']) == -1){
-			alert('사업자등록증은 gif, png, jpg 파일만 업로드 가능');
-			return false;
-		}
-	}
-	//file(p_account_copy)type(gif, png, jpg) 제어 -> 통장사본
-	if($("#p_account_copy").val()!= ""){
-		var ext = $('#p_account_copy').val().split('.').pop().toLowerCase();
-		if($.inArray(ext,['gif','png','jpg']) == -1){
-			alert('통장사본은 gif, png, jpg 파일만 업로드 가능');
-			return false;
-		}
-	}
-	//file(p_property)type(gif, png, jpg) 제어 -> 부동산종합공부 
-	if($("#p_property").val()!= ""){
-		var ext = $('#p_property').val().split('.').pop().toLowerCase();
-		if($.inArray(ext,['gif','png','jpg']) == -1){
-			alert('부동산종합공부은 gif, png, jpg 파일만 업로드 가능');
 			return false;
 		}
 	}
