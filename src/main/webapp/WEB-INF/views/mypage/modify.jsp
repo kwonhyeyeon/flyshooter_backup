@@ -55,9 +55,9 @@
 								<option value="019">019</option>
 							</select>
 							
-							<input type="text" id="m_phone1" name="m_phone1" placeholder="전화번호">
+							<input type="text" id="m_phone1" name="m_phone1" value="${m_phone1}">
 								
-							<input type="text" id="m_phone2" name="m_phone2" placeholder="전화번호">
+							<input type="text" id="m_phone2" name="m_phone2" value="${m_phone2}">
 						</div>
 					</div>
 					
@@ -75,4 +75,9 @@
 	</div>
 	
 </body>
+<script type="text/javascript">
+	$(document).ready(function() {
+	    $("#m_phone0").val('${m_phone0}');
+	});
+</script>
 </html>
