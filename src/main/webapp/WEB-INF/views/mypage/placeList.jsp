@@ -52,7 +52,14 @@
 									<td>${place.p_ceo}</td>
 									<td>${place.p_address}</td>
 									<td>${place.p_phone}</td>
-									<td>${place.p_ok}</td>
+									<td>
+									<c:if test="${place.p_ok eq 0}">
+									승인 대기
+									</c:if>
+									<c:if test="${place.p_ok eq 1}">
+									승인 완료
+									</c:if>
+									</td>
 								</tr>
 							</c:forEach>
 						</c:when>
