@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>FLY SHOOTER</title>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
 <script type="text/javascript" src="/resources/js/stadiumList.js"></script>
@@ -80,10 +80,18 @@
 				
 				<div id="dialog">
 					<form id="itemInsertForm">
-				      	<input type="hidden" id="modalP_num" name="p_num"/>
-				        <label>용품명<input type="text" id="modalI_name" name="i_name" /></label><br />
-				        <label>가 격<input type="text" id="modalI_rental_fee" name="i_rental_fee" /></label>
-				      </form>  
+						<input type="hidden" id="modalP_num" name="p_num"/>
+						<table class="detailTbl">
+							<tr>
+								<th>용품명</th>
+								<td><input type="text" id="modalI_name" name="i_name" /></td>
+							</tr>
+							<tr>
+								<th>가 격</th>
+								<td><input type="text" id="modalI_rental_fee" name="i_rental_fee" /></td>
+							</tr>
+						</table>
+				    </form>  
 				</div>
 
 			</section>
