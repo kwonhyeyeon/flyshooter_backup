@@ -95,14 +95,14 @@ function stadiumCheck() {
 // 이미지 프리뷰
 $(function() {
     function maskImgs() {
-        $(".img-wrapper img").imagesLoaded({}, function() {
+        //$(".img-wrapper img").imagesLoaded({}, function() {
 	        $.each($(".img-wrapper img"), function(index, img) {
 	            var src = $(img).attr("src");
 	            var parent = $(img).parent();
 	            parent.css("background", "url(" + src + ") no-repeat center center").css("background-size", "cover");
 	            $(img).remove();
 	        });
-        });
+       //});
     }
 
     var preview = {
