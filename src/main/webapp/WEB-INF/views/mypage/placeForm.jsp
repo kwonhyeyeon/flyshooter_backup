@@ -25,14 +25,6 @@
 			<h2 class="articleTit">구장 등록</h2>
 			
 			<section class="itemArea">
-			
-				<form name="p_placeForm" id="p_placeForm" action="/mypage/placeInsert.do" method="post">
-				
-				</form>
-			
-			</section>
-			
-			<div class="placeForm">
 				<form name="p_placeForm" id="p_placeForm" action="/mypage/placeInsert.do" method="post">
 				
 					<table class="detailTbl">
@@ -53,7 +45,7 @@
 						</tr>
 						<tr>
 							<th>구장 전화번호</th>
-							<td><input type="text" name="p_phone" id="p_phone" placeholder="(-) 미 포함 작성" /></td>
+							<td><input type="text" name="p_phone" id="p_phone" placeholder="(-) 포함 작성" /></td>
 						</tr>
 						<tr>
 							<th>구장 주소</th>
@@ -224,7 +216,7 @@
 					</div>
 				 						   
 				</form>
-			</div>
+			</section>
 		</article>
 			
 		<jsp:include page="../templates/footer.jsp" flush="true" />
