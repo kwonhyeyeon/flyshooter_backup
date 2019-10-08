@@ -727,14 +727,15 @@ footer#footer-wrap {
 	height:55px;
 	line-height:55px;
 	display:flex;
-	align-items:center;
+	justify-content:flex-start;
+	align-content:center;
 	border-bottom:1px solid #dedede;
 }
 .modalToggle ul li:last-child {
 	border-bottom:none;
 }
 .modalToggle ul li span {
-	width:100px;
+	width:150px;
 	font-size:16px;
 }
 .ui-widget-content {
