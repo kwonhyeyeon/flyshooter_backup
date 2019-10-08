@@ -130,7 +130,7 @@
 		
 		<h2 class="articleTit">용병모집</h2>
 	
-		<section id="itemArea">		
+		<section class="itemArea">		
 
 			<form id="recruitData" class="boardForm">
 				<input type="hidden" name="m_id" id="m_id" value="${mvo.m_id}">

@@ -144,6 +144,7 @@
 							<th>구장 상태</th>
 							<td>
 								<select name="p_status" id="p_status" id="p_status">
+									<option value="0" disabled>운영전</option>
 									<option value="1">운영중</option>
 									<option value="2">임시휴업</option>
 									<option value="3">폐업</option>

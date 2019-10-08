@@ -10,7 +10,7 @@
 <title>FLY SHOOTER</title>
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <!-- datepicker -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- datepicker -->
 <link rel="stylesheet" href="/resources/css/reset.css" />
@@ -48,7 +48,7 @@
 			</div>
 			<!-- 구장명, 날짜 선택 -->
 			
-			<section id="itemArea">
+			<section class="itemArea">
 				<p class="infotext">※ 온라인 예약일 경우 환불 요청 / 오프라인 대관일 경우 예약 취소 기능만 이용하실 수 있습니다.</p>
 				<p class="infotext">※ 리스트 클릭 시 상세 정보를 확인할 수 있습니다.</p>
 				

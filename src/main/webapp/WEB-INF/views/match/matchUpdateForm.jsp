@@ -147,7 +147,7 @@
 		
 			<h2 class="articleTit">매치 수정</h2>
 			
-			<section id="itemArea">
+			<section class="itemArea">
 				
 				<form id="matchUpdateData" class="boardForm">
 				
