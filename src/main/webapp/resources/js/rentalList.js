@@ -257,7 +257,6 @@ $(document).ready(function(){
 				dialogClass: 'custom-dialog-style',
 				open:function(event, ui){
 					$(".ui-dialog-titlebar-close", $(this).parent()).hide();
-					
 					// 모달 오버레이 설정
 	                $(".ui-widget-overlay").css({
 	                    opacity: 0.5,
