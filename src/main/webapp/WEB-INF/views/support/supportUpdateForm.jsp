@@ -106,7 +106,7 @@
 		
 		<h2 class="articleTit">용병지원(수정)</h2>
 
-		<section id="itemArea">
+		<section class="itemArea">
 		
 			<form id="supportUpdateData" class="boardForm">
 			

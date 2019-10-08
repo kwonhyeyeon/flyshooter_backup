@@ -149,7 +149,7 @@
 		
 			<h2 class="articleTit">용병모집 수정 </h2>
 		
-			<section id="itemArea">
+			<section class="itemArea">
 			
 					<form id="recruitUpdateData" class="boardForm">
 					

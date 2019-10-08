@@ -105,7 +105,7 @@
 		
 		<h2 class="articleTit">용병지원</h2>
 		
-		<section id="itemArea">
+		<section class="itemArea">
 		
 			<form id="supportData" class="boardForm">
 				<input type="hidden" name="m_id" id="m_id" value="${mvo.m_id}">
