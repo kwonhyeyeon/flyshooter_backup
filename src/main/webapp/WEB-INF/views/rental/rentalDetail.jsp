@@ -15,6 +15,7 @@
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/myRentalList.js"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.flexslider.js"></script>
 <script>
 	function goPage(page){
 		$("#page").val(page);
@@ -41,20 +42,9 @@
 			<h2 class="articleTit">나의 예약 정보</h2>
 			
 			<section class="itemArea rentalInfo">
-				
-				<section class="placeInfo">
-					<div class="stadiumImgArea">
-						경기장img
-					</div>
-					
-					<div>
-						<h3>구장 소개</h3>
-						${data.p_intro }
-					</div>
-				</section>
-				
 				<input type="hidden" id="r_reserve_date" value="${data.r_reserve_date }" />
 				<input type="hidden" id="r_total_pay" value="${data.r_total_pay }" />
+				
 				<table class="detailTbl">
 					<tr>
 						<th>구장명</th>
@@ -67,15 +57,6 @@
 					<tr>
 						<th>구장 전화번호</th>
 						<td>${data.p_phone }</td>
-					</tr>
-					
-					<tr>
-						<td colspan="2" class="blank"></td>
-					</tr>
-					
-					<tr>
-						<th>총 결제 금액</th>
-						<td>${data.r_total_pay }</td>
 					</tr>
 					
 					<tr>
@@ -136,14 +117,32 @@
 					<tr>
 						<th>환불 규정</th>
 						<td>
-							이용 11일전 : 취소 수수료 없음<br />
-							이용 6 ~ 10일전 : 총 결제금액의 30% 차감 <br />
-							이용 2 ~ 5일전 : 총 결제금액의 40% 차감 <br />
-							이용 1일전 : 총 결제금액의 50% 차감<br />
-							이용 당일 : 취소 불가 
+							<div class="notice nomargin">
+								<p>이용 11일 전 : 취소 수수료 없음</p>
+								<p>이용 6 ~ 10일 전 : 총 결제 금액의 30% 차감</p>
+								<p>이용 2 ~ 5일 전 : 총 결제 금액의 40% 차감</p>
+								<p>이용 1일 전 : 총 결제 금액의 50% 차감</p>
+								<p>이용 당일 : 취소 불가 </p>
+							</div>
 						</td>
-					</tr>		
+					</tr>
 				</table>
+				
+				<section class="placeInfo">
+					<div class="slide-wrap">
+			            <ul class="slides">
+				            <li><img src="/resources/img/no_img.png"></li>
+				            <li><img src="/resources/img/no_img.png"></li>
+				            <li><img src="/resources/img/no_img.png"></li>
+			            </ul>
+		            </div>
+		            <!--photo-slide-->
+		            
+		            <h3 class="calTit">구장 소개</h3>
+		            <div class="notice"><p>${data.p_intro }</p></div>
+		            
+
+				</section>
 			
 			</section>
 			
@@ -168,4 +167,14 @@
 	</div>
 		
 </body>
+<script type="text/javascript">
+    $(window).load(function(){
+      $(".slide-wrap").flexslider({
+        animation: "slide",
+        pauseOnHover:true,
+        start: function(slider){
+        }
+      });
+    });
+</script>
 </html>

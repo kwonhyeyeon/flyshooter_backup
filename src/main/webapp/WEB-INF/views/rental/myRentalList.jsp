@@ -27,7 +27,7 @@
          <h2 class="articleTit">나의 예약 현황</h2>
          
          <section class="itemArea">
-	         <form id="myRentalList" style="display: none">
+	         <form id="myRentalList">
 	            <input type="hidden" name="page" value="${data.page }" />
 	            <input type="hidden" name="r_no" id="r_no"/>
 	         </form>

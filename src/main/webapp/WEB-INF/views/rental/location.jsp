@@ -16,47 +16,40 @@
 <script>
 $(document).ready(function(){ 
 	
-	
 	if("${rental_message}"){
 		alert("${rental_message}");
 		location.href = "/user/rental/location.do";
-}
-
+	}
 	
 });
-
 </script>
 </head>
 <body>
+
 	<div id="wrapper">
 
 		<jsp:include page="../templates/header.jsp" flush="true" />
 		
-		
-		
 		<article id="contents">
+		
+			<h2 class="articleTit">지역 검색</h2>
+			
 			<form action="/user/rental/placeList.do" method="get">
-				<table border="1">
-					<tr>
-						<td>지역검색</td>
-					</tr>
+			
+				<div class="location">
+					<input type="text" class="area" name="area" placeholder="지역명" />
 					
-					<tr>
-						<td><input type="text" name="area" /></td>
-					</tr>
+					<%-- <c:if test="${not empty message }">
+						<p>${message}</p>
+					</c:if> --%>
 					
-					<c:if test="${not empty message }">
-						<tr>
-							<td><span style="color: red">${message }</span></td>
-						</tr>
-					</c:if>
-					
-					<tr>
-						<td><input type="submit" /></td>
-					</tr>
-				</table>
+					<input type="submit" value="검색" class="activeBtn" />
+				</div>
+				
 			</form>
+			
 		</article>
+		
 		<jsp:include page="../templates/footer.jsp" flush="true" />
 		
 	</div>

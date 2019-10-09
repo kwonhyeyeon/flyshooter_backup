@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FLY SHOOTER</title>
+<title>Insert title here</title>
 <link rel="stylesheet"  href="/resources/css/reset.css" />
 <link rel="stylesheet"  href="/resources/css/style.css" />
 
@@ -17,63 +17,50 @@
 <script type="text/javascript" src="/resources/js/rentalStadium.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtzXWTJTZ4tnfXjE2yVo3YjQndGozENJQ&callback=initMap"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
-<script type="text/javascript" src="/resources/js/jquery.flexslider.js"></script>
+
 
 </head>
 <body>
 	<div id="wrapper">
+
 		
 		<jsp:include page="../templates/header.jsp" flush="true" />
-		
 		<article id="contents">
-		
-			<h2 class="articleTit">경기장 예약</h2>
-			
-			<section class="itemArea rentalInfo">
-			
-				<table class="detailTbl">
-					<tr>
-						<th>구장명</th>
-						<td>${ pvo.p_name }</td>
-					</tr>
-					<tr>
-						<th>구장 주소</th>
-						<td>${ pvo.p_address }</td>
-					</tr>
-					<tr>
-						<th>구장 전화번호</th>
-						<td>${ pvo.p_phone }</td>
-					</tr>
-					<tr>
-						<th>영업 시간</th>
-						<td>${ pvo.p_open } ~ ${ pvo.p_close } 시</td>
-					</tr>
-					
-					<tr>
-						<th>환불 규정</th>
-						<td>
-							<div class="notice nomargin">
-								<p>이용 11일 전 : 취소 수수료 없음</p>
-								<p>이용 6 ~ 10일 전 : 총 결제 금액의 30% 차감</p>
-								<p>이용 2 ~ 5일 전 : 총 결제 금액의 40% 차감</p>
-								<p>이용 1일 전 : 총 결제 금액의 50% 차감</p>
-								<p>이용 당일 : 취소 불가 </p>
-							</div>
-						</td>
-					</tr>
-				</table>
+		<!-- 경기장 예약 -->
+		<div class="stadiumRental">
+			<div class="stadiumInfo">
 				
-				<section class="placeInfo">
-					<div class="slide-wrap">
-						<ul class="slides">
-					    	<li><img src="/resources/img/noimg.jpg"></li>
-					    	<li><img src="/resources/img/noimg.jpg"></li>
-					    </ul>
-				    </div>
-			    </section>
-			</section>
-			
-			<!-- <article id="map"> 
+				<div>
+					<article class="stadiumImg">
+						<ul class="slider">
+						    <li>
+						        <input type="radio" id="slide1" name="slide" checked>
+						        <label for="slide1"></label>
+						        <img src="/resources/img/default_img.jpg" alt="Panel 1">
+						    </li>
+						</ul>
+					</article>
+					<br />
+					<br />
+					<!-- 구장정보 -->
+					<article id="placeInfo">
+						[구장정보]
+						 <br />
+						 ${ pvo.p_name }
+						 <br />
+						 ${ pvo.p_address }
+						 
+						 <br />
+						 ${ pvo.p_phone }
+						 <br />
+						 [영업시간]
+						 <br />
+						 ${ pvo.p_open } ~ ${ pvo.p_close }(시)
+					</article>
+					
+					<br />
+					<br />
+					<article id="map"> 
 					 <script>
 					 	
 					      function initMap() {
@@ -89,10 +76,15 @@
 					      }
 				    </script>
 					
-					</article> -->
-			
-	<!-- 경기장 예약 -->
-	<div class="stadiumRental">
+					</article>
+					
+					<!-- 이용약관 -->
+					<article id="termsOfService">
+						[환불규정및 이용약관 include예정]						
+					</article>
+				</div>				
+
+			</div>
 		
 			<div class="stadiumCal">
 			
@@ -248,14 +240,4 @@
 		
 	</div>
 </body>
-<script type="text/javascript">
-    $(window).load(function(){
-      $(".slide-wrap").flexslider({
-        animation: "slide",
-        pauseOnHover:true,
-        start: function(slider){
-        }
-      });
-    });
-</script>
 </html>
