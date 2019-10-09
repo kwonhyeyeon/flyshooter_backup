@@ -257,9 +257,24 @@
 /* contents end */
 
 /* contents section start */
-#itemArea {
+.itemArea {
 	width:100%;
 	margin-bottom:50px;
+}
+.itemArea.rentalInfo {
+	display:flex;
+	justify-content:space-between;
+	
+}
+.itemArea.rentalInfo table {
+	width:50%;
+}
+.placeInfo {
+	width:50%;
+	border:1px solid #dedede;
+	display:flex;
+	flex-direction:column;
+	align-content:space-between;
 }
 p.infotext {
 	color:#f00;
@@ -1068,7 +1083,8 @@ ul.tabs li.active a {
 	letter-spacing:-10px;
 }
 .pagination a.is-active {
-	background:#E0E3DA;
+	background:#8FBC94;
+	color:#fff;
 	border-radius:100%;
 	font-weight:bold;
 }

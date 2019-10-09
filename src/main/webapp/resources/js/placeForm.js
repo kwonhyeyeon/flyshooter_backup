@@ -65,7 +65,6 @@ function placeCheck(){
 	var pphone = document.getElementById("p_phone");
 	var paccount = document.getElementById("p_account");
 	var paccountnum = document.getElementById("p_account_num");
-	alert('111');
 	//체크여부
 	if(!check(re, pname, "구장명 한글 2~10자 형식에 맞춰주세요")){  
 		return false;
@@ -261,7 +260,6 @@ function checking(){
 	var ad3 = $("#sample6_detailAddress").val();
 	var ad4 = $("#sample6_extraAddress").val();
 	var address = ad1+"*"+ad2+"*"+ad3+"*"+ad4;
-	alert(address);
 	$("#p_address").val(address);
 	return true;
 }
