@@ -24,6 +24,7 @@
 			location.href = "/admin/login.do";
 	}
 		
+		// 세션에 로그인정보가 있을경우 main페이지로 이동.	
 		if("${adminId}"){
 			location.href = "/admin/main.do";
 	}
@@ -58,12 +59,12 @@
 									</tr>
 									<tr>
 										<td>비밀번호</td>
-										<td><input type="password" name="adminPw" id="adminPw" required /></td>
+										<td><input type="password" name="adminPw" id="adminPw" /></td>
 									</tr>
 					            </table>
 					            
 					            <div>
-					                <p class="error_msg"></p><!-- error_txt -->
+					                <p class="error_msg" style="color:red;">${error_msg }</p><!-- error_txt -->
 					            </div>
 					
 					            <button type="submit" class="login">로그인</button>
