@@ -28,7 +28,7 @@
 	<aop:aspectj-autoproxy />
 	
 	
-	<!-- 로그인 상태를 확인하는 aop -->
+	<!-- 관리자의 로그인 상태를 확인하는 aop -->
 	<beans:bean id="adminLog" class="com.fly.admin.logadvice.LoggingAdvice"></beans:bean>
 	<aop:config>
 		<aop:pointcut expression="execution(* com.fly.admin..*Controller.*Chk(..))" id="adminLoginChk"/>

@@ -334,7 +334,7 @@ function drawChart(arr, column, title, index) {
           viewWindowMode:'explicit',
           viewWindow: {
               min: 0,
-              max: 1000
+              max: 100
           },
       },
       width: 750,

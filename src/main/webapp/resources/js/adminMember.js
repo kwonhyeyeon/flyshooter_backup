@@ -1,11 +1,17 @@
 /**
  * 
  */
+
+
 $(document).ready(function(){
+	
+	var chk = '';
+	
 	// 회원 상태 변경 버튼 클릭 시
 	$(".memberEdit").click(function() {
 		
 		var index = $(".memberEdit").index(this);
+		chk = $(".m_status:eq("+index+")").val();
 		setTd(index);
 	});
 	
@@ -15,6 +21,14 @@ $(document).ready(function(){
 		
 		var index = $(".goUpdate").index(this);
 		setUpdateForm(index);
+		
+		var changeChk =  $(".m_status:eq("+index+")").val();
+		
+		// 회원상태 변경없이 저장버튼이 눌렸을경우
+		if( chk == changeChk ){
+			alert("회원상태가 변경되지 않았습니다.");
+			return;
+		}
 		
 		if(confirm("수정하시겠습니까 ? ")){
 			

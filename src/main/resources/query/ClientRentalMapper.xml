@@ -24,23 +24,36 @@
 
 	<!-- 대관 리스트 -->
 	<select id="rentalList" parameterType="hashmap" resultType="rental" >
-		SELECT r.m_id, r.r_no, m.m_name r_bank, m.m_phone r_account,
-				 r.r_start, s.s_hours cal_status,
-				  (select count(*) from items_rental where r_no = r.r_no) refund, r.r_pay_status, 
-				  to_char(r.r_regdate, 'yyyy-MM-dd') r_regdate, r.r_total_pay,
-				CASE
+		SELECT r.m_id
+				, r.r_no
+				, m.m_name r_bank
+				, m.m_phone r_account
+				,r.r_start
+				, s.s_hours cal_status
+				,(SELECT count(*) 
+				  FROM items_rental 
+					WHERE r_no = r.r_no) refund
+				, r.r_pay_status
+				,to_char(r.r_regdate, 'yyyy-MM-dd') r_regdate
+				, r.r_total_pay
+				,CASE
                     WHEN to_char(r.r_reserve_date, 'yyyy-MM-dd') <![CDATA[ > ]]> to_char(sysdate, 'yyyy-MM-dd') THEN -1
-                    WHEN (select count(*) from items_rental where r_no = r.r_no and ir_return_status = 1) <![CDATA[  > ]]> 0 THEN 1
+                    WHEN (SELECT count(*) 
+                    		FROM items_rental 
+                    		WHERE 1 = 1
+                    				and r_no = r.r_no 
+                    				and ir_return_status = 1) <![CDATA[  > ]]> 0 THEN 1
                     else 2
-				END r_pay_type
+					END r_pay_type
 				  
 				  
 		FROM rental r, member m, stadium s
-		WHERE r.m_id = m.m_id 
+		WHERE 	1 = 1
+				and r.m_id = m.m_id 
 				and r.s_no = s.s_no  
-					and r.r_pay_status in(1, 0, 2) 
-						and r.s_no = #{s_no}  
-							and to_char(r.r_reserve_date, 'yyyy-MM-dd') = #{selectDay}
+				and r.r_pay_status in(1, 0, 2) 
+				and r.s_no = #{s_no}  
+				and to_char(r.r_reserve_date, 'yyyy-MM-dd') = #{selectDay}
 		ORDER BY to_number(r.r_start) asc
 	</select>
 	
