@@ -72,8 +72,8 @@ google.charts.setOnLoadCallback(drawChart);
 			
 				<div id="tab-wrapper">
 				    <ul class="tabs">
-				        <li class="active" rel="tab1">대관건수</li>
-				        <li rel="tab2">매출</li>
+				        <li class="active insub" rel="tab1">대관건수</li>
+				        <li class="insub" rel="tab2">매출</li>
 				    </ul>
 				    <div class="tab-container">
 				        <div id="tab1" class="tab-content"><div id="line_top_x"></div></div>

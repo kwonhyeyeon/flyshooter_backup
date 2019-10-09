@@ -74,6 +74,18 @@ public class UserRentalDaoImpl implements UserRentalDao {
 		return sqlSession.selectOne(NAME_SPACE + ".selectImg", s_no);
 	}
 
+	@Override
+	public long selectReservationMinutes(String overlapKey) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAME_SPACE + ".selectReservationMinutes", overlapKey);
+	}
+
+	@Override
+	public int updateReservation_minutes(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(NAME_SPACE + ".updateReservationMinutes", map);
+	}
+
 
 }
 

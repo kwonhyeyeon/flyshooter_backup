@@ -34,4 +34,10 @@ public interface UserRentalDao {
 	
 	// 경기장 이미지 select
 	public StadiumVO selectStadiumImg(int s_no);
+	
+	// 예약data insert전 해당 예약건의 진행이 시작된 시간을 조회
+	public long selectReservationMinutes(String overlapKey);
+	
+	// 중복예약 방지 - 같은 사람일경우 시간 update
+	public int updateReservation_minutes(HashMap<String, Object> map);
 }

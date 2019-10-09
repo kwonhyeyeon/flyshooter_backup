@@ -122,4 +122,29 @@ public class UserRentalServiceImpl implements UserRentalService {
 		return userRentalDao.selectStadiumImg(s_no);
 	}
 
+	@Override
+	public boolean reservationChk(String overlapKey) {
+		// TODO Auto-generated method stub
+		boolean chk = false;
+		long now_minutes = (System.currentTimeMillis() / (1000*60));
+		
+		if( now_minutes - userRentalDao.selectReservationMinutes(overlapKey) >= 5) chk = true;
+		
+		return chk;
+	}
+
+	@Override
+	public int updateReservation_minutes(String overlapKey) {
+		// TODO Auto-generated method stub
+		
+		long time = System.currentTimeMillis(); 
+		long minutes = (time / (1000*60));
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("overlapKey", overlapKey);
+		map.put("minutes", minutes);
+		
+		return userRentalDao.updateReservation_minutes(map);
+	}
+
 }
