@@ -86,7 +86,6 @@
       
 </body>
 <script>
-<<<<<<< HEAD
 	function goPage(page){
 		$("#page").val(page);
 		$("#f_search").attr({
@@ -97,23 +96,8 @@
 		$("#f_search").submit();
 	}
 	
-	if("${massage}"){
-		alert("${massage}");
-	}
-=======
-   function goPage(page){
-      $("#page").val(page);
-      $("#f_search").attr({
-         "method":"get",
-         "action":"/user/rental/myRentalList.do"
-      });
-      
-      $("#f_search").submit();
-   }
-   
    if("${massage}"){
       alert("${massage}");
    }
->>>>>>> 547f3cb547169f2e9ea69fe9536442c535d042ef
 </script>
 </html>
