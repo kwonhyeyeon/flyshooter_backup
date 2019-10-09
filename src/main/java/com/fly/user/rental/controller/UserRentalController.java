@@ -249,6 +249,8 @@ public class UserRentalController {
    public String rentalDetail_LoginChk(Model model, @RequestParam("r_no") int r_no, 
 		   @RequestParam("page") String page, HttpServletRequest request) {
 	   
+	   
+	   
 	   model.addAttribute("data", userRentalService.showDetail(r_no));
 	   model.addAttribute("page", page);
 	   model.addAttribute("itemsList", itemsRentalService.getItemsRentalList(r_no));

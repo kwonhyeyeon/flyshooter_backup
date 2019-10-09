@@ -79,8 +79,6 @@
 		
 </body>
 <script>
-
-	
 	function goPage(page){
 		$("#page").val(page);
 		$("#f_search").attr({
