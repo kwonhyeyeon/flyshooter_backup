@@ -119,6 +119,12 @@ input {
 	appearance:none;
 	border:1px solid #dedede;
 }
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance:none;
+    appearance:none;
+    margin:0;
+}
 label {
 	display:block;
 }

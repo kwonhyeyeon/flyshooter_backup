@@ -276,6 +276,7 @@
 .itemArea.rentalInfo {
 	display:flex;
 	justify-content:space-between;
+	margin-bottom:30px;
 }
 .itemArea.rentalInfo table {
 	width:580px;
@@ -525,6 +526,7 @@ h3.calTit {
 	justify-content:space-between;
 }
 .tblBtnArea a.active,
+.tblBtnArea button.active,
 .tblBtnArea.space-between a,
 .tblBtnArea.space-between button {
 	display:inline-block;
@@ -561,13 +563,13 @@ h3.calTit {
 
 #selectTime {
 	display:flex;
-	justify-content:space-between;
-	align-content:flex-start;
+	justify-content:flex-start;
 	flex-wrap:wrap;
 	width:100%;
 	margin:40px 0;
 }
-#selectTime p {
+#selectTime p,
+#selectItem p {
 	width:100%;
 	text-align:center;
 	font-size:18px;
@@ -592,6 +594,7 @@ h3.calTit {
 	font-weight:bold;
 	align-items:center;
 	position:relative;
+	margin-right:15px;
 }
 #selectTime input + label:hover {
 	border:1px solid #8FBC94;
@@ -608,6 +611,90 @@ h3.calTit {
 }
 #selectTime input:disabled + label:hover {
 	border:1px solid #dedede;
+}
+
+#selectItem {
+	width:100%;
+	text-align:center;
+	display:none;
+}
+#selectItem #showItems,
+#selectItem #hideItems {
+	width:200px;
+	height:50px;
+	line-height:50px;
+	text-align:center;
+	font-size:18px;
+	font-weight:bold;
+	color:#fff;
+	background:#8FBC94;
+	border:none;
+}
+#selectItem #hideItems {
+	margin-top:30px;
+}
+
+#rentalItems {
+	display:none;
+	width:100%;
+}
+#rentalItems .calTit {
+	text-align:left;
+}
+.stadiumCal {
+	display:flex;
+	flex-direction:column;
+	align-items:flex-end;
+	margin-top:50px;
+}
+.stadiumCal p,
+.stadiumCal p span {
+	font-size:20px;
+	font-weight:bold;
+	line-height:28px;
+}
+.stadiumCal p.marginTop {
+	margin-top:10px;
+}
+.stadiumCal p span#totalMoney {
+	color:#1565C0;
+}
+#goRentalBtn {
+	display:none;
+}
+#accountTransfer {
+	margin-top:20px;
+}
+.totalPrice {
+	font-size:20px;
+	font-weight:bold;
+	margin-top:20px;
+	text-align:right;
+}
+.totalPrice span {
+	color:#1565C0;
+}
+#creditCard {
+	display:none;
+	margin-top:20px;
+}
+#creditCard .selectArea {
+	justify-content:flex-start;
+	padding-left:0;
+}
+#creditCard .selectArea select {
+	margin-left:0;
+}
+.cardArea {
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+}
+.cardArea input {
+	width:150px;
+	height:20px;
+	line-height:20px;
+	padding:10px;
 }
 
 .boardArea {
@@ -802,8 +889,13 @@ footer#footer-wrap {
 	border-radius:0;
 	border:1px solid #ebebeb;
 	padding:8px 70px 8px 10px;
-	background:url(/resources/img/select-arrow.png) no-repeat 80%;
+	background:url(/resources/img/select-arrow.png) no-repeat 85%;
 	margin-left:10px;
+}
+.selectArea select:disabled {
+	cursor:default;
+	background-image:url(/resources/img/select-arrow.png) no-repeat 85%;
+	background-color:#eee;
 }
 .selectArea input {
 	padding:8px 25px;
@@ -1425,19 +1517,19 @@ input[type="file"]::-webkit-file-upload-button {
 /* slider */
 .slide-wrap {
 	width:580px;
-  	height:400px;
+  	height:410px;
   	position:relative;
   	zoom:1;
   	margin-bottom:30px;
   	overflow:hidden;
-  	background-position:center center;
-	background-size:cover;
-	background-repeat:no-repeat;
-	background-image:url(/resources/img/noimg.jpg);
-
+  	border:1px solid #dedede;
+/*   	background-image:url(/resources/img/noimg.jpg); */
+/*   	background-repeat:none; */
+/*   	background-position:center; */
+/*   	background-size:cover; */
 }
 .slide-wrap .flex-viewport {
-    max-height:400px;
+    max-height:412px;
 }
 .slide-wrap .slides {
   zoom:1;
@@ -1448,13 +1540,16 @@ input[type="file"]::-webkit-file-upload-button {
   	display:none;
   	-webkit-backface-visibility:hidden;
 }
+.slide-wrap .slides > li.clone {
+	display:none;
+}
 .slide-wrap .slides > li img {
-  -webkit-user-drag:none;
-  user-drag:none;
+/*   -webkit-user-drag:none; */
+/*   user-drag:none; */
   width:100%;
   display:block;
-
 }
+
 /* Direction Nav */
 .slide-wrap .flex-direction-nav {
   height:0;

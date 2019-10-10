@@ -85,7 +85,7 @@ $(document).ready(function() {
 	// 경기장 승인
 	$("#accept").click(function() {
 		
-		alert("경기장을 등록하시겠습니까?");
+		if (confirm("경기장을 등록하시겠습니까?")){
 		
 		var pok = $("#actok").val();
 		var pstatus = $("#actstatus").val();
@@ -97,6 +97,7 @@ $(document).ready(function() {
 			stdmAct();
 		}
 		
+	}
 	});
 	
 });

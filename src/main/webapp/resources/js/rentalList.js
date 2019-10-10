@@ -28,7 +28,7 @@ $(document).ready(function(){
     });
 
     // 초기값을 오늘 날짜로 설정
-	$("#datepicker").datepicker("setDate", "today");
+	// $("#datepicker").datepicker("setDate", "today");
 	
 	getList();
 	
