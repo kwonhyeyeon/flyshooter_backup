@@ -126,7 +126,11 @@ public class MakeListUtils {
 			SShtml.append(Slist.get(i).getS_people());
 			SShtml.append("</td>");
 			SShtml.append("<td>");
-			SShtml.append(Slist.get(i).getS_status());
+			if (Slist.get(i).getS_status() == 1) {
+				SShtml.append("승인 완료");
+			}else {
+				SShtml.append("미 승인");
+			}
 			SShtml.append("</td>");
 			SShtml.append("</tr>");
 		}

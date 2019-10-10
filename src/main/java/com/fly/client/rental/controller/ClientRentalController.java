@@ -228,7 +228,8 @@ public class ClientRentalController {
 			@ModelAttribute MemberVO mvo, 
 			@ModelAttribute PlaceVO pvo,
 			HttpSession session,
-			Model model) {
+			Model model,
+			HttpServletRequest request) {
 
 		System.out.println("getRefundList 호출 성공");
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");
