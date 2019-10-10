@@ -85,12 +85,14 @@
                 </table>
             </section>
             
-            <p id="hyhy"></p>
-            
-            <div id="map" style="width:100%; height:400px;"></div>
-            <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da43d0a0a184b28771f351e5ea71df3&libraries=services"></script>
+            <div id="map" style="width:100%; height:400px; margin-bottom:50px;"></div>
+            <!-- services 라이브러리 불러오기 -->
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f706d5a384eb0508472eddd23b44d733&libraries=services"></script>
             <script>
+            //var address = $("#adrsText").replace("*");
+            var add = "${ pvo.p_address }";
+            var addressText = add.split("*");
+            
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			    mapOption = {
 			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -103,9 +105,8 @@
 			// 주소-좌표 변환 객체를 생성합니다
 			var geocoder = new kakao.maps.services.Geocoder();
 			
-			var address_start = $("#hyhy").text();
 			// 주소로 좌표를 검색합니다
-			geocoder.addressSearch(address_start, function(result, status) {
+			geocoder.addressSearch(addressText[1], function(result, status) {
 			
 			    // 정상적으로 검색이 완료됐으면 
 			     if (status === kakao.maps.services.Status.OK) {

@@ -156,31 +156,6 @@ public class UserRentalController {
 			result.append("null");
 		}
 
-//	   try {
-//		   svo.toString();
-//	   }catch(NullPointerException e) {
-//		   result.append("Empty");
-//		   return result.toString();
-//	   }
-//	   
-//	   if(!(svo.getS_img1() == null)) {
-//		   result.append("<li><img src='/uploadStorage/image1/");
-//		   result.append(svo.getS_img1());
-//		   result.append("' /></li>");
-//	   }
-//			   
-//	   if(!(svo.getS_img2() == null)) {
-//		   result.append("<li><img src='/uploadStorage/image2/");
-//		   result.append(svo.getS_img2());
-//		   result.append("' /></li>");
-//	   }
-//	   
-//	   if(!(svo.getS_img3() == null)) {
-//		   result.append("<li><img src='/uploadStorage/image3/");
-//		   result.append(svo.getS_img3());
-//		   result.append("' /></li>");
-//	   }
-
 		return result.toString();
 	}
 

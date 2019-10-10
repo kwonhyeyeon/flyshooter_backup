@@ -9,11 +9,6 @@ function comma(str) {
 
 $(document).ready(function() {
 	
-	var adrs = $("#adrs").text();
-	var adrs2 = adrs.split("*");
-	var address = adrs2[1];
-	$("#hyhy").text(address);
-	
 	// 초기 slider
 	$(".slide-wrap").css({
     	"background":"url(/resources/img/noimg.jpg)", 
