@@ -3,8 +3,8 @@
 	<div id="footer">
 		<h3><a href="/">FLY SOOTER</a></h3>
 		<div class="link">
-			<a href="">이용약관</a>
-			<a href="">개인정보취급방침</a>
+				<a href="/member/terms.do?type=termsUse">이용약관</a>
+				<a href="/member/terms.do?type=sttmn">개인정보취급방침</a>
 		</div>
 		<p class="copyright">
 			<span>
