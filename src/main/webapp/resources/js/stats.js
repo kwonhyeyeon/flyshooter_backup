@@ -11,9 +11,9 @@ window.onload = function () {
 	    $(".tab-content:first").show();
 	
 	    $("ul.tabs li").click(function () {
-	        $("ul.tabs li").removeClass("active").css("color", "#333");
+	        $("ul.tabs li").removeClass("active");
 	        //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
-	        $(this).addClass("active").css("color", "darkred");
+	        $(this).addClass("active");
 	        
 	        $(".tab-content").hide();
 	        
@@ -21,17 +21,20 @@ window.onload = function () {
 	        
 			// 대관건수이며 전체구장일경우에만 실행.. (비동기로 했어야 하는데 통계늘릴걸 생각 못했기에 복잡해짐)
 	        if( activeTab == 'tab1'){
-						$("#selectedYear").val($("#year").val());
-						// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
-						$("#search").attr({
-							"method":"get",
-							"action":"/mypage/stats.do"
-						});
-						$("#search").submit();
-						
-						return;
+	        	var selected = $("#placeBox").val();
+	        	if( selected == '전체구장' ){
+	        		$("#selectedYear").val($("#year").val());
+					// 선택된 구장에 등록된 경기장 통계를 가져오는 함수
+					$("#search").attr({
+						"method":"get",
+						"action":"/mypage/stats.do"
+					});
+					$("#search").submit();
+					
+					return;
+	        	}
 	        }
-	        $("#" + activeTab).fadeIn();
+	        $("#" + activeTab).show();
 	    });
 	    /* 탭 관련 스크립트 */
 	    
@@ -334,7 +337,7 @@ function drawChart(arr, column, title, index) {
           viewWindowMode:'explicit',
           viewWindow: {
               min: 0,
-              max: 1000
+              max: 100
           },
       },
       width: 750,

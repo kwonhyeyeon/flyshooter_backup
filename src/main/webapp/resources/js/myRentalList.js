@@ -5,17 +5,17 @@
 $(document).ready(function(){
 	
 	// 리스트 클릭시 상세페이지로 이동.
-	$(".list-hover").click(function(){
-		var index = $(".list-hover").index(this);
+	$(".goDetail").click(function(){
+		var index = $(".goDetail").index(this);
 		
-		$("#r_no").val($(".list-hover:eq("+index+")").attr("data-num"));
+		$("#r_no").val($(".goDetail:eq("+index+")").attr("data-num"));
 		
 
-		$("#goDetail").attr({
+		$("#myRentalList").attr({
 			"method":"post",
 			"action":"/user/rental/rentalDetail.do"
 		});
-			$("#goDetail").submit();
+		$("#myRentalList").submit();
 	});
 	
 	$("#cancleRental").click(function(){

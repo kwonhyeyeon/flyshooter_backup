@@ -23,6 +23,19 @@
 			)
 	</insert>
 	
+	<select id="selectReservationMinutes" parameterType="String" resultType="long">
+		SELECT reservation_minutes
+		FROM rental_reservation
+		WHERE reservation_key = #{overlapKey}
+	</select>
+	
+	<update id="updateReservationMinutes" parameterType="hashmap">
+		UPDATE rental_reservation
+			   SET 
+			   	reservation_minutes = #{minutes}
+		WHERE reservation_key = #{overlapKey}	
+	</update>
+	
 	<delete id="deleteReservation" parameterType="hashmap">
 		DELETE 
 		FROM 

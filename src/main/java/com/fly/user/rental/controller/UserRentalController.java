@@ -160,14 +160,12 @@ public class UserRentalController {
    @ResponseBody
    public String reservationCheck(@RequestParam(value = "overlapKey") String overlapKey, HttpSession session){
 	  
-	   
 	   String overlap = (String)session.getAttribute("overlap");
 	  try {
-		  // session에 저장된 값이 없으면 오류를 낸다.
-		  overlap.length();
-		  
-		  
-		  if(overlapKey.equals(overlap)) {
+		  // session에 저장된 값이 없으면 오류가 난다.
+		  if(overlap.equals(overlapKey)) {
+			  // 예약가능시간 update
+			  userRentalService.updateReservation_minutes(overlapKey);
 			  return "true";
 		  }else {
 			  // over_key로 delete
@@ -178,7 +176,7 @@ public class UserRentalController {
 			  nullPointer.toString();
 		  }
 		  
-	  }catch(NullPointerException e) {
+	  }catch(Exception e) {
 		  userRentalService.deleteReservation("null");
 		   try {
 		   userRentalService.reservationCheck(overlapKey);
@@ -188,7 +186,6 @@ public class UserRentalController {
 		   session.setAttribute("overlap", overlapKey);
 		   return "true";
 	   	}
-	  
 	  
 	  return "시스템 오류\n관리자한테 문의하십시오";
 	  }
@@ -214,7 +211,13 @@ public class UserRentalController {
 
 	   MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 	   rvo.setM_id(mvo.getM_id());
+	   String overlapKey = (String)session.getAttribute("overlap");
 	   try {
+		   if( userRentalService.reservationChk(overlapKey) ) {
+			   model.addAttribute("rental_message", "유효시간 5분이 경과하였습니다. \n다시 진행해주십시오.");
+			   return "rental/location";
+		   }
+		   
 	   // 대관정보 (retnal) insert
 	   result = userRentalService.insertRental(rvo, items_no, items_ea);
 	   model.addAttribute("rental_message", "대관에 정상적으로 완료되었습니다.");
@@ -248,6 +251,7 @@ public class UserRentalController {
    @RequestMapping(value = "/rentalDetail.do", method = RequestMethod.POST)
    public String rentalDetail_LoginChk(Model model, @RequestParam("r_no") int r_no, 
 		   @RequestParam("page") String page, HttpServletRequest request) {
+	   
 	   
 	   model.addAttribute("data", userRentalService.showDetail(r_no));
 	   model.addAttribute("page", page);
