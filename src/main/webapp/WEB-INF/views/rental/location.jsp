@@ -15,6 +15,11 @@
 <script type="text/javascript" src="/resources/js/common.js"></script>
 <script>
 $(document).ready(function(){ 
+	if("${message}"){
+		alert("${message}");
+		location.href = "/user/rental/location.do";
+	}
+	
 	
 	if("${rental_message}"){
 		alert("${rental_message}");

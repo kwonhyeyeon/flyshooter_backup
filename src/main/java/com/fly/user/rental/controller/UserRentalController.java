@@ -64,9 +64,15 @@ public class UserRentalController {
 
 		List<PlaceVO> searchPlaceList = placeService.searchPlaceList(area);
 		if (searchPlaceList.isEmpty()) {
-			redirectAttr.addFlashAttribute("message", "[" + area + "]지역에는 등록된 구장이 없습니다.");
+			redirectAttr.addFlashAttribute("rental_message", "[" + area + "] 에는 등록된 구장이 없습니다.");
 			return "redirect:/user/rental/location.do";
 		}
+		for( int i = 0; i < searchPlaceList.size(); i++ ) {
+			String address = searchPlaceList.get(i).getP_address();
+			
+			searchPlaceList.get(i).setP_address(address.replace("＊", ""));
+		}
+		
 		model.addAttribute("searchPlaceList", searchPlaceList);
 		return "rental/rentalPlaceList";
 	}
