@@ -132,7 +132,6 @@ function SIList(query) {
 		success : function(resultData) {
 			$("#List").text("");
 			$("#List").append(resultData);
-
 			$(".tab_content").hide();
 			activeTab = $('.active').find("a").attr("href");
 			$(activeTab).fadeIn();
