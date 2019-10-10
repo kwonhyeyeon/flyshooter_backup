@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>FLY SHOOTER</title>
 <link rel="stylesheet"  href="/resources/css/reset.css" />
 <link rel="stylesheet"  href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
@@ -20,35 +20,27 @@
 	
 	<jsp:include page="../templates/header.jsp" flush="true" />
 		
-		
-		
-		<!-- 상세 페이지 이동을 위한 form -->
-		<form id="rentalInsertForm">
-		      <input type="hidden" name="p_num" id="p_num">
-		</form>
-			
 		<article id="contents">
 			
-			<h2>대관 가능한 구장</h2>
+			<h2 class="articleTit">경기장 예약</h2>
 			
-			<table>
-				<colgroup>
-					<col width="10%" />
-					<col width="62%" />
-					<col width="15%" />
-					<col width="13%" />
-				</colgroup>
-				<tr>
+			<!-- 상세 페이지 이동을 위한 form -->
+			<form id="rentalInsertForm">
+			      <input type="hidden" name="p_num" id="p_num">
+			</form>
+			
+			<table class="listTbl">
+				<tr class="bgTr">
 					<th>구장명</th>
 					<th>주소</th>
 					<th>전화번호</th>
-					<th>운영시간</th>
+					<th>운영 시간</th>
 				</tr>
 				
 				<c:choose>
 					<c:when test="${ not empty searchPlaceList }" >
 						<c:forEach var="place" items="${ searchPlaceList }" varStatus="status">
-							<tr data-num="${ place.p_num }" class="goRental">
+							<tr data-num="${ place.p_num }" class="goDetail">
 								<td>${ place.p_name }</td>
 								<td>${ place.p_address }</td>
 								<td>${ place.p_phone }</td>
@@ -58,13 +50,14 @@
 					</c:when>
 					<c:otherwise>
 						<tr>
-							<td colspan="4">검색된 지역에는 등록된 구장이 없습니다.</td>
+							<td colspan="4">해당 지역에 등록된 구장이 없습니다</td>
 						</tr>
 					</c:otherwise>
 				</c:choose>
 			</table>
 			
 		</article>
+		
 		<jsp:include page="../templates/footer.jsp" flush="true" />
 		
 	</div>

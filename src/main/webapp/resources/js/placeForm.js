@@ -57,7 +57,7 @@ function placeCheck(){
 	
 	var re = /^[가-힣]{2,10}$/; // 구장이름, 구장, 예금주명
 	var re2 = /^[0-9]{1,20}$/;// 계좌번호, 사업자 번호
-	
+	var re3 = /^\d{2,3}-\d{3,4}-\d{4}$/;// 구장 전화 번호 정규식
 	
 	var pname = document.getElementById("p_name");
 	var pceo =  document.getElementById("p_ceo");
@@ -66,14 +66,14 @@ function placeCheck(){
 	var paccount = document.getElementById("p_account");
 	var paccountnum = document.getElementById("p_account_num");
 	//체크여부
-	
 	if(!check(re, pname, "구장명 한글 2~10자 형식에 맞춰주세요")){  
 		return false;
 	}
 	if(!check(re, pceo, "대표자명 한글 2~10자 맞춰주세요")){
 		return false;
 	}
-	if(!check(re2, pphone, "핸드폰 번호를 형식에 맞춰주세요")){
+	if(!check(re3, pphone, "전화 번호를 형식에 맞춰주세요")){
+		alert('222');
 		return false;
 	}
 	if(!check(re2, pnum, "사업자번호 형식에 맞춰주세요")){
@@ -158,31 +158,6 @@ function placeCheck(){
 		}
 	}
 	
-	//file(p_register)type(gif, png, jpg) 제어 -> 사업등록증
-	if($("#p_register").val()!= ""){
-		var ext = $('#p_register').val().split('.').pop().toLowerCase();
-		if($.inArray(ext,['gif','png','jpg']) == -1){
-			alert('사업자등록증은 gif, png, jpg 파일만 업로드 가능');
-			return false;
-		}
-	}
-	//file(p_account_copy)type(gif, png, jpg) 제어 -> 통장사본
-	if($("#p_account_copy").val()!= ""){
-		var ext = $('#p_account_copy').val().split('.').pop().toLowerCase();
-		if($.inArray(ext,['gif','png','jpg']) == -1){
-			alert('통장사본은 gif, png, jpg 파일만 업로드 가능');
-			return false;
-		}
-	}
-	//file(p_property)type(gif, png, jpg) 제어 -> 부동산종합공부 
-	if($("#p_property").val()!= ""){
-		var ext = $('#p_property').val().split('.').pop().toLowerCase();
-		if($.inArray(ext,['gif','png','jpg']) == -1){
-			alert('부동산종합공부은 gif, png, jpg 파일만 업로드 가능');
-			return false;
-		}
-	}
-	
 	alert('관리자의 승인이 있을 시까지 사용이 불가능하며 승인 시 \n[MY PAGE] -> [구장] 에서 해당 구장의 상태를 운영중으로 수정 바랍니다.');
 	checking();
 }
@@ -256,17 +231,28 @@ function sample6_execDaumPostcode() {
 }
 //라디오(서류첨부 유형) 클릭 시 클릭에 맞는 div를 밑에 보여줌
 function checkBox(){
-	var check_Box = document.getElementsByName("p_file");//체크박스 name
-	for (j = 0; j < check_Box.length; j++){
-		var disign = document.getElementById([j+1]);//보여줄 내용
-		if(check_Box[j].checked == true){
-			disign.style.display = "block";
+		if(p_file1.checked == true){
+			$('.file').removeClass('file');
 		}else{
-			check_Box[j].checked = false;
-			disign.style.display = "none";
+			$('.unfile').addClass('file');
 		}
+		if(p_file2.checked == true){
+			$('.d-fax').css('display', 'block');
+		}else{
+			$('.d-fax').css('display', 'none');
+		}
+		if(p_file3.checked == true){
+			$('.d-adrs').css('display', 'block');
+		}else{
+			$('.d-adrs').css('display', 'none');
+		}
+		if(p_file4.checked == true){
+			$('.d-mail').css('display', 'block');
+		}else{
+			$('.d-mail').css('display', 'none');
+		}
+		
 	}
-}
 //우편주소
 function checking(){
 	var ad1 = $("#sample6_postcode").val();

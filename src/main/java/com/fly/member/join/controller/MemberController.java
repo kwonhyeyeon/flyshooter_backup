@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -266,13 +267,23 @@ public class MemberController {
 	public String terms(
 			HttpServletRequest request,
 			@ModelAttribute TermsVO tvo,
-			Model model
+			Model model,
+			@RequestParam(value = "type", required = false) String type
 			) {
+		
 		List<TermsVO> data = adminTermsService.listTerms();
 		model.addAttribute("data", data);
+		if("sttmn".equals(type)) {
+			return "/templates/sttmn";
+		}
+		
+		if("termsUse".equals(type)) {
+			return "/templates/termsUse";
+		}
 		
 		return "/member/terms";
 
 	}	
+	
 	
 }

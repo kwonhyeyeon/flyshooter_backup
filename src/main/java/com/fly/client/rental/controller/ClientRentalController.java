@@ -59,13 +59,17 @@ public class ClientRentalController {
 
 	@RequestMapping(value = "/getList.do", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
 	@ResponseBody
-	public String setList(@RequestParam(value = "p_num") String p_num,
+	public String setList(@RequestParam(value = "p_num", defaultValue = "null") String p_num,
 			@RequestParam(value = "selectDay") String selectDay) {
 
 		int r_end = 0;
 		StringBuffer result = new StringBuffer();
 		List<StadiumVO> stadiumList = clientRentalService.getStadiumList(p_num);
 		List<RentalVO> rentalList = null;
+		if( ("null").equals(p_num) ) {
+			result.append("<p class='noItem'>등록된 구장이 없습니다.</p>");
+			return result.toString();
+		}
 
 		if (stadiumList.isEmpty()) {
 			result.append("<p class='noItem'>등록된 경기장이 없습니다.</p>");
@@ -104,7 +108,7 @@ public class ClientRentalController {
 					result.append(" (");
 					result.append(rvo.getR_start());
 					result.append(" ~ ");
-
+					
 					// 종료시간 계산
 					r_end = Integer.parseInt(rvo.getR_start()) + rvo.getCal_status();
 
@@ -130,18 +134,23 @@ public class ClientRentalController {
 					result.append("</td>");
 
 					result.append("<td>");
-					if (rvo.getR_pay_status() == 0) {
-						result.append("오프라인");
-						result.append("</td>");
-						result.append("<td><button class='r_cancle btninTbl'>대관 취소</button></td>");
-					} else if (rvo.getR_pay_status() == 1) {
-						result.append("온라인");
-						result.append("</td>");
-						result.append("<td><button class='r_refund btninTbl'>환불 요청</button></td>");
-					} else {
-						result.append("환불대기중");
-						result.append("</td>");
-						result.append("<td><button class='r_refund btninTbl' disabled>환불 요청</button></td>");
+					
+					switch (rvo.getR_pay_status()) {
+						case 0:
+							result.append("오프라인");
+							result.append("</td>");
+							result.append("<td><button class='r_cancle btninTbl'>대관 취소</button></td>");
+							break;
+						case 1:
+							result.append("온라인");
+							result.append("</td>");
+							result.append("<td><button class='r_refund btninTbl'>환불 요청</button></td>");
+							break;
+						default:
+							result.append("환불대기중");
+							result.append("</td>");
+							result.append("<td><button class='r_refund btninTbl' disabled>환불 요청</button></td>");
+							break;
 					}
 
 					result.append("</tr>");
@@ -151,7 +160,6 @@ public class ClientRentalController {
 			}
 		}
 
-		System.out.println("버퍼크기" + result.capacity());
 		return result.toString();
 	}
 
@@ -220,7 +228,8 @@ public class ClientRentalController {
 			@ModelAttribute MemberVO mvo, 
 			@ModelAttribute PlaceVO pvo,
 			HttpSession session,
-			Model model) {
+			Model model,
+			HttpServletRequest request) {
 
 		System.out.println("getRefundList 호출 성공");
 		MemberVO sessionMvo = (MemberVO) session.getAttribute("mvo");

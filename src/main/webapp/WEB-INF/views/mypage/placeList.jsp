@@ -12,6 +12,76 @@
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/placeList.js"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
+
+</head>
+<body>
+	
+	<div id="wrapper">
+	
+		<jsp:include page="../templates/header.jsp" flush="true" />
+		
+		<article id="contents">
+			<h2 class="articleTit">나의 구장</h2>
+	
+			<%--==상세 페이지 이동을 위한 FORM --%>
+			<form id="datailForm">
+				<input type="hidden" name="p_num" id="p_num">
+			</form>
+			
+			<div class="insertArea">
+				<input type="button" value="구장 등록" id="insertPlaceBtn" class="insertBtn">
+			</div>
+			
+			<section class="itemArea">
+			
+				<table class="listTbl">
+					<tr class="bgTr">
+						<th>사업자번호</th>
+						<th>구장명</th>
+						<th>대표자명</th>
+						<th>구장 주소</th>
+						<th>구장 전화번호</th>
+						<th>승인 상태</th>
+					</tr>
+					<c:choose>
+						<c:when test="${not empty placeList}">
+							<c:forEach var="place" items="${placeList}" varStatus="status">
+								<tr class="detailPage goDetail" data-num="${place.p_num}">
+									<td>${place.p_num}</td>
+									<td>${place.p_name}</td>
+									<td>${place.p_ceo}</td>
+									<td>${place.p_address}</td>
+									<td>${place.p_phone}</td>
+									<td>
+									<c:if test="${place.p_ok eq 0}">
+									승인 대기
+									</c:if>
+									<c:if test="${place.p_ok eq 1}">
+									승인 완료
+									</c:if>
+									</td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<!-- 등록된 구장이 존재하지 않을때 표시되는 글-->
+								<td colspan="6">등록된 구장이 없습니다</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
+				</table>
+			
+			</section>
+
+		</article>
+		
+		<jsp:include page="../templates/footer.jsp" flush="true" />
+	
+	</div>
+	
+</body>
+
 <script>
 $(document).ready(function() {
 	var errCode = "${errCode}";
@@ -27,72 +97,6 @@ $(document).ready(function() {
 		location.href = "./placeList.do";	
 	}
 });
-
 </script>
-</head>
-<body>
 
-	<div id="header-wrap">
-		<jsp:include page="../templates/header.jsp" flush="true" />
-	</div>
-
-	<div class="sub-v"></div>
-
-	<article id="contents">
-		<div class="contentTit">
-			<h3>구장 리스트</h3>
-		</div>
-
-		<%--==상세 페이지 이동을 위한 FORM --%>
-		<form id="datailForm">
-			<input type="hidden" name="p_num" id="p_num">
-		</form>
-
-		<%-- ==구장리스트== --%>
-		<div id="placeList">
-
-			<table>
-				<tr>
-					<th>사업자번호</th>
-					<th>구장명</th>
-					<th>대표자명</th>
-					<th>구장 주소</th>
-					<th>구장 전화번호</th>
-					<th>승인 상태</th>
-				</tr>
-				<!-- 데이터 출력 -->
-				<c:choose>
-					<c:when test="${not empty placeList}">
-						<c:forEach var="place" items="${placeList}" varStatus="status">
-							<tr class="detailPage" data-num="${place.p_num}">
-								<td>${place.p_num}</td>
-								<td>${place.p_name}</td>
-								<td>${place.p_ceo}</td>
-								<td>${place.p_address}</td>
-								<td>${place.p_phone}</td>
-								<td>${place.p_ok}</td>
-							</tr>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<tr>
-							<!-- 등록된 구장이 존재하지 않을때 표시되는 글-->
-							<td colspan="1" class="tac">등록된 구장이 존재하지 않습니다.</td>
-						</tr>
-					</c:otherwise>
-				</c:choose>
-				</table>
-		</div>
-		<%-- ==구장리스트 종료== --%>
-
-		<%--==구장등록 버튼== --%>
-		<div class="placeBtn">
-			<input type="button" value="구장 등록" id="insertPlaceBtn">
-		</div>
-		<%--== 구장등록 버튼 출력 종료== --%>
-	</article>
-		
-	<jsp:include page="../templates/footer.jsp" flush="true" />
-	
-</body>
 </html>

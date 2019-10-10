@@ -6,166 +6,162 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>경기장 상세보기 수정</title>
+<title>FLY SHOOTER</title>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="/resources/js/stadiumDetailEdit.js"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
-<script type="text/javascript">
-
-$(document).ready(function() {
-	$("#StadiumListBtn").click(function() {
-		location = "/mypage/placeChoice.do"
-	});
-    var file1 = "<c:out value='${s_img1}'/>";
-    if (file1 != "") {
-       $("#fileImage1").attr({
-          src : "/uploadStorage/image1/${s_img1}",
-          width : "250px",
-          height : "100px"
-       });
-    }
-    var file2 = "<c:out value='${s_img2}'/>";
-    if (file2 != "") {
-       $("#fileImage2").attr({
-          src : "/uploadStorage/image2/${s_img2}",
-          width : "250px",
-          height : "100px"
-       });
-    }
-    var file3 = "<c:out value='${s_img3}'/>";
-    if (file3 != "") {
-       $("#fileImage3").attr({
-          src : "/uploadStorage/image3/${s_img3}",
-          width : "250px",
-          height : "100px"
-       });
-    }
-    $("#s_hours").val('${svo.s_hours}');
-    $("#s_size").val('${svo.s_size}');
-    $("#s_in_out").val('${svo.s_in_out}');
-    $("#s_status").val('${svo.s_status}');
-});
-</script>
 </head>
 <body>
 
-<div id="header-wrap">
-	<jsp:include page="../templates/header.jsp" flush="true" />
-</div>
-
-<div class="sub-v"></div>
-
-	<article id="contents">
-	<h3>${s_no}</h3>
-		<div class="contentTB">
-			<form id="s_stadiumModifyForm" action="/mypage/stadiumModify.do" method="post" enctype="multipart/form-data">
-				<ul>
-					<li><label>날짜 별 요금</label>
-					평일 주간 요금 <input type="text" value="${svo.s_d_fee}" name="s_d_fee" id="s_d_fee"/>
-					평일 야간 요금 <input type="text" value="${svo.s_n_fee}" name="s_n_fee" id="s_n_fee"/></li>
-				
-					<li>
-						주말 주간 요금 <input type="text" value="${svo.s_d_fee_w}" name="s_d_fee_w" id="s_d_fee_w"/>
-						주말 야간 요금 <input type="text" value="${svo.s_n_fee_w}" name="s_n_fee_w" id="s_n_fee_w"/>
-					</li>
-					<li>
-						최소 이용 가능 시간 
-						<select name="s_hours" id="s_hours">
-							<option value="1">1시간</option>
-							<option value="2">2시간</option>
-						</select>
-					</li>
-					<li>
-						<input type="hidden" name="s_no" value="${svo.s_no}"/>
-						수용 인원 <input type="text" value="${svo.s_people}" name="s_people" id="s_people"/>
-						경기장 명 <input type="text" value="${svo.s_name}" name="s_name" id="s_name"/>
-					</li>
-					<li>
-						경기장 사이즈
-						<select name="s_size" class="s_size" id="s_size">
-							<option value="1">40*20</option>
-							<option value="2">33*21</option>
-							<option value="3">15*12</option>
-						</select>
-						
-						경기장 실내/외 선택
-						<select name="s_in_out" class="s_in_out" id="s_in_out">
-							<option value="1">실내</option>
-							<option value="2">실외</option>
-						</select>
-					</li>
-					<li>
-						<div class="inputArea">
- 							<label>이미지1</label>
- 							<input type="file" id="s_img1" name="file1"/>
- 							<div class="fileImage1"><img id="fileImage1" src=""/></div>
-						</div>
-					</li>
-					<li>
-						<div class="inputArea">
- 							<label>이미지2</label>
- 							<input type="file" id="s_img2" name="file2"/>
- 							<div class="fileImage2"><img id="fileImage2" src=""></div>
-						</div>
-						
-					</li>
-					<li>
-						<div class="inputArea">
- 							<label>이미지3</label>
- 							<input type="file" id="s_img3" name="file3"/>
- 							<div class="fileImage3"><img id="fileImage3" src=""></div>
-						</div>
-					</li>
-					<c:if test="${svo.s_status ne '0'}">
-						<li>
-						경기장 상태
-							<select name="s_status" id="s_status">
-								<option value="-1">close</option>
-								<option value="1">open</option>
-							</select>
-						</li>
-					</c:if>
-				</ul>
-				<div>
-					<input type="submit" value="수정하기"> 
-					<input type="button" id="StadiumListBtn" value="목록">
-				</div>
-			</form>
-		</div>
-	</article>
-	
-	<jsp:include page="../templates/footer.jsp" flush="true" />
+	<div id="wrapper">
 		
-</body>
-<script>
-$("#s_img1").change(function(){
-	if(this.files && this.files[0]) {
-		var reader = new FileReader;
-	    reader.onload = function(data) {
-	    	$("#fileImage1").attr("src", data.target.result).width(500);        
-	    }
-	reader.readAsDataURL(this.files[0]);
-	}
-});
-$("#s_img2").change(function(){
-	if(this.files && this.files[0]) {
-		var reader = new FileReader;
-	    reader.onload = function(data) {
-	    	$("#fileImage2").attr("src", data.target.result).width(500);        
-	    }
-	reader.readAsDataURL(this.files[0]);
-	}
-});
-$("#s_img3").change(function(){
-	if(this.files && this.files[0]) {
-		var reader = new FileReader;
-	    reader.onload = function(data) {
-	    	$("#fileImage3").attr("src", data.target.result).width(500);        
-	    }
-	reader.readAsDataURL(this.files[0]);
-	}
-});
+		<jsp:include page="../templates/header.jsp" flush="true" />
+		
+		<article id="contents">
+			<h2 class="articleTit">${svo.s_name} 경기장 상세 정보 및 수정</h2>
+		
+			<form id="s_stadiumModifyForm" action="/mypage/stadiumModify.do" method="post" enctype="multipart/form-data">
+				<input type="hidden" id="img1" value="${s_img1}" />
+				<input type="hidden" id="img2" value="${s_img2}" />
+				<input type="hidden" id="img3" value="${s_img3}" />
+				
+				<table class="detailTbl">
+					<tr>
+						<th>경기장 사이즈</th>
+						<td>
+							<select name="s_size" class="s_size" id="s_size">
+								<option value="1">40*20</option>
+								<option value="2">33*21</option>
+								<option value="3">15*12</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>경기장 실내 / 외 선택</th>
+						<td>
+							<select name="s_in_out" class="s_in_out" id="s_in_out">
+								<option value="1">실내</option>
+								<option value="2">실외</option>
+							</select>
+						</td>
+					</tr>
+					
+					<tr>
+						<td colspan="2" class="blank"></td>
+					</tr>
+					
+					<tr>
+						<th rowspan="5">날짜 별 요금</th>
+						<td class="feeArea">
+							<p>입력된 요금은 1시간 기준 요금이며 최소 시간을 2시간 선택하여도 변하지 않습니다</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="feeArea">
+							<label>평일 주간 요금</label>
+							<input type="text" value="${svo.s_d_fee}" name="s_d_fee" id="s_d_fee"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="feeArea">
+							<label>평일 야간 요금</label>
+							<input type="text" value="${svo.s_n_fee}" name="s_n_fee" id="s_n_fee"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="feeArea">
+							<label>주말 주간 요금</label>
+							<input type="text" value="${svo.s_d_fee_w}" name="s_d_fee_w" id="s_d_fee_w"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="feeArea last">
+							<label>주말 야간 요금</label>
+							<input type="text" value="${svo.s_n_fee_w}" name="s_n_fee_w" id="s_n_fee_w"/>
+						</td>
+					</tr>
+					<tr>
+						<th>최소 이용 가능 시간</th>
+						<td>
+							<select name="s_hours" id="s_hours">
+								<option value="1">1시간</option>
+								<option value="2">2시간</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>수용 인원</th>
+						<td><input type="text" value="${svo.s_people}" name="s_people" id="s_people"/></td>
+					</tr>
+					
+					<tr>
+						<td colspan="2" class="blank"></td>
+					</tr>
+					
+					<tr>
+						<th>경기장 상태</th>
+						<td>
+							<c:if test="${svo.s_status ne '0'}">
+								<select name="s_status" id="s_status">
+									<option value="-1">CLOSE</option>
+									<option value="1">OPEN</option>
+								</select>
+							</c:if>
+						</td>
+					</tr>
+					
+					<tr>
+						<th>경기장 이미지 1</th>
+						<td>
+							<div class="file-upload-wrapper">
+			                	<input type="file" id="s_img1" name="file1" class="file-upload-native" accept="image/*" />
+			                	<input type="text" class="file-upload-text" placeholder="이미지 찾기" disabled />
+			                </div>
+			                <div class="preview img-wrapper"><img id="fileImage1" src="" alt="" /></div>
+						</td>
+					</tr>
+					<tr>
+						<th>경기장 이미지 2</th>
+						<td>
+							<div class="file-upload-wrapper">
+			                	<input type="file" id="s_img2" name="file2" class="file-upload-native" accept="image/*" />
+			                	<input type="text" class="file-upload-text" placeholder="이미지 찾기" disabled />
+			                </div>
+			                <div class="preview img-wrapper"><img id="fileImage2" src="" alt="" /></div>
+						</td>
+					</tr>	
+					<tr>
+						<th>경기장 이미지 3</th>
+						<td>
+							<div class="file-upload-wrapper">
+			                	<input type="file" id="s_img3" name="file3" class="file-upload-native" accept="image/*" />
+			                	<input type="text" class="file-upload-text" placeholder="이미지 찾기" disabled />
+			                </div>
+			                <div class="preview img-wrapper"><img id="fileImage3" src="" alt="" /></div>
+						</td>
+					</tr>		
+				</table>
+				
+				<div class="tblBtnArea space-between">
+					<a href="/mypage/placeChoice.do">목록</a>
+					<input type="submit" class="modify" value="수정하기">
+				</div>
 
+			</form>
+		</article>
+
+		<jsp:include page="../templates/footer.jsp" flush="true" />
+			
+	</div>
+</body>
+<script type="text/javascript">
+	$(document).ready(function() {
+	    $("#s_hours").val('${svo.s_hours}');
+	    $("#s_size").val('${svo.s_size}');
+	    $("#s_in_out").val('${svo.s_in_out}');
+	    $("#s_status").val('${svo.s_status}');
+	});
 </script>
 </html>

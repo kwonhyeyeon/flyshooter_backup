@@ -5,11 +5,12 @@ window.onload = function () {
 		var column = [];
 		var arr = [];
 		var statisics = sendParam().split(",");
+		var title = $("#statusTitle").val();
 		
 		column = makeColumnList(statisics);
 		arr =  makeStatisics(statisics);
 		
-		drawChart(arr, column, "현황 통계 그래프");
+		drawChart(arr, column, title);
 
 }
 
@@ -17,9 +18,10 @@ function drawChart(arr, column, title) {
 	
     var data = new google.visualization.DataTable();
 		data.addColumn('string', '');
+	var value = $("#statusValue").val();
 		
 		for(var q = 0; q < 1; q++){
-			data.addColumn('number', '값');
+			data.addColumn('number', value);
 		}
 		
 	    data.addRows([

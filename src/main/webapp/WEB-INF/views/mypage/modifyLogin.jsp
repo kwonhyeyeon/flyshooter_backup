@@ -15,13 +15,36 @@
 </head>
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
+
+<body>
+
+	<div id="wrapper">
+
+		<jsp:include page="../templates/header.jsp" flush="true" />
+
+		<article id="contents">
+			<h2 class="articleTit">회원 정보 수정</h2>
+		
+			<form id="modifyLoginForm" action="/member/mypage/modify.do" method="post">
+				<div id="mypage-contents">
+					
+					<div class="login-box">
+						<input type="password" id="m_pw" name="m_pw" placeholder="비밀번호">
+					</div>
+					
+					<input type="submit" value="확인" id="modifyForm" class="activeBtn" />
+					
+				</div>
+			</form>
+		</article>
+			
+		<jsp:include page="../templates/footer.jsp" flush="true" />
+		
+	</div>
+	
+</body>
+
 <script>
-	$(document).ready(function() {
-		$("#home").click(function() {
-			location.href = "/";
-		});
-		errCodeCheck();
-	});
 	function errCodeCheck() {
 		var errCode = '<c:out value = "${errCode}"/>';
 		if (errCode != "") {
@@ -35,33 +58,4 @@
 	}
 </script>
 
-<body>
-	<div>
-
-		<div id="header-wrap">
-			<jsp:include page="../templates/header.jsp" flush="true" />
-		</div>
-
-		<div class="sub-v"></div>
-
-		<article id="contents">
-			<form id="modifyForm" action="/member/mypage/modify.do" method="post">
-				<div>
-					<label for="pw">비밀 번호</label>
-					<div>
-						<input type="password" id="m_pw" name="m_pw" maxlength="15"
-							placeholder="Password">
-					</div>
-				</div>
-				<div>
-					<input type="submit" value="확인" id="modifyForm" /> <input
-						type="button" value="홈으로" id="home" />
-				</div>
-			</form>
-		</article>
-			
-		<jsp:include page="../templates/footer.jsp" flush="true" />
-		
-	</div>
-</body>
 </html>

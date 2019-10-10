@@ -73,13 +73,6 @@ $(document).ready(function() {
 	});
 });
 
-//목록 버튼 클릭 시 처리 이벤트
-$(function(){
-	$("#placeListBtn").click(function(){
-	location.href="/mypage/placeList.do";	
-	});
-});
-
 //유효성 검사
 function placeCheck(){
    //체크여부

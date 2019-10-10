@@ -8,7 +8,7 @@ $(document).ready(function(){
 		location.href= "/mypage/placecheck.do";
 	});
 	/* 리스트 클릭시 대관신청페이지로 이동 */
-	$(".goRental").click(function(){
+	$(".goDetail").click(function(){
 		var p_num =  $(this).attr("data-num");	
 		$("#p_num").val(p_num);
 		

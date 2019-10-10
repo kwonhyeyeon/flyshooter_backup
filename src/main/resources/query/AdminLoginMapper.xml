@@ -18,7 +18,10 @@
 		union all
 		select e.*
 		from (select (select count(*) from support where to_char(hs_regdate, 'yyyy-MM-dd') = to_char(sysdate, 'yyyy-MM-dd')), (select count(*) from support where to_char(hs_regdate, 'yyyy-MM') = to_char(sysdate, 'yyyy-MM')), (select count(*) from support) from dual) e
-    
+    	union all
+		select f.*
+		from (select (select count(*) from recruit where to_char(hr_regdate, 'yyyy-MM-dd') = to_char(sysdate, 'yyyy-MM-dd')), (select count(*) from recruit where to_char(hr_regdate, 'yyyy-MM') = to_char(sysdate, 'yyyy-MM')), (select count(*) from recruit) from dual) f
+    	
     </select>
 
 </mapper>

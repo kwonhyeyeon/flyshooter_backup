@@ -27,41 +27,43 @@
 
 	<select id="calculateIList" resultType="calculate"
 		parameterType="calculate">
-		select p.p_name, p.p_num,
-		(select count(*) from rental where s_no
-		in(select s_no from stadium where
-		p_num = p.p_num) and cal_status = 0
-		and r_pay_status = 1 and
-		to_char(r_reserve_date, 'yyyy/MM/dd') <![CDATA[ < ]]>
-		to_char(sysdate - 15,
-		'yyyy/MM/dd')) c_rental_cnt,
-		(select count(*) from
-		rental where s_no in(select s_no from stadium where
-		p_num = p.p_num)
-		and cal_status = 0 and r_pay_status = -1 and
-		to_char(r_reserve_date,
-		'yyyy/MM/dd')  <![CDATA[<]]>
-		to_char(sysdate - 15,
-		'yyyy/MM/dd')) c_return_cnt,
-		nvl((select
-		sum(r_total_pay) from rental where s_no in(select s_no from stadium
-		where p_num = p.p_num) and to_char(r_reserve_date, 'yyyy/MM/dd') <![CDATA[<]]>
-		to_char(sysdate - 15, 'yyyy/MM/dd') and cal_status = 0 and
-		r_pay_status in(1, -1)), 0) -
-		nvl((select sum(r_total_pay) from rental
-		where s_no in(select s_no from stadium
-		where p_num = p.p_num) and
-		to_char(r_reserve_date, 'yyyy/MM/dd') <![CDATA[<]]>
-		to_char(sysdate - 15, 'yyyy/MM/dd') and cal_status = 0 and
-		r_pay_status = -1), 0) +
-		nvl((select sum(refund) from rental where s_no
-		in(Select s_no from stadium where
-		p_num = p.p_num) and
-		to_char(r_reserve_date, 'yyyy/MM/dd') <![CDATA[<]]>
-		to_char(sysdate - 15, 'yyyy/MM/dd') and cal_status = 0 and
-		r_pay_status = -1), 0) c_payment
-		from place p
-		where m_id = #{m_id}
+		SELECT p.p_name, p.p_num
+					,(SELECT count(*) 
+						FROM rental 
+						WHERE 1 = 1
+								and s_no in(SELECT s_no FROM stadium WHERE p_num = p.p_num) 
+								and cal_status = 0
+								and r_pay_status = 1 
+								and to_char(r_reserve_date, 'yyyy/MM/dd') <![CDATA[ < ]]> to_char(sysdate - 15, 'yyyy/MM/dd')) c_rental_cnt
+					,(SELECT count(*) 
+						FROM rental 
+						WHERE 1 = 1
+								and s_no in(SELECT s_no FROM stadium WHERE p_num = p.p_num)
+								and cal_status = 0 and r_pay_status = -1 
+								and to_char(r_reserve_date, 'yyyy/MM/dd') <![CDATA[<]]> to_char(sysdate - 15, 'yyyy/MM/dd')) c_return_cnt
+					, nvl((SELECT sum(r_total_pay) 
+							FROM rental 
+							WHERE 1 = 1
+								and s_no in(SELECT s_no FROM stadium WHERE p_num = p.p_num) 
+								and to_char(r_reserve_date, 'yyyy/MM/dd') <![CDATA[<]]> to_char(sysdate - 15, 'yyyy/MM/dd') 
+								and cal_status = 0 
+								and r_pay_status in(1, -1)), 0) -
+					nvl((SELECT sum(r_total_pay) 
+							FROM rental 
+							WHERE 1 = 1
+								and s_no in(SELECT s_no FROM stadium WHERE p_num = p.p_num) 
+								and to_char(r_reserve_date, 'yyyy/MM/dd') <![CDATA[<]]> to_char(sysdate - 15, 'yyyy/MM/dd') 
+								and cal_status = 0 
+								and r_pay_status = -1), 0) +
+					nvl((SELECT sum(refund) 
+							FROM rental 
+							WHERE 1 = 1
+								and s_no in(SELECT s_no FROM stadium WHERE p_num = p.p_num) 
+								and to_char(r_reserve_date, 'yyyy/MM/dd') <![CDATA[<]]> to_char(sysdate - 15, 'yyyy/MM/dd') 
+								and cal_status = 0 
+								and r_pay_status = -1), 0) c_payment
+		FROM place p
+		WHERE m_id = #{m_id}
 	</select>
 
 	<select id="pageingSize" resultType="int"

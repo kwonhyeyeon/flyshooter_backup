@@ -28,12 +28,12 @@ $(document).ready(function(){
     });
 
     // 초기값을 오늘 날짜로 설정
-	$("#datepicker").datepicker("setDate", "today");
-	//(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+	// $("#datepicker").datepicker("setDate", "today");
 	
 	getList();
 	
-	// 구장명 값 변경 시 해당 경기장 리스트 가져오는 이벤트
+	
+	
 	$(".placeName").on("change", function(){
 		
 		getList();
@@ -150,9 +150,7 @@ $(document).ready(function(){
 			
 			return;
 		});
-		
-		
-	
+
 });
 	
 		// 대여된 아이템에 관하여 상태변경 함수
@@ -187,7 +185,7 @@ $(document).ready(function(){
 		}
 	
 		
-		// 대관리스트를 가져오는 비동기함수
+		// 대관리스트를 가져옴
 		function getList(){
 			
 			var p_num = $("#placeName").val();
@@ -223,7 +221,7 @@ $(document).ready(function(){
 			
 			var status = td.eq(4).text();
 			if( status == '오프라인' ){
-				alert("오프라인 대관은 \n상세페이지가 없습니다.");
+				alert("오프라인 대관은 \n상세페이지를 이용할 수 없습니다.");
 				return false;
 			}
 			
@@ -259,7 +257,6 @@ $(document).ready(function(){
 				dialogClass: 'custom-dialog-style',
 				open:function(event, ui){
 					$(".ui-dialog-titlebar-close", $(this).parent()).hide();
-					
 					// 모달 오버레이 설정
 	                $(".ui-widget-overlay").css({
 	                    opacity: 0.5,

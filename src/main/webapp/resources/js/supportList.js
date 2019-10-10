@@ -11,45 +11,44 @@ $(document).ready(function() {
 	$("#searchDataBtn").click(function() {
 		goPage(1);
 	});
-	
+
 	var id = "";
 	id += $("#m_id").val();
-	
-	// 매치 신청 등록 버튼 클릭 시 등록 페이지로 이동 (미 로그인 시 등록 불가) id 값이 없으면 500 에러
-	$("#insertMatch").click(function() {
-		if (id != "") {
-			var url = "/match/matchInsertForm.do";
+
+	// 등록 버튼 클릭 시 등록 페이지로 이동 (미 로그인 시 등록 불가) id 값이 없으면 500 에러
+	$("#insertSupport").click(function() {
+		if (id != "") { 
+			var url = "/support/supportInsertForm.do";
 			location.href = url;
-		}  else {
+		} else {
 			alert("로그인 후 등록 할 수 있습니다.")
 			return;
-		}  
+		} 
 	});
-	
-	// 리스트 클릭 시 상세 보기 페이지 오픈
+
+	// 리스트 클릭시 상세 보기 페이지로 이동
 	$(".goDetail").click(function() {
 		
-		var mb_no = $(this).attr("data-num");
-		var data = $("#mb_no").val(mb_no);
+		var hs_no = $(this).attr("data-num");
+		var data = $("#hs_no").val(hs_no);
 		var index = $(".goDetail").index(this);
 		
 		$.ajax({
 			type : "get",
-			url : "/match/matchView.do",
+			url : "/support/supportView.do",
 			data : data,
 			error : function() {
 				alert("시스템 오류입니다. 관리자에게 문의하세요");
 			},
-			success : function(result) {
-				$(".matchList").text("");
-				$(".matchList").append(result);
+			success: function(result) { 
+				$('.supportList').text("");
+				$('.supportList').append(result);
 				
 				openDialog(index);
 			}
 		});
-		
-	});
-	
+	}); 
+
 });
 
 function openDialog(index) {
@@ -61,7 +60,7 @@ function openDialog(index) {
 	console.log(data);
 	
 	$("#dialog").dialog({
-		title : '매치 상세 정보',
+		title : '용병 지원 정보',
 		modal : true,
 		width : '900',
 		minHeight : '400',
@@ -91,22 +90,22 @@ function openDialog(index) {
 				text:'수정',
 				click:function(){
 					if (id != "" && id == boardID) {
-						var url = "/match/matchUpdateForm.do";
-						url = url + "?mb_no=" + data;
+						var url = "/support/supportUpdateForm.do";
+						url = url + "?hs_no=" + data;
 						location.href = url;
 					} else if (id == "") {
 						alert("로그인 후 수정 할 수 있습니다.");
-						location.href = "/match/matchList.do";
+						location.href = "/support/supportList.do";
 					} else if ( id != boardID) {
 						alert("다른 회원의 글은 수정 할 수 없습니다.")
-						location.href = "/match/matchList.do";
+						location.href = "/support/supportList.do";
 					}
 				}
 			},
 			{
 				text:'확인',
 				click:function(){
-					location.href = "/match/matchList.do";
+					location.href = "/support/supportList.do";
 				}
 			}
 		]
@@ -114,14 +113,13 @@ function openDialog(index) {
 	
 }
 
-//검색과 한 페이지에 보여줄 레코드 수 처리 및 페이징을  위한 스크립트
+// 검색과 한 페이지에 보여줄 레코드 수 처리 및 페이징을  위한 스크립트
 function goPage(page) {
 	$("#page").val(page);
-	$("#m_search").attr({
+	$("#s_search").attr({
 		"method" : "get",
-		"action" : "/match/matchList.do"
+		"action" : "/support/supportList.do"
 	});
-	$("#m_search").submit();
+	$("#s_search").submit();
 }
-	
-	
+

@@ -117,6 +117,7 @@ $(document).ready(function(){
 			});
 	});
 	
+	
 });
 
 
@@ -150,7 +151,8 @@ function makeOverlapKey(){
 	var result = arg1.split(",");
 	var s_no = $("#stadiumSelectBox").val();
 	
-	// 예약중인 대관테이블에 저장될 key값
+	// 예약중인 대관테이블에 저장될 key값 
+	//  경기장 일련번호 + 예약일자  + 예약시작시간  ( ex - 472019-10-0811 )
 	var param = s_no+""+selectDay+""+result[0];
 	
 	return param;
@@ -187,7 +189,6 @@ function getStadium(p_num){
 
 function getPossibleTimeList(s_no, selectDay){
 	
-	
 	$.ajax({
 		type:"post",
 		url:"/client/rental/searchTime.do",
@@ -205,6 +206,5 @@ function getPossibleTimeList(s_no, selectDay){
 		}
 		
 	});
-	
 	
 }
