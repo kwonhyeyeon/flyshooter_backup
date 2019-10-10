@@ -297,7 +297,6 @@
 <script type="text/javascript">
     $(window).load(function() {
         $(".slide-wrap").flexslider({
-        	animation: "slide"
         });
     });
 </script>
