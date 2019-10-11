@@ -10,7 +10,7 @@
 		(select p_name from place where m_id = #{m_id}  and p_num = c.p_num ) p_name, 
 		c.c_payment, c.c_rental_cnt, 
 		c.c_return_cnt, c.c_payment, c.c_status, 
-		to_char(c.c_regdate, 'yyyy-MM-dd') c_regdate
+		to_char(c.c_regdate, 'yyyy/MM/dd') c_regdate
 		FROM (select ROWNUM RNUM, r.*
      			from (select * 
      					from calculate 
@@ -104,8 +104,8 @@
 		where s_no in(select s_no from stadium
 		where p_num = #{p_num})
 		and cal_status = 0 and to_char(r_reserve_date,
-		'yyyy-MM-dd') <![CDATA[<]]>
-		to_char(sysdate - 15, 'yyyy-MM-dd')
+		'yyyy/MM/dd') <![CDATA[<]]>
+		to_char(sysdate - 15, 'yyyy/MM/dd')
 		and r_pay_status in(-1, 1)
 	</update>
 </mapper>

@@ -4,23 +4,35 @@
 <mapper namespace="com.fly.admin.login.dao.AdminLoginDao">
     
  	<select id="getSttst" resultType="statistics">    
-	 	select a.*
-		from (select (select count(*) from member where to_char(m_regdate, 'yyyy-MM-dd') = to_char(sysdate, 'yyyy-MM-dd')) today, (select count(*) from member where to_char(m_regdate, 'yyyy-MM') = to_char(sysdate, 'yyyy-MM')) month, (select count(*) from member) total from dual) a
+	 	SELECT a.*
+		FROM (SELECT (SELECT count(*) FROM member WHERE to_char(m_regdate, 'yyyy-MM-dd') = to_char(sysdate, 'yyyy-MM-dd')) today, 
+			(SELECT count(*) FROM member WHERE to_char(m_regdate, 'yyyy-MM') = to_char(sysdate, 'yyyy-MM')) month, 
+			(SELECT count(*) FROM member) total FROM dual) a
 		union all
-		select b.*
-		from (select (select count(*) from place where to_char(p_regdate, 'yyyy-MM-dd') = to_char(sysdate, 'yyyy-MM-dd')), (select count(*) from place where to_char(p_regdate, 'yyyy-MM') = to_char(sysdate, 'yyyy-MM')), (select count(*) from place) from dual) b
+		SELECT b.*
+		FROM (SELECT (SELECT count(*) FROM place WHERE to_char(p_regdate, 'yyyy-MM-dd') = to_char(sysdate, 'yyyy-MM-dd')), 
+			(SELECT count(*) FROM place WHERE to_char(p_regdate, 'yyyy-MM') = to_char(sysdate, 'yyyy-MM')), 
+			(SELECT count(*) FROM place) FROM dual) b
 		union all
-		select c.*
-		from (select (select count(*) from rental where to_char(r_regdate, 'yyyy-MM-dd') = to_char(sysdate, 'yyyy-MM-dd')), (select count(*) from rental where to_char(r_regdate, 'yyyy-MM') = to_char(sysdate, 'yyyy-MM')), (select count(*) from rental) from dual) c
+		SELECT c.*
+		FROM (SELECT (SELECT count(*) FROM rental WHERE to_char(r_regdate, 'yyyy-MM-dd') = to_char(sysdate, 'yyyy-MM-dd')), 
+			(SELECT count(*) FROM rental WHERE to_char(r_regdate, 'yyyy-MM') = to_char(sysdate, 'yyyy-MM')), 
+			(SELECT count(*) FROM rental) FROM dual) c
 		union all
-		select d.*
-		from (select (select count(*) from match_board where to_char(mb_regdate, 'yyyy-MM-dd') = to_char(sysdate, 'yyyy-MM-dd')), (select count(*) from match_board where to_char(mb_regdate, 'yyyy-MM') = to_char(sysdate, 'yyyy-MM')), (select count(*) from match_board) from dual) d
+		SELECT d.*
+		FROM (SELECT (SELECT count(*) FROM match_board WHERE to_char(mb_regdate, 'yyyy-MM-dd') = to_char(sysdate, 'yyyy-MM-dd')), 
+			(SELECT count(*) FROM match_board WHERE to_char(mb_regdate, 'yyyy-MM') = to_char(sysdate, 'yyyy-MM')), 
+			(SELECT count(*) FROM match_board) FROM dual) d
 		union all
-		select e.*
-		from (select (select count(*) from support where to_char(hs_regdate, 'yyyy-MM-dd') = to_char(sysdate, 'yyyy-MM-dd')), (select count(*) from support where to_char(hs_regdate, 'yyyy-MM') = to_char(sysdate, 'yyyy-MM')), (select count(*) from support) from dual) e
+		SELECT e.*
+		FROM (SELECT (SELECT count(*) FROM support WHERE to_char(hs_regdate, 'yyyy-MM-dd') = to_char(sysdate, 'yyyy-MM-dd')), 
+			(SELECT count(*) FROM support WHERE to_char(hs_regdate, 'yyyy-MM') = to_char(sysdate, 'yyyy-MM')), 
+			(SELECT count(*) FROM support) FROM dual) e
     	union all
-		select f.*
-		from (select (select count(*) from recruit where to_char(hr_regdate, 'yyyy-MM-dd') = to_char(sysdate, 'yyyy-MM-dd')), (select count(*) from recruit where to_char(hr_regdate, 'yyyy-MM') = to_char(sysdate, 'yyyy-MM')), (select count(*) from recruit) from dual) f
+		SELECT f.*
+		FROM (SELECT (SELECT count(*) FROM recruit WHERE to_char(hr_regdate, 'yyyy-MM-dd') = to_char(sysdate, 'yyyy-MM-dd')), 
+			(SELECT count(*) FROM recruit WHERE to_char(hr_regdate, 'yyyy-MM') = to_char(sysdate, 'yyyy-MM')), 
+			(SELECT count(*) FROM recruit) FROM dual) f
     	
     </select>
 

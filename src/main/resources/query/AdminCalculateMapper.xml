@@ -6,8 +6,8 @@
 	<select id="adminCalculateList" resultType="calculate"
 		parameterType="calculate">
 		SELECT
-		c.c_no, c.c_regdate, p.m_id, p.p_ceo, c.c_rental_cnt, 
-		c.c_return_cnt, c.c_payment, c.c_payment_date, c.c_status, p.p_num 
+		c.c_no, to_char(c.c_regdate, 'yyyy/MM/dd') c_regdate, p.m_id, p.p_ceo, c.c_rental_cnt, 
+		c.c_return_cnt, c.c_payment, to_char(c.c_payment_date,'yyyy/MM/dd') c_payment_date, c.c_status, p.p_num 
 		FROM (select ROWNUM RNUM, r.*
      			from (select * 
      					from calculate 

@@ -67,8 +67,8 @@ function errCodeCheck() {
 function modifyCheck() {
 	var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
 	var re2 = /^[0-9]*$/; // 숫자 정규식
-	var re3 =  /^[A-Za-z0-9]{6,12}$/;//패스워드 정규식(숫자와 문자 포함 형태의 6~12자리 이내의 암호 정규식
-	
+	var re4 = /[a-z]/i;  //적어도 한개의 a-z 확인
+	var re5 = /\d/;  //적어도 한개의 0-9 확인
 	//휴대폰번호 합치기
 	$("#m_phone").val($("#m_phone0").val()+'-'+$("#m_phone1").val()+'-'+$("#m_phone2").val());
 	   
@@ -80,7 +80,10 @@ function modifyCheck() {
 	if (!check(re, pw, "패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
 		return false;
 	}
-	if(!check(re3, pw, "숫자와 문자 포함 형태의 6~12자리 이내")){
+	if(!check(re4, pw, "숫자와 문자 포함 형태의 6~12자리 이내")){
+		return false;
+	}
+	if(!check(re5, pw, "숫자와 문자 포함 형태의 6~12자리 이내")){
 		return false;
 	}
 	if (!check(re2, m_phone1, "핸드폰 번호는 숫자로만 입력하세요!")) {

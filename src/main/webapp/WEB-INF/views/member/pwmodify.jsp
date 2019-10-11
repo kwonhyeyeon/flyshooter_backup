@@ -13,21 +13,11 @@
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
+	var pwConfirm = 1;
 	$("#modifyForm").submit(function() {
-		return modifyCheck();
+		return pwmodifyChk();
 	});
 	$("#m_pwCheck, #m_pw").blur(function() {
-		var m_pw = $("#m_pw").val();
-		var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
-		var re3 =  /^[A-Za-z0-9]{6,12}$/;//패스워드 정규식(숫자와 문자 포함 형태의 6~12자리 이내의 암호 정규식
-
-		if (!check(re, pw, "패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
-		      return false;
-		}
-		if(!check(re3, pw, "숫자와 문자 포함 형태의 6~12자리 이내")){
-			   return false;
-		}
-		   
 
 		var pwcheck = document.getElementById("pwcheck");
 
@@ -36,16 +26,45 @@ $(document).ready(function(){
 			pwcheck.style.color = "red";
 			$("#m_pwCheck").val("");
 			pwConfirm = 1;
-			return false;
 		} else {
 			pwcheck.innerHTML = " ";
 			pwConfirm = 2;
-			return true;
 		}
 
 	});
 	errCodeCheck();
 });
+//check 정규식에 사용
+function pwmodifyChk() {
+	var pw = $("#m_pw").val();
+	var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
+	var re2 = /[a-z]/i;  //적어도 한개의 a-z 확인
+	var re3 = /\d/;  //적어도 한개의 0-9 확인
+	
+	if (!check(re, pw, "패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+	    return false;
+	}
+	if(!check(re2, pw, "숫자와 문자 포함 형태의 6~12자리 이내")){
+		return false;
+	}
+	if(!check(re3, pw, "숫자와 문자 포함 형태의 6~12자리 이내")){
+		return false;
+	}
+	if (pwConfirm == 1) {
+		alert('비밀번호가 일치하지 않습니다.');
+		return false;
+	}
+  	return true;
+}
+//check 정규식에 사용
+function check(re, what, message) {
+    if(re.test(what.value)) {
+        return true;
+    }
+    alert(message);
+    return false;
+  
+}
 function errCodeCheck() {
 	var errCode = '<c:out value = "${errCode}"/>';
 	if (errCode != "") {
