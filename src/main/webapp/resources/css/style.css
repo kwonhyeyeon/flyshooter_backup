@@ -1581,9 +1581,13 @@ input[type="file"]::-webkit-file-upload-button {
 .slide-wrap .slides > li img {
 	-webkit-user-drag:none;
 	user-drag:none;
-  	/* height:100vh; */
-  	height:410px;
-  	display:block;
+  	/* width:auto;
+	height:100vmin; */
+	position:absolute;
+    top:50%; 
+    left:50%;
+    -webkit-transform:translate(-50%, -50%);
+    transform:translate(-50%, -50%);
 }
 
 /* Direction Nav */
