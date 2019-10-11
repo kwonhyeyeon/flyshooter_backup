@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/myRentalList.js"></script>
+<script type="text/javascript" src="/resources/js/slides.js"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
 <script type="text/javascript" src="/resources/js/jquery.flexslider.js"></script>
 <script>
@@ -30,7 +31,13 @@
 	function goBack(){
 		location.href = "/user/rental/myRentalList.do";
 	}
+	
+	
+	function sendImg(){
+		return "${data.s_img1}||${data.s_img2}||${data.s_img3}";
+	}
 </script>
+
 </head>
 <body>
 	<div id="wrapper">
@@ -131,20 +138,65 @@
 				<section class="placeInfo">
 					<div class="slide-wrap">
 			            <ul class="slides">
-				            <li><img src="/resources/img/no_img.png"></li>
-				            <li><img src="/resources/img/no_img.png"></li>
-				            <li><img src="/resources/img/no_img.png"></li>
+				            <li><img id="img1" src="" /></li>
+                        	<li><img id="img2" src="" /></li>
+                        	<li><img id="img3" src="" /></li>
 			            </ul>
 		            </div>
 		            <!--photo-slide-->
 		            
 		            <h3 class="calTit">구장 소개</h3>
 		            <div class="notice"><p>${data.p_intro }</p></div>
-		            
 
 				</section>
 			
 			</section>
+			
+			<div id="map" style="width:100%; height:400px; margin-bottom:50px;"></div>
+            <!-- services 라이브러리 불러오기 -->
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f706d5a384eb0508472eddd23b44d733&libraries=services"></script>
+            <script>
+            //var address = $("#adrsText").replace("*");
+            var add = "${data.p_address }";
+            var addressText = add.split("*");
+            
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			    mapOption = {
+			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			        level: 3 // 지도의 확대 레벨
+			    };  
+			
+			// 지도를 생성합니다    
+			var map = new kakao.maps.Map(mapContainer, mapOption); 
+			
+			// 주소-좌표 변환 객체를 생성합니다
+			var geocoder = new kakao.maps.services.Geocoder();
+			
+			// 주소로 좌표를 검색합니다
+			geocoder.addressSearch(addressText[1], function(result, status) {
+			
+			    // 정상적으로 검색이 완료됐으면 
+			     if (status === kakao.maps.services.Status.OK) {
+			
+			        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			
+			        // 결과값으로 받은 위치를 마커로 표시합니다
+			        var marker = new kakao.maps.Marker({
+			            map: map,
+			            position: coords
+			        });
+			
+			        // 인포윈도우로 장소에 대한 설명을 표시합니다
+			        var infowindow = new kakao.maps.InfoWindow({
+			            content: '<div style="width:150px;text-align:center;padding:6px 0;">${data.p_name}</div>'
+			        });
+			        infowindow.open(map, marker);
+			
+			        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			        map.setCenter(coords);
+			    } 
+			});    
+			</script>
 			
 			<!-- 예약 취소 폼 -->
 			<form id="goUpdate" method="post" action="/user/rental/rentalUpdate.do">

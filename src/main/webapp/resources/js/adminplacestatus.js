@@ -41,7 +41,9 @@ function drawChart(arr, column, title) {
 		
     var options = {
       chart: {
-        title: title,
+        title: '',
+        legend : 'none',
+        titlePosition: 'none'
         /* subtitle: 'in millions of dollars (USD)' */
       },
       vAxis: {
@@ -51,7 +53,7 @@ function drawChart(arr, column, title) {
               max: 100
           },
       },
-      width: 900,
+      width: 1600,
       height: 500,
       axes: {
         x: {

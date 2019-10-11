@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 매치신청 상세보기</title>
+<title>FLY SHOOTER</title>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">

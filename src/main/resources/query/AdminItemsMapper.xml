@@ -13,7 +13,9 @@
 			) i_use,
 			to_char(i.i_regdate, 'yyyy/MM/dd') i_regdate
  		FROM items i
- 		WHERE p_num = #{p_num}
+ 		WHERE 	1 = 1
+ 				and p_num = #{p_num},
+ 				and i.i_status in(1,-1)
 	</select>
 	
 </mapper>

@@ -64,9 +64,24 @@ public class UserRentalController {
 
 		List<PlaceVO> searchPlaceList = placeService.searchPlaceList(area);
 		if (searchPlaceList.isEmpty()) {
-			redirectAttr.addFlashAttribute("message", "[" + area + "]지역에는 등록된 구장이 없습니다.");
+			redirectAttr.addFlashAttribute("rental_message", "[" + area + "] 에는 등록된 구장이 없습니다.");
 			return "redirect:/user/rental/location.do";
 		}
+		for( int i = 0; i < searchPlaceList.size(); i++ ) {
+				String address = searchPlaceList.get(i).getP_address();
+				String[] arr = address.split("\\*");
+				address = "";
+				try {
+					for( int j = 1; j < arr.length; j++ ) {
+						address += arr[j].toString() + " ";
+					}
+				}catch(Exception e) {
+					address = "잘못된 주소가 입력되었습니다.";
+				}
+					
+				searchPlaceList.get(i).setP_address(address);
+		}
+		
 		model.addAttribute("searchPlaceList", searchPlaceList);
 		return "rental/rentalPlaceList";
 	}
@@ -226,7 +241,6 @@ public class UserRentalController {
 			result = userRentalService.insertRental(rvo, items_no, items_ea);
 			model.addAttribute("rental_message", "대관에 정상적으로 완료되었습니다.");
 		} catch (Exception e) {
-			e.toString();
 			model.addAttribute("rental_message", "대관이 실패하였습니다.\n잠시후 다시 시도해주십시오.");
 		}
 		return "rental/location";
@@ -254,7 +268,8 @@ public class UserRentalController {
 	@RequestMapping(value = "/rentalDetail.do", method = RequestMethod.POST)
 	public String rentalDetail_LoginChk(Model model, @RequestParam("r_no") int r_no, @RequestParam("page") String page,
 			HttpServletRequest request) {
-
+		
+		
 		model.addAttribute("data", userRentalService.showDetail(r_no));
 		model.addAttribute("page", page);
 		model.addAttribute("itemsList", itemsRentalService.getItemsRentalList(r_no));

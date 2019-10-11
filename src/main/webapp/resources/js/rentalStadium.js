@@ -9,6 +9,15 @@ function comma(str) {
 
 $(document).ready(function() {
 	
+	
+	var address = sendAddress();
+	var adr = address.split("*");
+	address = "";
+	for(var i = 1; i < adr.length; i++){
+		address += adr[i] + " ";
+	}
+	$("#adrs").text(address);
+	
 	// 초기 slider
 	$(".slide-wrap").css({
     	"background":"url(/resources/img/noimg.jpg)", 
@@ -229,14 +238,11 @@ $(document).ready(function() {
     // 다음단계 이동전 해당시간대가 예약중인지 비동기로 확인하는 함수
     $(document).on("click", "#goRentalBtn", function() {
 
-
         // 시간이 선택되지 않았을 경우
         if (!($('input:radio[name=reservationTime]').is(':checked'))) {
-
             alert("예약시간을 선택해주십시오.");
             return;
         }
-
 
         param = makeOverlapKey();
         // 선택된 시간대가 현재 예약이 진행중인지 확인하는 동기처리
@@ -257,13 +263,9 @@ $(document).ready(function() {
                 } else {
                     alert("해당 시간에는 이미 대관이 진행중입니다.");
                 }
-
-
             }
 
         });
-
-
     });
     // 결제창 모달창
     function openDialog() {
@@ -532,8 +534,7 @@ function setDay() {
     var day = new Date(selectDay).getDay();
     var result;
 
-    // 주말요금
-    if (day == 0 || day == 6) {
+    if (day == 0 || day == 6) {  // 주말요금
         return setFee(fee[1], time[0], fee[4], fee[5]);
     } else { // 평일요금
         return setFee(fee[1], time[0], fee[2], fee[3]);

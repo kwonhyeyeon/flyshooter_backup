@@ -86,15 +86,15 @@
 									</c:choose>
 								</span>
 								
-								<select name="m_status" class="m_status" style="display: none">
+								<select name="m_status" class="m_status">
 									<option value="1" <c:if test="${member.m_status == '1'}"> selected </c:if>>활성</option>
 									<option value="0" <c:if test="${member.m_status == '0'}"> selected </c:if>>비활성</option>
 									<option value="-1" <c:if test="${member.m_status == '-1'}"> selected </c:if>>탈퇴</option>
 								</select>
 							</td>
 							<td>
-								<button class="memberEdit">회원상태변경</button>
-								<button class="goUpdate" style="display: none">저장</button>
+								<button class="memberEdit default">회원상태변경</button>
+								<button class="goUpdate save" style="display:none">저장</button>
 							</td>
 				        </tr>
 				        </c:forEach>

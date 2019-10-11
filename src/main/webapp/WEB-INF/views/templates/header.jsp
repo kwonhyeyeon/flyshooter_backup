@@ -10,9 +10,9 @@
 	            </c:if>
 	            <c:if test="${not empty mvo.m_id}">
 	            	<c:if test="${mvo.m_type eq 0}">
-		            	<li>오늘의 대관<a href="/client/rental/rentalList.do">${todayRental}건</a></li>
-		                <li>정산 가능 금액<a href="/mypage/calculate.do">${passibleCal}원</a></li>
-		                <li>미지급 정산 건수<a href="/mypage/calculate.do">${unpaidCal}건</a></li>
+		            	<li>오늘의 대관<a class="stat" href="/client/rental/rentalList.do">${todayRental}건</a></li>
+		                <li>정산 가능 금액<a class="stat" href="/mypage/calculate.do">${passibleCal}원</a></li>
+		                <li>미지급 정산 건수<a class="stat" href="/mypage/calculate.do">${unpaidCal}건</a></li>
 	            	</c:if>
 	                <li><a href="/member/logout.do">로그아웃</a></li>
 	            </c:if>
@@ -23,7 +23,12 @@
 		    <h1><a href="/">FLY SHOOTER</a></h1>
 		    <nav id="gnb">
 		        <ul>
-		            <li><a href="/">대관</a></li>
+		        	<c:if test="${mvo.m_type eq 0}">
+		            	<li><a href="/client/rental/rentalList.do">대관</a></li>
+		            </c:if>
+		            <c:if test="${mvo.m_type eq 1}">
+		            	<li><a href="/user/rental/location.do">대관</a></li>
+		            </c:if>
 		            <li><a href="/match/matchList.do">매치</a></li>
 		            <li><a href="/support/supportList.do">용병</a></li>
 		            <li><a href="/member/mypage/modifyLogin.do">마이페이지</a></li>

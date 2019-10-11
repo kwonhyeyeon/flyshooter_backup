@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 월별 예약 현황</title>
+<title>FLY SHOOTER</title>
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script src="/resources/js/boardCheck.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
@@ -67,14 +67,16 @@ function sendParam(){
 				<jsp:include page="../templates/subNavi.jsp" flush="true" />
 			</aside>
 			<!-- subNavi -->
-
+			
 			<div id="container">
 				<article id="contents">
+					<h2 class="con-subject">월별 예약 현황</h2>
 				
 					<input type="hidden" id="statusTitle" name="statusTitle" value="월별 예약 현황 통계">
 					<input type="hidden" id="statusValue" name="statusValue" value="예약 수">
 
 					<div id="line_top_x"></div>
+
 				</article>
 				<!-- contents -->
 			</div>

@@ -121,7 +121,6 @@
 </head>
 <body>
 
-
 	<div id="wrapper">
 
 		<jsp:include page="../templates/header.jsp" flush="true" />

@@ -5,7 +5,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>FLY SHOOTER</title>
@@ -59,7 +58,7 @@
                     </tr>
                     <tr>
                         <th>구장 주소</th>
-                        <td id="adrs">${ pvo.p_address }</td>
+                        <td id="adrs"></td>
                     </tr>
                     <tr>
                         <th>구장 전화번호</th>
@@ -87,12 +86,15 @@
             
             <div id="map" style="width:100%; height:400px; margin-bottom:50px;"></div>
             <!-- services 라이브러리 불러오기 -->
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f706d5a384eb0508472eddd23b44d733&libraries=services"></script>
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f706d5a384eb0508472eddd23b44d733&libraries=services"></script>
             <script>
-            //var address = $("#adrsText").replace("*");
             var add = "${ pvo.p_address }";
             var addressText = add.split("*");
             
+            function sendAddress(){
+            	return "${ pvo.p_address }";
+            }
+           		 
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			    mapOption = {
 			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -106,7 +108,7 @@
 			var geocoder = new kakao.maps.services.Geocoder();
 			
 			// 주소로 좌표를 검색합니다
-			geocoder.addressSearch(addressText[1], function(result, status) {
+			 geocoder.addressSearch(addressText[1], function(result, status) {
 			
 			    // 정상적으로 검색이 완료됐으면 
 			     if (status === kakao.maps.services.Status.OK) {

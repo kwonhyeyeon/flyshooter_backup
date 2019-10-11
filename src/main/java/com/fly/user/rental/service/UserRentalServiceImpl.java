@@ -73,7 +73,9 @@ public class UserRentalServiceImpl implements UserRentalService {
 		// TODO Auto-generated method stub
 		int result = 0;
 
+		// 대관정보 insert
 		result = userRentalDao.insertRental(rvo);
+		
 		if(!("null".equals(items_no) && "null".equals(items_ea))) {
 			// 입력받은 items정보를 ","단위로 자르고 반복하여 isnert해준다.
 			String item_no[] = items_no.split(",");

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login</title>
+<title>FLY SHOOTER</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
@@ -52,8 +52,8 @@
 		
 		<footer id="account-footer">
 			<div class="footer-link">
-				<a href="/member/terms.do?type=termsUse">이용약관</a>
-				<a href="/member/terms.do?type=sttmn">개인정보취급방침</a>
+				<a href="/member/terms.do?type=termsUse" target="_blank">이용약관</a>
+				<a href="/member/terms.do?type=sttmn" target="_blank">개인정보취급방침</a>
 			</div>
 			<p class="copyright">Copyright © <a class="link-home" href="/">FLYSHOOTER.</a> All rights reserved.</p>
 		</footer>

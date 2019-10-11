@@ -30,7 +30,7 @@
             </aside><!-- subNavi -->
 
             <div id="container">
-			   <article id="contents" style="padding-top:50px;">
+			   <article id="contents">
 		   
 			   		<table class="table-style">
 			           <tr>
