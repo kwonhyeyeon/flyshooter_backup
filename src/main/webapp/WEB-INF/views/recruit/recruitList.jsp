@@ -40,62 +40,62 @@
 			</div>
 			<%-- 용병모집 등록 종료 --%>
 
-		<section class="itemArea">
-			<table class="listTbl">
-				<tr class="bgTr">
-					<th>글번호</th>
-					<th>매치일자</th>
-					<th>구장명</th>
-					<th>모집인원</th>
-					<th>작성자</th>
-					<th>작성일자</th>
-					<th>진행상태</th>
-				</tr>
-				<c:choose>
-						<c:when test="${not empty recruitList}">
-							<c:forEach var="recruit" items="${recruitList}" varStatus="status">
-								<tr class="goDetail" data-num="${recruit.hr_no}">
-									<td>${status.index+1 }</td>
-									<td>${recruit.hr_m_date}</td>
-									<td>${recruit.hr_name}</td>
-									<td>${recruit.hr_people} 명</td>
-									<td>${recruit.m_name}</td>
-									<td>${recruit.hr_regdate}</td>
-									<td>
-										<c:if test="${recruit.hr_progress == '1'}">가능</c:if>
-										<c:if test="${recruit.hr_progress == '0'}">종료</c:if>
-										<c:if test="${recruit.hr_progress == '-1'}">마감</c:if>
-									</td>
+			<section class="itemArea">
+				<table class="listTbl">
+					<tr class="bgTr">
+						<th>글번호</th>
+						<th>매치일자</th>
+						<th>구장명</th>
+						<th>모집인원</th>
+						<th>작성자</th>
+						<th>작성일자</th>
+						<th>진행상태</th>
+					</tr>
+					<c:choose>
+							<c:when test="${not empty recruitList}">
+								<c:forEach var="recruit" items="${recruitList}" varStatus="status">
+									<tr class="goDetail" data-num="${recruit.hr_no}">
+										<td>${status.index+1 }</td>
+										<td>${recruit.hr_m_date}</td>
+										<td>${recruit.hr_name}</td>
+										<td>${recruit.hr_people} 명</td>
+										<td>${recruit.m_name}</td>
+										<td>${recruit.hr_regdate}</td>
+										<td>
+											<c:if test="${recruit.hr_progress == '1'}">가능</c:if>
+											<c:if test="${recruit.hr_progress == '0'}">종료</c:if>
+											<c:if test="${recruit.hr_progress == '-1'}">마감</c:if>
+										</td>
+									</tr>
+								</c:forEach>
+							</c:when>
+							
+							<c:otherwise>
+								<tr>
+									<td colspan="7">등록된 모집이 없습니다.</td>
 								</tr>
-							</c:forEach>
-						</c:when>
-						
-						<c:otherwise>
-							<tr>
-								<td colspan="7">등록된 모집이 없습니다.</td>
-							</tr>
-						</c:otherwise>
-					</c:choose>
-			</table>
-		</section>
+							</c:otherwise>
+						</c:choose>
+				</table>
+			</section>
 			
-		<div id="dialog" class="recruitList"></div>
-
-		<%-- 검색 --%>
-		<div id="searchArea">
-			<form id="r_search" name="r_search">
-				<input type="hidden" id="page" name="page" value="${data.page}" />
-					
-				<input type="search" name="keyword" id="keyword" class="search-field" placeholder="작성자명" />
-				<button id="searchDataBtn" class="search-btn">검색</button>
-			</form>
-		</div>
-
-		<!-- pagination -->
-		<div class="pagination">
-			<tag:paging page="${data.page}" total="${total}" list_size="${data.pageSize}" />
-		</div>
-		<!-- pagination -->
+			<div id="dialog" class="recruitList"></div>
+	
+			<%-- 검색 --%>
+			<div id="searchArea">
+				<form id="r_search" name="r_search">
+					<input type="hidden" id="page" name="page" value="${data.page}" />
+						
+					<input type="search" name="keyword" id="keyword" class="search-field" placeholder="작성자명" />
+					<button id="searchDataBtn" class="search-btn">검색</button>
+				</form>
+			</div>
+	
+			<!-- pagination -->
+			<div class="pagination">
+				<tag:paging page="${data.page}" total="${total}" list_size="${data.pageSize}" />
+			</div>
+			<!-- pagination -->
 
 		</article>
 		
