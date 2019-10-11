@@ -129,13 +129,32 @@
 	</select>
 	
 	<select id="showRentalDetail" parameterType="int" resultType="rentalDetail">
-		SELECT r.r_no, r.m_id, to_char(r.r_reserve_date, 'yyyy-MM-dd') r_reserve_date, 
-			 	r.r_start, r.r_total_pay, r.r_pay_type, r.r_pay_status, 
-			 	to_char(r.r_regdate, 'yyyy-MM-dd') r_regdate, s.s_name, s.s_hours, nvl(s.s_img1, 'x') s_img1, 
-			 	nvl(s.s_img2, 'x') s_img2, nvl(s.s_img3, 'x') s_img3, p.p_phone, p.p_intro, p.p_name, p.p_address, m.m_name, 
-			 	m.m_phone, (Select count(*) from items_rental where r_no = #{r_no}) itemsCnt
- 		FROM rental r, stadium s, place p, member m
-		WHERE r.s_no = s.s_no and s.p_num = p.p_num and r.m_id = m.m_id and r.r_no = #{r_no}
+		SELECT r.r_no
+				,r.m_id
+				,to_char(r.r_reserve_date, 'yyyy-MM-dd') r_reserve_date
+				,r.r_start, r.r_total_pay
+				,r.r_pay_type, r.r_pay_status
+				,to_char(r.r_regdate, 'yyyy-MM-dd') r_regdate
+				,s.s_name, s.s_hours
+				,nvl(s.s_img1, 'x') s_img1
+				,nvl(s.s_img2, 'x') s_img2
+				,nvl(s.s_img3, 'x') s_img3
+				,p.p_phone, p.p_intro
+				,p.p_name, p.p_address
+				,m.m_name
+				,m.m_phone
+				,(SELECT count(*) 
+					FROM items_rental 
+					WHERE r_no = #{r_no}) itemsCnt
+ 		FROM rental r
+ 				,stadium s
+ 				,place p
+ 				,member m
+		WHERE 1 = 1
+				and r.s_no = s.s_no 
+				and s.p_num = p.p_num 
+				and r.m_id = m.m_id 
+				and r.r_no = #{r_no}
 	</select>
 	
 	<update id="rentalUpdate" parameterType="rental" >
