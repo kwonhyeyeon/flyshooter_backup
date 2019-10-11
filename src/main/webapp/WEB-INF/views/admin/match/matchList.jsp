@@ -7,98 +7,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="UTF-8">
-    <title>FLY SHOOTER</title>
-    <script src="http://code.jquery.com/jquery.min.js"></script>
-    <script src="/resources/js/boardCheck.js"></script>
-    <link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="/resources/css/adminStyle.css" />
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<<<<<<< HEAD
-	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            //검색 후 검색 대상과 검색 단어 출력 
-            var word = "<c:out value='${data.keyword}' />";
-            var value = "";
-
-            // 한 페이지에 보여줄 레코드 수 조회 후 선택한 값 그대로 유지하기 위한 설정
-            if (word != "") {
-                $("#keyword").val("<c:out value='${data.keyword}' />");
-            }
-
-            if ("<c:out value='${data.pageSize}'/>" != "") {
-                $("#pageSize").val("<c:out value='${data.pageSize}'/>");
-            }
-
-            // 한 페이지에 보여줄 레코드 수 변경 될 때마다 처리 스크립트
-            $("#pageSize").change(function() {
-                goPage(1);
-            });
-
-            // 검색 버튼 클릭 시 처리 이벤트
-            $("#searchDataBtn").click(function() {
-                if (!chkSubmit($('#keyword'), "검색어를")) {
-                    return;
-                }
-                goPage(1);
-            });
-
-            // 전체 리스트 확인 버튼 클릭 시 처리 이벤트
-            $("#allData").click(function() {
-                location.href = "/admin/match/matchList.do"
-            });
-
-            var url = "/admin/match/matchView.do";
-
-            // 리스트 클릭시 상세 보기 페이지로 이동
-            $(".mListView").click(function() {
-                var mb_no = $(this).parents("tr").attr("data-num");
-                var data = $("#mb_no").val(mb_no);
-                $.ajax({
-                    type: "get",
-                    url: url,
-                    data: data,
-                    success: function(result) {
-                        $('#matchViewForm').text("");
-                        $('#matchViewForm').show();
-                        $('#matchViewForm').append(result);
-                        $("#matchViewForm").dialog({
-                            autoOpen: false,
-                            width: "600px",
-                            modal: true,
-                            closeOnEscape: false,
-                            open: function(event, ui) {
-                                $(".ui-dialog-titlebar", $(this).parent()).hide();
-                            }
-                        });
-
-                        $("#matchViewForm").dialog("open");
-
-                    }
-                });
-            });
-
-        })
-
-        // 검색과 한 페이지에 보여줄 레코드 수 처리 및 페이징을  위한 스크립트
-        function goPage(page) {
-            $("#page").val(page);
-            $("#m_search").attr({
-                "method": "get",
-                "action": "/admin/match/matchList.do"
-            });
-            $("#m_search").submit();
-        }
-    </script>
-=======
-	<script src="http://code.jquery.com/jquery.min.js"></script>
-	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <script src="/resources/js/adminMatchList.js"></script>
->>>>>>> f86619ea5878448e7213e9e044754ddf68f5abf5
+<meta charset="UTF-8">
+<title>FLY SHOOTER 관리자</title>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="/resources/css/adminStyle.css" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/resources/js/matchList.js"></script>
 </head>
 
 <body>
@@ -144,7 +62,7 @@
                         <c:choose>
                             <c:when test="${not empty adminMatchList}">
                                 <c:forEach var="match" items="${adminMatchList}" varStatus="status">
-                                    <tr class="list" data-num="${match.mb_no}">
+                                    <tr class="list-hover list" data-num="${match.mb_no}">
                                         <td class="mListView">${status.index+1 }</td>
                                         <td class="mListView">${match.mb_type}</td>
                                         <td class="mListView">${match.mb_name}</td>
