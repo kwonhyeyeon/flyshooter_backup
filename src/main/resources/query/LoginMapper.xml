@@ -28,7 +28,7 @@
  		set retry = #{retry},
  			lastFail = #{lastFail},
  			lastPass = #{lastPass},
- 			clientIp = #{clientIp}
+ 			clientIp = #{clientIp, jdbcType = VARCHAR} 
  			where m_id = #{m_id}
  	</update>
  	
