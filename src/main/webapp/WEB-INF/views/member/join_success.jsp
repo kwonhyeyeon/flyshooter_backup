@@ -5,17 +5,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="8; url=/member/login.do">
-<title>회원가입 완료 화면</title>
+<meta http-equiv="refresh" content="5; url=/member/login.do">
+<title>FLY SHOOTER</title>
+<link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
 </head>
 <body>
-	<div class="contentContainer">
-		<div class="well">
-			<div class="tac">
-				000사이트에 회원 가입해 주셔서 감사합니다.<br /> <span id="text">(8초후에 자동으로
-					로그인 화면으로 이동합니다.) </span>
+
+	<div id="wrapper">
+	
+		<header id="account-header">
+			<h1><a href="/">FLY SHOOTER</a></h1>
+		</header>
+		
+		<article id="account-contents">
+		
+			<p class="refresh">
+				FLY SHOOTER에 가입해 주셔서 감사합니다<br>
+				5초 후에 로그인 화면으로 이동합니다
+			</p>	
+			
+		</article>
+		
+		<footer id="account-footer">
+			<div class="footer-link">
+				<a href="/member/terms.do?type=termsUse" target="_blank">이용약관</a>
+				<a href="/member/terms.do?type=sttmn" target="_blank">개인정보취급방침</a>
 			</div>
-		</div>
+			<p class="copyright">Copyright © <a class="link-home" href="/">FLYSHOOTER.</a> All rights reserved.</p>
+		</footer>
+		
 	</div>
+
 </body>
 </html>

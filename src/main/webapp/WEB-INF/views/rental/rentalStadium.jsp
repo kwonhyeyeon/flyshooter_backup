@@ -85,11 +85,10 @@
                 </table>
             </section>
             
-               <div id="map" style="width:100%; height:400px; margin-bottom:50px;"></div>
+            <div id="map" style="width:100%; height:400px; margin-bottom:50px;"></div>
             <!-- services 라이브러리 불러오기 -->
             <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f706d5a384eb0508472eddd23b44d733&libraries=services"></script>
             <script>
-            //var address = $("#adrsText").replace("*");
             var add = "${ pvo.p_address }";
             var addressText = add.split("*");
             

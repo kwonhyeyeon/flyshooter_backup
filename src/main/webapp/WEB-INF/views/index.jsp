@@ -12,20 +12,12 @@
 <link href="http://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" type="text/css">
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script>
-
-
 $(document).ready(function(){ 
-	
-	
 	if("${log_message}"){
 		alert("${log_message}");
 		location.href = "/";
-}
-
-	
+	}
 });
-
-
 </script>
 <link rel="stylesheet" href="/resources/css/reset.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
@@ -38,6 +30,7 @@ $(document).ready(function(){
 				<nav id="main-lnb">
 					<ul>
 						<c:if test="${empty mvo.m_id}">
+							<li><a href="/admin/login.do">관리자</a></li>
 							<li><a href="/member/terms.do">회원가입</a></li>
 							<li><a href="/member/login.do">로그인</a></li>
 						</c:if>

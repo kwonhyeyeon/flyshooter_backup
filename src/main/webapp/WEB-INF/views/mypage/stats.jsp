@@ -50,9 +50,15 @@ google.charts.setOnLoadCallback(drawChart);
 	
 		<article id="contents">
 		
-			<article id="selectPlace">
+			<h2 class="articleTit">통계</h2>
+			
+			<div class="notice">
+				<p><span class="red">※ 등록된 구장중 가장 오래된 대관연도부터 최근 대관연도까지 조회 가능합니다</span></p>
+			</div>
+		
+			<div class="selectArea">
 				<select id="placeBox" name="placeBox" >
-					<option>전체구장</option>
+					<option>전체 구장</option>
 					<c:forEach var="pvo" items="${place}">
 						<option value="${ pvo.p_num }">${ pvo.p_name }</option>
 					</c:forEach>	
@@ -63,12 +69,9 @@ google.charts.setOnLoadCallback(drawChart);
 						<option value="${year }">${year }</option>
 					</c:forEach> 
 				</select>
-				
-				<p style="color: red">※ 등록된 구장중 가장 오래된 대관연도부터 최근 대관연도까지 조회 가능합니다.</p>	
-			</article>
+			</div>
 			
-			
-			<div class="worko-tabs">
+			<section class="itemArea">
 			
 				<div id="tab-wrapper">
 				    <ul class="tabs">
@@ -84,8 +87,7 @@ google.charts.setOnLoadCallback(drawChart);
 	  				  <!-- .tab_container -->
 				</div>
 			
-			</div>
-			
+			</section>
 		
 		</article>
 

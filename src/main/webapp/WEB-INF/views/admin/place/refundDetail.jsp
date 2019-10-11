@@ -78,14 +78,6 @@
 	                        </tr>
                         </c:if>
                         
-                        <tr class="btn-area">
-		                    <td><a class="cancle" href="javascript:history.back();">취소</a></td>
-		                    <td class="positive">
-		                    	<c:if test="${data.pay_status != -1}">
-		                    		<button class="delete ml" id="refundBtn">환불액 지급</button>
-		                    	</c:if>
-		                    </td>
-		                </tr>
                     </table>
                     <!-- 구장 정보 -->
                     
@@ -134,6 +126,15 @@
 	                        	<td>${data.account_num}</td>
 	                        </tr>
                         </c:if>
+                        
+                        <tr class="btn-area">
+		                    <td><a class="cancle" href="/admin/place/updateRefund.do">취소</a></td>
+		                    <td class="positive">
+		                    	<c:if test="${data.pay_status != -1}">
+		                    		<button class="delete ml" id="refundBtn">환불액 지급</button>
+		                    	</c:if>
+		                    </td>
+		                </tr>
                     </table>
                     <!-- 예약 내역 -->
 

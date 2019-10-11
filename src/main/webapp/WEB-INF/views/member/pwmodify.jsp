@@ -5,14 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>FLY SHOOTER</title>
-
-<link rel="stylesheet" href="/resources/css/reset.css" />
-<link rel="stylesheet" href="/resources/css/style.css" />
-</head>
+<link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -62,31 +59,44 @@ function errCodeCheck() {
 }
 
 </script>
+</head>
+
 <body>
-	<form id="modifyForm" action="/member/pwmodify.do"
-		method="post">
-		<div>
-			<input type="hidden" id="m_id" name="m_id" value="${m_id }" readonly />
-		</div>
-		<div>
-			<label for="pw">비밀 번호</label>
-			<div>
-				<input type="password" id="m_pw" name="m_pw" maxlength="15" value="">
-			</div>
-		</div>
-		<div>
-			<label for="pwCheck">비밀번호 확인 </label>
-			<div>
-				<input type="password" id="m_pwCheck" name="m_pwCheck"
-					maxlength="15" value=""> <span id="pwcheck"></span>
-			</div>
-		</div>
+
+	<div id="wrapper">
+	
+		<header id="account-header">
+			<h1><a href="/">FLY SHOOTER</a></h1>
+		</header>
 		
-		<div>
-			<div>
-				<input type="submit" value="수정" id="pwmodify" />
+		<article id="account-contents">
+		
+			<form id="modifyForm" action="/member/pwmodify.do" method="post">
+				<input type="hidden" id="m_id" name="m_id" value="${m_id}" readonly />
+			
+				<div class="login-box">
+				
+					<input type="password" id="m_pw" name="m_pw" placeholder="비밀번호">
+					
+					<input type="password" id="m_pwCheck" name="m_pwCheck" placeholder="비밀번호 확인">
+					<p id="pwcheck" class="error"></p>
+					
+				</div>
+			
+				<input type="submit" value="수정" id="pwmodify" class="activeBtn" />
+			</form>
+			
+		</article>
+		
+		<footer id="account-footer">
+			<div class="footer-link">
+				<a href="/member/terms.do?type=termsUse" target="_blank">이용약관</a>
+				<a href="/member/terms.do?type=sttmn" target="_blank">개인정보취급방침</a>
 			</div>
-		</div>
-	</form>
+			<p class="copyright">Copyright © <a class="link-home" href="/">FLYSHOOTER.</a> All rights reserved.</p>
+		</footer>
+		
+	</div>
+	
 </body>
 </html>

@@ -73,6 +73,7 @@ function goPage(page){
 </script>
 </head>
 <body>
+
 	<div id="wrapper">
 		<div id="header-wrap">
             <div id="header">
@@ -95,79 +96,74 @@ function goPage(page){
 			    <div class="select-area">
 			    	<form id="placeStatusForm">
 				        <select name="statusChoice" id="statusChoice">
-				        		<c:choose>
-									<c:when test="${data.statusChoice == '0'}">
-										<option value="0" selected>구장 상태 전체</option>
-							            <option value="1">정산 대기</option>
-							            <option value="2">정산 완료</option>
-									</c:when>
-									<c:when test="${data.statusChoice == '1'}">
-										<option value="0">구장 상태 전체</option>
-							            <option value="1" selected>정산 대기</option>
-							            <option value="2">정산 완료</option>
-									</c:when>
-									<c:otherwise>
-										<option value="0">구장 상태 전체</option>
-							            <option value="1">정산 대기</option>
-							            <option value="2" selected>정산 완료</option>
-									</c:otherwise>
-								</c:choose>
+				        	<c:choose>
+								<c:when test="${data.statusChoice == '0'}">
+									<option value="0" selected>구장 상태 전체</option>
+						            <option value="1">정산 대기</option>
+						            <option value="2">정산 완료</option>
+								</c:when>
+								<c:when test="${data.statusChoice == '1'}">
+									<option value="0">구장 상태 전체</option>
+						            <option value="1" selected>정산 대기</option>
+						            <option value="2">정산 완료</option>
+								</c:when>
+								<c:otherwise>
+									<option value="0">구장 상태 전체</option>
+						            <option value="1">정산 대기</option>
+						            <option value="2" selected>정산 완료</option>
+								</c:otherwise>
+							</c:choose>
 				        </select>
 			        </form>
 			    </div>
 			    <!-- 셀렉트 박스 영역 -->
-	            <div>
-	            <!-- 구장 리스트 -->
-	            	 <table class='table-style'> 
-						 <tr>
-							 <th>번호</th>
-							 <th>신청일</th>
-							 <th>회원 ID</th>
-							 <th>대표자명</th>
-							 <th>대관 건수</th>
-							 <th>환불 건수</th>
-							 <th>지급액</th>
-							 <th>지급일</th>
-							 <th>지급 상태</th>
-						 </tr>
-						 <c:if test="${ not empty calculateList }">
-								<c:forEach var="calculate" items="${calculateList }">
-									<tr class='calculate' data-num = "${ calculate.p_num }">
-										<td class='indexC_no'>${ calculate.c_no }</td>
-										<td>${ calculate.c_regdate }</td>
-										<td>${ calculate.m_id }</td>
-										<td>${ calculate.p_ceo }</td>
-										<td>${ calculate.c_rental_cnt }</td>
-										<td>${ calculate.c_return_cnt }</td>
-										<td>${ calculate.c_payment }</td>
-										
-										<c:if test="${calculate.c_status == '-1'}">
-											<td>
-											  	정산 대기
-											</td>
-											<td>
-											  	<input type='button' value='지급 대기' class='cal_update'/>
-											</td>
-										</c:if>
-										<c:if test="${calculate.c_status == '1'}">
-											<td>
-											  	${ calculate.c_payment_date }
-											</td>
-											<td>
-											  	<input type='button' value='지급 완료'/>
-											</td>
-										</c:if>
-									</tr>
-								</c:forEach>
-							</c:if>
-							<c:if test="${empty calculateList }">
-								<tr class="list-hover">
-				                   <td class="empty" colspan="7">조회된 정산이 없습니다</td>
-				                </tr>
-						    </c:if>
-						</table>
-						<!-- 정산 리스트 -->
-	           		 </div>
+			    
+			    <!-- 정산 리스트 -->
+			    <table class="table-style">
+				    <tr>
+				        <th>번호</th>
+				        <th>신청일</th>
+				        <th>회원 ID</th>
+				        <th>대표자명</th>
+				        <th>대관 건수</th>
+				        <th>환불 건수</th>
+				        <th>지급액</th>
+				        <th>지급일</th>
+				        <th>지급 상태</th>
+				    </tr>
+				    <c:if test="${ not empty calculateList }">
+				        <c:forEach var="calculate" items="${calculateList }">
+				            <tr class="calculate" data-num="${ calculate.p_num }">
+				                <td class="indexC_no">${ calculate.c_no }</td>
+				                <td>${ calculate.c_regdate }</td>
+				                <td>${ calculate.m_id }</td>
+				                <td>${ calculate.p_ceo }</td>
+				                <td>${ calculate.c_rental_cnt }</td>
+				                <td>${ calculate.c_return_cnt }</td>
+				                <td>${ calculate.c_payment }</td>
+				
+				                <c:if test="${calculate.c_status == '-1'}">
+				                    <td>정산 대기</td>
+				                    <td>
+				                    	<button class="cal_update default">지급 대기</button>
+				                    </td>
+				                </c:if>
+				                <c:if test="${calculate.c_status == '1'}">
+				                    <td>
+				                        ${ calculate.c_payment_date }
+				                    </td>
+				                    <td>정산 완료</td>
+				                </c:if>
+				            </tr>
+				        </c:forEach>
+				    </c:if>
+				    <c:if test="${empty calculateList }">
+				        <tr class="list-hover">
+				            <td class="empty" colspan="9">조회된 정산이 없습니다</td>
+				        </tr>
+				    </c:if>
+				</table>
+				<!-- 정산 리스트 -->
 	             
 				   <!--  paging view -->    
         			 <div id="boardSearch">

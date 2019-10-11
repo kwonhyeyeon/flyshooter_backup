@@ -23,7 +23,12 @@
 		    <h1><a href="/">FLY SHOOTER</a></h1>
 		    <nav id="gnb">
 		        <ul>
-		            <li><a href="/">대관</a></li>
+		        	<c:if test="${mvo.m_type eq 0}">
+		            	<li><a href="/client/rental/rentalList.do">대관</a></li>
+		            </c:if>
+		            <c:if test="${mvo.m_type eq 1}">
+		            	<li><a href="/user/rental/location.do">대관</a></li>
+		            </c:if>
 		            <li><a href="/match/matchList.do">매치</a></li>
 		            <li><a href="/support/supportList.do">용병</a></li>
 		            <li><a href="/member/mypage/modifyLogin.do">마이페이지</a></li>

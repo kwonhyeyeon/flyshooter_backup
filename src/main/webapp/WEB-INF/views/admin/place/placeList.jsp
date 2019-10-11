@@ -94,11 +94,9 @@
 				    <!-- 구장 리스트 -->
 				    
 				    <!-- pagination -->
-				    <div id="boardSearch">
-			           <form id="f_search" name="f_search">
-			                 <input type="hidden" id="page" name="page" value="${data.page}"/>
-			           </form>
-			      	</div>
+			        <form id="f_search" name="f_search">
+			        	<input type="hidden" id="page" name="page" value="${data.page}"/>
+			        </form>
 			                 
 			        <div class="pagination">
 			           <tag:paging page="${param.page}" total="${total}" list_size="${data.pageSize}" />

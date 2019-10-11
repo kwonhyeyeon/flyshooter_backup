@@ -10,7 +10,7 @@
 	width:100%;
 	height:80px;
 	margin:0 auto;
-	border-bottom:1px solid #ebebeb;
+	border-bottom:1px solid #dedede;
 }
 #header {
 	background:#4b4b4b;
@@ -53,6 +53,7 @@
 	height:100%;
 	margin:0 auto;
 	min-width:1210px;
+	display:flex;
 }
 
 /* subNavi */
@@ -69,7 +70,7 @@
 	height:50px;
 	line-height:50px;
 	padding-left:20px;
-	border-bottom:1px solid #ebebeb;
+	border-bottom:1px solid #dedede;
 	color:#1976D2;
 	font-weight:bold;
 }
@@ -116,15 +117,9 @@
 }
 #contents {
 	height:100%;
-	margin-left:219.5px;
+	/* margin-left:219.5px; */
 	padding:50px 20px 0;
 	background:url("/resources/img/line.png") repeat-y left;
-	padding-bottom:150px;
-	/* position:absolute;
-	margin:0 auto;
-	margin-left:219.5px;
-	left:50%;
-	transform:translateX(-50%); */
 }
 
 h2.con-subject {
@@ -151,11 +146,11 @@ article.loginArea h2.login-title {
 table.loginTable {
 	width:700px;	
 	margin:0 auto;
-	border-top:1px solid #ebebeb;
+	border-top:1px solid #dedede;
 }
 table.loginTable td {
 	height:50px;
-	border-bottom:1px solid #ebebeb;
+	border-bottom:1px solid #dedede;
 	text-align:left;
 	padding:0 10px;
 	vertical-align:middle;
@@ -164,7 +159,7 @@ table.loginTable td input {
 	width:70%;
 	height:30px;
 	padding:0 10px;
-	border:1px solid #ebebeb;		
+	border:1px solid #dedede;		
 }
 button.login {
 	border:none;
@@ -198,7 +193,7 @@ table.table-style th {
 table.table-style td {
 	padding:15px 0 15px 20px;
 	text-align:left;
-	border-bottom:1px solid #ebebeb;
+	border-bottom:1px solid #dedede;
 	color:#555;
 }
 table.table-style tr td.right {
@@ -236,18 +231,55 @@ table.table-style td a.table-delete:hover {
 	background:#ed3324;
 	color:#FFF;	
 }
+button.default {
+	display:inline-block;
+	height:38px;
+	line-height:38px;
+	padding:0 30px;
+	background:#fff;
+	color:#1976D2;
+	text-align:center;
+	border:1px solid #dedede;
+}
+button.save {
+	display:inline-block;
+	height:38px;
+	line-height:38px;
+	padding:0 30px;
+	background:#1976D2;
+	color:#fff;
+	text-align:center;
+	border:1px solid #1976D2;
+}
+select.m_status {
+	display:none;
+	outline:none;
+	appearance:none;
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	-ms-appearance:none;
+	cursor:pointer;
+	font-size:13px;
+	color:#4e4e4e;
+	border-radius:0;
+	border:1px solid #dedede;
+	height:38px;
+	line-height:38px;
+	padding:0 50px 0 10px;
+	background:url(/resources/img/select-arrow.png) no-repeat 90%;
+}
 
 table.table-style2 {
 	border-top:1px solid #e3e3e3;
 	width:100%;
 }
 table.table-style2 td {
-	border-bottom:1px solid #ebebeb;
+	border-bottom:1px solid #dedede;
 	padding:15px 0 15px 20px;
 	color:#555;
 }
 table.table-style2 td.subject {
-	border-right:1px solid #ebebeb;
+	border-right:1px solid #dedede;
 	font-weight:500;
 	width:300px;
 	color:#888;
@@ -258,11 +290,11 @@ table.table-style td input.field1 {
 	width:70%;
 	height:38px;
 	padding:0 10px;
-	border:1px solid #ebebeb;
+	border:1px solid #dedede;
 }
 table.table-style2 td input.field2 {
 	height:38px;
-	border:1px solid #ebebeb;
+	border:1px solid #dedede;
 	padding:0 10px;
 }
 table.table-style2 tr.line1 {
@@ -300,9 +332,9 @@ label.radio-select {
 	display:block;
 	text-align:center;
 	cursor:pointer;
-  width:50%;
-  height:100%;
-  float:left;
+  	width:50%;
+  	height:100%;
+  	float:left;
 }
 
 p.error-msg {
@@ -319,7 +351,7 @@ table.table-style {
 	width:100%;
 }
 table.table-style tr.top-btn-area td {
-	border-bottom:1px solid #ebebeb;
+	border-bottom:1px solid #dedede;
 	text-align:left;
 	padding-left:0;
 }
@@ -336,7 +368,7 @@ table.table-style tr.top-btn-area td.positive {
 }
 
 table.table-style2 tr.top-btn-area td {
-	border-bottom:1px solid #ebebeb;
+	border-bottom:1px solid #dedede;
 	text-align:left;
 	padding-left:0;
 }
@@ -369,7 +401,7 @@ table.table-style2 tr.top-btn-area td.positive {
 	font-size:13px;
 	color:#4e4e4e;
 	border-radius:0;
-	border:1px solid #ebebeb;
+	border:1px solid #dedede;
 	padding:5px 50px 5px 10px;
 	background:url(/resources/img/select-arrow.png) no-repeat 95%;
 }
@@ -414,7 +446,7 @@ button.add {
 	display:inline-block;
 	padding:5px 30px;
 	background:#1976D2;
-	border:1px solid #ebebeb;
+	border:1px solid #dedede;
 	line-height:30px;
 	color:#fff;
 	text-align:center;
@@ -531,7 +563,7 @@ h3.sub-tit {
 	background:url(/resources/img/select-arrow.png) no-repeat 95%;
 	height:38px;
 	line-height:38px;
-	border:1px solid #ebebeb;
+	border:1px solid #dedede;
 	padding:0 50px 0 10px;
 	margin-left:5px;
 }
@@ -576,8 +608,8 @@ h3.sub-tit {
 }
 
 .processing-state {
-	border-top:1px solid #ebebeb;
-	border-bottom:1px solid #ebebeb;
+	border-top:1px solid #dedede;
+	border-bottom:1px solid #dedede;
 	padding:10px 0;
 	text-align:center;
 }
@@ -587,7 +619,7 @@ h3.sub-tit {
 .processing-state ul li button {
 	width:150px;
 	height:70px;	
-	border:1px solid #ebebeb;
+	border:1px solid #dedede;
 	background:#1976D2;
 	color:#FFF;
 	margin:10px;
@@ -596,7 +628,7 @@ h3.sub-tit {
 .processing-state ul li button.state-btn {
 	width:150px;
 	height:70px;	
-	border:1px solid #ebebeb;
+	border:1px solid #dedede;
 	background:#fff;
 	margin:10px;
 	cursor:pointer;
@@ -656,13 +688,13 @@ p.return {
 }
 .eventTable td {
 	height:50px;
-	border-bottom:1px solid #ebebeb;
+	border-bottom:1px solid #dedede;
 	border-top:1px solid #e3e3e3;
 	padding:10px 0 10px 20px;
 	color:#555;
 }
 .eventTable td.subject {
-	border-right:1px solid #ebebeb;	
+	border-right:1px solid #dedede;	
 	color:#888;
 	background:#f7f7f7;
 }
@@ -771,7 +803,7 @@ select#category {
 	background:url(/resources/img/select-arrow.png) no-repeat 95%;
 	height:40px;
 	line-height:40px;
-	border:1px solid #ebebeb;
+	border:1px solid #dedede;
 	padding:0 50px 0 10px;
 	margin-left:5px;
 }
@@ -813,7 +845,7 @@ input.date-input {
 	line-height:38px;
 	padding:0 10px;
 	width:70px;
-	border:1px solid #ebebeb;
+	border:1px solid #dedede;
 }
 	
 /* inquiry */
@@ -835,7 +867,7 @@ table.chat-table {
 }
 table.chat-table td {
 	height:50px;
-	border-bottom:1px solid #ebebeb;
+	border-bottom:1px solid #dedede;
 	padding:0 10px;
 }
 table.chat-table tr.chat {
@@ -886,7 +918,7 @@ table.chat-table tr.chat td button.save {
 	line-height:50px;
 	float:left;
 	text-align:center;
-	border-top:1px solid #ebebeb;
+	border-top:1px solid #dedede;
 }
 .alert a.no {
 	color:#1976D2;
@@ -927,7 +959,7 @@ table.chat-table tr.chat td button.save {
 	display:block;
 	width:80%;
 	margin:15px auto;
-	border:1px solid #ebebeb;
+	border:1px solid #dedede;
 	height:30px;
 	padding:0 10px;	
 }
