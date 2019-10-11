@@ -39,61 +39,61 @@
                 <jsp:include page="../templates/subNavi.jsp" flush="true" />
             </aside><!-- subNavi -->
 
-            <div id="container">
-                <article id="contents">
-                    <h2 class="con-subject">용병지원</h2>
-                    <!-- 리스트 상세보기 -->
-                    <div id="supportViewForm">
-                        <input type="hidden" name="hs_no" id="hs_no" />
-                    </div>
-                    <!-- 리스트 상세보기 -->
-
-                    <!-- 리스트 시작 -->
-                    <table class="table-style">
-                        <thead>
-                            <tr>
-                                <th>글번호</th>
-                                <th>지역</th>
-                                <th>가능 시간</th>
-                                <th>작성자</th>
-                                <th>작성 일자</th>
-                                <th>진행 상태</th>
-                                <th>글 상태</th>
-                            </tr>
-                        </thead>
-                        <c:choose>
-                            <c:when test="${not empty adminSupportList}">
-                                <c:forEach var="support" items="${adminSupportList}" varStatus="status">
-                                    <tr class="list-hover list" data-num="${support.hs_no}">
-                                        <td class="sListView">${status.index+1 }</td>
-                                        <td class="sListView">${support.hs_area}</td>
-                                        <td class="sListView">${support.hs_date} ${support.hs_time}</td>
-                                        <td class="sListView">${support.m_name}</td>
-                                        <td class="sListView">${support.hs_regdate}</td>
-                                        <td class="sListView">
-                                            <c:choose>
-                                                <c:when test="${support.hs_progress == '1'}">가능</c:when>
-                                                <c:when test="${support.hs_progress == '0'}">종료</c:when>
-                                                <c:when test="${support.hs_progress == '-1'}">마감</c:when>
-                                            </c:choose>
-                                        </td>
-                                        <td class="sListView">
-                                            <c:choose>
-                                                <c:when test="${support.hs_status == '1'}">공개</c:when>
-                                                <c:when test="${support.hs_status == '0'}">삭제</c:when>
-                                            </c:choose>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </c:when>
-                            <c:otherwise>
-                                <tr>
-                                    <td colspan="7">등록된 지원글이 없습니다.</td>
-                                </tr>
-                            </c:otherwise>
-                        </c:choose>
-                    </table>
-                    <!-- 리스트 종료 -->
+			<div id="container">
+				<article id="contents">
+					<h2 class="con-subject">용병지원</h2>
+					<!-- 리스트 상세보기 -->
+					<form id="supportViewForm">
+						<input type="hidden" name="hs_no" id="hs_no" />
+					</form>
+					<!-- 리스트 상세보기 -->
+			
+					<!-- 리스트 시작 -->
+						<table class="table-style">
+							<thead>
+								<tr>
+									<th>글번호</th>
+									<th>지역</th>
+									<th>가능시간</th>
+									<th>작성자</th>
+									<th>작성일자</th>
+									<th>진행상태</th>
+									<th>글 상태</th>
+								</tr>
+							</thead>
+								<c:choose>
+									<c:when test="${not empty adminSupportList}">
+										<c:forEach var="support" items="${adminSupportList}" varStatus="status">
+											<tr class="list" data-num="${support.hs_no}">
+												<td class="sListView">${status.index+1 }</td>
+												<td class="sListView">${support.hs_area}</td>
+												<td class="sListView">${support.hs_date}  ${support.hs_time}</td>
+												<td class="sListView">${support.m_name}</td>
+												<td class="sListView">${support.hs_regdate}</td>
+												<td class="sListView">
+														<c:choose>
+															<c:when test="${support.hs_progress == '1'}">가능</c:when>
+															<c:when test="${support.hs_progress == '0'}">종료</c:when>
+															<c:when test="${support.hs_progress == '-1'}">마감</c:when>
+														</c:choose>
+												</td>
+												<td class="sListView">
+														<c:choose>
+															<c:when test="${support.hs_status == '1'}">공개</c:when>
+															<c:when test="${support.hs_status == '0'}">삭제</c:when>
+														</c:choose>
+												</td>
+											</tr>
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<tr>
+											<td colspan="7">등록된 지원글이 없습니다.</td>
+										</tr>
+									</c:otherwise>
+								</c:choose>
+						</table>
+					<!-- 리스트 종료 -->
 
                     <!-- 페이지 네비게이션 시작 -->
                     <div class="pagination">
