@@ -83,7 +83,12 @@ public class LoginController {
 				return mav;
 			}
 		}
-		MemberVO DBmvo = memberService.memberSelect(m_id);
+		MemberVO DBmvo = null;
+		try {
+			DBmvo = memberService.memberSelect(m_id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		// SHA-256를 사용하는 SHA256클래스의 객체를 얻어낸다
 		SHA256 sha = SHA256.getInsatnce();
 
@@ -95,7 +100,12 @@ public class LoginController {
 		if (!BCrypt.checkpw(shaPass, DBmvo.getM_pw())) {
 			lvoHistory.setRetry(lvoHistory.getRetry() + 1);
 			lvoHistory.setLastFail(new Date().getTime());
-			loginService.loginHistoryUpdate(lvoHistory);
+			try {
+				loginService.loginHistoryUpdate(lvoHistory);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
 
 			mav.addObject("retry", lvoHistory.getRetry());
 			mav.addObject("errCode", 1);
@@ -133,6 +143,7 @@ public class LoginController {
 						lvoHistory.setRetry(0);
 						lvoHistory.setLastPass(new Date().getTime());
 						lvoHistory.setClientIp(request.getRemoteAddr());
+						System.out.println("11111111111");
 						loginService.loginHistoryUpdate(lvoHistory);
 						mav.setViewName("/index");
 						return mav;

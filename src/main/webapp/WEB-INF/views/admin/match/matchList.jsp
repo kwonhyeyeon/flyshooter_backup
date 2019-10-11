@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="/resources/css/adminStyle.css" />
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<<<<<<< HEAD
 	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">
@@ -93,6 +94,11 @@
             $("#m_search").submit();
         }
     </script>
+=======
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="/resources/js/adminMatchList.js"></script>
+>>>>>>> f86619ea5878448e7213e9e044754ddf68f5abf5
 </head>
 
 <body>
@@ -133,26 +139,26 @@
                             <th width="200">작성자</th>
                             <th width="200">작성일자</th>
                             <th width="150">신청여부</th>
-                            <th>글 상태</th>
+                            <th width="150">글 상태</th>
                         </tr>
                         <c:choose>
                             <c:when test="${not empty adminMatchList}">
                                 <c:forEach var="match" items="${adminMatchList}" varStatus="status">
                                     <tr class="list" data-num="${match.mb_no}">
-                                        <td>${status.index+1 }</td>
-                                        <td>${match.mb_type}</td>
+                                        <td class="mListView">${status.index+1 }</td>
+                                        <td class="mListView">${match.mb_type}</td>
                                         <td class="mListView">${match.mb_name}</td>
                                         <td class="mListView">${match.mb_m_date}</td>
-                                        <td>${match.m_name}</td>
-                                        <td>${match.mb_regdate}</td>
-                                        <td class="mListProgress">
+                                        <td class="mListView">${match.m_name}</td>
+                                        <td class="mListView">${match.mb_regdate}</td>
+                                        <td class="mListView">
                                             <c:choose>
                                                 <c:when test="${match.mb_progress == '1'}">가능</c:when>
                                                 <c:when test="${match.mb_progress == '0'}">종료</c:when>
                                                 <c:when test="${match.mb_progress == '-1'}">마감</c:when>
                                             </c:choose>
                                         </td>
-                                        <td>
+                                        <td  class="mListView">
                                             <c:choose>
                                                 <c:when test="${match.mb_status == '1'}">공개</c:when>
                                                 <c:when test="${match.mb_status == '0'}">삭제</c:when>
@@ -194,5 +200,20 @@
     </div>
 
 </body>
+
+<script>
+	//검색 후 검색 대상과 검색 단어 출력 
+	var word = "<c:out value='${data.keyword}' />";
+	var value = "";
+	
+	// 한 페이지에 보여줄 레코드 수 조회 후 선택한 값 그대로 유지하기 위한 설정
+	if (word != "") {
+		$("#keyword").val("<c:out value='${data.keyword}' />");
+	}
+	
+	if ("<c:out value='${data.pageSize}'/>" != "") {
+		$("#pageSize").val("<c:out value='${data.pageSize}'/>");
+	}
+</script>
 
 </html>

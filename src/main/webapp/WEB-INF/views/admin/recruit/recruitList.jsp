@@ -8,8 +8,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 용병모집 리스트</title>
+<title>FLY SHOOTER</title>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="/resources/js/boardCheck.js"></script>
+    <link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/css/adminStyle.css" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="http://code.jquery.com/jquery.min.js"></script>
+<<<<<<< HEAD
 <script src="/resources/js/boardCheck.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/reset.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/adminStyle.css" />
@@ -96,6 +102,10 @@ function goPage(page) {
 }
 </script>
 
+=======
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<script src="/resources/js/adminRecruitList.js"></script>
+>>>>>>> f86619ea5878448e7213e9e044754ddf68f5abf5
 </head>
 <body>
 		<div id="wrapper">
@@ -117,28 +127,15 @@ function goPage(page) {
 
 			<div id="container">
 				<article id="contents">
-				
 				<h2 class="con-subject">용병모집</h2>
 
 		<!-- 리스트 상세보기 -->
-		<div id="recruitViewForm" style="display: none">
+		<div id="recruitViewForm" >
 			<input type="hidden" name="hr_no" id="hr_no" />
 		</div>
 		<!-- 리스트 상세보기 -->
 
-		<!-- 리스트 시작 -->
-		<div id="listStart">
-			<table summary="게시판 리스트" class="table-style">
-				<colgroup>
-					<col width="5%" />
-					<col width="20%" />
-					<col width="20%" />
-					<col width="10%" />
-					<col width="10%" />
-					<col width="20%" />
-					<col width="10%" />
-					<col width="5%" />
-				</colgroup>
+			<table class="table-style">
 				<thead>
 					<tr>
 						<th>글번호</th>
@@ -151,26 +148,24 @@ function goPage(page) {
 						<th>글 상태</th>
 					</tr>
 				</thead>
-				<!-- 데이터 출력 -->
-				<tbody class="listContent">
 					<c:choose>
 						<c:when test="${not empty adminRecruitList}">
 							<c:forEach var="recruit" items="${adminRecruitList}" varStatus="status">
 								<tr class="list" data-num="${recruit.hr_no}">
-									<td>${status.index+1 }</td>
+									<td class="rListView">${status.index+1 }</td>
 									<td class="rListView">${recruit.hr_m_date}</td>
 									<td class="rListView">${recruit.hr_name}</td>
 									<td class="rListView">${recruit.hr_people} 명</td>
-									<td>${recruit.m_name}</td>
-									<td>${recruit.hr_regdate}</td>
-									<td class="rListProgress"><span class="recruitStatus">
+									<td class="rListView">${recruit.m_name}</td>
+									<td class="rListView">${recruit.hr_regdate}</td>
+									<td class="rListView">
 											<c:choose>
 												<c:when test="${recruit.hr_progress == '1'}">가능</c:when>
 												<c:when test="${recruit.hr_progress == '0'}">종료</c:when>
 												<c:when test="${recruit.hr_progress == '-1'}">마감</c:when>
 											</c:choose>
-									</span></td>
-									<td>
+									</td>
+									<td  class="rListView">
 											<c:choose>
 												<c:when test="${recruit.hr_status == '1'}">공개</c:when>
 												<c:when test="${recruit.hr_status == '0'}">삭제</c:when>
@@ -185,38 +180,42 @@ function goPage(page) {
 							</tr>
 						</c:otherwise>
 					</c:choose>
-				</tbody>
 			</table>
-		</div>
-		<!-- 리스트 종료 -->
 
 		<!-- 검색기능 시작 -->
-		<div id="listSearch">
-			<form id="r_search" name="r_search">
-				<input type="hidden" id="page" name="page" value="${data.page}" />
-				<table summary="검색">
-					<tr>
-						<td id="btd1"><input type="text" name="keyword" id="keyword"
-							placeholder="작성자 이름을 입력하세요" /> <input type="button" value="검색"
-							id="searchDataBtn" name="searchDataBtn" /> <input type="button"
-							value="전체리스트" id="allData" name="allData" /></td>
-					</tr>
-				</table>
-			</form>
-		</div>
-		<!-- 검색기능 종료-->
-
-		<!-- 페이지 네비게이션 시작 -->
-		<div id="npage">
-			<tag:paging page="${data.page}" total="${total}"
-				list_size="${data.pageSize}" />
-		</div>
-		<!-- 페이지 네비게이션 종료 -->
-				
-				
+				 <!-- 페이지 네비게이션 시작 -->
+                    <div class="pagination">
+                        <tag:paging page="${data.page}" total="${total}" list_size="${data.pageSize}" />
+                    </div>
+                    <!-- 페이지 네비게이션 종료 -->
+                    
+				    <!-- 검색 -->
+				    <div class="search">
+				    	<form id="m_search" name="m_search">
+                            <input type="hidden" id="page" name="page" value="${data.page}" />
+                            <input type="search" name="keyword" id="keyword" class="search-field" placeholder="작성자명" /> 
+                            <button type="submit" id="searchDataBtn" class="search-btn">찾기</button>
+                        </form>
+				    </div>
+				    <!-- 검색 -->
 				</article><!-- contents -->
 			</div><!-- container -->
 		</div><!-- con_wrap -->
 	</div>
 </body>
+
+<script type="text/javascript">
+		//검색 후 검색 대상과 검색 단어 출력 
+		var word = "<c:out value='${data.keyword}' />";
+		var value = "";
+		
+		// 한 페이지에 보여줄 레코드 수 조회 후 선택한 값 그대로 유지하기 위한 설정
+		if (word != "") {
+			$("#keyword").val("<c:out value='${data.keyword}' />");
+		}
+		
+		if ("<c:out value='${data.pageSize}'/>" != "") {
+			$("#pageSize").val("<c:out value='${data.pageSize}'/>");
+		}
+</script>
 </html>
