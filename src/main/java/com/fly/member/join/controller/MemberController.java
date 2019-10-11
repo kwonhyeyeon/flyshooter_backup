@@ -145,7 +145,6 @@ public class MemberController {
 	public ModelAndView pwmodifyForm(@ModelAttribute("MemberVO") MemberVO mvo, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("errCode", 3); 
 		mav.addObject("m_id", mvo.getM_id()); 
 		mav.setViewName("member/pwmodify");
 		return mav;

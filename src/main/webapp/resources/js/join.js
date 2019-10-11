@@ -81,10 +81,11 @@ $(document).ready(function() {
 function joinCheck() {
    var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
    var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;// 이메일이 적합한지 검사할 정규식
-   var re3 =  /^[A-Za-z0-9]{6,12}$/;//패스워드 정규식(숫자와 문자 포함 형태의 6~12자리 이내의 암호 정규식
    var re4 = /^[가-힣]{2,50}$/;//이름 한글로 (2~50자)
    var re5 = /^01([0|1|6|9]?)-?([0-9]{4})-?([0-9]{4})$/;// 핸드폰 번호 정규식
-
+   var re6 = /[a-z]/i;  //적어도 한개의 a-z 확인
+   var re7 = /\d/;  //적어도 한개의 0-9 확인
+   
    var id = document.getElementById("m_id");
    var pw = document.getElementById("m_pw");
    var name =  document.getElementById("m_name");
@@ -110,9 +111,13 @@ function joinCheck() {
    if (!check(re, pw, "패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
       return false;
    }
-   if(!check(re3, pw, "숫자와 문자 포함 형태의 6~12자리 이내")){
+   if(!check(re6, pw, "숫자와 문자 포함 형태의 6~12자리 이내")){
+		return false;
+   }
+   if(!check(re7, pw, "숫자와 문자 포함 형태의 6~12자리 이내")){
 	   return false;
    }
+   
    
    if (pwConfirm == 1) {
       alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
@@ -144,9 +149,7 @@ function check(re, what, message) {
         return true;
     }
     alert(message);
-    what.value = "";
-    what.focus();
-   // return false;
+    return false;
   
 }
 // 아이디에 비밀번호 포함 여부 확인

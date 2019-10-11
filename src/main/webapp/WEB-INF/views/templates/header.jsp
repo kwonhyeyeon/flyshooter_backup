@@ -10,9 +10,9 @@
 	            </c:if>
 	            <c:if test="${not empty mvo.m_id}">
 	            	<c:if test="${mvo.m_type eq 0}">
-		            	<li>오늘의 대관<a class="bold" href="/client/rental/rentalList.do">${todayRental}건</a></li>
-		                <li>정산 가능 금액<a class="bold" href="/mypage/calculate.do">${passibleCal}원</a></li>
-		                <li>미지급 정산 건수<a class="bold" href="/mypage/calculate.do">${unpaidCal}건</a></li>
+		            	<li>오늘의 대관<a class="stat" href="/client/rental/rentalList.do">${todayRental}건</a></li>
+		                <li>정산 가능 금액<a class="stat" href="/mypage/calculate.do">${passibleCal}원</a></li>
+		                <li>미지급 정산 건수<a class="stat" href="/mypage/calculate.do">${unpaidCal}건</a></li>
 	            	</c:if>
 	                <li><a href="/member/logout.do">로그아웃</a></li>
 	            </c:if>
