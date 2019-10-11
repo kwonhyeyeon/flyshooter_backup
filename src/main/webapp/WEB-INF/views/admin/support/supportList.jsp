@@ -42,9 +42,9 @@
 				<article id="contents">
 					<h2 class="con-subject">용병지원</h2>
 		<!-- 리스트 상세보기 -->
-		<div id="supportViewForm">
+		<form id="supportViewForm">
 			<input type="hidden" name="hs_no" id="hs_no" />
-		</div>
+		</form>
 		<!-- 리스트 상세보기 -->
 
 		<!-- 리스트 시작 -->
@@ -87,7 +87,7 @@
 						</c:when>
 						<c:otherwise>
 							<tr>
-								<td colspan="6">등록된 지원글이 없습니다.</td>
+								<td colspan="7">등록된 지원글이 없습니다.</td>
 							</tr>
 						</c:otherwise>
 					</c:choose>

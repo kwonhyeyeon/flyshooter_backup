@@ -41,9 +41,9 @@
 				<h2 class="con-subject">용병모집</h2>
 
 		<!-- 리스트 상세보기 -->
-		<div id="recruitViewForm" >
+		<form id="recruitViewForm" >
 			<input type="hidden" name="hr_no" id="hr_no" />
-		</div>
+		</form>
 		<!-- 리스트 상세보기 -->
 
 			<table class="table-style">
@@ -87,7 +87,7 @@
 						</c:when>
 						<c:otherwise>
 							<tr>
-								<td colspan="6">등록된 모집이 없습니다.</td>
+								<td colspan="8">등록된 모집이 없습니다.</td>
 							</tr>
 						</c:otherwise>
 					</c:choose>
