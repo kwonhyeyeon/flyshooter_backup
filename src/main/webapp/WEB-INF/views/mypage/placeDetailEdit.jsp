@@ -143,7 +143,7 @@
 						<tr>
 							<th>구장 상태</th>
 							<td>
-								<select name="p_status" id="p_status" id="p_status">
+								<select name="p_status" id="p_status">
 									<option value="0" disabled>운영전</option>
 									<option value="1">운영중</option>
 									<option value="2">임시휴업</option>
@@ -152,6 +152,19 @@
 								<p id="closePlace" class="error"></p>
 							</td>
 						</tr>
+						<tr class="p_holidaydate">
+							<th>임시 휴업 시작일</th>
+							<td><input type="date" name="p_holiday_start" id="p_holiday_start" value="${pvo.p_holiday_start}"/></td>
+						</tr>
+						<tr class="p_holidaydate">
+							<th>영업 재개일</th>
+							<td><input type="date" name="p_holiday_end" id="p_holiday_end" value="${pvo.p_holiday_end}"/></td>
+						</tr>
+                        
+                        <tr>
+							<td colspan="4" class="blank"></td>
+						</tr>    
+						
 						<tr>
 							<th>서류 제출 유형</th>
 							<td>

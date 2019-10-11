@@ -147,7 +147,7 @@
 						<h4>가능 시간</h4>
 						<label class="justify">
 							<input type="text" name="hs_date" id="hs_date" />
-							<input type="text" name="hs_time" id="hs_time" placeholder="00:00 ~ 00:00" />
+							<input type="text" name="hs_time" id="hs_time" placeholder="00시 ~ 00시" />
 						</label>
 						
 						<h4>모집 인원</h4>

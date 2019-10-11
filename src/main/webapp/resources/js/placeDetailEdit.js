@@ -1,7 +1,8 @@
 /**
- * 
+ *
  */
 $(document).ready(function() {
+	
 	var p_num = $('#p_num').val();
 	// 등록 버튼 클릭 시 처리 이벤트
 	$("#p_placeModifyForm").submit(function() {
@@ -35,10 +36,10 @@ $(document).ready(function() {
 	$("#p_status").change(function() {
 		var closePlace = document.getElementById("closePlace");
 		if ($("#p_status").val() == "2") {
-			jQuery('#p_holidaydate').show();
+			$(".p_holidaydate").show();
 			closePlace.innerHTML = "";
 		} else if ($("#p_status").val() == "3") {
-			jQuery('#p_holidaydate').hide();
+			$(".p_holidaydate").hide();
 			var query = {
 				p_num : p_num
 			};
@@ -66,7 +67,7 @@ $(document).ready(function() {
 				}
 			});
 		} else {
-			jQuery('#p_holidaydate').hide();
+			$(".p_holidaydate").hide();
 			closePlace.innerHTML = "";
 		}
 

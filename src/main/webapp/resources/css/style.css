@@ -517,6 +517,7 @@ h3.calTit {
 }
 .detailTbl tr td.feeArea.last {
 	padding-bottom:20px;
+	border-bottom:1px solid #dedede;
 }
 .detailTbl tr td.feeArea label {
 	height:42px;
@@ -1472,6 +1473,11 @@ a.activeBtn {
 	color:#f00;
 	margin-bottom:15px;
 }
+td p.error {
+	color:#f00;
+	margin-top:15px;
+	margin-bottom:0;
+}
 /* account */
 
 /* mypage */
@@ -1624,3 +1630,7 @@ input[type="file"]::-webkit-file-upload-button {
   display:none;
 }
 /* slider */
+
+.p_holidaydate {
+	display:none;
+}

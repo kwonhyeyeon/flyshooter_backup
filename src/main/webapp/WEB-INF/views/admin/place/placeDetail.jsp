@@ -134,8 +134,7 @@
                             		<c:choose>
 	                            		<c:when test="${pvo.p_status == 1}">운영중</c:when>
 	                            		<c:when test="${pvo.p_status == 0}">운영전</c:when>
-	                            		<c:when test="${pvo.p_status == -1}">임시휴업</c:when>
-	                            		<c:when test="${pvo.p_status == -2}">폐업</c:when>
+	                            		<c:when test="${pvo.p_status == 2}">임시휴업</c:when>
 	                            	</c:choose>
                             	</td>
                             </c:if>
@@ -143,7 +142,7 @@
                             	<td class="red">폐업</td>
                             </c:if>
                         </tr>
-                        <c:if test="${pvo.p_status == -1}">
+                        <c:if test="${pvo.p_status == 2}">
                         	<tr>
 	                            <td class="subject">임시 휴업 시작일</td>
 	                            <td>${pvo.p_holiday_start}</td>
