@@ -59,7 +59,7 @@
                     </tr>
                     <tr>
                         <th>구장 주소</th>
-                        <td id="adrs">${ pvo.p_address }</td>
+                        <td id="adrs"></td>
                     </tr>
                     <tr>
                         <th>구장 전화번호</th>
@@ -93,6 +93,10 @@
             var add = "${ pvo.p_address }";
             var addressText = add.split("*");
             
+            function sendAddress(){
+            	return "${ pvo.p_address }";
+            }
+           		 
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			    mapOption = {
 			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표

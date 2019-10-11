@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/myRentalList.js"></script>
+<script type="text/javascript" src="/resources/js/slides.js"></script>
 <script type="text/javascript" src="/resources/js/common.js"></script>
 <script type="text/javascript" src="/resources/js/jquery.flexslider.js"></script>
 <script>
@@ -30,7 +31,13 @@
 	function goBack(){
 		location.href = "/user/rental/myRentalList.do";
 	}
+	
+	
+	function sendImg(){
+		return "${data.s_img1}||${data.s_img2}||${data.s_img3}";
+	}
 </script>
+
 </head>
 <body>
 	<div id="wrapper">
