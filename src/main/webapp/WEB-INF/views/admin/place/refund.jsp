@@ -64,7 +64,7 @@
 				    		<th width="200">대표자명</th>
 				    		<th width="250">총 결제금액</th>
 				    		<th width="150">지급일</th>
-				    		<th>환불 상태</th>
+				    		<th width="150">환불 상태</th>
 				    	</tr>
 				    	<c:if test="${not empty refundList}">
 				    		<c:forEach var="refund" items="${refundList}" varStatus="status">
