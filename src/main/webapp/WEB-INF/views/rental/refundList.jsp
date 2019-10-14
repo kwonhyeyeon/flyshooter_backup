@@ -28,7 +28,7 @@
 			
 			<div class="selectArea">
 				<form id="refundListForm">
-					<input type="text" id="register" value="${register}" />
+					<input type="hidden" id="register" value="${register}" />
 					
 					<select name="p_open" id="year">
 						<option <c:if test="${p_open eq p_open}">selected</c:if>>연도</option>

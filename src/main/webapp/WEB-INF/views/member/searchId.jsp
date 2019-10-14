@@ -33,7 +33,10 @@
 				</c:if>
 				
 				<c:if test="${empty m_id }">
-					<p class="refresh">아이디가 존재하지 않습니다</p>
+					<p class="refresh">
+						아이디가 존재하지 않습니다<br>
+						해당 정보를 잊으셨을 경우 관리자에게 문의하세요
+					</p>
 				</c:if>
 			</div>
 			
