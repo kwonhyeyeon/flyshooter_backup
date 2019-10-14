@@ -26,6 +26,8 @@
 				<input type="hidden" id="img1" value="${s_img1}" />
 				<input type="hidden" id="img2" value="${s_img2}" />
 				<input type="hidden" id="img3" value="${s_img3}" />
+				<input type="hidden" id="s_no" name="s_no" value="${svo.s_no}" />
+				<input type="hidden" id="s_name" name="s_name" value="${svo.s_name}" />
 				
 				<table class="detailTbl">
 					<tr>
