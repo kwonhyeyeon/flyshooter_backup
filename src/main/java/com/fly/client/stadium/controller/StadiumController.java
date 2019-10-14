@@ -150,7 +150,15 @@ public class StadiumController {
 	         svo.setS_img3(pt_image3);
 	         
 	      }
-		result = stadiumService.stadiumModify(svo);
+	      System.out.println(svo.toString());
+	      try {
+	    	  result = stadiumService.stadiumModify(svo);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("11111111");
+			e.printStackTrace();
+		}
+		
 	
 		if (result >= 1) {
 			redirectAttr.addAttribute("p_num", svo.getP_num());
